@@ -254,7 +254,7 @@ namespace UltraMarker
         string prevStudent = "";
         bool startMark = false;
         int CriteriaSelectionType = 0;
-       
+        
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
 
@@ -273,8 +273,8 @@ namespace UltraMarker
             {
                 //ConfigDir = "C:\\Ultramarker\\";
                 //DefaultDir = "C:\\Ultramarker\\";
-                ConfigDir = startupPath;
-                DefaultDir = startupPath;
+                ConfigDir = startupPath + "\\";
+                DefaultDir = startupPath + "\\";
 
                 Directory.CreateDirectory(DefaultDir);
             }
@@ -2585,6 +2585,11 @@ namespace UltraMarker
         {   //edit criteria or mark student
             if (button3.Text.StartsWith("Edit"))
             {
+                if (treeView1.Nodes.Count < 2 || treeView1.Nodes.Count < listBox1.Items.Count + 1)
+                {
+                    MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
+                    return;
+                }
                 selectLOs = false;
                 replicate_Criteria = false;
                 replicate_Feedback = false;
@@ -4447,11 +4452,6 @@ namespace UltraMarker
             }
             else
             {
-                if (treeView1.Nodes.Count <2)
-                {
-                    MessageBox.Show("Grading schema is empty - load from Grades tab");
-                    return;
-                }
                 if (StudentcomboBox.Text.Trim() == "")
                 {
                     MessageBox.Show("Student name is blank");
