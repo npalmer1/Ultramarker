@@ -287,7 +287,7 @@ namespace UltraMarker
                 ConfigDir = DefaultDir + "/";
             }
             
-            this.Text = "UltraMarker                   " + theVersion + "                               (c) N. Palmer 2019                    (F1 for help)";
+            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2019                    (F1 for help)";
             tabControl1.TabPages.Remove(tabPage3);
             label23.Text = "";
             LOtextBox.Text = "";
@@ -307,10 +307,7 @@ namespace UltraMarker
             }
             Reset_Selected(true);
             LoadSettings();
-            if (treeView1.Nodes.Count < 2)
-            {
-                MessageBox.Show("Warning no grades loaded - go to Grades tab");
-            }
+           
             if (StudentImportFile.Length > 0)
             {
                 StudentImportTextBox.Text = StudentImportFile;
@@ -2400,6 +2397,13 @@ namespace UltraMarker
                         fblbl.Text = gradelbl.Text;
                     }
                 }
+                if (tabControl1.SelectedTab.Text == "Assess" || tabControl1.SelectedTab.Text == "Sessions") //assess and sessions tabs
+                {
+                    if (treeView1.Nodes.Count < 2)
+                    {
+                        MessageBox.Show("Warning no grades loaded - see Grades tab");
+                    }
+                }
 
                 /*if (tabControl1.SelectedIndex == 1)
                 {
@@ -3965,10 +3969,7 @@ namespace UltraMarker
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
                 return false;
             }
-            return true;
-            //button1.Visible = true;
-
-            //rep1.Passvalue = filename;
+            return true;          
         }
 
         /*private void Generate_Feedback_Report(string filename)
@@ -6261,15 +6262,7 @@ namespace UltraMarker
                 listBox3.Enabled = true;
                 clearLObutton.Visible = true;
                 selectLOs = true;
-                Select_LO();
-                /*
-                // selecxt a learning outcome            
-                LForm.selectLO = true;
-                LForm.LOFilePath = LOFile;
-                LForm.LOList = LOtextBox.Text;
-                //LForm.listBox1.SelectionMode
-                LForm.ShowDialog();
-                LOtextBox.Text = LForm.LOList;*/
+                Select_LO();              
             }
         }
         private void Select_LO()
