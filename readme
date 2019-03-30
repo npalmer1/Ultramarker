@@ -1,0 +1,39 @@
+Ultramarker - status: prototype.
+
+To install Ultramarker in Windows:
+1) ensure that you have at least version 4 of the .NET frameowrk installed
+(See https://www.microsoft.com/en-us/download/details.aspx?id=17851 for version 4
+and https://support.microsoft.com/en-gb/kb/3045560 for the latest version)
+2) unzip publish.zip
+3) change directory to publish
+4) run setup.exe	
+(it is also possible to run Ultramarker from ultramarker.application depending upon your configuration)
+
+To install Help:
+1) unzip helpfiles to the c:\ultramarker directory
+(You should have a C:\ultramarker\helpfiles directory with 5 rtf help files in it)
+
+Demofiles are provided for the sample case study used in the Youtube video:
+to install:
+1) run Ultramarker and then exit (this will generate the C:\ultramarker folder)
+2) unzip demofiles.zip into the C:\ultramarker folder
+3) Run Ultramarker
+4) Load grademark.gra from the Grades tab
+5) Load test.lo from the Learning Outcomes tab
+6) Load test.cri from the Assess tab
+
+To Install Ultramarker in Linux:
+1) Ensure that you have the latest version of Mono installed (.NET for Linux)
+(See http://www.mono-project.com/docs/getting-started/install/linux/ if you need to install it)
+2) unzip publish.zip
+3) change directory to publish/Application Files/Ultramarker<version number>
+4) you just need to run Ultramarker.exe.deploy to run in Linux
+
+To install help in Linux:
+1) unzip helpfiles to the Ultramarker directory in your home folder
+
+To run demo files in Linux:
+1) unzip demofiles.zip into the Ultramarker folder in your home folder
+
+Note: Ultramarker may also work with a Mac provided Mono is installed on it, but this has not been tested
+- follow instructions as for Linux installation

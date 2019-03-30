@@ -1,0 +1,665 @@
+Criteria: 1
+crtitle: Cr1
+crdesc: 
+enddesc:
+crweight: 0
+grade: A1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endCriteria: 
+ 
+Sub_criteria: 1
+crtitle: S1
+crdesc: 
+enddesc:
+crweight: 0
+grade: A1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endSub: 
+ 
+Sub_criteria: 2
+crtitle: S2
+crdesc: 
+enddesc:
+crweight: 0
+grade: A1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endSub: 
+ 
+Criteria: 2
+crtitle: Cr2
+crdesc: 
+enddesc:
+crweight: 0
+grade: A1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endCriteria: 
+ 
+Sub_criteria: 1
+crtitle: S3
+crdesc: 
+enddesc:
+crweight: 0
+grade: A1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endSub: 
+ 

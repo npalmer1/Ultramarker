@@ -1,0 +1,144 @@
+grtitle: A1
+grfb: 
+Exceptional in most / all aspects, substantially exceeds expectations for this level
+endfb:
+grpercent: 100
+grlower: 97
+grupper: 100
+
+grtitle: A2
+grfb: 
+Exceptional in most / all aspects, substantially exceeds expectations for this level
+endfb:
+grpercent: 92
+grlower: 88
+grupper: 96
+
+grtitle: A3
+grfb: 
+Excellent quality, exceeding expectations for this level in many aspects
+endfb:
+grpercent: 83
+grlower: 78
+grupper: 87
+
+grtitle: A4
+grfb: 
+Excellent quality, exceeding expectations for this level in many aspects
+endfb:
+grpercent: 74
+grlower: 70
+grupper: 77
+
+grtitle: B1
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in several of them
+endfb:
+grpercent: 68
+grlower: 67
+grupper: 69
+
+grtitle: B2
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in several of them
+endfb:
+grpercent: 65
+grlower: 64
+grupper: 66
+
+grtitle: B3
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in several of them
+endfb:
+grpercent: 62
+grlower: 60
+grupper: 63
+
+grtitle: C1
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in some of them
+endfb:
+grpercent: 58
+grlower: 57
+grupper: 59
+
+grtitle: C2
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in some of them
+endfb:
+grpercent: 55
+grlower: 54
+grupper: 56
+
+grtitle: C3
+grfb: 
+Meets all the intended learning outcomes and exceeds the threshold expectations for this level in some of them
+endfb:
+grpercent: 52
+grlower: 50
+grupper: 53
+
+grtitle: D1
+grfb: 
+Meets all the required learning outcomes at, but rarely exceeds the threshold expectations for this level
+endfb:
+grpercent: 48
+grlower: 47
+grupper: 49
+
+grtitle: D2
+grfb: 
+Meets all the required learning outcomes at, but rarely exceeds the threshold expectations for this level
+endfb:
+grpercent: 45
+grlower: 44
+grupper: 46
+
+grtitle: D3
+grfb: 
+Meets all the required learning outcomes at, but rarely exceeds the threshold expectations for this level
+endfb:
+grpercent: 42
+grlower: 40
+grupper: 43
+
+grtitle: F1
+grfb: 
+Fails to meet all of the intended learning outcomes and is marginally inadequate for this level
+endfb:
+grpercent: 35
+grlower: 28
+grupper: 39
+
+grtitle: F2
+grfb: 
+Fails to meet all of the intended learning outcomes and is inadequate for this level
+endfb:
+grpercent: 20
+grlower: 18
+grupper: 27
+
+grtitle: F3
+grfb: 
+Fails to meet all of the intended learning outcomes and is inadequate for this level
+endfb:
+grpercent: 15
+grlower: 2
+grupper: 17
+
+grtitle: S
+grfb: 
+Somthing submitted but does
+endfb:
+grpercent: 1
+grlower: 1
+grupper: 1
+
+grtitle: N
+grfb: 
+Non submission
+endfb:
+grpercent: 0
+grlower: 0
+grupper: 0
+

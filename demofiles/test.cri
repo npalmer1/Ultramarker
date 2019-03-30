@@ -1,0 +1,287 @@
+Assessment title: Report on a computer network relating to a case study
+assessdesc: 
+Students should write a report that relates to the requirements of the Acme case study in relation to the design of their new network (please see separate document for the description of the case study and the list of requirements). In your report you should analyse the requirements of the case study by investigating any issues that are likely to impact upon decisions made when designing the new system. You should also discuss any aspects of the requirements that are incomplete or inconsistent and if necessary add to them, justifying any assumptions made.  You should then investigate and analyse solutions that match the requirements, considering alternatives where necessary, and justifying decisions made. All discussion should relate to the context of the case study. You should support your analysis of requirements and the investigation of solutions by appropriate high quality references. 
+endassessdesc:
+Assessment weight: 50
+Assessment code: AE1
+assessLO: 
+Discuss the issues involved in the design and implementation
+Evaluate solutions for a given computer networking problem
+
+endassessLO:
+Criteria type: 0
+Criteria: 1
+crtitle: Analysis of requirements relating to the case study 
+crdesc: 
+You should analyse the requirements of the case study by investigating any issues that are likely to impact upon decisions made when designing the new system. You should also discuss any aspects of the requirements that are incomplete or inconsistent and if necessary add to them, justifying any assumptions made.
+You should support your analysis of requirements  by appropriate high quality references
+enddesc:
+crLO:
+
+endcrLO: 
+crweight: 40
+grade: A1
+grcr: 
+Excellent analysis of requirements of the case study fully supported by a wide range of references
+endgrcr: 
+gradefb: 
+Perfect
+endgrcrfb: 
+grade: A2
+grcr: 
+Excellent analysis of requirements of the case study fully supported by a wide range of references
+endgrcr: 
+gradefb: 
+Near prefect
+endgrcrfb: 
+grade: A3
+grcr: 
+Excellent analysis of requirements of the case study fully supported by a wide range of references
+endgrcr: 
+gradefb: 
+A bit more work needed to make perfect
+endgrcrfb: 
+grade: A4
+grcr: 
+Excellent analysis of requirements of the case study fully supported by a wide range of references
+endgrcr: 
+gradefb: 
+Just within the first class ........
+endgrcrfb: 
+grade: B1
+grcr: 
+Very good discussion of requirements of the case study, supported by a range of references.
+endgrcr: 
+gradefb: 
+Very good , but you need. ......
+endgrcrfb: 
+grade: B2
+grcr: 
+Very good discussion of requirements of the case study, supported by a range of references.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+Very good discussion of requirements of the case study, supported by a range of references.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+Good discussion of requirements of the case study, with some supporting references
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+Good discussion of requirements of the case study, with some supporting references
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+Good discussion of requirements of the case study, with some supporting references
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+Satisfactory description of requirements for the case study
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+Satisfactory description of requirements for the case study
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+Satisfactory description of requirements for the case study
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+No adequate description of requirements
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+No adequate description of requirements
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+No adequate description of requirements
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+Work submitted but does not match criteria
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+No work submitted for this criteria
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endCriteria: 
+ 
+Criteria: 2
+crtitle: Analysis and justification of solutions for the case study 
+crdesc: 
+.  You should then investigate and analyse solutions that match the requirements, considering alternatives where necessary, and justifying decisions made. All discussion should relate to the context of the case study. You should support your  investigation of solutions by appropriate high quality references. 
+enddesc:
+crLO:
+
+endcrLO: 
+crweight: 60
+grade: A1
+grcr: 
+Excellent analysis and justification of solutions, supported by a wide range of references, that clearly match all requirements of the case study 
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A2
+grcr: 
+Excellent analysis and justification of solutions, supported by a wide range of references, that clearly match all requirements of the case study 
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A3
+grcr: 
+Excellent analysis and justification of solutions, supported by a wide range of references, that clearly match all requirements of the case study 
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: A4
+grcr: 
+Excellent analysis and justification of solutions, supported by a wide range of references, that clearly match all requirements of the case study 
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B1
+grcr: 
+Very good discussion of solutions, supported by a range of references, that match many of the requirements of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B2
+grcr: 
+Very good discussion of solutions, supported by a range of references, that match many of the requirements of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: B3
+grcr: 
+Very good discussion of solutions, supported by a range of references, that match many of the requirements of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C1
+grcr: 
+Good discussion of solutions that relate to the case study, with some supporting references.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C2
+grcr: 
+Good discussion of solutions that relate to the case study, with some supporting references.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: C3
+grcr: 
+Good discussion of solutions that relate to the case study, with some supporting references.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D1
+grcr: 
+Satisfactory attempt to present technologies in the context of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D2
+grcr: 
+Satisfactory attempt to present technologies in the context of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: D3
+grcr: 
+Satisfactory attempt to present technologies in the context of the case study.
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F1
+grcr: 
+Unable to adequately present technologies
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F2
+grcr: 
+Unable to adequately present technologies
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: F3
+grcr: 
+Unable to adequately present technologies
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: S
+grcr: 
+Work submitted but does not match criteria
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+grade: N
+grcr: 
+No work submitted for this criteria
+endgrcr: 
+gradefb: 
+
+endgrcrfb: 
+endCriteria: 
+ 
