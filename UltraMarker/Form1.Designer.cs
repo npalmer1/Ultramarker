@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -418,6 +418,9 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog7 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog8 = new System.Windows.Forms.OpenFileDialog();
+            this.defaultdirlabel = new System.Windows.Forms.Label();
+            this.label97 = new System.Windows.Forms.Label();
+            this.configdirlabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -451,6 +454,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addGradeMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
@@ -466,6 +470,7 @@
             // 
             // contextMenuStrip3
             // 
+            this.contextMenuStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addCriteria,
             this.editAssess});
@@ -488,6 +493,7 @@
             // 
             // contextMenuStrip2
             // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editItem,
             this.deleteItem});
@@ -522,6 +528,7 @@
             // 
             // contextMenuStrip4
             // 
+            this.contextMenuStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editCriteriaMenuItem,
             this.deleteCriteriaMenuItem,
@@ -590,6 +597,7 @@
             // 
             // contextMenuStrip5
             // 
+            this.contextMenuStrip5.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editSubCriteriaItem,
             this.deleteSubCriteriaItem,
@@ -727,9 +735,9 @@
             this.tabPage2.Controls.Add(this.treeView2);
             this.tabPage2.Controls.Add(this.menuStrip2);
             this.tabPage2.Location = new System.Drawing.Point(4, 27);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1757, 911);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
@@ -750,7 +758,7 @@
             // textBox2Comments
             // 
             this.textBox2Comments.Location = new System.Drawing.Point(1055, 767);
-            this.textBox2Comments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2Comments.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2Comments.Multiline = true;
             this.textBox2Comments.Name = "textBox2Comments";
             this.textBox2Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -761,7 +769,7 @@
             // textBox2nd
             // 
             this.textBox2nd.Location = new System.Drawing.Point(1243, 714);
-            this.textBox2nd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2nd.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2nd.Name = "textBox2nd";
             this.textBox2nd.Size = new System.Drawing.Size(273, 24);
             this.textBox2nd.TabIndex = 78;
@@ -781,7 +789,7 @@
             // textBox1st
             // 
             this.textBox1st.Location = new System.Drawing.Point(868, 714);
-            this.textBox1st.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1st.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1st.Name = "textBox1st";
             this.textBox1st.Size = new System.Drawing.Size(267, 24);
             this.textBox1st.TabIndex = 76;
@@ -804,7 +812,7 @@
             this.DeselectSessioncheckBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.DeselectSessioncheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DeselectSessioncheckBox.Location = new System.Drawing.Point(1535, 709);
-            this.DeselectSessioncheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DeselectSessioncheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.DeselectSessioncheckBox.Name = "DeselectSessioncheckBox";
             this.DeselectSessioncheckBox.Size = new System.Drawing.Size(122, 22);
             this.DeselectSessioncheckBox.TabIndex = 74;
@@ -815,7 +823,7 @@
             // sittingButton
             // 
             this.sittingButton.Location = new System.Drawing.Point(1620, 74);
-            this.sittingButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sittingButton.Margin = new System.Windows.Forms.Padding(4);
             this.sittingButton.Name = "sittingButton";
             this.sittingButton.Size = new System.Drawing.Size(112, 27);
             this.sittingButton.TabIndex = 73;
@@ -839,7 +847,7 @@
             // 
             this.overrideBox.Enabled = false;
             this.overrideBox.Location = new System.Drawing.Point(485, 535);
-            this.overrideBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.overrideBox.Margin = new System.Windows.Forms.Padding(4);
             this.overrideBox.Name = "overrideBox";
             this.overrideBox.Size = new System.Drawing.Size(43, 24);
             this.overrideBox.TabIndex = 71;
@@ -849,7 +857,7 @@
             // overrideButton
             // 
             this.overrideButton.Location = new System.Drawing.Point(380, 535);
-            this.overrideButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.overrideButton.Margin = new System.Windows.Forms.Padding(4);
             this.overrideButton.Name = "overrideButton";
             this.overrideButton.Size = new System.Drawing.Size(100, 28);
             this.overrideButton.TabIndex = 70;
@@ -862,7 +870,7 @@
             // 
             this.StudentcomboBox.FormattingEnabled = true;
             this.StudentcomboBox.Location = new System.Drawing.Point(912, 69);
-            this.StudentcomboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StudentcomboBox.Margin = new System.Windows.Forms.Padding(4);
             this.StudentcomboBox.MaxDropDownItems = 1;
             this.StudentcomboBox.Name = "StudentcomboBox";
             this.StudentcomboBox.Size = new System.Drawing.Size(381, 26);
@@ -896,7 +904,7 @@
             // 
             this.modSelect.AutoSize = true;
             this.modSelect.Location = new System.Drawing.Point(1275, 102);
-            this.modSelect.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modSelect.Margin = new System.Windows.Forms.Padding(4);
             this.modSelect.Name = "modSelect";
             this.modSelect.Size = new System.Drawing.Size(105, 40);
             this.modSelect.TabIndex = 66;
@@ -919,7 +927,7 @@
             // markModeButton
             // 
             this.markModeButton.Location = new System.Drawing.Point(1601, 38);
-            this.markModeButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.markModeButton.Margin = new System.Windows.Forms.Padding(4);
             this.markModeButton.Name = "markModeButton";
             this.markModeButton.Size = new System.Drawing.Size(131, 28);
             this.markModeButton.TabIndex = 64;
@@ -932,7 +940,7 @@
             // 
             this.copyWeightbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.copyWeightbutton.Location = new System.Drawing.Point(1535, 108);
-            this.copyWeightbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.copyWeightbutton.Margin = new System.Windows.Forms.Padding(4);
             this.copyWeightbutton.Name = "copyWeightbutton";
             this.copyWeightbutton.Size = new System.Drawing.Size(203, 28);
             this.copyWeightbutton.TabIndex = 63;
@@ -944,7 +952,7 @@
             // checkWbutton
             // 
             this.checkWbutton.Location = new System.Drawing.Point(1601, 145);
-            this.checkWbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkWbutton.Margin = new System.Windows.Forms.Padding(4);
             this.checkWbutton.Name = "checkWbutton";
             this.checkWbutton.Size = new System.Drawing.Size(131, 28);
             this.checkWbutton.TabIndex = 61;
@@ -979,7 +987,7 @@
             // 
             this.clearLObutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clearLObutton.Location = new System.Drawing.Point(1073, 329);
-            this.clearLObutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.clearLObutton.Margin = new System.Windows.Forms.Padding(4);
             this.clearLObutton.Name = "clearLObutton";
             this.clearLObutton.Size = new System.Drawing.Size(100, 28);
             this.clearLObutton.TabIndex = 58;
@@ -1005,7 +1013,7 @@
             this.listBox3.FormattingEnabled = true;
             this.listBox3.ItemHeight = 20;
             this.listBox3.Location = new System.Drawing.Point(4, 564);
-            this.listBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox3.Margin = new System.Windows.Forms.Padding(4);
             this.listBox3.Name = "listBox3";
             this.listBox3.Size = new System.Drawing.Size(528, 124);
             this.listBox3.TabIndex = 56;
@@ -1015,7 +1023,7 @@
             // 
             this.repCancelbutton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repCancelbutton3.Location = new System.Drawing.Point(1211, 329);
-            this.repCancelbutton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.repCancelbutton3.Margin = new System.Windows.Forms.Padding(4);
             this.repCancelbutton3.Name = "repCancelbutton3";
             this.repCancelbutton3.Size = new System.Drawing.Size(213, 28);
             this.repCancelbutton3.TabIndex = 55;
@@ -1028,7 +1036,7 @@
             // 
             this.LOtextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOtextBox.Location = new System.Drawing.Point(775, 361);
-            this.LOtextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LOtextBox.Margin = new System.Windows.Forms.Padding(4);
             this.LOtextBox.Multiline = true;
             this.LOtextBox.Name = "LOtextBox";
             this.LOtextBox.ReadOnly = true;
@@ -1041,7 +1049,7 @@
             this.LObutton.Enabled = false;
             this.LObutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LObutton.Location = new System.Drawing.Point(772, 329);
-            this.LObutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LObutton.Margin = new System.Windows.Forms.Padding(4);
             this.LObutton.Name = "LObutton";
             this.LObutton.Size = new System.Drawing.Size(273, 28);
             this.LObutton.TabIndex = 53;
@@ -1053,7 +1061,7 @@
             // 
             this.repCancelbutton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repCancelbutton2.Location = new System.Drawing.Point(1211, 594);
-            this.repCancelbutton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.repCancelbutton2.Margin = new System.Windows.Forms.Padding(4);
             this.repCancelbutton2.Name = "repCancelbutton2";
             this.repCancelbutton2.Size = new System.Drawing.Size(219, 28);
             this.repCancelbutton2.TabIndex = 52;
@@ -1066,7 +1074,7 @@
             // 
             this.repCancelbutton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.repCancelbutton1.Location = new System.Drawing.Point(1220, 434);
-            this.repCancelbutton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.repCancelbutton1.Margin = new System.Windows.Forms.Padding(4);
             this.repCancelbutton1.Name = "repCancelbutton1";
             this.repCancelbutton1.Size = new System.Drawing.Size(204, 28);
             this.repCancelbutton1.TabIndex = 51;
@@ -1079,7 +1087,7 @@
             // 
             this.addButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.Location = new System.Drawing.Point(1525, 434);
-            this.addButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addButton.Margin = new System.Windows.Forms.Padding(4);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(163, 28);
             this.addButton.TabIndex = 49;
@@ -1092,7 +1100,7 @@
             // 
             this.descriptionButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.descriptionButton.Location = new System.Drawing.Point(1372, 39);
-            this.descriptionButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.descriptionButton.Margin = new System.Windows.Forms.Padding(4);
             this.descriptionButton.Name = "descriptionButton";
             this.descriptionButton.Size = new System.Drawing.Size(117, 27);
             this.descriptionButton.TabIndex = 48;
@@ -1104,7 +1112,7 @@
             // 
             this.assessTitleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.assessTitleBox.Location = new System.Drawing.Point(597, 37);
-            this.assessTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assessTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.assessTitleBox.Name = "assessTitleBox";
             this.assessTitleBox.ReadOnly = true;
             this.assessTitleBox.Size = new System.Drawing.Size(765, 26);
@@ -1125,7 +1133,7 @@
             // sessionbutton1
             // 
             this.sessionbutton1.Location = new System.Drawing.Point(1525, 735);
-            this.sessionbutton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sessionbutton1.Margin = new System.Windows.Forms.Padding(4);
             this.sessionbutton1.Name = "sessionbutton1";
             this.sessionbutton1.Size = new System.Drawing.Size(63, 31);
             this.sessionbutton1.TabIndex = 43;
@@ -1171,7 +1179,7 @@
             // sessionbutton2
             // 
             this.sessionbutton2.Location = new System.Drawing.Point(1663, 735);
-            this.sessionbutton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sessionbutton2.Margin = new System.Windows.Forms.Padding(4);
             this.sessionbutton2.Name = "sessionbutton2";
             this.sessionbutton2.Size = new System.Drawing.Size(69, 28);
             this.sessionbutton2.TabIndex = 39;
@@ -1243,7 +1251,7 @@
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.Location = new System.Drawing.Point(1401, 107);
-            this.button7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(192, 28);
             this.button7.TabIndex = 33;
@@ -1292,7 +1300,7 @@
             // 
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox10.Location = new System.Drawing.Point(8, 766);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1306,7 +1314,7 @@
             // 
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox9.Location = new System.Drawing.Point(912, 71);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(381, 26);
             this.textBox9.TabIndex = 20;
@@ -1316,7 +1324,7 @@
             // 
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.Location = new System.Drawing.Point(775, 624);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -1329,7 +1337,7 @@
             // 
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(775, 462);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
@@ -1342,7 +1350,7 @@
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(492, 175);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -1355,7 +1363,7 @@
             this.criteriaTitleBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.criteriaTitleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.criteriaTitleBox.Location = new System.Drawing.Point(577, 102);
-            this.criteriaTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.criteriaTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.criteriaTitleBox.Name = "criteriaTitleBox";
             this.criteriaTitleBox.ReadOnly = true;
             this.criteriaTitleBox.Size = new System.Drawing.Size(583, 26);
@@ -1365,7 +1373,7 @@
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.Location = new System.Drawing.Point(1464, 71);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(76, 28);
             this.button6.TabIndex = 28;
@@ -1378,7 +1386,7 @@
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.Location = new System.Drawing.Point(1384, 70);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(72, 28);
             this.button5.TabIndex = 27;
@@ -1439,7 +1447,7 @@
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(1303, 70);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(73, 28);
             this.button4.TabIndex = 22;
@@ -1464,7 +1472,7 @@
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.Location = new System.Drawing.Point(605, 68);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(171, 31);
             this.button3.TabIndex = 19;
@@ -1534,7 +1542,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 20;
             this.listBox1.Location = new System.Drawing.Point(541, 347);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(219, 344);
             this.listBox1.TabIndex = 11;
@@ -1544,7 +1552,7 @@
             // cancelButton2
             // 
             this.cancelButton2.Location = new System.Drawing.Point(675, 714);
-            this.cancelButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelButton2.Margin = new System.Windows.Forms.Padding(4);
             this.cancelButton2.Name = "cancelButton2";
             this.cancelButton2.Size = new System.Drawing.Size(87, 28);
             this.cancelButton2.TabIndex = 10;
@@ -1556,7 +1564,7 @@
             // saveButton2
             // 
             this.saveButton2.Location = new System.Drawing.Point(560, 714);
-            this.saveButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton2.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton2.Name = "saveButton2";
             this.saveButton2.Size = new System.Drawing.Size(92, 28);
             this.saveButton2.TabIndex = 9;
@@ -1604,7 +1612,7 @@
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(1509, 148);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(77, 25);
             this.comboBox3.TabIndex = 4;
@@ -1615,12 +1623,12 @@
             this.treeView2.ContextMenuStrip = this.contextMenuStrip3;
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(5, 32);
-            this.treeView2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -1632,6 +1640,7 @@
             // menuStrip2
             // 
             this.menuStrip2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.settingsToolStripMenuItem,
@@ -1660,21 +1669,21 @@
             // saveCriteriaToolStripMenuItem
             // 
             this.saveCriteriaToolStripMenuItem.Name = "saveCriteriaToolStripMenuItem";
-            this.saveCriteriaToolStripMenuItem.Size = new System.Drawing.Size(170, 28);
+            this.saveCriteriaToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
             this.saveCriteriaToolStripMenuItem.Text = "Save Assess";
             this.saveCriteriaToolStripMenuItem.Click += new System.EventHandler(this.saveCriteriaToolStripMenuItem_Click);
             // 
             // loadCriteriaToolStripMenuItem
             // 
             this.loadCriteriaToolStripMenuItem.Name = "loadCriteriaToolStripMenuItem";
-            this.loadCriteriaToolStripMenuItem.Size = new System.Drawing.Size(170, 28);
+            this.loadCriteriaToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
             this.loadCriteriaToolStripMenuItem.Text = "Load Assess";
             this.loadCriteriaToolStripMenuItem.Click += new System.EventHandler(this.loadCriteriaToolStripMenuItem_Click);
             // 
             // newCriteriaToolStripMenuItem
             // 
             this.newCriteriaToolStripMenuItem.Name = "newCriteriaToolStripMenuItem";
-            this.newCriteriaToolStripMenuItem.Size = new System.Drawing.Size(170, 28);
+            this.newCriteriaToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
             this.newCriteriaToolStripMenuItem.Text = "New Assess";
             this.newCriteriaToolStripMenuItem.Click += new System.EventHandler(this.newCriteriaToolStripMenuItem_Click);
             // 
@@ -1695,49 +1704,49 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
             // weightingToolStripMenuItem
             // 
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
-            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.overrideToolStripMenuItem.Text = "Override";
             this.overrideToolStripMenuItem.Click += new System.EventHandler(this.overrideToolStripMenuItem_Click);
             // 
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(209, 28);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -1753,14 +1762,14 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(129, 28);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(135, 28);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Visible = false;
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(129, 28);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(135, 28);
             this.showToolStripMenuItem.Text = "Show?";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click_1);
             // 
@@ -1806,9 +1815,9 @@
             this.tabPage1.Controls.Add(this.treeView1);
             this.tabPage1.Controls.Add(this.menuStrip1);
             this.tabPage1.Location = new System.Drawing.Point(4, 27);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1757, 911);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
@@ -1829,7 +1838,7 @@
             // AliastextBox
             // 
             this.AliastextBox.Location = new System.Drawing.Point(451, 342);
-            this.AliastextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AliastextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AliastextBox.Name = "AliastextBox";
             this.AliastextBox.ReadOnly = true;
             this.AliastextBox.Size = new System.Drawing.Size(440, 24);
@@ -1841,9 +1850,9 @@
             this.groupBox3.Controls.Add(this.graderadioButton1);
             this.groupBox3.Controls.Add(this.graderadioButton2);
             this.groupBox3.Location = new System.Drawing.Point(496, 558);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(267, 123);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
@@ -1853,7 +1862,7 @@
             // 
             this.graderadioButton1.AutoSize = true;
             this.graderadioButton1.Location = new System.Drawing.Point(45, 38);
-            this.graderadioButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.graderadioButton1.Margin = new System.Windows.Forms.Padding(4);
             this.graderadioButton1.Name = "graderadioButton1";
             this.graderadioButton1.Size = new System.Drawing.Size(122, 22);
             this.graderadioButton1.TabIndex = 15;
@@ -1867,7 +1876,7 @@
             // 
             this.graderadioButton2.AutoSize = true;
             this.graderadioButton2.Location = new System.Drawing.Point(45, 81);
-            this.graderadioButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.graderadioButton2.Margin = new System.Windows.Forms.Padding(4);
             this.graderadioButton2.Name = "graderadioButton2";
             this.graderadioButton2.Size = new System.Drawing.Size(108, 22);
             this.graderadioButton2.TabIndex = 16;
@@ -1894,7 +1903,7 @@
             this.percentcombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.percentcombo.FormattingEnabled = true;
             this.percentcombo.Location = new System.Drawing.Point(496, 460);
-            this.percentcombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.percentcombo.Margin = new System.Windows.Forms.Padding(4);
             this.percentcombo.Name = "percentcombo";
             this.percentcombo.Size = new System.Drawing.Size(160, 28);
             this.percentcombo.TabIndex = 13;
@@ -1904,7 +1913,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox1.Location = new System.Drawing.Point(1283, 460);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(197, 24);
             this.checkBox1.TabIndex = 12;
@@ -1916,7 +1925,7 @@
             // 
             this.cancelButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cancelButton.Location = new System.Drawing.Point(1357, 551);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(100, 28);
             this.cancelButton.TabIndex = 11;
@@ -1930,7 +1939,7 @@
             // 
             this.saveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveButton.Location = new System.Drawing.Point(1076, 551);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveButton.Margin = new System.Windows.Forms.Padding(4);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(100, 28);
             this.saveButton.TabIndex = 10;
@@ -1945,7 +1954,7 @@
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(1063, 460);
-            this.comboBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox2.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(123, 28);
             this.comboBox2.TabIndex = 9;
@@ -2000,7 +2009,7 @@
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(796, 460);
-            this.comboBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBox1.Margin = new System.Windows.Forms.Padding(4);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(123, 28);
             this.comboBox1.TabIndex = 4;
@@ -2009,7 +2018,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(448, 159);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -2020,7 +2029,7 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(448, 69);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(443, 26);
@@ -2032,13 +2041,13 @@
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 37);
-            this.treeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(421, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2049,6 +2058,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileItem,
             this.gradeTypeToolStripMenuItem});
@@ -2074,28 +2084,28 @@
             // saveGradesToolStripMenuItem
             // 
             this.saveGradesToolStripMenuItem.Name = "saveGradesToolStripMenuItem";
-            this.saveGradesToolStripMenuItem.Size = new System.Drawing.Size(190, 28);
+            this.saveGradesToolStripMenuItem.Size = new System.Drawing.Size(196, 28);
             this.saveGradesToolStripMenuItem.Text = "Save Grades";
             this.saveGradesToolStripMenuItem.Click += new System.EventHandler(this.saveGradesToolStripMenuItem_Click);
             // 
             // loadGradesToolStripMenuItem
             // 
             this.loadGradesToolStripMenuItem.Name = "loadGradesToolStripMenuItem";
-            this.loadGradesToolStripMenuItem.Size = new System.Drawing.Size(190, 28);
+            this.loadGradesToolStripMenuItem.Size = new System.Drawing.Size(196, 28);
             this.loadGradesToolStripMenuItem.Text = "Load Grades";
             this.loadGradesToolStripMenuItem.Click += new System.EventHandler(this.loadGradesToolStripMenuItem_Click);
             // 
             // newGradesToolStripMenuItem
             // 
             this.newGradesToolStripMenuItem.Name = "newGradesToolStripMenuItem";
-            this.newGradesToolStripMenuItem.Size = new System.Drawing.Size(190, 28);
+            this.newGradesToolStripMenuItem.Size = new System.Drawing.Size(196, 28);
             this.newGradesToolStripMenuItem.Text = "New Grades";
             this.newGradesToolStripMenuItem.Click += new System.EventHandler(this.newGradesToolStripMenuItem_Click);
             // 
             // importGradesToolStripMenuItem
             // 
             this.importGradesToolStripMenuItem.Name = "importGradesToolStripMenuItem";
-            this.importGradesToolStripMenuItem.Size = new System.Drawing.Size(190, 28);
+            this.importGradesToolStripMenuItem.Size = new System.Drawing.Size(196, 28);
             this.importGradesToolStripMenuItem.Text = "Import Grades";
             this.importGradesToolStripMenuItem.Click += new System.EventHandler(this.importGradesToolStripMenuItem_Click);
             // 
@@ -2120,7 +2130,7 @@
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(16, -4);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1765, 942);
@@ -2129,6 +2139,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.configdirlabel);
+            this.tabPage5.Controls.Add(this.label97);
+            this.tabPage5.Controls.Add(this.defaultdirlabel);
             this.tabPage5.Controls.Add(this.ULSigButton);
             this.tabPage5.Controls.Add(this.label95);
             this.tabPage5.Controls.Add(this.ULSigBox);
@@ -2173,9 +2186,9 @@
             this.tabPage5.Controls.Add(this.institutionTextBox);
             this.tabPage5.Controls.Add(this.menuStrip5);
             this.tabPage5.Location = new System.Drawing.Point(4, 27);
-            this.tabPage5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage5.Size = new System.Drawing.Size(1757, 911);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
@@ -2187,7 +2200,7 @@
             this.ULSigButton.Enabled = false;
             this.ULSigButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ULSigButton.Location = new System.Drawing.Point(660, 288);
-            this.ULSigButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULSigButton.Margin = new System.Windows.Forms.Padding(4);
             this.ULSigButton.Name = "ULSigButton";
             this.ULSigButton.Size = new System.Drawing.Size(40, 28);
             this.ULSigButton.TabIndex = 43;
@@ -2208,7 +2221,7 @@
             // ULSigBox
             // 
             this.ULSigBox.Location = new System.Drawing.Point(217, 288);
-            this.ULSigBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULSigBox.Margin = new System.Windows.Forms.Padding(4);
             this.ULSigBox.Name = "ULSigBox";
             this.ULSigBox.Size = new System.Drawing.Size(431, 24);
             this.ULSigBox.TabIndex = 41;
@@ -2236,7 +2249,7 @@
             // tutorsTextBox
             // 
             this.tutorsTextBox.Location = new System.Drawing.Point(492, 242);
-            this.tutorsTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tutorsTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.tutorsTextBox.Name = "tutorsTextBox";
             this.tutorsTextBox.ReadOnly = true;
             this.tutorsTextBox.Size = new System.Drawing.Size(553, 24);
@@ -2265,7 +2278,7 @@
             // StudentFiletextBox
             // 
             this.StudentFiletextBox.Location = new System.Drawing.Point(391, 447);
-            this.StudentFiletextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StudentFiletextBox.Margin = new System.Windows.Forms.Padding(4);
             this.StudentFiletextBox.Name = "StudentFiletextBox";
             this.StudentFiletextBox.ReadOnly = true;
             this.StudentFiletextBox.Size = new System.Drawing.Size(372, 24);
@@ -2284,7 +2297,7 @@
             // passMarktextBox
             // 
             this.passMarktextBox.Location = new System.Drawing.Point(773, 196);
-            this.passMarktextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passMarktextBox.Margin = new System.Windows.Forms.Padding(4);
             this.passMarktextBox.Name = "passMarktextBox";
             this.passMarktextBox.ReadOnly = true;
             this.passMarktextBox.Size = new System.Drawing.Size(45, 24);
@@ -2293,7 +2306,7 @@
             // newUnitbutton
             // 
             this.newUnitbutton.Location = new System.Drawing.Point(928, 660);
-            this.newUnitbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newUnitbutton.Margin = new System.Windows.Forms.Padding(4);
             this.newUnitbutton.Name = "newUnitbutton";
             this.newUnitbutton.Size = new System.Drawing.Size(100, 28);
             this.newUnitbutton.TabIndex = 31;
@@ -2306,7 +2319,7 @@
             this.marksFolderbutton.Enabled = false;
             this.marksFolderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.marksFolderbutton.Location = new System.Drawing.Point(772, 396);
-            this.marksFolderbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.marksFolderbutton.Margin = new System.Windows.Forms.Padding(4);
             this.marksFolderbutton.Name = "marksFolderbutton";
             this.marksFolderbutton.Size = new System.Drawing.Size(41, 28);
             this.marksFolderbutton.TabIndex = 30;
@@ -2319,7 +2332,7 @@
             this.unitFolderbutton.Enabled = false;
             this.unitFolderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.unitFolderbutton.Location = new System.Drawing.Point(773, 345);
-            this.unitFolderbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitFolderbutton.Margin = new System.Windows.Forms.Padding(4);
             this.unitFolderbutton.Name = "unitFolderbutton";
             this.unitFolderbutton.Size = new System.Drawing.Size(40, 28);
             this.unitFolderbutton.TabIndex = 29;
@@ -2330,7 +2343,7 @@
             // marksFoldertextBox
             // 
             this.marksFoldertextBox.Location = new System.Drawing.Point(391, 396);
-            this.marksFoldertextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.marksFoldertextBox.Margin = new System.Windows.Forms.Padding(4);
             this.marksFoldertextBox.Name = "marksFoldertextBox";
             this.marksFoldertextBox.ReadOnly = true;
             this.marksFoldertextBox.Size = new System.Drawing.Size(372, 24);
@@ -2359,7 +2372,7 @@
             // unitFoldertextBox
             // 
             this.unitFoldertextBox.Location = new System.Drawing.Point(389, 346);
-            this.unitFoldertextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitFoldertextBox.Margin = new System.Windows.Forms.Padding(4);
             this.unitFoldertextBox.Name = "unitFoldertextBox";
             this.unitFoldertextBox.ReadOnly = true;
             this.unitFoldertextBox.Size = new System.Drawing.Size(373, 24);
@@ -2370,7 +2383,7 @@
             this.extTemplatebutton.Enabled = false;
             this.extTemplatebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.extTemplatebutton.Location = new System.Drawing.Point(775, 593);
-            this.extTemplatebutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.extTemplatebutton.Margin = new System.Windows.Forms.Padding(4);
             this.extTemplatebutton.Name = "extTemplatebutton";
             this.extTemplatebutton.Size = new System.Drawing.Size(40, 28);
             this.extTemplatebutton.TabIndex = 24;
@@ -2381,7 +2394,7 @@
             // extfileTextBox
             // 
             this.extfileTextBox.Location = new System.Drawing.Point(391, 593);
-            this.extfileTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.extfileTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.extfileTextBox.Name = "extfileTextBox";
             this.extfileTextBox.ReadOnly = true;
             this.extfileTextBox.Size = new System.Drawing.Size(373, 24);
@@ -2400,7 +2413,7 @@
             // unitEditbutton
             // 
             this.unitEditbutton.Location = new System.Drawing.Point(157, 661);
-            this.unitEditbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitEditbutton.Margin = new System.Windows.Forms.Padding(4);
             this.unitEditbutton.Name = "unitEditbutton";
             this.unitEditbutton.Size = new System.Drawing.Size(100, 28);
             this.unitEditbutton.TabIndex = 20;
@@ -2421,7 +2434,7 @@
             // levelTextBox
             // 
             this.levelTextBox.Location = new System.Drawing.Point(492, 192);
-            this.levelTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.levelTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.levelTextBox.Name = "levelTextBox";
             this.levelTextBox.ReadOnly = true;
             this.levelTextBox.Size = new System.Drawing.Size(55, 24);
@@ -2430,7 +2443,7 @@
             // loadUnitButton
             // 
             this.loadUnitButton.Location = new System.Drawing.Point(340, 661);
-            this.loadUnitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loadUnitButton.Margin = new System.Windows.Forms.Padding(4);
             this.loadUnitButton.Name = "loadUnitButton";
             this.loadUnitButton.Size = new System.Drawing.Size(100, 28);
             this.loadUnitButton.TabIndex = 17;
@@ -2443,7 +2456,7 @@
             this.moderationTemplateButton.Enabled = false;
             this.moderationTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.moderationTemplateButton.Location = new System.Drawing.Point(773, 543);
-            this.moderationTemplateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.moderationTemplateButton.Margin = new System.Windows.Forms.Padding(4);
             this.moderationTemplateButton.Name = "moderationTemplateButton";
             this.moderationTemplateButton.Size = new System.Drawing.Size(41, 28);
             this.moderationTemplateButton.TabIndex = 16;
@@ -2456,7 +2469,7 @@
             this.peerTemplateButton.Enabled = false;
             this.peerTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.peerTemplateButton.Location = new System.Drawing.Point(773, 494);
-            this.peerTemplateButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peerTemplateButton.Margin = new System.Windows.Forms.Padding(4);
             this.peerTemplateButton.Name = "peerTemplateButton";
             this.peerTemplateButton.Size = new System.Drawing.Size(41, 28);
             this.peerTemplateButton.TabIndex = 15;
@@ -2487,7 +2500,7 @@
             // modfileTextBox
             // 
             this.modfileTextBox.Location = new System.Drawing.Point(391, 543);
-            this.modfileTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modfileTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.modfileTextBox.Name = "modfileTextBox";
             this.modfileTextBox.ReadOnly = true;
             this.modfileTextBox.Size = new System.Drawing.Size(373, 24);
@@ -2496,7 +2509,7 @@
             // peerfileTextBox
             // 
             this.peerfileTextBox.Location = new System.Drawing.Point(391, 494);
-            this.peerfileTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peerfileTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.peerfileTextBox.Name = "peerfileTextBox";
             this.peerfileTextBox.ReadOnly = true;
             this.peerfileTextBox.Size = new System.Drawing.Size(373, 24);
@@ -2505,7 +2518,7 @@
             // unitCancelButton
             // 
             this.unitCancelButton.Location = new System.Drawing.Point(736, 661);
-            this.unitCancelButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitCancelButton.Margin = new System.Windows.Forms.Padding(4);
             this.unitCancelButton.Name = "unitCancelButton";
             this.unitCancelButton.Size = new System.Drawing.Size(100, 28);
             this.unitCancelButton.TabIndex = 10;
@@ -2517,7 +2530,7 @@
             // unitSaveButton
             // 
             this.unitSaveButton.Location = new System.Drawing.Point(533, 661);
-            this.unitSaveButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitSaveButton.Margin = new System.Windows.Forms.Padding(4);
             this.unitSaveButton.Name = "unitSaveButton";
             this.unitSaveButton.Size = new System.Drawing.Size(100, 28);
             this.unitSaveButton.TabIndex = 9;
@@ -2579,7 +2592,7 @@
             // ULTextBox
             // 
             this.ULTextBox.Location = new System.Drawing.Point(217, 242);
-            this.ULTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ULTextBox.Name = "ULTextBox";
             this.ULTextBox.ReadOnly = true;
             this.ULTextBox.Size = new System.Drawing.Size(159, 24);
@@ -2588,7 +2601,7 @@
             // unitCodeTextBox
             // 
             this.unitCodeTextBox.Location = new System.Drawing.Point(217, 192);
-            this.unitCodeTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitCodeTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.unitCodeTextBox.Name = "unitCodeTextBox";
             this.unitCodeTextBox.ReadOnly = true;
             this.unitCodeTextBox.Size = new System.Drawing.Size(132, 24);
@@ -2597,7 +2610,7 @@
             // UnitTitletextBox
             // 
             this.UnitTitletextBox.Location = new System.Drawing.Point(217, 150);
-            this.UnitTitletextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UnitTitletextBox.Margin = new System.Windows.Forms.Padding(4);
             this.UnitTitletextBox.Name = "UnitTitletextBox";
             this.UnitTitletextBox.ReadOnly = true;
             this.UnitTitletextBox.Size = new System.Drawing.Size(545, 24);
@@ -2606,7 +2619,7 @@
             // institutionTextBox
             // 
             this.institutionTextBox.Location = new System.Drawing.Point(217, 107);
-            this.institutionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.institutionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.institutionTextBox.Name = "institutionTextBox";
             this.institutionTextBox.ReadOnly = true;
             this.institutionTextBox.Size = new System.Drawing.Size(545, 24);
@@ -2615,6 +2628,7 @@
             // 
             // menuStrip5
             // 
+            this.menuStrip5.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configToolStripMenuItem});
             this.menuStrip5.Location = new System.Drawing.Point(4, 4);
@@ -2638,21 +2652,21 @@
             // institutionToolStripMenuItem
             // 
             this.institutionToolStripMenuItem.Name = "institutionToolStripMenuItem";
-            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.institutionToolStripMenuItem.Text = "Institution";
             this.institutionToolStripMenuItem.Click += new System.EventHandler(this.institutionToolStripMenuItem_Click);
             // 
             // defaultDirToolStripMenuItem
             // 
             this.defaultDirToolStripMenuItem.Name = "defaultDirToolStripMenuItem";
-            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.defaultDirToolStripMenuItem.Text = "Default Dir";
             this.defaultDirToolStripMenuItem.Click += new System.EventHandler(this.defaultDirToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(159, 24);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Visible = false;
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
@@ -2671,7 +2685,7 @@
             this.tabPage4.Controls.Add(this.listBox2);
             this.tabPage4.Controls.Add(this.menuStrip4);
             this.tabPage4.Location = new System.Drawing.Point(4, 27);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1757, 911);
             this.tabPage4.TabIndex = 3;
@@ -2686,7 +2700,7 @@
             this.LOcomboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOcomboBox.FormattingEnabled = true;
             this.LOcomboBox.Location = new System.Drawing.Point(589, 123);
-            this.LOcomboBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LOcomboBox.Margin = new System.Windows.Forms.Padding(4);
             this.LOcomboBox.Name = "LOcomboBox";
             this.LOcomboBox.Size = new System.Drawing.Size(435, 28);
             this.LOcomboBox.TabIndex = 11;
@@ -2695,7 +2709,7 @@
             // 
             this.transferButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.transferButton.Location = new System.Drawing.Point(1188, 53);
-            this.transferButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.transferButton.Margin = new System.Windows.Forms.Padding(4);
             this.transferButton.Name = "transferButton";
             this.transferButton.Size = new System.Drawing.Size(265, 28);
             this.transferButton.TabIndex = 10;
@@ -2717,7 +2731,7 @@
             // cancelLObutton
             // 
             this.cancelLObutton.Location = new System.Drawing.Point(943, 438);
-            this.cancelLObutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelLObutton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelLObutton.Name = "cancelLObutton";
             this.cancelLObutton.Size = new System.Drawing.Size(100, 28);
             this.cancelLObutton.TabIndex = 6;
@@ -2729,7 +2743,7 @@
             // saveLObutton
             // 
             this.saveLObutton.Location = new System.Drawing.Point(645, 438);
-            this.saveLObutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveLObutton.Margin = new System.Windows.Forms.Padding(4);
             this.saveLObutton.Name = "saveLObutton";
             this.saveLObutton.Size = new System.Drawing.Size(100, 28);
             this.saveLObutton.TabIndex = 5;
@@ -2742,7 +2756,7 @@
             // 
             this.loDescBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loDescBox.Location = new System.Drawing.Point(589, 192);
-            this.loDescBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loDescBox.Margin = new System.Windows.Forms.Padding(4);
             this.loDescBox.Multiline = true;
             this.loDescBox.Name = "loDescBox";
             this.loDescBox.ReadOnly = true;
@@ -2753,7 +2767,7 @@
             // 
             this.loTitleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loTitleBox.Location = new System.Drawing.Point(589, 54);
-            this.loTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.loTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.loTitleBox.Name = "loTitleBox";
             this.loTitleBox.ReadOnly = true;
             this.loTitleBox.Size = new System.Drawing.Size(484, 26);
@@ -2788,7 +2802,7 @@
             this.listBox2.FormattingEnabled = true;
             this.listBox2.ItemHeight = 20;
             this.listBox2.Location = new System.Drawing.Point(4, 33);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(4);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(487, 584);
             this.listBox2.TabIndex = 0;
@@ -2796,6 +2810,7 @@
             // 
             // contextMenuStrip8
             // 
+            this.contextMenuStrip8.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip8.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editStripMenuItem,
             this.insertStripMenuItem,
@@ -2827,6 +2842,7 @@
             // menuStrip4
             // 
             this.menuStrip4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuStrip4.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip4.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem1,
             this.addLOToolStripMenuItem});
@@ -2851,21 +2867,21 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(117, 28);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(123, 28);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(117, 28);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(123, 28);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(117, 28);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(123, 28);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -2890,9 +2906,9 @@
             this.tabPage3.Controls.Add(this.treeView3);
             this.tabPage3.Controls.Add(this.menuStrip3);
             this.tabPage3.Location = new System.Drawing.Point(4, 27);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage3.Size = new System.Drawing.Size(1757, 911);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sessions";
@@ -2904,7 +2920,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkBox2.Location = new System.Drawing.Point(660, 471);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(238, 24);
             this.checkBox2.TabIndex = 10;
@@ -2929,7 +2945,7 @@
             this.sessionCombo.Enabled = false;
             this.sessionCombo.FormattingEnabled = true;
             this.sessionCombo.Location = new System.Drawing.Point(1417, 65);
-            this.sessionCombo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sessionCombo.Margin = new System.Windows.Forms.Padding(4);
             this.sessionCombo.Name = "sessionCombo";
             this.sessionCombo.Size = new System.Drawing.Size(95, 26);
             this.sessionCombo.TabIndex = 8;
@@ -2950,7 +2966,7 @@
             // 
             this.sessionDescBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sessionDescBox.Location = new System.Drawing.Point(660, 145);
-            this.sessionDescBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sessionDescBox.Margin = new System.Windows.Forms.Padding(4);
             this.sessionDescBox.Multiline = true;
             this.sessionDescBox.Name = "sessionDescBox";
             this.sessionDescBox.ReadOnly = true;
@@ -2960,7 +2976,7 @@
             // cancelSessionbutton
             // 
             this.cancelSessionbutton.Location = new System.Drawing.Point(884, 342);
-            this.cancelSessionbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelSessionbutton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelSessionbutton.Name = "cancelSessionbutton";
             this.cancelSessionbutton.Size = new System.Drawing.Size(100, 28);
             this.cancelSessionbutton.TabIndex = 4;
@@ -2973,7 +2989,7 @@
             // 
             this.saveSessionbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveSessionbutton.Location = new System.Drawing.Point(660, 342);
-            this.saveSessionbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.saveSessionbutton.Margin = new System.Windows.Forms.Padding(4);
             this.saveSessionbutton.Name = "saveSessionbutton";
             this.saveSessionbutton.Size = new System.Drawing.Size(100, 28);
             this.saveSessionbutton.TabIndex = 3;
@@ -2997,7 +3013,7 @@
             // 
             this.sessionTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sessionTextBox.Location = new System.Drawing.Point(660, 69);
-            this.sessionTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.sessionTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.sessionTextBox.Name = "sessionTextBox";
             this.sessionTextBox.ReadOnly = true;
             this.sessionTextBox.Size = new System.Drawing.Size(545, 26);
@@ -3009,12 +3025,12 @@
             this.treeView3.ContextMenuStrip = this.contextMenuStrip6;
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(4, 37);
-            this.treeView3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3023,6 +3039,7 @@
             // 
             // contextMenuStrip6
             // 
+            this.contextMenuStrip6.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip6.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addSessionMenu});
             this.contextMenuStrip6.Name = "contextMenuStrip6";
@@ -3037,6 +3054,7 @@
             // 
             // menuStrip3
             // 
+            this.menuStrip3.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip3.Location = new System.Drawing.Point(4, 4);
@@ -3060,21 +3078,21 @@
             // saveSessionsToolStripMenuItem
             // 
             this.saveSessionsToolStripMenuItem.Name = "saveSessionsToolStripMenuItem";
-            this.saveSessionsToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
+            this.saveSessionsToolStripMenuItem.Size = new System.Drawing.Size(191, 28);
             this.saveSessionsToolStripMenuItem.Text = "Save Sessions";
             this.saveSessionsToolStripMenuItem.Click += new System.EventHandler(this.saveSessionsToolStripMenuItem_Click);
             // 
             // loadSessionsToolStripMenuItem
             // 
             this.loadSessionsToolStripMenuItem.Name = "loadSessionsToolStripMenuItem";
-            this.loadSessionsToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
+            this.loadSessionsToolStripMenuItem.Size = new System.Drawing.Size(191, 28);
             this.loadSessionsToolStripMenuItem.Text = "Load Sessions";
             this.loadSessionsToolStripMenuItem.Click += new System.EventHandler(this.loadSessionsToolStripMenuItem_Click);
             // 
             // newSessionsToolStripMenuItem
             // 
             this.newSessionsToolStripMenuItem.Name = "newSessionsToolStripMenuItem";
-            this.newSessionsToolStripMenuItem.Size = new System.Drawing.Size(185, 28);
+            this.newSessionsToolStripMenuItem.Size = new System.Drawing.Size(191, 28);
             this.newSessionsToolStripMenuItem.Text = "New Sessions";
             this.newSessionsToolStripMenuItem.Click += new System.EventHandler(this.newSessionsToolStripMenuItem_Click);
             // 
@@ -3119,9 +3137,9 @@
             this.tabPage6.Controls.Add(this.label31);
             this.tabPage6.Controls.Add(this.ShowPeerButton);
             this.tabPage6.Location = new System.Drawing.Point(4, 27);
-            this.tabPage6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage6.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage6.Size = new System.Drawing.Size(1757, 911);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
@@ -3130,7 +3148,7 @@
             // PeerSigBox
             // 
             this.PeerSigBox.Location = new System.Drawing.Point(645, 156);
-            this.PeerSigBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PeerSigBox.Margin = new System.Windows.Forms.Padding(4);
             this.PeerSigBox.Name = "PeerSigBox";
             this.PeerSigBox.Size = new System.Drawing.Size(484, 24);
             this.PeerSigBox.TabIndex = 37;
@@ -3149,7 +3167,7 @@
             // 
             this.PeerSigButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PeerSigButton.Location = new System.Drawing.Point(1139, 156);
-            this.PeerSigButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PeerSigButton.Margin = new System.Windows.Forms.Padding(4);
             this.PeerSigButton.Name = "PeerSigButton";
             this.PeerSigButton.Size = new System.Drawing.Size(39, 28);
             this.PeerSigButton.TabIndex = 35;
@@ -3170,7 +3188,7 @@
             // instituteBox
             // 
             this.instituteBox.Location = new System.Drawing.Point(525, 6);
-            this.instituteBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.instituteBox.Margin = new System.Windows.Forms.Padding(4);
             this.instituteBox.Name = "instituteBox";
             this.instituteBox.Size = new System.Drawing.Size(420, 24);
             this.instituteBox.TabIndex = 33;
@@ -3188,7 +3206,7 @@
             // C7
             // 
             this.C7.Location = new System.Drawing.Point(565, 698);
-            this.C7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C7.Margin = new System.Windows.Forms.Padding(4);
             this.C7.MaxLength = 210;
             this.C7.Multiline = true;
             this.C7.Name = "C7";
@@ -3199,7 +3217,7 @@
             // dateTimePicker2
             // 
             this.dateTimePicker2.Location = new System.Drawing.Point(333, 720);
-            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker2.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker2.Name = "dateTimePicker2";
             this.dateTimePicker2.Size = new System.Drawing.Size(195, 24);
             this.dateTimePicker2.TabIndex = 30;
@@ -3218,7 +3236,7 @@
             // 
             this.ULCheck.AutoSize = true;
             this.ULCheck.Location = new System.Drawing.Point(212, 682);
-            this.ULCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULCheck.Margin = new System.Windows.Forms.Padding(4);
             this.ULCheck.Name = "ULCheck";
             this.ULCheck.Size = new System.Drawing.Size(18, 17);
             this.ULCheck.TabIndex = 28;
@@ -3248,7 +3266,7 @@
             // 
             this.PeerCheck.AutoSize = true;
             this.PeerCheck.Location = new System.Drawing.Point(212, 727);
-            this.PeerCheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PeerCheck.Margin = new System.Windows.Forms.Padding(4);
             this.PeerCheck.Name = "PeerCheck";
             this.PeerCheck.Size = new System.Drawing.Size(18, 17);
             this.PeerCheck.TabIndex = 25;
@@ -3267,7 +3285,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Location = new System.Drawing.Point(333, 676);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(195, 24);
             this.dateTimePicker1.TabIndex = 23;
@@ -3275,7 +3293,7 @@
             // assessCBox
             // 
             this.assessCBox.Location = new System.Drawing.Point(284, 247);
-            this.assessCBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assessCBox.Margin = new System.Windows.Forms.Padding(4);
             this.assessCBox.Name = "assessCBox";
             this.assessCBox.Size = new System.Drawing.Size(132, 24);
             this.assessCBox.TabIndex = 22;
@@ -3283,7 +3301,7 @@
             // levelBox
             // 
             this.levelBox.Location = new System.Drawing.Point(501, 76);
-            this.levelBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.levelBox.Margin = new System.Windows.Forms.Padding(4);
             this.levelBox.Name = "levelBox";
             this.levelBox.Size = new System.Drawing.Size(55, 24);
             this.levelBox.TabIndex = 21;
@@ -3291,7 +3309,7 @@
             // passMarkBox
             // 
             this.passMarkBox.Location = new System.Drawing.Point(427, 298);
-            this.passMarkBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.passMarkBox.Margin = new System.Windows.Forms.Padding(4);
             this.passMarkBox.Name = "passMarkBox";
             this.passMarkBox.Size = new System.Drawing.Size(63, 24);
             this.passMarkBox.TabIndex = 20;
@@ -3299,7 +3317,7 @@
             // assessWeightBox
             // 
             this.assessWeightBox.Location = new System.Drawing.Point(207, 298);
-            this.assessWeightBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assessWeightBox.Margin = new System.Windows.Forms.Padding(4);
             this.assessWeightBox.Name = "assessWeightBox";
             this.assessWeightBox.Size = new System.Drawing.Size(63, 24);
             this.assessWeightBox.TabIndex = 19;
@@ -3307,7 +3325,7 @@
             // assessTBox
             // 
             this.assessTBox.Location = new System.Drawing.Point(212, 196);
-            this.assessTBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.assessTBox.Margin = new System.Windows.Forms.Padding(4);
             this.assessTBox.Name = "assessTBox";
             this.assessTBox.Size = new System.Drawing.Size(600, 24);
             this.assessTBox.TabIndex = 18;
@@ -3315,7 +3333,7 @@
             // peerBox
             // 
             this.peerBox.Location = new System.Drawing.Point(212, 156);
-            this.peerBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.peerBox.Margin = new System.Windows.Forms.Padding(4);
             this.peerBox.Name = "peerBox";
             this.peerBox.Size = new System.Drawing.Size(132, 24);
             this.peerBox.TabIndex = 17;
@@ -3323,7 +3341,7 @@
             // unitLeaderBox
             // 
             this.unitLeaderBox.Location = new System.Drawing.Point(212, 119);
-            this.unitLeaderBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitLeaderBox.Margin = new System.Windows.Forms.Padding(4);
             this.unitLeaderBox.Name = "unitLeaderBox";
             this.unitLeaderBox.Size = new System.Drawing.Size(132, 24);
             this.unitLeaderBox.TabIndex = 16;
@@ -3331,7 +3349,7 @@
             // unitCodeBox
             // 
             this.unitCodeBox.Location = new System.Drawing.Point(212, 80);
-            this.unitCodeBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitCodeBox.Margin = new System.Windows.Forms.Padding(4);
             this.unitCodeBox.Name = "unitCodeBox";
             this.unitCodeBox.Size = new System.Drawing.Size(132, 24);
             this.unitCodeBox.TabIndex = 15;
@@ -3339,7 +3357,7 @@
             // unitTitleBox
             // 
             this.unitTitleBox.Location = new System.Drawing.Point(212, 46);
-            this.unitTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.unitTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.unitTitleBox.Name = "unitTitleBox";
             this.unitTitleBox.Size = new System.Drawing.Size(600, 24);
             this.unitTitleBox.TabIndex = 14;
@@ -3352,7 +3370,7 @@
             "Aggregated",
             "Must pass"});
             this.aggregatedlist.Location = new System.Drawing.Point(745, 300);
-            this.aggregatedlist.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.aggregatedlist.Margin = new System.Windows.Forms.Padding(4);
             this.aggregatedlist.Name = "aggregatedlist";
             this.aggregatedlist.Size = new System.Drawing.Size(151, 22);
             this.aggregatedlist.TabIndex = 13;
@@ -3473,9 +3491,9 @@
             this.groupBox1.Controls.Add(this.checklist2);
             this.groupBox1.Controls.Add(this.checklist1);
             this.groupBox1.Location = new System.Drawing.Point(48, 350);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(1343, 305);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -3494,7 +3512,7 @@
             // C6
             // 
             this.C6.Location = new System.Drawing.Point(517, 263);
-            this.C6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C6.Margin = new System.Windows.Forms.Padding(4);
             this.C6.MaxLength = 70;
             this.C6.Name = "C6";
             this.C6.Size = new System.Drawing.Size(787, 24);
@@ -3503,7 +3521,7 @@
             // C5
             // 
             this.C5.Location = new System.Drawing.Point(517, 215);
-            this.C5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C5.Margin = new System.Windows.Forms.Padding(4);
             this.C5.MaxLength = 70;
             this.C5.Name = "C5";
             this.C5.Size = new System.Drawing.Size(787, 24);
@@ -3512,7 +3530,7 @@
             // C4
             // 
             this.C4.Location = new System.Drawing.Point(516, 169);
-            this.C4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C4.Margin = new System.Windows.Forms.Padding(4);
             this.C4.MaxLength = 70;
             this.C4.Name = "C4";
             this.C4.Size = new System.Drawing.Size(788, 24);
@@ -3521,7 +3539,7 @@
             // C3
             // 
             this.C3.Location = new System.Drawing.Point(516, 128);
-            this.C3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C3.Margin = new System.Windows.Forms.Padding(4);
             this.C3.MaxLength = 70;
             this.C3.Name = "C3";
             this.C3.Size = new System.Drawing.Size(788, 24);
@@ -3530,7 +3548,7 @@
             // C2
             // 
             this.C2.Location = new System.Drawing.Point(517, 84);
-            this.C2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C2.Margin = new System.Windows.Forms.Padding(4);
             this.C2.MaxLength = 70;
             this.C2.Name = "C2";
             this.C2.Size = new System.Drawing.Size(787, 24);
@@ -3539,7 +3557,7 @@
             // C1
             // 
             this.C1.Location = new System.Drawing.Point(517, 41);
-            this.C1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.C1.Margin = new System.Windows.Forms.Padding(4);
             this.C1.MaxLength = 70;
             this.C1.Name = "C1";
             this.C1.Size = new System.Drawing.Size(787, 24);
@@ -3549,7 +3567,7 @@
             // 
             this.checklist6.AutoSize = true;
             this.checklist6.Location = new System.Drawing.Point(28, 263);
-            this.checklist6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist6.Margin = new System.Windows.Forms.Padding(4);
             this.checklist6.Name = "checklist6";
             this.checklist6.Size = new System.Drawing.Size(436, 22);
             this.checklist6.TabIndex = 5;
@@ -3560,7 +3578,7 @@
             // 
             this.checklist5.AutoSize = true;
             this.checklist5.Location = new System.Drawing.Point(28, 218);
-            this.checklist5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist5.Margin = new System.Windows.Forms.Padding(4);
             this.checklist5.Name = "checklist5";
             this.checklist5.Size = new System.Drawing.Size(402, 22);
             this.checklist5.TabIndex = 4;
@@ -3571,7 +3589,7 @@
             // 
             this.checklist4.AutoSize = true;
             this.checklist4.Location = new System.Drawing.Point(28, 169);
-            this.checklist4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist4.Margin = new System.Windows.Forms.Padding(4);
             this.checklist4.Name = "checklist4";
             this.checklist4.Size = new System.Drawing.Size(437, 22);
             this.checklist4.TabIndex = 3;
@@ -3582,7 +3600,7 @@
             // 
             this.checklist3.AutoSize = true;
             this.checklist3.Location = new System.Drawing.Point(28, 130);
-            this.checklist3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist3.Margin = new System.Windows.Forms.Padding(4);
             this.checklist3.Name = "checklist3";
             this.checklist3.Size = new System.Drawing.Size(167, 22);
             this.checklist3.TabIndex = 2;
@@ -3593,7 +3611,7 @@
             // 
             this.checklist2.AutoSize = true;
             this.checklist2.Location = new System.Drawing.Point(28, 86);
-            this.checklist2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist2.Margin = new System.Windows.Forms.Padding(4);
             this.checklist2.Name = "checklist2";
             this.checklist2.Size = new System.Drawing.Size(442, 22);
             this.checklist2.TabIndex = 1;
@@ -3604,7 +3622,7 @@
             // 
             this.checklist1.AutoSize = true;
             this.checklist1.Location = new System.Drawing.Point(28, 43);
-            this.checklist1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checklist1.Margin = new System.Windows.Forms.Padding(4);
             this.checklist1.Name = "checklist1";
             this.checklist1.Size = new System.Drawing.Size(243, 22);
             this.checklist1.TabIndex = 0;
@@ -3624,7 +3642,7 @@
             // ShowPeerButton
             // 
             this.ShowPeerButton.Location = new System.Drawing.Point(367, 758);
-            this.ShowPeerButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ShowPeerButton.Margin = new System.Windows.Forms.Padding(4);
             this.ShowPeerButton.Name = "ShowPeerButton";
             this.ShowPeerButton.Size = new System.Drawing.Size(124, 28);
             this.ShowPeerButton.TabIndex = 0;
@@ -3674,9 +3692,9 @@
             this.tabPage7.Controls.Add(this.label64);
             this.tabPage7.Controls.Add(this.label65);
             this.tabPage7.Location = new System.Drawing.Point(4, 27);
-            this.tabPage7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage7.Size = new System.Drawing.Size(1757, 911);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
@@ -3686,7 +3704,7 @@
             // 
             this.modfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.modfileButton.Location = new System.Drawing.Point(888, 366);
-            this.modfileButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modfileButton.Margin = new System.Windows.Forms.Padding(4);
             this.modfileButton.Name = "modfileButton";
             this.modfileButton.Size = new System.Drawing.Size(45, 28);
             this.modfileButton.TabIndex = 73;
@@ -3708,7 +3726,7 @@
             // modDirTextBox
             // 
             this.modDirTextBox.Location = new System.Drawing.Point(317, 366);
-            this.modDirTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.modDirTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.modDirTextBox.Name = "modDirTextBox";
             this.modDirTextBox.Size = new System.Drawing.Size(561, 24);
             this.modDirTextBox.TabIndex = 71;
@@ -3719,9 +3737,9 @@
             this.groupBox2.Controls.Add(this.markradio2);
             this.groupBox2.Controls.Add(this.markradio1);
             this.groupBox2.Location = new System.Drawing.Point(1079, 36);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(267, 153);
             this.groupBox2.TabIndex = 70;
             this.groupBox2.TabStop = false;
@@ -3731,7 +3749,7 @@
             // 
             this.markradio3.AutoSize = true;
             this.markradio3.Location = new System.Drawing.Point(47, 117);
-            this.markradio3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.markradio3.Margin = new System.Windows.Forms.Padding(4);
             this.markradio3.Name = "markradio3";
             this.markradio3.Size = new System.Drawing.Size(70, 22);
             this.markradio3.TabIndex = 2;
@@ -3743,7 +3761,7 @@
             // 
             this.markradio2.AutoSize = true;
             this.markradio2.Location = new System.Drawing.Point(47, 78);
-            this.markradio2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.markradio2.Margin = new System.Windows.Forms.Padding(4);
             this.markradio2.Name = "markradio2";
             this.markradio2.Size = new System.Drawing.Size(104, 22);
             this.markradio2.TabIndex = 1;
@@ -3755,7 +3773,7 @@
             // 
             this.markradio1.AutoSize = true;
             this.markradio1.Location = new System.Drawing.Point(47, 36);
-            this.markradio1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.markradio1.Margin = new System.Windows.Forms.Padding(4);
             this.markradio1.Name = "markradio1";
             this.markradio1.Size = new System.Drawing.Size(60, 22);
             this.markradio1.TabIndex = 0;
@@ -3766,7 +3784,7 @@
             // ModerationButton
             // 
             this.ModerationButton.Location = new System.Drawing.Point(181, 811);
-            this.ModerationButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ModerationButton.Margin = new System.Windows.Forms.Padding(4);
             this.ModerationButton.Name = "ModerationButton";
             this.ModerationButton.Size = new System.Drawing.Size(173, 28);
             this.ModerationButton.TabIndex = 69;
@@ -3787,7 +3805,7 @@
             // thirdBox
             // 
             this.thirdBox.Location = new System.Drawing.Point(113, 718);
-            this.thirdBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thirdBox.Margin = new System.Windows.Forms.Padding(4);
             this.thirdBox.Multiline = true;
             this.thirdBox.Name = "thirdBox";
             this.thirdBox.Size = new System.Drawing.Size(1260, 70);
@@ -3807,7 +3825,7 @@
             // 
             this.thirdcheck.AutoSize = true;
             this.thirdcheck.Location = new System.Drawing.Point(321, 651);
-            this.thirdcheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.thirdcheck.Margin = new System.Windows.Forms.Padding(4);
             this.thirdcheck.Name = "thirdcheck";
             this.thirdcheck.Size = new System.Drawing.Size(18, 17);
             this.thirdcheck.TabIndex = 65;
@@ -3827,7 +3845,7 @@
             // 
             this.agreedcheck.AutoSize = true;
             this.agreedcheck.Location = new System.Drawing.Point(321, 617);
-            this.agreedcheck.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.agreedcheck.Margin = new System.Windows.Forms.Padding(4);
             this.agreedcheck.Name = "agreedcheck";
             this.agreedcheck.Size = new System.Drawing.Size(18, 17);
             this.agreedcheck.TabIndex = 63;
@@ -3846,7 +3864,7 @@
             // ULresponseBox
             // 
             this.ULresponseBox.Location = new System.Drawing.Point(111, 532);
-            this.ULresponseBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULresponseBox.Margin = new System.Windows.Forms.Padding(4);
             this.ULresponseBox.Multiline = true;
             this.ULresponseBox.Name = "ULresponseBox";
             this.ULresponseBox.Size = new System.Drawing.Size(1260, 77);
@@ -3865,7 +3883,7 @@
             // actionBox
             // 
             this.actionBox.Location = new System.Drawing.Point(113, 434);
-            this.actionBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.actionBox.Margin = new System.Windows.Forms.Padding(4);
             this.actionBox.Multiline = true;
             this.actionBox.Name = "actionBox";
             this.actionBox.Size = new System.Drawing.Size(1260, 70);
@@ -3884,7 +3902,7 @@
             // APassBox
             // 
             this.APassBox.Location = new System.Drawing.Point(509, 315);
-            this.APassBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.APassBox.Margin = new System.Windows.Forms.Padding(4);
             this.APassBox.Name = "APassBox";
             this.APassBox.Size = new System.Drawing.Size(63, 24);
             this.APassBox.TabIndex = 57;
@@ -3892,7 +3910,7 @@
             // AWeightBox
             // 
             this.AWeightBox.Location = new System.Drawing.Point(289, 315);
-            this.AWeightBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AWeightBox.Margin = new System.Windows.Forms.Padding(4);
             this.AWeightBox.Name = "AWeightBox";
             this.AWeightBox.Size = new System.Drawing.Size(63, 24);
             this.AWeightBox.TabIndex = 56;
@@ -3905,7 +3923,7 @@
             "Aggregated",
             "Must pass"});
             this.agglistBox.Location = new System.Drawing.Point(827, 321);
-            this.agglistBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.agglistBox.Margin = new System.Windows.Forms.Padding(4);
             this.agglistBox.Name = "agglistBox";
             this.agglistBox.Size = new System.Drawing.Size(151, 22);
             this.agglistBox.TabIndex = 55;
@@ -3953,7 +3971,7 @@
             // InstBox
             // 
             this.InstBox.Location = new System.Drawing.Point(580, 36);
-            this.InstBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.InstBox.Margin = new System.Windows.Forms.Padding(4);
             this.InstBox.Name = "InstBox";
             this.InstBox.Size = new System.Drawing.Size(420, 24);
             this.InstBox.TabIndex = 50;
@@ -3961,7 +3979,7 @@
             // ACodeBox
             // 
             this.ACodeBox.Location = new System.Drawing.Point(283, 273);
-            this.ACodeBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ACodeBox.Margin = new System.Windows.Forms.Padding(4);
             this.ACodeBox.Name = "ACodeBox";
             this.ACodeBox.Size = new System.Drawing.Size(132, 24);
             this.ACodeBox.TabIndex = 49;
@@ -3969,7 +3987,7 @@
             // ULevelBox
             // 
             this.ULevelBox.Location = new System.Drawing.Point(571, 106);
-            this.ULevelBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULevelBox.Margin = new System.Windows.Forms.Padding(4);
             this.ULevelBox.Name = "ULevelBox";
             this.ULevelBox.Size = new System.Drawing.Size(55, 24);
             this.ULevelBox.TabIndex = 48;
@@ -3977,7 +3995,7 @@
             // ATitleBox
             // 
             this.ATitleBox.Location = new System.Drawing.Point(283, 222);
-            this.ATitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ATitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.ATitleBox.Name = "ATitleBox";
             this.ATitleBox.Size = new System.Drawing.Size(600, 24);
             this.ATitleBox.TabIndex = 47;
@@ -3985,7 +4003,7 @@
             // moderatorBox
             // 
             this.moderatorBox.Location = new System.Drawing.Point(281, 186);
-            this.moderatorBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.moderatorBox.Margin = new System.Windows.Forms.Padding(4);
             this.moderatorBox.Name = "moderatorBox";
             this.moderatorBox.Size = new System.Drawing.Size(132, 24);
             this.moderatorBox.TabIndex = 46;
@@ -3993,7 +4011,7 @@
             // ULBox
             // 
             this.ULBox.Location = new System.Drawing.Point(281, 149);
-            this.ULBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ULBox.Margin = new System.Windows.Forms.Padding(4);
             this.ULBox.Name = "ULBox";
             this.ULBox.Size = new System.Drawing.Size(132, 24);
             this.ULBox.TabIndex = 45;
@@ -4001,7 +4019,7 @@
             // UCodeBox
             // 
             this.UCodeBox.Location = new System.Drawing.Point(281, 110);
-            this.UCodeBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UCodeBox.Margin = new System.Windows.Forms.Padding(4);
             this.UCodeBox.Name = "UCodeBox";
             this.UCodeBox.Size = new System.Drawing.Size(132, 24);
             this.UCodeBox.TabIndex = 44;
@@ -4009,7 +4027,7 @@
             // UTitleBox
             // 
             this.UTitleBox.Location = new System.Drawing.Point(281, 75);
-            this.UTitleBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UTitleBox.Margin = new System.Windows.Forms.Padding(4);
             this.UTitleBox.Name = "UTitleBox";
             this.UTitleBox.Size = new System.Drawing.Size(600, 24);
             this.UTitleBox.TabIndex = 43;
@@ -4113,9 +4131,9 @@
             this.tabPage8.Controls.Add(this.utBox);
             this.tabPage8.Controls.Add(this.label76);
             this.tabPage8.Location = new System.Drawing.Point(4, 27);
-            this.tabPage8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage8.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage8.Size = new System.Drawing.Size(1757, 911);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "External";
@@ -4135,7 +4153,7 @@
             // 
             this.OKcheckBox.AutoSize = true;
             this.OKcheckBox.Location = new System.Drawing.Point(464, 548);
-            this.OKcheckBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.OKcheckBox.Margin = new System.Windows.Forms.Padding(4);
             this.OKcheckBox.Name = "OKcheckBox";
             this.OKcheckBox.Size = new System.Drawing.Size(209, 22);
             this.OKcheckBox.TabIndex = 14;
@@ -4155,7 +4173,7 @@
             // dateTimePicker3
             // 
             this.dateTimePicker3.Location = new System.Drawing.Point(779, 544);
-            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dateTimePicker3.Margin = new System.Windows.Forms.Padding(4);
             this.dateTimePicker3.Name = "dateTimePicker3";
             this.dateTimePicker3.Size = new System.Drawing.Size(265, 24);
             this.dateTimePicker3.TabIndex = 12;
@@ -4163,7 +4181,7 @@
             // externalButton
             // 
             this.externalButton.Location = new System.Drawing.Point(272, 574);
-            this.externalButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.externalButton.Margin = new System.Windows.Forms.Padding(4);
             this.externalButton.Name = "externalButton";
             this.externalButton.Size = new System.Drawing.Size(132, 28);
             this.externalButton.TabIndex = 11;
@@ -4174,7 +4192,7 @@
             // extBox
             // 
             this.extBox.Location = new System.Drawing.Point(755, 165);
-            this.extBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.extBox.Margin = new System.Windows.Forms.Padding(4);
             this.extBox.Name = "extBox";
             this.extBox.Size = new System.Drawing.Size(289, 24);
             this.extBox.TabIndex = 10;
@@ -4232,7 +4250,7 @@
             // extComBox
             // 
             this.extComBox.Location = new System.Drawing.Point(253, 256);
-            this.extComBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.extComBox.Margin = new System.Windows.Forms.Padding(4);
             this.extComBox.Multiline = true;
             this.extComBox.Name = "extComBox";
             this.extComBox.Size = new System.Drawing.Size(791, 266);
@@ -4241,7 +4259,7 @@
             // inBox
             // 
             this.inBox.Location = new System.Drawing.Point(896, 95);
-            this.inBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.inBox.Margin = new System.Windows.Forms.Padding(4);
             this.inBox.Name = "inBox";
             this.inBox.Size = new System.Drawing.Size(357, 24);
             this.inBox.TabIndex = 3;
@@ -4249,7 +4267,7 @@
             // ucBox
             // 
             this.ucBox.Location = new System.Drawing.Point(289, 169);
-            this.ucBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ucBox.Margin = new System.Windows.Forms.Padding(4);
             this.ucBox.Name = "ucBox";
             this.ucBox.Size = new System.Drawing.Size(132, 24);
             this.ucBox.TabIndex = 2;
@@ -4257,7 +4275,7 @@
             // utBox
             // 
             this.utBox.Location = new System.Drawing.Point(288, 95);
-            this.utBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.utBox.Margin = new System.Windows.Forms.Padding(4);
             this.utBox.Name = "utBox";
             this.utBox.Size = new System.Drawing.Size(432, 24);
             this.utBox.TabIndex = 1;
@@ -4284,9 +4302,9 @@
             this.tabPage9.Controls.Add(this.listBox4);
             this.tabPage9.Controls.Add(this.label88);
             this.tabPage9.Location = new System.Drawing.Point(4, 27);
-            this.tabPage9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage9.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage9.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage9.Size = new System.Drawing.Size(1757, 911);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
@@ -4315,7 +4333,7 @@
             // Importbutton
             // 
             this.Importbutton.Location = new System.Drawing.Point(25, 132);
-            this.Importbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Importbutton.Margin = new System.Windows.Forms.Padding(4);
             this.Importbutton.Name = "Importbutton";
             this.Importbutton.Size = new System.Drawing.Size(100, 58);
             this.Importbutton.TabIndex = 6;
@@ -4327,7 +4345,7 @@
             // 
             this.ImportFileSelectbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ImportFileSelectbutton.Location = new System.Drawing.Point(325, 74);
-            this.ImportFileSelectbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ImportFileSelectbutton.Margin = new System.Windows.Forms.Padding(4);
             this.ImportFileSelectbutton.Name = "ImportFileSelectbutton";
             this.ImportFileSelectbutton.Size = new System.Drawing.Size(37, 28);
             this.ImportFileSelectbutton.TabIndex = 5;
@@ -4338,7 +4356,7 @@
             // StudentImportTextBox
             // 
             this.StudentImportTextBox.Location = new System.Drawing.Point(25, 75);
-            this.StudentImportTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StudentImportTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.StudentImportTextBox.Name = "StudentImportTextBox";
             this.StudentImportTextBox.Size = new System.Drawing.Size(289, 24);
             this.StudentImportTextBox.TabIndex = 4;
@@ -4346,7 +4364,7 @@
             // StuEmailtextBox
             // 
             this.StuEmailtextBox.Location = new System.Drawing.Point(727, 50);
-            this.StuEmailtextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.StuEmailtextBox.Margin = new System.Windows.Forms.Padding(4);
             this.StuEmailtextBox.Name = "StuEmailtextBox";
             this.StuEmailtextBox.Size = new System.Drawing.Size(433, 24);
             this.StuEmailtextBox.TabIndex = 3;
@@ -4366,7 +4384,7 @@
             this.listBox4.FormattingEnabled = true;
             this.listBox4.ItemHeight = 18;
             this.listBox4.Location = new System.Drawing.Point(428, 50);
-            this.listBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox4.Margin = new System.Windows.Forms.Padding(4);
             this.listBox4.Name = "listBox4";
             this.listBox4.Size = new System.Drawing.Size(276, 436);
             this.listBox4.TabIndex = 1;
@@ -4384,6 +4402,7 @@
             // 
             // contextMenuStrip7
             // 
+            this.contextMenuStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip7.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editSession,
             this.deleteSession});
@@ -4405,6 +4424,7 @@
             // 
             // contextMenuStrip9
             // 
+            this.contextMenuStrip9.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip9.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addCommentHeading});
             this.contextMenuStrip9.Name = "contextMenuStrip9";
@@ -4466,6 +4486,7 @@
             // 
             // contextMenuStrip10
             // 
+            this.contextMenuStrip10.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip10.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editHeadingMenuItem,
             this.deleteHeadingMenuItem,
@@ -4530,6 +4551,33 @@
             this.openFileDialog8.FileName = "openFileDialog8";
             this.openFileDialog8.Filter = "riteria files (*.cri)|*.cri";
             // 
+            // defaultdirlabel
+            // 
+            this.defaultdirlabel.AutoSize = true;
+            this.defaultdirlabel.Location = new System.Drawing.Point(250, 32);
+            this.defaultdirlabel.Name = "defaultdirlabel";
+            this.defaultdirlabel.Size = new System.Drawing.Size(160, 18);
+            this.defaultdirlabel.TabIndex = 44;
+            this.defaultdirlabel.Text = "Default directory set to:";
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(308, 54);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(191, 18);
+            this.label97.TabIndex = 45;
+            this.label97.Text = "- see Settings tab to change";
+            // 
+            // configdirlabel
+            // 
+            this.configdirlabel.AutoSize = true;
+            this.configdirlabel.Location = new System.Drawing.Point(250, 742);
+            this.configdirlabel.Name = "configdirlabel";
+            this.configdirlabel.Size = new System.Drawing.Size(165, 18);
+            this.configdirlabel.TabIndex = 46;
+            this.configdirlabel.Text = "Configuration directory: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4539,7 +4587,7 @@
             this.ClientSize = new System.Drawing.Size(1785, 921);
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -4980,6 +5028,9 @@
         private System.Windows.Forms.Label label1st;
         private System.Windows.Forms.Label label2ndComments;
         private System.Windows.Forms.TextBox textBox2Comments;
+        private System.Windows.Forms.Label defaultdirlabel;
+        private System.Windows.Forms.Label label97;
+        private System.Windows.Forms.Label configdirlabel;
     }
 }
 

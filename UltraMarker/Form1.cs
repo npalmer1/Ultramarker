@@ -24,8 +24,8 @@ namespace UltraMarker
         bool firstS = true;
         bool addCode = true; //adds asesment code to end of filename when saving marks
 
-        string DefaultDir = "C:\\UltraMarker\\";
-        string ConfigDir = "C:\\Ultramarker\\";
+        string DefaultDir = "";
+        string ConfigDir = "";
         String theVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
      
 
@@ -276,16 +276,44 @@ namespace UltraMarker
                 startPath = startPath + Environment.GetEnvironmentVariable("HOMEPATH") + "\\Ultramarker";
                 if (startPath == null)
                 {
-                    ConfigDir = "C:\\Ultramarker\\";
-                    DefaultDir = "C:\\Ultramarker\\";
+                    ConfigDir = "C:\\Ultramarker" + slash;
+                    DefaultDir = startPath;
+                    setDefaultDir("Set initial default directory: ");
+                    if (DefaultDir == "" || DefaultDir == null)
+                    {
+                        MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
+                        DefaultDir = "C:\\Ultramarker";
+                    }                    
                 }
-                else
+                else if (!File.Exists(startPath + slash + "UltraMarker.dir"))
+                {
+                    DefaultDir = startPath;                    
+                    setDefaultDir("Set initial default directory: "); //set the default directory on initial startup
+                    if (DefaultDir == "" || DefaultDir == null)
+                    {
+                        MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
+                        DefaultDir = "C:\\Ultramarker" + slash;
+                    }
+                    ConfigDir = startPath + slash;                   
+                }
+                else //if ultramarker.dir file exists
                 {
                     ConfigDir = startPath + slash;
-                    DefaultDir = startPath + slash;
+                    DefaultDir = startPath;  //this will be overridden if present in ultramarker.dir file in config dir
                 }
-
-                Directory.CreateDirectory(DefaultDir);
+                if (!Directory.Exists(DefaultDir) && (DefaultDir.Trim() != "") && (DefaultDir != null))
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(DefaultDir);
+                    }
+                    catch { }
+                }
+                DefaultDir = DefaultDir + slash; //add a slash to end of directory name!
+                if (!Directory.Exists(DefaultDir))
+                {
+                    MessageBox.Show("Problem creating default directory");
+                }
             }
             else if (RunningPlatform() == Platform.Linux)
             {
@@ -296,7 +324,8 @@ namespace UltraMarker
                 DefaultDir = DefaultDir + slash;
                 ConfigDir = DefaultDir + slash;
             }
-            
+            defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
+            configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
             this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2019                    (F1 for help)";
             tabControl1.TabPages.Remove(tabPage3);
             label23.Text = "";
@@ -4899,6 +4928,7 @@ namespace UltraMarker
                             {
                                 DefaultDir = str;
                                 GradePath = str;
+                                defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;                                
                             }                        
                         }
                         rw.Close();
@@ -8103,6 +8133,11 @@ namespace UltraMarker
 
         private void defaultDirToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            setDefaultDir("Enter default directory: ");  //set the default directory for ultramarker work, eg. C:\Ultramarker   
+            defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
+        }
+        private void setDefaultDir(string message) 
+        {
             string str = "";
             bool outl = false;
             DialogResult reply;
@@ -8111,15 +8146,19 @@ namespace UltraMarker
             input.editable = true;//allows manual input of directory
             input.browser = true; //allows selection of directory from browser
             input.text = DefaultDir;
-            input.Passvalue = "Enter default directory:";
+            input.Passvalue = message;
             while (outl == false)
             {
-                    input.ShowDialog();
-                    str = input.Passvalue;
+                input.ShowDialog();
+                if (input.cancel)
+                {
+                    return;
+                }
+                str = input.Passvalue;
                 if (Directory.Exists(str) == false)
                 {
                     reply = MessageBox.Show("Directory does not exist, create yes/no?", "Directory", MessageBoxButtons.YesNo);
-                    if (reply == DialogResult.Yes)                      
+                    if (reply == DialogResult.Yes)
                     {
                         try
                         {
@@ -8147,7 +8186,7 @@ namespace UltraMarker
             }
             if (reply == DialogResult.Yes)
             {
-                DefaultDir = str +slash;
+                DefaultDir = str + slash;
                 GradeFile = "";
                 GradePath = str + slash;
                 UnitFile = "";
@@ -8158,19 +8197,18 @@ namespace UltraMarker
                 CriteriaFile = "";
                 CommentFile = "";
                 CommentFilePath = str + slash;
-                MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");               
+                MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
             }
-            
         }
 
         private void loadConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog7.ShowDialog();
+            openFileDialog7.ShowDialog(); //not used at present - loads configs from config files again
         }
 
         private void openFileDialog7_FileOk(object sender, CancelEventArgs e)
         {
-            DefaultDir = Path.GetDirectoryName(openFileDialog7.FileName);
+            DefaultDir = Path.GetDirectoryName(openFileDialog7.FileName) + slash; //reload configs again - not used at present
         }
 
         private void overrideButton_Click(object sender, EventArgs e)

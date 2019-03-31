@@ -15,6 +15,7 @@ namespace UltraMarker
         public string text;
         public bool browser = false;
         public bool editable = false;
+        public bool cancel = false;
         //public string InitDir = "";
 
         private string Nm;
@@ -71,17 +72,20 @@ namespace UltraMarker
         private void button2_Click(object sender, EventArgs e) //cancel
         {
             Passvalue = text;
+            cancel = true;
             this.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //folderBrowserDialog1.RootFolder = 
             folderBrowserDialog1.SelectedPath = text;
             folderBrowserDialog1.ShowDialog();
             textBox1.Text = folderBrowserDialog1.SelectedPath;
         }
 
-     
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
