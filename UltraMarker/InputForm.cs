@@ -14,6 +14,7 @@ namespace UltraMarker
     {
         public string text;
         public bool browser = false;
+        public bool editable = false;
         //public string InitDir = "";
 
         private string Nm;
@@ -36,7 +37,14 @@ namespace UltraMarker
             if (browser)
             {
                 button3.Visible = true;
-                textBox1.ReadOnly = true;
+                if (editable)
+                {
+                    textBox1.ReadOnly = false;
+                }
+                else
+                {
+                    textBox1.ReadOnly = true;
+                }
             }
             else
             {
@@ -47,7 +55,7 @@ namespace UltraMarker
             textBox1.Text = text;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //ok
         {
             // OK button
             if (textBox1.Text.Length < 1)
@@ -60,7 +68,7 @@ namespace UltraMarker
             this.Close();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e) //cancel
         {
             Passvalue = text;
             this.Close();

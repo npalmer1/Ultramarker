@@ -113,6 +113,7 @@ namespace UltraMarker
         bool replicate_Feedback = false;
         bool replicate_LO = false;
 
+        string slash = "\\";
         int MarkMode = 0;
 
         string Sitting = "Main";
@@ -266,25 +267,34 @@ namespace UltraMarker
 
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-            string startupPath = System.IO.Directory.GetCurrentDirectory();
+        {            
             string str = "";
             if (RunningPlatform() == Platform.Windows)
             {
-                //ConfigDir = "C:\\Ultramarker\\";
-                //DefaultDir = "C:\\Ultramarker\\";
-                ConfigDir = startupPath + "\\";
-                DefaultDir = startupPath + "\\";
+                slash = "\\";
+                string startPath = Environment.GetEnvironmentVariable("HOMEDRIVE");
+                startPath = startPath + Environment.GetEnvironmentVariable("HOMEPATH") + "\\Ultramarker";
+                if (startPath == null)
+                {
+                    ConfigDir = "C:\\Ultramarker\\";
+                    DefaultDir = "C:\\Ultramarker\\";
+                }
+                else
+                {
+                    ConfigDir = startPath + slash;
+                    DefaultDir = startPath + slash;
+                }
 
                 Directory.CreateDirectory(DefaultDir);
             }
             else if (RunningPlatform() == Platform.Linux)
             {
+                slash = "/";
                 var homePath = Environment.GetEnvironmentVariable("HOME");
                 DefaultDir = Path.Combine(homePath, "Ultramarker");
                 Directory.CreateDirectory(DefaultDir);
-                DefaultDir = DefaultDir + "/";
-                ConfigDir = DefaultDir + "/";
+                DefaultDir = DefaultDir + slash;
+                ConfigDir = DefaultDir + slash;
             }
             
             this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2019                    (F1 for help)";
@@ -8093,36 +8103,61 @@ namespace UltraMarker
 
         private void defaultDirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str;
+            string str = "";
+            bool outl = false;
             DialogResult reply;
             //setup the default directory - C:\Ultramarker is recommended default
             InputForm input = new InputForm();
-            input.browser = true;
+            input.editable = true;//allows manual input of directory
+            input.browser = true; //allows selection of directory from browser
             input.text = DefaultDir;
             input.Passvalue = "Enter default directory:";
-            input.ShowDialog();
-            str = input.Passvalue;
+            while (outl == false)
+            {
+                    input.ShowDialog();
+                    str = input.Passvalue;
+                if (Directory.Exists(str) == false)
+                {
+                    reply = MessageBox.Show("Directory does not exist, create yes/no?", "Directory", MessageBoxButtons.YesNo);
+                    if (reply == DialogResult.Yes)                      
+                    {
+                        try
+                        {
+                            Directory.CreateDirectory(str);
+                            outl = true;
+                        }
+                        catch
+                        {
+                            MessageBox.Show("Invalid path");
+                        }
+                    }
+                }
+                else
+                {
+                    outl = true;
+                }
+            }
             if (str.Trim() == DefaultDir.Trim())
             {
                 reply = MessageBox.Show("This is already the Default directory for Ultamarker - reset all paths yes/no?", "Reset default Directory", MessageBoxButtons.YesNoCancel);
             }
             else
             {
-                reply = MessageBox.Show("Change the Default directory amnd rest all paths yes/no?", "Change Default Directory", MessageBoxButtons.YesNoCancel);
+                reply = MessageBox.Show("Change the Default directory and rest all paths yes/no?", "Change Default Directory", MessageBoxButtons.YesNoCancel);
             }
             if (reply == DialogResult.Yes)
             {
-                DefaultDir = str;
+                DefaultDir = str +slash;
                 GradeFile = "";
-                GradePath = str;
+                GradePath = str + slash;
                 UnitFile = "";
-                UnitFilePath = str;
-                LOFilePath = str;
+                UnitFilePath = str + slash;
+                LOFilePath = str + slash;
                 LOFile = "";
-                CriteriaPath = str;
+                CriteriaPath = str + slash;
                 CriteriaFile = "";
                 CommentFile = "";
-                CommentFilePath = str;
+                CommentFilePath = str + slash;
                 MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");               
             }
             
