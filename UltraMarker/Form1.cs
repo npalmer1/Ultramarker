@@ -292,7 +292,7 @@ namespace UltraMarker
                     if (DefaultDir == "" || DefaultDir == null)
                     {
                         MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
-                        DefaultDir = "C:\\Ultramarker" + slash;
+                        DefaultDir = "C:\\Ultramarker";
                     }
                     ConfigDir = startPath + slash;                   
                 }
@@ -309,7 +309,10 @@ namespace UltraMarker
                     }
                     catch { }
                 }
-                DefaultDir = DefaultDir + slash; //add a slash to end of directory name!
+                if (!(DefaultDir.LastIndexOf("\\") == DefaultDir.Length -1 ))
+                {
+                    DefaultDir = DefaultDir + slash; //add a slash to end of directory name if it doesn't have one!
+                }                
                 if (!Directory.Exists(DefaultDir))
                 {
                     MessageBox.Show("Problem creating default directory");
@@ -8139,6 +8142,7 @@ namespace UltraMarker
         private void setDefaultDir(string message) 
         {
             string str = "";
+            string sl = "";
             bool outl = false;
             DialogResult reply;
             //setup the default directory - C:\Ultramarker is recommended default
@@ -8186,17 +8190,20 @@ namespace UltraMarker
             }
             if (reply == DialogResult.Yes)
             {
-                DefaultDir = str + slash;
+                if (str.LastIndexOf("\\") == str.Length -1 ) //is last charcater a slash?
+                { sl = ""; }
+                else { sl = slash; }
+                DefaultDir = str + sl;
                 GradeFile = "";
-                GradePath = str + slash;
+                GradePath = str + sl;
                 UnitFile = "";
-                UnitFilePath = str + slash;
-                LOFilePath = str + slash;
+                UnitFilePath = str + sl;
+                LOFilePath = str + sl;
                 LOFile = "";
-                CriteriaPath = str + slash;
+                CriteriaPath = str + sl;
                 CriteriaFile = "";
                 CommentFile = "";
-                CommentFilePath = str + slash;
+                CommentFilePath = str + sl;
                 MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
             }
         }
