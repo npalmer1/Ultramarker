@@ -2441,7 +2441,7 @@ namespace UltraMarker
                 }
                 if (tabControl1.SelectedTab.Text == "Assess" || tabControl1.SelectedTab.Text == "Sessions") //assess and sessions tabs
                 {
-                    if (treeView1.Nodes.Count < 2)
+                    if (treeView1.Nodes[0].Nodes.Count < 2)
                     {
                         MessageBox.Show("Warning no grades loaded - see Grades tab");
                     }
@@ -2631,7 +2631,7 @@ namespace UltraMarker
         {   //edit criteria or mark student
             if (button3.Text.StartsWith("Edit"))
             {
-                if (treeView1.Nodes.Count < 2 || treeView1.Nodes.Count < listBox1.Items.Count + 1)
+                if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
                 {
                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
                     return;
@@ -3564,7 +3564,7 @@ namespace UltraMarker
         }*/
 
 
-        private void button6_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e) //show report
         {  //report button
             string stn = "";
             string ste = "";
