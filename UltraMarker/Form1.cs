@@ -3589,21 +3589,37 @@ namespace UltraMarker
             
             if (listBox1.Items.Count > 0)
             {
-                rep1.emailaddress = "";
-                if (stn!=null)
+                try
                 {
-                    if (stn.Length >0 && stn.Trim() == StudentcomboBox.Text.Trim())
+                    rep1.emailaddress = "";
+                    if (stn != null)
                     {
-                        rep1.assessTitle = assess.Title;
-                        rep1.unitTitle = UnitTitletextBox.Text;
-                        rep1.UnitLeader = ULTextBox.Text;
-                        rep1.emailaddress = ste;
+                        if (stn.Length > 0 && stn.Trim() == StudentcomboBox.Text.Trim())
+                        {
+                            rep1.assessTitle = assess.Title;
+                            rep1.unitTitle = UnitTitletextBox.Text;
+                            rep1.UnitLeader = ULTextBox.Text;
+                            rep1.emailaddress = ste;
+                        }
                     }
                 }
-
-                if (Generate_Feedback())
+                catch (System.Exception excep)
                 {
-                    rep1.ShowDialog();
+                    StackTrace stackTrace = new StackTrace();
+                    MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                    return;
+                }
+                try
+                {
+                    if (Generate_Feedback())
+                    {
+                        rep1.ShowDialog();
+                    }
+                }
+                catch (System.Exception excep)
+                {
+                    StackTrace stackTrace = new StackTrace();
+                    MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);                   
                 }
                 //saveFileDialog4.FileName = StudentcomboBox.Text;
                 //saveFileDialog4.ShowDialog();
