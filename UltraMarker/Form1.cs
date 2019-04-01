@@ -4844,13 +4844,19 @@ namespace UltraMarker
 
                 try
                 {
+                    if (!Directory.Exists(ConfigDir))
+                    {
+                        Directory.CreateDirectory(ConfigDir);
+                    }
                     using (StreamWriter cw = new StreamWriter(ConfigDir + "Ultramarker.dir"))
                     {
                         cw.WriteLine("Default Dir: " + DefaultDir);
                         cw.Close();
                     }
                 }
-                catch { }
+                catch {
+                    MessageBox.Show("Unable to save Ultramarker.dir file!");
+                }
                 using (StreamWriter sw = new StreamWriter(DefaultDir + "Ultramarker.cfg"))
                 {
                     sw.WriteLine("Default Dir: " + DefaultDir);
@@ -8175,27 +8181,37 @@ namespace UltraMarker
                     return;
                 }
                 str = input.Passvalue;
-                if (Directory.Exists(str) == false)
+                DirectoryInfo dir = new DirectoryInfo(Path.GetFullPath(str));
+                str = Convert.ToString(dir);
+                reply = MessageBox.Show("Full path: " + str + " - Is this correct - yes/no?", "Path Correct ?", MessageBoxButtons.YesNo);
+                if (reply == DialogResult.No)
                 {
-                    reply = MessageBox.Show("Directory does not exist, create yes/no?", "Directory", MessageBoxButtons.YesNo);
-                    if (reply == DialogResult.Yes)
-                    {
-                        try
-                        {
-                            Directory.CreateDirectory(str);
-                            outl = true;
-                        }
-                        catch
-                        {
-                            MessageBox.Show("Invalid path");
-                        }
-                    }
+                    //ask again
                 }
                 else
-                {
-                    outl = true;
+                {                    
+                    if (Directory.Exists(str) == false)
+                    {
+                        reply = MessageBox.Show("Directory does not exist, create yes/no?", "Directory", MessageBoxButtons.YesNo);
+                        if (reply == DialogResult.Yes)
+                        {
+                            try
+                            {
+                                Directory.CreateDirectory(str);
+                                outl = true;
+                            }
+                            catch
+                            {
+                                MessageBox.Show("Invalid path");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        outl = true;
+                    }
                 }
-            }
+            }            
             if (str.Trim() == DefaultDir.Trim())
             {
                 reply = MessageBox.Show("This is already the Default directory for Ultamarker - reset all paths yes/no?", "Reset default Directory", MessageBoxButtons.YesNoCancel);

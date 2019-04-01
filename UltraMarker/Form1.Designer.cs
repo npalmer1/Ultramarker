@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -186,6 +186,9 @@
             this.gradeTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.configdirlabel = new System.Windows.Forms.Label();
+            this.label97 = new System.Windows.Forms.Label();
+            this.defaultdirlabel = new System.Windows.Forms.Label();
             this.ULSigButton = new System.Windows.Forms.Button();
             this.label95 = new System.Windows.Forms.Label();
             this.ULSigBox = new System.Windows.Forms.TextBox();
@@ -418,9 +421,6 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog7 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog8 = new System.Windows.Forms.OpenFileDialog();
-            this.defaultdirlabel = new System.Windows.Forms.Label();
-            this.label97 = new System.Windows.Forms.Label();
-            this.configdirlabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -658,6 +658,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.BackColor = System.Drawing.Color.Beige;
             this.tabPage2.Controls.Add(this.label2ndComments);
             this.tabPage2.Controls.Add(this.textBox2Comments);
             this.tabPage2.Controls.Add(this.textBox2nd);
@@ -741,7 +742,6 @@
             this.tabPage2.Size = new System.Drawing.Size(1757, 911);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
-            this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // label2ndComments
@@ -963,7 +963,7 @@
             // insessionLabel
             // 
             this.insessionLabel.AutoSize = true;
-            this.insessionLabel.Location = new System.Drawing.Point(1157, 111);
+            this.insessionLabel.Location = new System.Drawing.Point(1168, 112);
             this.insessionLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.insessionLabel.Name = "insessionLabel";
             this.insessionLabel.Size = new System.Drawing.Size(87, 18);
@@ -1625,10 +1625,10 @@
             this.treeView2.Location = new System.Drawing.Point(5, 32);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode4.Name = "CriteriaNode";
-            treeNode4.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -1796,6 +1796,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.BackColor = System.Drawing.Color.Beige;
             this.tabPage1.Controls.Add(this.grAliaslabel);
             this.tabPage1.Controls.Add(this.AliastextBox);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -1821,7 +1822,6 @@
             this.tabPage1.Size = new System.Drawing.Size(1757, 911);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
-            this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
             // grAliaslabel
@@ -2043,11 +2043,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(421, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2139,6 +2139,7 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.BackColor = System.Drawing.Color.Beige;
             this.tabPage5.Controls.Add(this.configdirlabel);
             this.tabPage5.Controls.Add(this.label97);
             this.tabPage5.Controls.Add(this.defaultdirlabel);
@@ -2192,8 +2193,34 @@
             this.tabPage5.Size = new System.Drawing.Size(1757, 911);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
-            this.tabPage5.UseVisualStyleBackColor = true;
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
+            // 
+            // configdirlabel
+            // 
+            this.configdirlabel.AutoSize = true;
+            this.configdirlabel.Location = new System.Drawing.Point(250, 742);
+            this.configdirlabel.Name = "configdirlabel";
+            this.configdirlabel.Size = new System.Drawing.Size(165, 18);
+            this.configdirlabel.TabIndex = 46;
+            this.configdirlabel.Text = "Configuration directory: ";
+            // 
+            // label97
+            // 
+            this.label97.AutoSize = true;
+            this.label97.Location = new System.Drawing.Point(308, 54);
+            this.label97.Name = "label97";
+            this.label97.Size = new System.Drawing.Size(191, 18);
+            this.label97.TabIndex = 45;
+            this.label97.Text = "- see Settings tab to change";
+            // 
+            // defaultdirlabel
+            // 
+            this.defaultdirlabel.AutoSize = true;
+            this.defaultdirlabel.Location = new System.Drawing.Point(250, 32);
+            this.defaultdirlabel.Name = "defaultdirlabel";
+            this.defaultdirlabel.Size = new System.Drawing.Size(160, 18);
+            this.defaultdirlabel.TabIndex = 44;
+            this.defaultdirlabel.Text = "Default directory set to:";
             // 
             // ULSigButton
             // 
@@ -2628,6 +2655,7 @@
             // 
             // menuStrip5
             // 
+            this.menuStrip5.BackColor = System.Drawing.Color.Gainsboro;
             this.menuStrip5.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip5.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configToolStripMenuItem});
@@ -2652,27 +2680,28 @@
             // institutionToolStripMenuItem
             // 
             this.institutionToolStripMenuItem.Name = "institutionToolStripMenuItem";
-            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.institutionToolStripMenuItem.Text = "Institution";
             this.institutionToolStripMenuItem.Click += new System.EventHandler(this.institutionToolStripMenuItem_Click);
             // 
             // defaultDirToolStripMenuItem
             // 
             this.defaultDirToolStripMenuItem.Name = "defaultDirToolStripMenuItem";
-            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.defaultDirToolStripMenuItem.Text = "Default Dir";
             this.defaultDirToolStripMenuItem.Click += new System.EventHandler(this.defaultDirToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(165, 26);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Visible = false;
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
             // 
             // tabPage4
             // 
+            this.tabPage4.BackColor = System.Drawing.Color.Beige;
             this.tabPage4.Controls.Add(this.LOcomboBox);
             this.tabPage4.Controls.Add(this.transferButton);
             this.tabPage4.Controls.Add(this.label29);
@@ -2690,7 +2719,6 @@
             this.tabPage4.Size = new System.Drawing.Size(1757, 911);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Learn Out";
-            this.tabPage4.UseVisualStyleBackColor = true;
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
             // 
             // LOcomboBox
@@ -2894,6 +2922,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.BackColor = System.Drawing.Color.Beige;
             this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.sessionWlabel);
             this.tabPage3.Controls.Add(this.sessionCombo);
@@ -2912,7 +2941,6 @@
             this.tabPage3.Size = new System.Drawing.Size(1757, 911);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sessions";
-            this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
             // 
             // checkBox2
@@ -3027,10 +3055,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3098,6 +3126,7 @@
             // 
             // tabPage6
             // 
+            this.tabPage6.BackColor = System.Drawing.Color.Beige;
             this.tabPage6.Controls.Add(this.PeerSigBox);
             this.tabPage6.Controls.Add(this.label96);
             this.tabPage6.Controls.Add(this.PeerSigButton);
@@ -3143,7 +3172,6 @@
             this.tabPage6.Size = new System.Drawing.Size(1757, 911);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
-            this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // PeerSigBox
             // 
@@ -3652,6 +3680,7 @@
             // 
             // tabPage7
             // 
+            this.tabPage7.BackColor = System.Drawing.Color.Beige;
             this.tabPage7.Controls.Add(this.modfileButton);
             this.tabPage7.Controls.Add(this.label74);
             this.tabPage7.Controls.Add(this.modDirTextBox);
@@ -3698,7 +3727,6 @@
             this.tabPage7.Size = new System.Drawing.Size(1757, 911);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
-            this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // modfileButton
             // 
@@ -4114,6 +4142,7 @@
             // 
             // tabPage8
             // 
+            this.tabPage8.BackColor = System.Drawing.Color.Beige;
             this.tabPage8.Controls.Add(this.label84);
             this.tabPage8.Controls.Add(this.OKcheckBox);
             this.tabPage8.Controls.Add(this.label82);
@@ -4137,7 +4166,6 @@
             this.tabPage8.Size = new System.Drawing.Size(1757, 911);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "External";
-            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // label84
             // 
@@ -4292,6 +4320,7 @@
             // 
             // tabPage9
             // 
+            this.tabPage9.BackColor = System.Drawing.Color.Beige;
             this.tabPage9.Controls.Add(this.label91);
             this.tabPage9.Controls.Add(this.label90);
             this.tabPage9.Controls.Add(this.Importbutton);
@@ -4308,7 +4337,6 @@
             this.tabPage9.Size = new System.Drawing.Size(1757, 911);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
-            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // label91
             // 
@@ -4551,39 +4579,12 @@
             this.openFileDialog8.FileName = "openFileDialog8";
             this.openFileDialog8.Filter = "riteria files (*.cri)|*.cri";
             // 
-            // defaultdirlabel
-            // 
-            this.defaultdirlabel.AutoSize = true;
-            this.defaultdirlabel.Location = new System.Drawing.Point(250, 32);
-            this.defaultdirlabel.Name = "defaultdirlabel";
-            this.defaultdirlabel.Size = new System.Drawing.Size(160, 18);
-            this.defaultdirlabel.TabIndex = 44;
-            this.defaultdirlabel.Text = "Default directory set to:";
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.Location = new System.Drawing.Point(308, 54);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(191, 18);
-            this.label97.TabIndex = 45;
-            this.label97.Text = "- see Settings tab to change";
-            // 
-            // configdirlabel
-            // 
-            this.configdirlabel.AutoSize = true;
-            this.configdirlabel.Location = new System.Drawing.Point(250, 742);
-            this.configdirlabel.Name = "configdirlabel";
-            this.configdirlabel.Size = new System.Drawing.Size(165, 18);
-            this.configdirlabel.TabIndex = 46;
-            this.configdirlabel.Text = "Configuration directory: ";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(1785, 921);
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
