@@ -2547,6 +2547,7 @@ namespace UltraMarker
             {
                     if (listBox1.Items.Count > 0)
                     {
+                       
                         if (TChanged)
                         {
                             if (promptsoff)
@@ -2656,7 +2657,7 @@ namespace UltraMarker
                     }
                     button3.Text = "Marking Mode";
                     MarkingMode(true);
-                    EditStudent = true;
+                    EditStudent = true;                 
                 }
                 else
                 {
@@ -2667,7 +2668,7 @@ namespace UltraMarker
             {
                 button3.Text = "Edit Criteria Mode";
                 MarkingMode(false);
-                EditStudent = false;
+                EditStudent = false;                
                 //button1.Visible = false;  //show button
                 Show_Label("Don't forget to Save Marks!", 2000);
             }
@@ -2750,6 +2751,7 @@ namespace UltraMarker
                 overrideBox.Visible = false;
                 overrideButton.Visible = false;
             }
+            overridecheckBox.Visible = b;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -2758,7 +2760,7 @@ namespace UltraMarker
         }
 
         private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
+        {   //double click the grade list box to select grade for currenet criteria
             int sub = 0;
             if (startMark)
             {
@@ -2770,7 +2772,11 @@ namespace UltraMarker
                     }
                     if (listBox1.SelectedIndex > -1)
                     {
-
+                        if (overridecheckBox.Checked)
+                        {
+                            label18.Text = listBox1.SelectedItem.ToString();
+                            return;
+                        }
                         if (CriteriaSelected)
                         {
                             sub = MaxSub;
@@ -3118,6 +3124,18 @@ namespace UltraMarker
                         else if (SessionsEqual)
                         {
                             f = f / SessionS; //only if sessions are equally weighted
+                        }
+                        if (overridecheckBox.Checked)
+                        {
+                            if (label18.Text.Trim().LastIndexOf("%") == label18.Text.Length -1)
+                            {
+                                PC = label18.Text.TrimEnd('%');
+                            }
+                            else
+                            {
+                                PC = Find_Percent(label18.Text.Trim());
+                            }
+                            f = Convert.ToSingle(PC);
                         }
                         sw.WriteLine();
                         str = Convert.ToString(f);
@@ -3993,7 +4011,21 @@ namespace UltraMarker
 
                 if (feedOptions.percent)
                 {
-                    if (SessionType > 0)
+                    if (overridecheckBox.Checked)
+                    {
+                        string tmp = "";
+                        if (label18.Text.Trim().IndexOf("%") == label18.Text.Length -1)
+                        {
+                            tmp = label18.Text.TrimEnd('%');
+                        }
+                        else
+                        { 
+                            tmp = Find_Percent(label18.Text.Trim());
+                        }
+                        f = Convert.ToSingle(tmp);
+                        str = str + boldS + "Overall Mark " + tmp + " %" + boldE + nl;
+                    }
+                    else if (SessionType > 0)
                     {
 
                         f = f / SessionCount;
@@ -4005,6 +4037,7 @@ namespace UltraMarker
                         str = str + boldS + "Overall Mark " + Convert.ToString(f) + " %" + boldE + nl;
                     }
                 }
+                
                 if (feedOptions.grade)
                 {
                     str = str + boldS + "Overall Grade: " + Convert_Percent_To_Grade(f) + boldE + nl;
@@ -4506,7 +4539,7 @@ namespace UltraMarker
                     textBox10.Enabled = false;
                     addButton.Visible = false;
                     StudentcomboBox.Enabled = true;
-                    overrideBox.Enabled = false;
+                    overrideBox.Enabled = false;                   
                 }
             }
             else
@@ -8476,10 +8509,18 @@ namespace UltraMarker
             }
         }
 
-        
-       
-
+        private void overridecheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (overridecheckBox.Checked && EditStudent)
+            {
+                treeView2.Enabled = false;
+            }
+            else
+            {
+                treeView2.Enabled = true;
+            }
         }
+    }
 
        
     }

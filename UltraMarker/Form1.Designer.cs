@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -421,6 +421,7 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog7 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog8 = new System.Windows.Forms.OpenFileDialog();
+            this.overridecheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -659,6 +660,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.overridecheckBox);
             this.tabPage2.Controls.Add(this.label2ndComments);
             this.tabPage2.Controls.Add(this.textBox2Comments);
             this.tabPage2.Controls.Add(this.textBox2nd);
@@ -846,7 +848,7 @@
             // overrideBox
             // 
             this.overrideBox.Enabled = false;
-            this.overrideBox.Location = new System.Drawing.Point(485, 535);
+            this.overrideBox.Location = new System.Drawing.Point(489, 693);
             this.overrideBox.Margin = new System.Windows.Forms.Padding(4);
             this.overrideBox.Name = "overrideBox";
             this.overrideBox.Size = new System.Drawing.Size(43, 24);
@@ -856,7 +858,7 @@
             // 
             // overrideButton
             // 
-            this.overrideButton.Location = new System.Drawing.Point(380, 535);
+            this.overrideButton.Location = new System.Drawing.Point(381, 691);
             this.overrideButton.Margin = new System.Windows.Forms.Padding(4);
             this.overrideButton.Name = "overrideButton";
             this.overrideButton.Size = new System.Drawing.Size(100, 28);
@@ -1625,10 +1627,10 @@
             this.treeView2.Location = new System.Drawing.Point(5, 32);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode2.Name = "CriteriaNode";
+            treeNode2.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2043,11 +2045,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView1.Size = new System.Drawing.Size(421, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3055,10 +3057,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode4});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4579,6 +4581,18 @@
             this.openFileDialog8.FileName = "openFileDialog8";
             this.openFileDialog8.Filter = "riteria files (*.cri)|*.cri";
             // 
+            // overridecheckBox
+            // 
+            this.overridecheckBox.AutoSize = true;
+            this.overridecheckBox.Location = new System.Drawing.Point(355, 534);
+            this.overridecheckBox.Name = "overridecheckBox";
+            this.overridecheckBox.Size = new System.Drawing.Size(166, 22);
+            this.overridecheckBox.TabIndex = 82;
+            this.overridecheckBox.Text = "Select Overall Grade";
+            this.overridecheckBox.UseVisualStyleBackColor = true;
+            this.overridecheckBox.Visible = false;
+            this.overridecheckBox.CheckedChanged += new System.EventHandler(this.overridecheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5032,6 +5046,7 @@
         private System.Windows.Forms.Label defaultdirlabel;
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.Label configdirlabel;
+        private System.Windows.Forms.CheckBox overridecheckBox;
     }
 }
 
