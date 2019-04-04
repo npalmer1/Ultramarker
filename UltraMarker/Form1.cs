@@ -75,7 +75,7 @@ namespace UltraMarker
         int SCriteria = 0;
         int SSub = 0;
         const int MaxCriteria = 50;
-        const int MaxSub = 4;
+        static int MaxSub = 20;
         //const int MaxGrades = 25;
         const int MaxGrades = 50;
         const int MaxSessions = 20;
@@ -1803,6 +1803,7 @@ namespace UltraMarker
             {
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
+                    sw.WriteLine("File Version: 2");
                     sw.WriteLine("Assessment title: " + assessTitleBox.Text);
                     sw.WriteLine("assessdesc: ");
                     sw.WriteLine(assess.Description);
@@ -1820,6 +1821,7 @@ namespace UltraMarker
                     {
                         ct = "0";
                     }
+                    
                     sw.WriteLine("Criteria type: " + ct);
                     string grtype = "single";
                     if (!singleGrades) { grtype = "dual"; }
@@ -1985,6 +1987,7 @@ namespace UltraMarker
             string ct = "0";
             string gt = "single";
             string[] crs = new string[MaxSessions];
+            bool newversion = false;
             assess.Description = "";
             loading = true;
             try
@@ -2007,6 +2010,15 @@ namespace UltraMarker
                     {
                         str = sw.ReadLine();
                         str.Trim();
+                        if (str.StartsWith("File Version 2:"))
+                        {
+                            newversion = true;
+                            MaxSub = 20;
+                        }  
+                        if (!newversion)
+                        {
+                            MaxSub = 4;
+                        }
                         if (str.StartsWith("Assessment title:"))
                         {
                             assessTitleBox.Text = str.Substring("Assessment title: ".Length, str.Length - "Assessment title: ".Length);
@@ -2445,6 +2457,8 @@ namespace UltraMarker
                     {
                         MessageBox.Show("Warning no grades loaded - see Grades tab");
                     }
+                    defaultdirassesslabel.Text = "Default directory: " + DefaultDir;
+                    unitlabel.Text = "Unit: " + UnitTitletextBox.Text;
                 }
 
                 /*if (tabControl1.SelectedIndex == 1)
@@ -2949,7 +2963,7 @@ namespace UltraMarker
             }
         }
 
-        private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)
+        private void saveFileDialog3_FileOk(object sender, CancelEventArgs e) //saved marked student work
         {
             if (saveFileDialog3.DefaultExt == "mrk")
             {
@@ -2987,9 +3001,11 @@ namespace UltraMarker
                             Se = 1;
                         }
                         else
-                        {
+                        { 
                             Se = SessionS;
                         }
+                        sw.WriteLine("Unit: " + UnitTitletextBox.Text);
+                        sw.WriteLine("Assessment title: " + assess.Title);
                         sw.WriteLine("Student: " + StudentcomboBox.Text);
                         try
                         {
@@ -3382,6 +3398,14 @@ namespace UltraMarker
                         {
                             StudentcomboBox.Text = str3;
                         }
+                        if (str.StartsWith("Unit: "))
+                        {
+                            // do nothing at this stage
+                        }
+                        if (str.StartsWith("Assessment title: "))
+                        {
+                            // do nothing at this stage
+                        }
                         else if (str.StartsWith("Criteria type:"))
                         {
 
@@ -3733,6 +3757,7 @@ namespace UltraMarker
 
                 rep1.RTB.Font = new Font("Calibri", 10, FontStyle.Regular);
 
+                str = str + boldS + "Unit: " + UnitTitletextBox.Text + boldE + nl;
                 str = str + boldS + "Student name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
                 str = str + boldS + "Assessment title: " + assess.Title + boldE + ", Code: " + assess.Code + nl;
                 str = str + "Iteration: " + Sitting + nl;
@@ -5736,6 +5761,8 @@ namespace UltraMarker
             {
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
+                    sw.WriteLine("Unit: " + UnitTitletextBox.Text);
+                    sw.WriteLine("Assessment title: " + assess.Title);
                     sw.WriteLine("Session file");
                     for (int i = 0; i < SessionS; i++)
                     {
@@ -5947,6 +5974,7 @@ namespace UltraMarker
             {
                 Clear_All_Criteria(true);
                 Clear_Form_Data();
+                MaxSub = 20;
                 Reset_Selected(true); //clear selected criteria
 
                 assess.Title = "";

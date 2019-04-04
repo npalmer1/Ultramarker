@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,9 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.unitlabel = new System.Windows.Forms.Label();
+            this.defaultdirassesslabel = new System.Windows.Forms.Label();
+            this.overridecheckBox = new System.Windows.Forms.CheckBox();
             this.label2ndComments = new System.Windows.Forms.Label();
             this.textBox2Comments = new System.Windows.Forms.TextBox();
             this.textBox2nd = new System.Windows.Forms.TextBox();
@@ -421,7 +424,6 @@
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog7 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog8 = new System.Windows.Forms.OpenFileDialog();
-            this.overridecheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -660,6 +662,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.unitlabel);
+            this.tabPage2.Controls.Add(this.defaultdirassesslabel);
             this.tabPage2.Controls.Add(this.overridecheckBox);
             this.tabPage2.Controls.Add(this.label2ndComments);
             this.tabPage2.Controls.Add(this.textBox2Comments);
@@ -741,10 +745,40 @@
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage2.Size = new System.Drawing.Size(1774, 889);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // unitlabel
+            // 
+            this.unitlabel.AutoSize = true;
+            this.unitlabel.Location = new System.Drawing.Point(598, 14);
+            this.unitlabel.Name = "unitlabel";
+            this.unitlabel.Size = new System.Drawing.Size(38, 18);
+            this.unitlabel.TabIndex = 85;
+            this.unitlabel.Text = "Unit:";
+            // 
+            // defaultdirassesslabel
+            // 
+            this.defaultdirassesslabel.AutoSize = true;
+            this.defaultdirassesslabel.Location = new System.Drawing.Point(327, 857);
+            this.defaultdirassesslabel.Name = "defaultdirassesslabel";
+            this.defaultdirassesslabel.Size = new System.Drawing.Size(78, 18);
+            this.defaultdirassesslabel.TabIndex = 83;
+            this.defaultdirassesslabel.Text = "Default dir:";
+            // 
+            // overridecheckBox
+            // 
+            this.overridecheckBox.AutoSize = true;
+            this.overridecheckBox.Location = new System.Drawing.Point(355, 534);
+            this.overridecheckBox.Name = "overridecheckBox";
+            this.overridecheckBox.Size = new System.Drawing.Size(166, 22);
+            this.overridecheckBox.TabIndex = 82;
+            this.overridecheckBox.Text = "Select Overall Grade";
+            this.overridecheckBox.UseVisualStyleBackColor = true;
+            this.overridecheckBox.Visible = false;
+            this.overridecheckBox.CheckedChanged += new System.EventHandler(this.overridecheckBox_CheckedChanged);
             // 
             // label2ndComments
             // 
@@ -1624,13 +1658,13 @@
             // 
             this.treeView2.ContextMenuStrip = this.contextMenuStrip3;
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeView2.Location = new System.Drawing.Point(5, 32);
+            this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode2.Name = "CriteriaNode";
-            treeNode2.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -1653,7 +1687,7 @@
             this.menuStrip2.Location = new System.Drawing.Point(4, 4);
             this.menuStrip2.Name = "menuStrip2";
             this.menuStrip2.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip2.Size = new System.Drawing.Size(1749, 31);
+            this.menuStrip2.Size = new System.Drawing.Size(1766, 31);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             this.menuStrip2.Click += new System.EventHandler(this.menuStrip2_Click);
@@ -1821,7 +1855,7 @@
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage1.Size = new System.Drawing.Size(1774, 889);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -2045,11 +2079,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(421, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2067,7 +2101,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(4, 4);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1749, 31);
+            this.menuStrip1.Size = new System.Drawing.Size(1766, 31);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -2131,11 +2165,11 @@
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.Location = new System.Drawing.Point(16, -4);
+            this.tabControl1.Location = new System.Drawing.Point(2, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1765, 942);
+            this.tabControl1.Size = new System.Drawing.Size(1782, 920);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -2192,7 +2226,7 @@
             this.tabPage5.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage5.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage5.Size = new System.Drawing.Size(1774, 889);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
@@ -2664,7 +2698,7 @@
             this.menuStrip5.Location = new System.Drawing.Point(4, 4);
             this.menuStrip5.Name = "menuStrip5";
             this.menuStrip5.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip5.Size = new System.Drawing.Size(1749, 28);
+            this.menuStrip5.Size = new System.Drawing.Size(1766, 28);
             this.menuStrip5.TabIndex = 32;
             this.menuStrip5.Text = "menuStrip5";
             // 
@@ -2718,7 +2752,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 27);
             this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage4.Size = new System.Drawing.Size(1774, 889);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Learn Out";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
@@ -2879,7 +2913,7 @@
             this.menuStrip4.Location = new System.Drawing.Point(0, 0);
             this.menuStrip4.Name = "menuStrip4";
             this.menuStrip4.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip4.Size = new System.Drawing.Size(1757, 31);
+            this.menuStrip4.Size = new System.Drawing.Size(1774, 31);
             this.menuStrip4.TabIndex = 7;
             this.menuStrip4.Text = "menuStrip4";
             // 
@@ -2940,7 +2974,7 @@
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage3.Size = new System.Drawing.Size(1774, 889);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sessions";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
@@ -3057,10 +3091,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3090,7 +3124,7 @@
             this.menuStrip3.Location = new System.Drawing.Point(4, 4);
             this.menuStrip3.Name = "menuStrip3";
             this.menuStrip3.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip3.Size = new System.Drawing.Size(1749, 31);
+            this.menuStrip3.Size = new System.Drawing.Size(1766, 31);
             this.menuStrip3.TabIndex = 5;
             this.menuStrip3.Text = "menuStrip3";
             // 
@@ -3171,7 +3205,7 @@
             this.tabPage6.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage6.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage6.Size = new System.Drawing.Size(1774, 889);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
             // 
@@ -3726,7 +3760,7 @@
             this.tabPage7.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage7.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage7.Size = new System.Drawing.Size(1774, 889);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
             // 
@@ -4165,7 +4199,7 @@
             this.tabPage8.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage8.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage8.Size = new System.Drawing.Size(1774, 889);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "External";
             // 
@@ -4336,7 +4370,7 @@
             this.tabPage9.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage9.Size = new System.Drawing.Size(1757, 911);
+            this.tabPage9.Size = new System.Drawing.Size(1774, 889);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
             // 
@@ -4581,25 +4615,13 @@
             this.openFileDialog8.FileName = "openFileDialog8";
             this.openFileDialog8.Filter = "riteria files (*.cri)|*.cri";
             // 
-            // overridecheckBox
-            // 
-            this.overridecheckBox.AutoSize = true;
-            this.overridecheckBox.Location = new System.Drawing.Point(355, 534);
-            this.overridecheckBox.Name = "overridecheckBox";
-            this.overridecheckBox.Size = new System.Drawing.Size(166, 22);
-            this.overridecheckBox.TabIndex = 82;
-            this.overridecheckBox.Text = "Select Overall Grade";
-            this.overridecheckBox.UseVisualStyleBackColor = true;
-            this.overridecheckBox.Visible = false;
-            this.overridecheckBox.CheckedChanged += new System.EventHandler(this.overridecheckBox_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1785, 921);
+            this.ClientSize = new System.Drawing.Size(1785, 905);
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -5047,6 +5069,8 @@
         private System.Windows.Forms.Label label97;
         private System.Windows.Forms.Label configdirlabel;
         private System.Windows.Forms.CheckBox overridecheckBox;
+        private System.Windows.Forms.Label defaultdirassesslabel;
+        private System.Windows.Forms.Label unitlabel;
     }
 }
 

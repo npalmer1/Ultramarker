@@ -61,14 +61,13 @@ namespace UltraMarker
             textBox1.Text = Passvalue[0]; //assessment title
             textBox2.Text = Passvalue[1]; //description of assessment
             textBox3.Text = Passvalue[2]; //code or number of assessment
-            comboBox1.Text = Passvalue[3]; //weighting in unit
-          
+            comboBox1.Text = Passvalue[3]; //weighting in unit                       
             vis = Passvalue[4];
             if (vis.Contains("read"))
             { enableBoxes(true); }
             else 
             { enableBoxes(false); }
-            
+            textBox2.Select(0, 0);
         }
         private void enableBoxes(bool b)
         {
