@@ -1665,8 +1665,8 @@ namespace UltraMarker
 
                     if (num >= MaxSub)
                     {
-                        treeView2.Nodes[0].Nodes[SCriteria].LastNode.Remove();
-                        MessageBox.Show("Cannot have more than 4 sub-criteria");
+                        treeView2.Nodes[0].Nodes[SCriteria].LastNode.Remove();                       
+                        MessageBox.Show("Cannot have more than " + Convert.ToString(MaxSub) + " sub-criteria");
                         return;
                     }
 
@@ -2010,14 +2010,14 @@ namespace UltraMarker
                     {
                         str = sw.ReadLine();
                         str.Trim();
-                        if (str.StartsWith("File Version 2:"))
+                        if (str.StartsWith("File Version: 2"))
                         {
                             newversion = true;
                             MaxSub = 20;
                         }  
                         if (!newversion)
                         {
-                            MaxSub = 4;
+                            MaxSub = 20;
                         }
                         if (str.StartsWith("Assessment title:"))
                         {
