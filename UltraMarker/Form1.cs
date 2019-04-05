@@ -2835,7 +2835,28 @@ namespace UltraMarker
                 marksDirectory = UnitFilePath;
             }
             string str = marksDirectory + "\\" + assess.Code;
-
+            if (!Directory.Exists(marksDirectory))
+            {   //check if you've lost connection to online resource nad if so save locally instead temporarily
+                MessageBox.Show("Unable to save - check path or connection to: " + marksDirectory);
+                DialogResult ret = MessageBox.Show("Save marks temporarily in: " + ConfigDir + " Yes/No?", "Save marks", MessageBoxButtons.YesNo);
+                if (ret == DialogResult.Yes)
+                {
+                    if (unitCodeTextBox.Text.Trim() == "" || unitCodeTextBox.Text == null)
+                    {
+                        marksDirectory = ConfigDir + "Temp" + "\\" + assess.Code;
+                    }
+                    else
+                    {
+                        marksDirectory = ConfigDir + unitCodeTextBox.Text + "\\" + assess.Code;
+                    }
+                    str = marksDirectory;
+                }
+                else
+                {
+                    return;
+                }                
+            }                       
+            
             saveFileDialog3.InitialDirectory = str;
             if (!Directory.Exists(str))
             {
@@ -2844,7 +2865,10 @@ namespace UltraMarker
                     Directory.CreateDirectory(str);
                     assessHeaderlabel.Text = "Assessments mark in: " + str;
                 }
-                catch { }
+                catch
+                {
+                    
+                }
             }
             DialogResult dialogResult3 = DialogResult.Yes;
             if (listBox1.Items.Count < 1)
@@ -2963,8 +2987,8 @@ namespace UltraMarker
             }
         }
 
-        private void saveFileDialog3_FileOk(object sender, CancelEventArgs e) //saved marked student work
-        {
+        private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)
+        {   //saved marked student work
             if (saveFileDialog3.DefaultExt == "mrk")
             {
                 Save_Marked_File(saveFileDialog3.FileName);
