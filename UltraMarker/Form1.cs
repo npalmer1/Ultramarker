@@ -220,6 +220,7 @@ namespace UltraMarker
             public bool fullLO;
             public bool SubLO;
             public bool CriteriaGrade;
+            public bool subdescription;
         }
         feedbackoptionstruct feedOptions;
 
@@ -450,6 +451,7 @@ namespace UltraMarker
             feedOptions.fullLO = b;
             feedOptions.SubLO = b;
             feedOptions.CriteriaGrade = b;
+            feedOptions.subdescription = b;
         }
 
         private void Reset_Selected(bool b)
@@ -535,13 +537,14 @@ namespace UltraMarker
         {
             string alias = "";
             TreeNode n = new TreeNode();
+            textBox1.Text = treeView1.SelectedNode.Text;
             //Edit or delete grades:
-            if (contextMenuStrip2.Items[0].Selected)
+            if (contextMenuStrip2.Items[0].Selected) //edit grade
             {
                 GradeTitleChanged = false;
                 Editable_Grades(true);
             }
-            else if (contextMenuStrip2.Items[1].Selected)
+            else if (contextMenuStrip2.Items[1].Selected) //delete grade
             {
                 try
                 {
@@ -3962,7 +3965,7 @@ namespace UltraMarker
                             {
                                 str = str + "+++++++" + nl;
                                 str = str + boldS + " Sub-Criteria: " + crtitle[i, k] + boldE + nl;
-                                if (firstSession && feedOptions.description)
+                                if (firstSession && feedOptions.subdescription)
                                 {
                                     str = str + italS + "Description of requirements for this sub criteria: " + italE + nl;
                                     str = str + crdesc[i, k] + nl;
@@ -4988,7 +4991,8 @@ namespace UltraMarker
                     if (!feedOptions.fullLO) { c[9] = '0'; }
                     if (!feedOptions.SubLO) { c[10] = '0'; }
                     if (!feedOptions.CriteriaGrade) { c[11] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11]);
+                    if (!feedOptions.subdescription) { c[12] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5248,6 +5252,7 @@ namespace UltraMarker
                                     c[9] = str3[9];
                                     c[10] = str3[10];
                                     c[11] = str3[11];
+                                    c[12] = str3[12];
                                 }
                                 catch
                                 {
@@ -5307,6 +5312,7 @@ namespace UltraMarker
                         if (c[9] == '0') { feedOptions.fullLO = false; }
                         if (c[10] == '0') { feedOptions.SubLO = false; }
                         if (c[11] == '0') { feedOptions.CriteriaGrade = false; }
+                        if (c[12] == '0') { feedOptions.subdescription = false; }
 
                     } //using
                 } //try
@@ -6163,6 +6169,7 @@ namespace UltraMarker
             FeedForm.Passvalue[9] = feedOptions.fullLO;
             FeedForm.Passvalue[10] = feedOptions.SubLO;
             FeedForm.Passvalue[11] = feedOptions.CriteriaGrade;
+            FeedForm.Passvalue[12] = feedOptions.subdescription;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -6177,6 +6184,7 @@ namespace UltraMarker
             feedOptions.fullLO = FeedForm.Passvalue[9];
             feedOptions.SubLO = FeedForm.Passvalue[10];
             feedOptions.CriteriaGrade = FeedForm.Passvalue[11];
+            feedOptions.subdescription = FeedForm.Passvalue[12];
         }
 
         private void addButton_Click(object sender, EventArgs e)

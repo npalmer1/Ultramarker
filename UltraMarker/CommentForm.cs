@@ -521,7 +521,14 @@ namespace UltraMarker
             this.Hide();
         }
 
-      
-       
+        private void newCommentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Create new comments file yes/no?", "New comments", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                listBox1.Items.Clear();
+                listBox2.Items.Clear();
+            }
+        }
     }
 }
