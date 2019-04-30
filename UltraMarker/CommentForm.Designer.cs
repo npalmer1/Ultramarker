@@ -228,11 +228,12 @@
             // 
             // textBox1
             // 
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(260, 532);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(216, 22);
+            this.textBox1.Size = new System.Drawing.Size(253, 24);
             this.textBox1.TabIndex = 9;
             this.textBox1.Visible = false;
             // 
@@ -250,11 +251,12 @@
             // 
             // textBox2
             // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(260, 602);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(977, 22);
+            this.textBox2.Size = new System.Drawing.Size(1050, 24);
             this.textBox2.TabIndex = 11;
             this.textBox2.Visible = false;
             // 
