@@ -39,6 +39,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.headingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addHeadingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Closebutton = new System.Windows.Forms.Button();
-            this.newCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -66,12 +66,13 @@
             // listBox1
             // 
             this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
+            this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 16;
+            this.listBox1.ItemHeight = 18;
             this.listBox1.Location = new System.Drawing.Point(11, 63);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(219, 628);
+            this.listBox1.Size = new System.Drawing.Size(219, 616);
             this.listBox1.TabIndex = 0;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -107,12 +108,13 @@
             // 
             // listBox2
             // 
+            this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 16;
+            this.listBox2.ItemHeight = 18;
             this.listBox2.Location = new System.Drawing.Point(243, 63);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.listBox2.Margin = new System.Windows.Forms.Padding(4);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(977, 244);
+            this.listBox2.Size = new System.Drawing.Size(1067, 400);
             this.listBox2.TabIndex = 1;
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
             // 
@@ -143,16 +145,23 @@
             // saveCommentsToolStripMenuItem
             // 
             this.saveCommentsToolStripMenuItem.Name = "saveCommentsToolStripMenuItem";
-            this.saveCommentsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.saveCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.saveCommentsToolStripMenuItem.Text = "Save Comments";
             this.saveCommentsToolStripMenuItem.Click += new System.EventHandler(this.saveCommentsToolStripMenuItem_Click);
             // 
             // loadCommentsToolStripMenuItem
             // 
             this.loadCommentsToolStripMenuItem.Name = "loadCommentsToolStripMenuItem";
-            this.loadCommentsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.loadCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
             this.loadCommentsToolStripMenuItem.Text = "Load Comments";
             this.loadCommentsToolStripMenuItem.Click += new System.EventHandler(this.loadCommentsToolStripMenuItem_Click);
+            // 
+            // newCommentsToolStripMenuItem
+            // 
+            this.newCommentsToolStripMenuItem.Name = "newCommentsToolStripMenuItem";
+            this.newCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.newCommentsToolStripMenuItem.Text = "New Comments";
+            this.newCommentsToolStripMenuItem.Click += new System.EventHandler(this.newCommentsToolStripMenuItem_Click);
             // 
             // headingsToolStripMenuItem
             // 
@@ -194,8 +203,8 @@
             // savebutton
             // 
             this.savebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.savebutton.Location = new System.Drawing.Point(327, 553);
-            this.savebutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.savebutton.Location = new System.Drawing.Point(344, 643);
+            this.savebutton.Margin = new System.Windows.Forms.Padding(4);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(100, 28);
             this.savebutton.TabIndex = 6;
@@ -207,8 +216,8 @@
             // cancelbutton
             // 
             this.cancelbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelbutton.Location = new System.Drawing.Point(532, 551);
-            this.cancelbutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cancelbutton.Location = new System.Drawing.Point(549, 641);
+            this.cancelbutton.Margin = new System.Windows.Forms.Padding(4);
             this.cancelbutton.Name = "cancelbutton";
             this.cancelbutton.Size = new System.Drawing.Size(100, 28);
             this.cancelbutton.TabIndex = 7;
@@ -219,8 +228,8 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(243, 400);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Location = new System.Drawing.Point(260, 532);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(216, 22);
@@ -231,7 +240,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(245, 380);
+            this.label3.Location = new System.Drawing.Point(266, 510);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 18);
@@ -241,8 +250,8 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(243, 470);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Location = new System.Drawing.Point(260, 602);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(977, 22);
@@ -253,7 +262,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(243, 447);
+            this.label4.Location = new System.Drawing.Point(260, 579);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(78, 18);
@@ -287,7 +296,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(391, 338);
+            this.label5.Location = new System.Drawing.Point(511, 483);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(391, 18);
@@ -320,21 +329,14 @@
             // Closebutton
             // 
             this.Closebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Closebutton.Location = new System.Drawing.Point(981, 551);
-            this.Closebutton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Closebutton.Location = new System.Drawing.Point(998, 641);
+            this.Closebutton.Margin = new System.Windows.Forms.Padding(4);
             this.Closebutton.Name = "Closebutton";
             this.Closebutton.Size = new System.Drawing.Size(100, 28);
             this.Closebutton.TabIndex = 15;
             this.Closebutton.Text = "Close";
             this.Closebutton.UseVisualStyleBackColor = true;
             this.Closebutton.Click += new System.EventHandler(this.Closebutton_Click);
-            // 
-            // newCommentsToolStripMenuItem
-            // 
-            this.newCommentsToolStripMenuItem.Name = "newCommentsToolStripMenuItem";
-            this.newCommentsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.newCommentsToolStripMenuItem.Text = "New Comments";
-            this.newCommentsToolStripMenuItem.Click += new System.EventHandler(this.newCommentsToolStripMenuItem_Click);
             // 
             // CommentForm
             // 
@@ -356,7 +358,7 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CommentForm";
             this.Text = "Comments";
             this.Load += new System.EventHandler(this.CommentForm_Load);
