@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,7 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.generateButton = new System.Windows.Forms.Button();
             this.unitlabel = new System.Windows.Forms.Label();
             this.defaultdirassesslabel = new System.Windows.Forms.Label();
             this.overridecheckBox = new System.Windows.Forms.CheckBox();
@@ -400,6 +401,8 @@
             this.label89 = new System.Windows.Forms.Label();
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.label88 = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.genlistView = new System.Windows.Forms.ListView();
             this.contextMenuStrip7 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editSession = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSession = new System.Windows.Forms.ToolStripMenuItem();
@@ -449,6 +452,7 @@
             this.groupBox2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.contextMenuStrip7.SuspendLayout();
             this.contextMenuStrip9.SuspendLayout();
             this.contextMenuStrip10.SuspendLayout();
@@ -662,6 +666,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.generateButton);
             this.tabPage2.Controls.Add(this.unitlabel);
             this.tabPage2.Controls.Add(this.defaultdirassesslabel);
             this.tabPage2.Controls.Add(this.overridecheckBox);
@@ -749,6 +754,16 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // generateButton
+            // 
+            this.generateButton.Location = new System.Drawing.Point(1275, 12);
+            this.generateButton.Name = "generateButton";
+            this.generateButton.Size = new System.Drawing.Size(89, 23);
+            this.generateButton.TabIndex = 86;
+            this.generateButton.Text = "Generate";
+            this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
             // unitlabel
             // 
@@ -1661,10 +1676,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode4.Name = "CriteriaNode";
-            treeNode4.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2079,11 +2094,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(421, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2164,6 +2179,7 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
+            this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(2, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -3091,10 +3107,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4464,6 +4480,25 @@
             this.label88.TabIndex = 0;
             this.label88.Text = "Select student CSV import file:";
             // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.genlistView);
+            this.tabPage10.Location = new System.Drawing.Point(4, 27);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(1774, 889);
+            this.tabPage10.TabIndex = 11;
+            this.tabPage10.Text = "Generated";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // genlistView
+            // 
+            this.genlistView.Location = new System.Drawing.Point(26, 28);
+            this.genlistView.Name = "genlistView";
+            this.genlistView.Size = new System.Drawing.Size(1129, 483);
+            this.genlistView.TabIndex = 0;
+            this.genlistView.UseCompatibleStateImageBehavior = false;
+            // 
             // contextMenuStrip7
             // 
             this.contextMenuStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -4670,6 +4705,7 @@
             this.tabPage8.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
             this.contextMenuStrip7.ResumeLayout(false);
             this.contextMenuStrip9.ResumeLayout(false);
             this.contextMenuStrip10.ResumeLayout(false);
@@ -5071,6 +5107,9 @@
         private System.Windows.Forms.CheckBox overridecheckBox;
         private System.Windows.Forms.Label defaultdirassesslabel;
         private System.Windows.Forms.Label unitlabel;
+        private System.Windows.Forms.Button generateButton;
+        private System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.ListView genlistView;
     }
 }
 

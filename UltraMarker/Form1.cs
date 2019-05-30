@@ -221,8 +221,10 @@ namespace UltraMarker
             public bool SubLO;
             public bool CriteriaGrade;
             public bool subdescription;
+            public bool includeheader;
         }
         feedbackoptionstruct feedOptions;
+       
 
         struct Student
         {
@@ -270,6 +272,7 @@ namespace UltraMarker
         private void Form1_Load(object sender, EventArgs e)
         {            
             string str = "";
+            feedOptions.includeheader = true;
             if (RunningPlatform() == Platform.Windows)
             {
                 slash = "\\";
@@ -452,6 +455,7 @@ namespace UltraMarker
             feedOptions.SubLO = b;
             feedOptions.CriteriaGrade = b;
             feedOptions.subdescription = b;
+            feedOptions.includeheader = b;
         }
 
         private void Reset_Selected(bool b)
@@ -3784,28 +3788,31 @@ namespace UltraMarker
 
                 rep1.RTB.Font = new Font("Calibri", 10, FontStyle.Regular);
 
-                str = str + boldS + "Unit: " + UnitTitletextBox.Text + boldE + nl;
-                str = str + boldS + "Student name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
-                str = str + boldS + "Assessment title: " + assess.Title + boldE + ", Code: " + assess.Code + nl;
-                str = str + "Iteration: " + Sitting + nl;
-
-
-                //richTextBox1.Rtf = @"{\rtf1\ansi \b " + selstr + " \b0 ";
-                //rep1.RTB.Rtf = richTextBox1.Rtf;
-                // str = "{\\rtf1\\ansi \\b " + selstr + " \\b0 ";
-
-                str = str + "Assessment weight for unit: " + assess.Weight + nl;
-                str = str + "-----------------" + nl;
-                if (feedOptions.full)
+                if (feedOptions.includeheader)
                 {
-                    str = str + italS + "Description: " + italE + nl + assess.Description.Replace("\r\n", nl) + nl;
-                }
-                if (feedOptions.fullLO)
-                {
-                    string lo = assess.LOs;
-                    lo = lo.Replace("\r\n", nl);
-                    str = str + italS + "Learning Outcomes: " + italE + nl + lo + nl;
-                }
+                    str = str + boldS + "Unit: " + UnitTitletextBox.Text + boldE + nl;
+                    str = str + boldS + "Student name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
+                    str = str + boldS + "Assessment title: " + assess.Title + boldE + ", Code: " + assess.Code + nl;
+                    str = str + "Iteration: " + Sitting + nl;
+
+
+                    //richTextBox1.Rtf = @"{\rtf1\ansi \b " + selstr + " \b0 ";
+                    //rep1.RTB.Rtf = richTextBox1.Rtf;
+                    // str = "{\\rtf1\\ansi \\b " + selstr + " \\b0 ";
+
+                    str = str + "Assessment weight for unit: " + assess.Weight + nl;
+                    str = str + "-----------------" + nl;
+                    if (feedOptions.full)
+                    {
+                        str = str + italS + "Description: " + italE + nl + assess.Description.Replace("\r\n", nl) + nl;
+                    }
+                    if (feedOptions.fullLO)
+                    {
+                        string lo = assess.LOs;
+                        lo = lo.Replace("\r\n", nl);
+                        str = str + italS + "Learning Outcomes: " + italE + nl + lo + nl;
+                    }
+                } //end include report header
                 //str = str + "-------------------------------" + nl;
 
                 for (int s = 0; s < ST; s++) //sessions
@@ -4918,7 +4925,7 @@ namespace UltraMarker
                 {
                     bl = "false";
                 }
-                for (int i = 0; i < 9; i++)
+                for (int i = 0; i < 20; i++)
                 {
                     c[i] = '1';  //set feedbackoptions to selected
                 }
@@ -4992,7 +4999,8 @@ namespace UltraMarker
                     if (!feedOptions.SubLO) { c[10] = '0'; }
                     if (!feedOptions.CriteriaGrade) { c[11] = '0'; }
                     if (!feedOptions.subdescription) { c[12] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12]);
+                    if (!feedOptions.includeheader) { c[13] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5253,6 +5261,7 @@ namespace UltraMarker
                                     c[10] = str3[10];
                                     c[11] = str3[11];
                                     c[12] = str3[12];
+                                    c[13] = str3[13];
                                 }
                                 catch
                                 {
@@ -5313,6 +5322,7 @@ namespace UltraMarker
                         if (c[10] == '0') { feedOptions.SubLO = false; }
                         if (c[11] == '0') { feedOptions.CriteriaGrade = false; }
                         if (c[12] == '0') { feedOptions.subdescription = false; }
+                        if (c[13] == '0') { feedOptions.includeheader = false; }
 
                     } //using
                 } //try
@@ -6170,6 +6180,7 @@ namespace UltraMarker
             FeedForm.Passvalue[10] = feedOptions.SubLO;
             FeedForm.Passvalue[11] = feedOptions.CriteriaGrade;
             FeedForm.Passvalue[12] = feedOptions.subdescription;
+            FeedForm.Passvalue[13] = feedOptions.includeheader;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -6185,6 +6196,7 @@ namespace UltraMarker
             feedOptions.SubLO = FeedForm.Passvalue[10];
             feedOptions.CriteriaGrade = FeedForm.Passvalue[11];
             feedOptions.subdescription = FeedForm.Passvalue[12];
+            feedOptions.includeheader = FeedForm.Passvalue[13];
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -8579,6 +8591,26 @@ namespace UltraMarker
             {
                 treeView2.Enabled = true;
             }
+        }
+       
+        private void generateButton_Click(object sender, EventArgs e)
+        {
+            string[] row = new string[3];
+            genlistView.Columns.Add("Criteria");
+            genlistView.Columns.Add("Grade 1");
+
+            TreeNodeCollection nodes = treeView2.Nodes[0].Nodes;
+            foreach (TreeNode n in nodes)
+            {
+                row[0] = n.Text;
+                row[1] = "";
+                row[2] = "";
+              
+                var listItem = new ListViewItem(row);
+                genlistView.Items.Add(listItem);
+              
+            }
+            //genlistView.Items.Add(lvi);            
         }
     }
 
