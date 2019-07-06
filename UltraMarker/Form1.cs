@@ -27,7 +27,7 @@ namespace UltraMarker
         string DefaultDir = "";
         string ConfigDir = "";
         String theVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
-     
+
 
         //List<Label> myGradeList = new List<Label>();
         int X = 0;
@@ -54,7 +54,7 @@ namespace UltraMarker
         string StudentImportFile = "";
         string ULSigFilePath = "";
         string PeerSigFilePath = "";
-        
+
         string marksDirectory = "";
 
         string Feedback = "";
@@ -79,6 +79,7 @@ namespace UltraMarker
         //const int MaxGrades = 25;
         const int MaxGrades = 50;
         const int MaxSessions = 20;
+        const int MaxGradeGroups = 10; //nunber of groups that grades can be assigned to - for criteria design
         int Session = 0;
         int SessionS = 0;
         int SessionType = 0; //no sessions
@@ -157,8 +158,16 @@ namespace UltraMarker
             public float grupper;
             public bool grselected;
             public string gralias;
+            public int grGroup;
         }
         GradesStruct[] gradelist = new GradesStruct[MaxGrades];
+
+       struct GradeGroupStruct
+        {
+            public int GroupNo;
+            public string GroupText;
+        }
+        GradeGroupStruct[] gradegrouplist = new GradeGroupStruct[MaxGradeGroups];
 
         string[, ,] Marks = new string[MaxCriteria, MaxSub + 1, MaxSessions];
         float[,] Percents = new float[MaxCriteria, MaxSub + 1];
@@ -352,6 +361,9 @@ namespace UltraMarker
                 DeselectSession[i] = false;
             }
             Reset_Selected(true);
+
+            //GroupscheckBox.Checked = true;
+           // GroupscheckBox.Checked = false;
             LoadSettings();
            
             if (StudentImportFile.Length > 0)
@@ -458,7 +470,7 @@ namespace UltraMarker
             feedOptions.includeheader = b;
         }
 
-        private void Reset_Selected(bool b)
+        private void Reset_Selected(bool b) //reset selected criteria and sub criteria
         {
             for (int i = 0; i < MaxCriteria; i++)
             {
@@ -846,6 +858,11 @@ namespace UltraMarker
                             sw.WriteLine("");
                         }
                     }
+                    for (int i=0; i< MaxGradeGroups; i++)   //save grade groups in sequence starting from 1
+                    {                      
+                        sw.WriteLine("Group title: " + gradegrouplist[i].GroupText);
+                    }
+                   
                     sw.Close();
                     GradeFile = filename;
                     GradePath = Path.GetDirectoryName(filename);
@@ -872,6 +889,11 @@ namespace UltraMarker
                 treeView1.Nodes[0].Remove();
                 treeView1.Nodes.Add("Grades");
             }
+            for (int i =0; i < MaxGradeGroups; i++)
+            {
+                gradegrouplist[i].GroupText = "Group i+1";
+                //GrouplistBox.Items.Clear();
+            }
             listBox1.Items.Clear();
             aliaslist.Clear();
         }
@@ -881,11 +903,13 @@ namespace UltraMarker
             string str, nl, substr;
             int B = -1; //start below zero and increment to 0 at first title
             bool fl = true;
+            int g = 0;
             loading = true;
             //treeView1.SelectedNode.ForeColor = Color.Black;
             try
             {
                 Remove_Grades();
+                BlankGradeGroups();
 
                 // Create an instance of StreamWriter to read grades from file:
                 using (StreamReader sw = new StreamReader(filename))
@@ -1004,7 +1028,14 @@ namespace UltraMarker
                                 }
                             }
                         }
-
+                        else if (str.StartsWith("Group title: "))   // Grade groups
+                        {   //starting from 1 (don't need number - just put them in order when saving)                 
+                            substr = str.Substring("Group title: ".Length, str.Length - "Group title: ".Length);
+                            gradegrouplist[g].GroupText = substr;
+                            gradegrouplist[g].GroupNo = g + 1;
+                            g++;
+                            
+                        }
 
 
                         if (B > MaxGrades - 1)
@@ -1014,6 +1045,7 @@ namespace UltraMarker
                     }
                     X = B;
                     sw.Close();
+                    SetGradeGroup();
                     GradeFile = filename;
                     GradePath = Path.GetDirectoryName(filename);
                 }
@@ -2649,7 +2681,7 @@ namespace UltraMarker
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+       /* private void button3_Click(object sender, EventArgs e)
         {   //edit criteria or mark student
             if (button3.Text.StartsWith("Edit"))
             {
@@ -2694,6 +2726,72 @@ namespace UltraMarker
                 Show_Label("Don't forget to Save Marks!", 2000);
             }
 
+        }*/
+
+        private void button3_Click(object sender, EventArgs e)
+        {   //edit criteria or mark student
+            if (button3.Text.StartsWith("Gen"))
+            {
+                listBox1.SelectionMode = SelectionMode.One;
+                if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
+                {
+                    MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
+                    return;
+                }
+                selectLOs = false;
+                replicate_Criteria = false;
+                replicate_Feedback = false;
+                replicate_LO = false;
+                if (listBox1.Items.Count > 0)
+                {
+                    if (SessionType > 0)
+                    {
+                        if (SessionS < 1)
+                        {
+                            MessageBox.Show("You have selected Multiple Sessions, but you don't have any Sessions - see Session tab");
+                            return;
+                        }
+                        else if (SessionS == 1)
+                        {
+                            MessageBox.Show("Note: you have selected multiple sessions, but you only have one session!");
+                        }
+                    }
+                    button3.Text = "Marking Mode";
+                    Show_GenTemplate(false);
+                    MarkingMode(true);
+                    EditStudent = true;
+                }
+                else
+                {
+                    MessageBox.Show("You need some Grades to start marking!");
+                }
+            }
+            else if (button3.Text.StartsWith("Marking"))
+            {
+                listBox1.SelectionMode = SelectionMode.One;
+                button3.Text = "Edit Criteria Mode";
+                Show_GenTemplate(false);
+                MarkingMode(false);
+                EditStudent = false;
+                //button1.Visible = false;  //show button
+                Show_Label("Don't forget to Save Marks!", 2000);
+            }
+            else //if editting and now switch to generating assessment mode
+            {
+                button3.Text = "Gen Assess Mode";
+                Show_GenTemplate(true);
+                EditStudent = false;
+                listBox1.SelectionMode = SelectionMode.MultiSimple;
+
+            }
+
+        }
+        private void Show_GenTemplate(bool b) //show template generation buttons and boxes?
+        {
+            generateButton.Visible = b;
+            templatelabel.Visible = b;
+            templatetextBox.Visible = b;
+            templatebutton.Visible = b;
         }
         private void MarkingMode(bool b)
         {
@@ -7800,7 +7898,7 @@ namespace UltraMarker
             {
                 foreach (TreeNode n in treeView1.Nodes[0].Nodes)
                 {
-                    listBox1.Items.Add(n.Text);
+                    listBox1.Items.Add(n.Text);                   
                 }
             }
             catch
@@ -8595,6 +8693,56 @@ namespace UltraMarker
        
         private void generateButton_Click(object sender, EventArgs e)
         {
+            //genList();     
+            GenerateFormPopulate();
+        }
+
+        private void GenerateFormPopulate()
+        {
+            int i;
+            string str1 = "";
+           
+            if (!File.Exists(templatetextBox.Text))
+            {
+                MessageBox.Show("No template file specified");
+                return;
+            }
+            GradeGroup GForm = new GradeGroup();
+            //PForm.MarkDir = modDirectory;
+
+            GForm.TemplateFile = templatetextBox.Text;        
+            GForm.Institution = instituteBox.Text;
+
+            GForm.UnitTitle = UTitleBox.Text;
+            GForm.UnitCode = UCodeBox.Text;
+          
+            GForm.AssessNo = ACodeBox.Text;
+            GForm.AssessTitle = assessTBox.Text;
+            GForm.Criteria1 = textBox4.Text;
+            int a = 0;
+            try
+            {
+                if (listBox1.SelectedIndices.Count > 0)
+                {
+                    foreach (Object selecteditem in listBox1.SelectedItems)
+                    {
+                        str1 = selecteditem as String;
+                        GForm.G[a] = str1;
+                        a++;
+                        if (a == MaxGradeGroups && a == -1)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+            catch { }
+ 
+            GForm.OutFilePath = UnitFilePath;
+            GForm.ShowDialog();
+        }
+        /*private void genList()
+        {
             string[] row = new string[3];
             genlistView.Columns.Add("Criteria");
             genlistView.Columns.Add("Grade 1");
@@ -8605,12 +8753,139 @@ namespace UltraMarker
                 row[0] = n.Text;
                 row[1] = "";
                 row[2] = "";
-              
+
                 var listItem = new ListViewItem(row);
                 genlistView.Items.Add(listItem);
-              
+
             }
-            //genlistView.Items.Add(lvi);            
+            //genlistView.Items.Add(lvi);     
+        }*/
+
+        private void GrouptextBox_TextChanged(object sender, EventArgs e)
+        {
+            gradegrouplist[GrouplistBox.SelectedIndex].GroupText = GrouptextBox.Text;
+        }
+        private void BlankGradeGroups()
+        {
+            string s = "";
+            for (int i = 0; i < MaxGradeGroups; i++)
+            {
+                s = Convert.ToString(i + 1);
+                if (GrouplistBox.FindString(s) < 0)
+                {
+                    GrouplistBox.Items.Add(s);
+                }
+                gradegrouplist[i].GroupNo = i+1;
+                gradegrouplist[i].GroupText = "";
+            }
+         
+        }
+        private void SetGradeGroup()
+        {
+            
+            GrouplistBox.SelectedIndex = 0;
+            GrouptextBox.Text = gradegrouplist[0].GroupText;
+            
+        }
+
+       
+
+        private void gbutton_Click(object sender, EventArgs e)
+        {
+            if (gbutton.Text == "Edit Group")
+            {
+                gbutton.Text = "Save Group";
+                GrouptextBox.Enabled = true;
+                
+            }
+            else
+            {
+                gbutton.Text = "Edit Group";
+                gradegrouplist[GrouplistBox.SelectedIndex].GroupText = GrouptextBox.Text;
+                gradegrouplist[GrouplistBox.SelectedIndex].GroupNo = GrouplistBox.SelectedIndex + 1;
+                GrouptextBox.Enabled = false;
+            }
+        }
+
+       
+
+        private void GrouplistBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            string s = "";
+            s = " ";
+
+           
+        }
+
+      
+
+        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (e.NewValue != e.OldValue)
+            {
+
+                if (e.NewValue > e.OldValue)
+                {
+                    if (GrouplistBox.SelectedIndex < GrouplistBox.Items.Count -1)
+                    {
+                        GrouplistBox.SelectedIndex++;
+                    }
+                }
+                else
+                {
+                    if (GrouplistBox.SelectedIndex > 0)
+                    {
+                        GrouplistBox.SelectedIndex--;
+                    }
+                }
+                GrouptextBox.Text = gradegrouplist[GrouplistBox.SelectedIndex].GroupText;
+            }
+        }
+
+     
+        private void GrouplistBox_DoubleClick(object sender, EventArgs e)
+        {
+            GroupSel.Text = GrouplistBox.Text;
+           
+        }
+
+        private void GroupscheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (GroupscheckBox.Checked)
+            {
+                showGroups(true);
+            }
+            else
+            {
+                showGroups(false);
+            }
+        }
+        private void showGroups(bool b)
+        {
+            label98.Visible = b;
+            label99.Visible = b;
+            label100.Visible = b;
+            GrouptextBox.Visible = b;
+            vScrollBar1.Visible = b;
+            GrouplistBox.Visible = b;
+            GroupSel.Visible = b;
+            gbutton.Visible = b;
+        }
+
+        private void templatebutton_Click(object sender, EventArgs e)
+        {
+
+            GenFileDialog.InitialDirectory = UnitFilePath;
+            GenFileDialog.FileName = "";
+            GenFileDialog.DefaultExt = "rtf";
+            GenFileDialog.Filter = "Rich text files (*.rtf) |*.rtf";
+
+            GenFileDialog.ShowDialog();
+        }
+
+        private void GenFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            templatetextBox.Text = GenFileDialog.FileName;
         }
     }
 

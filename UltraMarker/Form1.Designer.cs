@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,9 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.templatebutton = new System.Windows.Forms.Button();
+            this.templatelabel = new System.Windows.Forms.Label();
+            this.templatetextBox = new System.Windows.Forms.TextBox();
             this.generateButton = new System.Windows.Forms.Button();
             this.unitlabel = new System.Windows.Forms.Label();
             this.defaultdirassesslabel = new System.Windows.Forms.Label();
@@ -162,6 +165,15 @@
             this.commentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.summaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GroupscheckBox = new System.Windows.Forms.CheckBox();
+            this.GrouptextBox = new System.Windows.Forms.TextBox();
+            this.gbutton = new System.Windows.Forms.Button();
+            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
+            this.label99 = new System.Windows.Forms.Label();
+            this.label98 = new System.Windows.Forms.Label();
+            this.GrouplistBox = new System.Windows.Forms.ListBox();
+            this.GroupSel = new System.Windows.Forms.Label();
+            this.label100 = new System.Windows.Forms.Label();
             this.grAliaslabel = new System.Windows.Forms.Label();
             this.AliastextBox = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -188,6 +200,9 @@
             this.newGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gradeTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.configdirlabel = new System.Windows.Forms.Label();
@@ -424,9 +439,12 @@
             this.deleteCommentMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog5 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog6 = new System.Windows.Forms.OpenFileDialog();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.openFileDialog7 = new System.Windows.Forms.OpenFileDialog();
             this.openFileDialog8 = new System.Windows.Forms.OpenFileDialog();
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialogGroup = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
+            this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -666,6 +684,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.templatebutton);
+            this.tabPage2.Controls.Add(this.templatelabel);
+            this.tabPage2.Controls.Add(this.templatetextBox);
             this.tabPage2.Controls.Add(this.generateButton);
             this.tabPage2.Controls.Add(this.unitlabel);
             this.tabPage2.Controls.Add(this.defaultdirassesslabel);
@@ -755,14 +776,49 @@
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // templatebutton
+            // 
+            this.templatebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.templatebutton.Location = new System.Drawing.Point(1415, 69);
+            this.templatebutton.Name = "templatebutton";
+            this.templatebutton.Size = new System.Drawing.Size(42, 28);
+            this.templatebutton.TabIndex = 89;
+            this.templatebutton.Text = "...";
+            this.templatebutton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.templatebutton.UseVisualStyleBackColor = true;
+            this.templatebutton.Visible = false;
+            this.templatebutton.Click += new System.EventHandler(this.templatebutton_Click);
+            // 
+            // templatelabel
+            // 
+            this.templatelabel.AutoSize = true;
+            this.templatelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.templatelabel.Location = new System.Drawing.Point(932, 74);
+            this.templatelabel.Name = "templatelabel";
+            this.templatelabel.Size = new System.Drawing.Size(110, 20);
+            this.templatelabel.TabIndex = 88;
+            this.templatelabel.Text = "Template file:";
+            this.templatelabel.Visible = false;
+            // 
+            // templatetextBox
+            // 
+            this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.templatetextBox.Location = new System.Drawing.Point(1056, 70);
+            this.templatetextBox.Name = "templatetextBox";
+            this.templatetextBox.Size = new System.Drawing.Size(353, 27);
+            this.templatetextBox.TabIndex = 87;
+            this.templatetextBox.Visible = false;
+            // 
             // generateButton
             // 
-            this.generateButton.Location = new System.Drawing.Point(1275, 12);
+            this.generateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.generateButton.Location = new System.Drawing.Point(804, 68);
             this.generateButton.Name = "generateButton";
-            this.generateButton.Size = new System.Drawing.Size(89, 23);
+            this.generateButton.Size = new System.Drawing.Size(101, 30);
             this.generateButton.TabIndex = 86;
             this.generateButton.Text = "Generate";
             this.generateButton.UseVisualStyleBackColor = true;
+            this.generateButton.Visible = false;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
             // unitlabel
@@ -1676,10 +1732,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -1848,6 +1904,15 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.Beige;
+            this.tabPage1.Controls.Add(this.GroupscheckBox);
+            this.tabPage1.Controls.Add(this.GrouptextBox);
+            this.tabPage1.Controls.Add(this.gbutton);
+            this.tabPage1.Controls.Add(this.vScrollBar1);
+            this.tabPage1.Controls.Add(this.label99);
+            this.tabPage1.Controls.Add(this.label98);
+            this.tabPage1.Controls.Add(this.GrouplistBox);
+            this.tabPage1.Controls.Add(this.GroupSel);
+            this.tabPage1.Controls.Add(this.label100);
             this.tabPage1.Controls.Add(this.grAliaslabel);
             this.tabPage1.Controls.Add(this.AliastextBox);
             this.tabPage1.Controls.Add(this.groupBox3);
@@ -1874,6 +1939,111 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // GroupscheckBox
+            // 
+            this.GroupscheckBox.AutoSize = true;
+            this.GroupscheckBox.Location = new System.Drawing.Point(805, 567);
+            this.GroupscheckBox.Name = "GroupscheckBox";
+            this.GroupscheckBox.Size = new System.Drawing.Size(156, 22);
+            this.GroupscheckBox.TabIndex = 29;
+            this.GroupscheckBox.Text = "Allow grade groups";
+            this.GroupscheckBox.UseVisualStyleBackColor = true;
+            this.GroupscheckBox.Visible = false;
+            this.GroupscheckBox.CheckedChanged += new System.EventHandler(this.GroupscheckBox_CheckedChanged);
+            // 
+            // GrouptextBox
+            // 
+            this.GrouptextBox.Enabled = false;
+            this.GrouptextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GrouptextBox.Location = new System.Drawing.Point(1173, 87);
+            this.GrouptextBox.Name = "GrouptextBox";
+            this.GrouptextBox.Size = new System.Drawing.Size(462, 27);
+            this.GrouptextBox.TabIndex = 22;
+            this.GrouptextBox.Visible = false;
+            this.GrouptextBox.TextChanged += new System.EventHandler(this.GrouptextBox_TextChanged);
+            // 
+            // gbutton
+            // 
+            this.gbutton.Location = new System.Drawing.Point(1535, 120);
+            this.gbutton.Name = "gbutton";
+            this.gbutton.Size = new System.Drawing.Size(100, 31);
+            this.gbutton.TabIndex = 24;
+            this.gbutton.Text = "Edit Group";
+            this.gbutton.UseVisualStyleBackColor = true;
+            this.gbutton.Visible = false;
+            this.gbutton.Click += new System.EventHandler(this.gbutton_Click);
+            // 
+            // vScrollBar1
+            // 
+            this.vScrollBar1.Location = new System.Drawing.Point(1116, 87);
+            this.vScrollBar1.Name = "vScrollBar1";
+            this.vScrollBar1.Size = new System.Drawing.Size(25, 28);
+            this.vScrollBar1.TabIndex = 25;
+            this.vScrollBar1.Visible = false;
+            this.vScrollBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.vScrollBar1_Scroll);
+            // 
+            // label99
+            // 
+            this.label99.AutoSize = true;
+            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label99.Location = new System.Drawing.Point(1169, 64);
+            this.label99.Name = "label99";
+            this.label99.Size = new System.Drawing.Size(92, 20);
+            this.label99.TabIndex = 23;
+            this.label99.Text = "Group text:";
+            this.label99.Visible = false;
+            // 
+            // label98
+            // 
+            this.label98.AutoSize = true;
+            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label98.Location = new System.Drawing.Point(1041, 64);
+            this.label98.Name = "label98";
+            this.label98.Size = new System.Drawing.Size(107, 20);
+            this.label98.TabIndex = 21;
+            this.label98.Text = "Grade group:";
+            this.label98.Visible = false;
+            // 
+            // GrouplistBox
+            // 
+            this.GrouplistBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GrouplistBox.FormattingEnabled = true;
+            this.GrouplistBox.ItemHeight = 20;
+            this.GrouplistBox.Items.AddRange(new object[] {
+            "1"});
+            this.GrouplistBox.Location = new System.Drawing.Point(1087, 87);
+            this.GrouplistBox.Name = "GrouplistBox";
+            this.GrouplistBox.Size = new System.Drawing.Size(54, 44);
+            this.GrouplistBox.TabIndex = 20;
+            this.GrouplistBox.Visible = false;
+            this.GrouplistBox.SelectedValueChanged += new System.EventHandler(this.GrouplistBox_SelectedValueChanged);
+            this.GrouplistBox.DoubleClick += new System.EventHandler(this.GrouplistBox_DoubleClick);
+            // 
+            // GroupSel
+            // 
+            this.GroupSel.AutoSize = true;
+            this.GroupSel.BackColor = System.Drawing.Color.Gold;
+            this.GroupSel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.GroupSel.Location = new System.Drawing.Point(935, 72);
+            this.GroupSel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.GroupSel.Name = "GroupSel";
+            this.GroupSel.Padding = new System.Windows.Forms.Padding(4);
+            this.GroupSel.Size = new System.Drawing.Size(26, 28);
+            this.GroupSel.TabIndex = 28;
+            this.GroupSel.Text = "1";
+            this.GroupSel.Visible = false;
+            // 
+            // label100
+            // 
+            this.label100.AutoSize = true;
+            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label100.Location = new System.Drawing.Point(850, 55);
+            this.label100.Name = "label100";
+            this.label100.Size = new System.Drawing.Size(79, 40);
+            this.label100.TabIndex = 26;
+            this.label100.Text = "Selected \r\ngroup:";
+            this.label100.Visible = false;
             // 
             // grAliaslabel
             // 
@@ -2036,7 +2206,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(444, 128);
+            this.label2.Location = new System.Drawing.Point(447, 150);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(217, 20);
@@ -2068,7 +2238,7 @@
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(448, 159);
+            this.textBox2.Location = new System.Drawing.Point(454, 174);
             this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -2083,7 +2253,7 @@
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(443, 26);
+            this.textBox1.Size = new System.Drawing.Size(370, 26);
             this.textBox1.TabIndex = 2;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -2094,12 +2264,12 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            this.treeView1.Size = new System.Drawing.Size(421, 643);
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -2112,7 +2282,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileItem,
-            this.gradeTypeToolStripMenuItem});
+            this.gradeTypeToolStripMenuItem,
+            this.groupsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(4, 4);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
@@ -2167,6 +2338,28 @@
             this.gradeTypeToolStripMenuItem.Size = new System.Drawing.Size(108, 27);
             this.gradeTypeToolStripMenuItem.Text = "Grade Type";
             this.gradeTypeToolStripMenuItem.Click += new System.EventHandler(this.gradeTypeToolStripMenuItem_Click);
+            // 
+            // groupsToolStripMenuItem
+            // 
+            this.groupsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveGroupToolStripMenuItem,
+            this.loadGroupToolStripMenuItem});
+            this.groupsToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
+            this.groupsToolStripMenuItem.Size = new System.Drawing.Size(77, 27);
+            this.groupsToolStripMenuItem.Text = "Groups";
+            // 
+            // saveGroupToolStripMenuItem
+            // 
+            this.saveGroupToolStripMenuItem.Name = "saveGroupToolStripMenuItem";
+            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.saveGroupToolStripMenuItem.Text = "Save Group";
+            // 
+            // loadGroupToolStripMenuItem
+            // 
+            this.loadGroupToolStripMenuItem.Name = "loadGroupToolStripMenuItem";
+            this.loadGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.loadGroupToolStripMenuItem.Text = "Load Group";
             // 
             // tabControl1
             // 
@@ -3107,10 +3300,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4650,6 +4843,14 @@
             this.openFileDialog8.FileName = "openFileDialog8";
             this.openFileDialog8.Filter = "riteria files (*.cri)|*.cri";
             // 
+            // openFileDialogGroup
+            // 
+            this.openFileDialogGroup.FileName = "openFileDialog9";
+            // 
+            // GenFileDialog
+            // 
+            this.GenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.GenFileDialog_FileOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5110,6 +5311,24 @@
         private System.Windows.Forms.Button generateButton;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.ListView genlistView;
+        private System.Windows.Forms.Label label98;
+        private System.Windows.Forms.ListBox GrouplistBox;
+        private System.Windows.Forms.ToolStripMenuItem groupsToolStripMenuItem;
+        private System.Windows.Forms.Label label99;
+        private System.Windows.Forms.TextBox GrouptextBox;
+        private System.Windows.Forms.ToolStripMenuItem saveGroupToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadGroupToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogGroup;
+        private System.Windows.Forms.OpenFileDialog openFileDialogGroup;
+        private System.Windows.Forms.Button gbutton;
+        private System.Windows.Forms.VScrollBar vScrollBar1;
+        private System.Windows.Forms.Label label100;
+        private System.Windows.Forms.Label GroupSel;
+        private System.Windows.Forms.CheckBox GroupscheckBox;
+        private System.Windows.Forms.Button templatebutton;
+        private System.Windows.Forms.Label templatelabel;
+        private System.Windows.Forms.TextBox templatetextBox;
+        private System.Windows.Forms.OpenFileDialog GenFileDialog;
     }
 }
 
