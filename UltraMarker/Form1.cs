@@ -34,7 +34,7 @@ namespace UltraMarker
         int AGrades = 0;
         int S = 0;
         //int B = 0;
-        int CritZ = 0;
+        int CritZ = 0; //number of criteria in this assessment
         int[] SubZ = new int[2];
         int Found = 0;
 
@@ -8718,7 +8718,7 @@ namespace UltraMarker
           
             GForm.AssessNo = ACodeBox.Text;
             GForm.AssessTitle = assessTBox.Text;
-            GForm.Criteria1 = textBox4.Text;
+            
             int a = 0;
             try
             {
@@ -8734,6 +8734,15 @@ namespace UltraMarker
                             break;
                         }
                     }
+                    a = 0;
+
+                    for (int b = 0; b < CritZ+1; b++)
+                    { 
+                        str1 = crdesc[b, MaxSub];                       
+                        GForm.C[b] = str1;
+                        
+                    }
+
                 }
             }
             catch { }

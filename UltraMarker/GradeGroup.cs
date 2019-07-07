@@ -28,16 +28,12 @@ namespace UltraMarker
         public string AssessTitle;
         public int Weight;
 
-       public string[] G = new string[10];
+        public string[] G = new string[10];
+        public string[] C = new string[10];
+        public string[] CM = new string[10];
+        public string[] CF = new string[10];
+
        
-        public string Criteria1;
-        public string Criteria2;
-        public string Criteria3;
-        public string Criteria4;
-        public string Criteria5;
-        public string Criteria6;
-        public string Criteria7;
-        public string Criteria8;
 
         Color c1;
         bool changesSaved = false;
@@ -133,14 +129,16 @@ namespace UltraMarker
             ReplaceString("%G8%", G[7]);
             ReplaceString("%G9%", G[8]);
             ReplaceString("%G10%", G[9]);
-            ReplaceString("%Criteria1%", Criteria1);
-            ReplaceString("%Criteria2%", Criteria2);
-            ReplaceString("%Criteria3%", Criteria3);
-            ReplaceString("%Criteria4%", Criteria4);
-            ReplaceString("%Criteria5%", Criteria5);
-            ReplaceString("%Criteria6%", Criteria6);
-            ReplaceString("%Criteria7%", Criteria7);
-            ReplaceString("%Criteria8%", Criteria8);
+            ReplaceString("%Criteria1%", C[0]);
+            ReplaceString("%Criteria2%", C[1]);
+            ReplaceString("%Criteria3%", C[2]);
+            ReplaceString("%Criteria4%", C[3]);
+            ReplaceString("%Criteria5%", C[4]);
+            ReplaceString("%Criteria6%", C[5]);
+            ReplaceString("%Criteria7%", C[6]);
+            ReplaceString("%Criteria8%", C[7]);
+            ReplaceString("%Criteria7%", C[8]);
+            ReplaceString("%Criteria8%", C[9]);
         }
 
        
