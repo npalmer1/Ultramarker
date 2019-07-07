@@ -23,17 +23,17 @@ namespace UltraMarker
         public string UnitTitle = "";
         public string UnitCode;
         public string Level;
-      
+
         public string AssessNo;
         public string AssessTitle;
         public int Weight;
 
         public string[] G = new string[10];
-        public string[] C = new string[10];
-        public string[] CM = new string[10];
-        public string[] CF = new string[10];
+        public string[] C = new string[10]; //criteria descr
+        public string[,] CG = new string[10, 10]; //criteria for grade
+        public string[] CF = new string[10]; //criteria feedback
 
-       
+
 
         Color c1;
         bool changesSaved = false;
@@ -55,6 +55,7 @@ namespace UltraMarker
             changesSaved = false;
             LoadTemplate(TemplateFile);
             this.Text = "Assessment";
+            richTextBox1.Font = new Font("Calibri", 9);
            
             ModifyGeneratedForm();
         }
@@ -109,7 +110,7 @@ namespace UltraMarker
             ReplaceString("%UnitTitle%", UnitTitle);
             ReplaceString("%UnitCode%", UnitCode);
             ReplaceString("%Level%", Level);
-            
+
             ReplaceString("%AssessNo%", AssessNo);
             ReplaceString("%AssessTitle%", AssessTitle);
             try
@@ -139,8 +140,37 @@ namespace UltraMarker
             ReplaceString("%Criteria8%", C[7]);
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
+            ReplaceString("%CG1%", CG[0, 0]);
+            ReplaceString("%CG2%", CG[0, 1]);
+            ReplaceString("%CG3%", CG[0, 2]);
+            ReplaceString("%CG4%", CG[0, 3]);
+            ReplaceString("%CG5%", CG[0, 4]);
+            ReplaceString("%CG6%", CG[0, 5]);
+            ReplaceString("%CG7%", CG[0, 6]);
+            ReplaceString("%CG8%", CG[0, 7]);
+            ReplaceString("%CG9%", CG[0, 8]);
+            ReplaceString("%CG10%", CG[0, 9]);
+            ReplaceString("%CG11%", CG[1, 0]);
+            ReplaceString("%CG12%", CG[1, 1]);
+            ReplaceString("%CG13%", CG[1, 2]);
+            ReplaceString("%CG14%", CG[1, 3]);
+            ReplaceString("%CG15%", CG[1, 4]);
+            ReplaceString("%CG16%", CG[1, 5]);
+            ReplaceString("%CG17%", CG[1, 6]);
+            ReplaceString("%CG18%", CG[1, 7]);
+            ReplaceString("%CG19%", CG[1, 8]);
+            ReplaceString("%CG20%", CG[1, 9]);
+            ReplaceString("%CG21%", CG[2, 0]);
+            ReplaceString("%CG22%", CG[2, 1]);
+            ReplaceString("%CG23%", CG[2, 2]);
+            ReplaceString("%CG24%", CG[2, 3]);
+            ReplaceString("%CG25%", CG[2, 4]);
+            ReplaceString("%CG26%", CG[2, 5]);
+            ReplaceString("%CG27%", CG[2, 6]);
+            ReplaceString("%CG28%", CG[2, 7]);
+            ReplaceString("%CG29%", CG[2, 8]);
+            ReplaceString("%CG30%", CG[2, 9]);
         }
-
        
         private void savebutton_Click(object sender, EventArgs e)
         {
@@ -231,7 +261,7 @@ namespace UltraMarker
             {
                 if (printDlg.ShowDialog() == DialogResult.OK)
                 {
-                    printFont = new Font("Calibri", 10, FontStyle.Regular);
+                    printFont = new Font("Calibri", 9, FontStyle.Regular);                
                     PrintDocument pd = new PrintDocument();
                     pd.PrintPage += new PrintPageEventHandler(pd_PrintPageWrapTextBox);
 

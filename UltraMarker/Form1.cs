@@ -182,9 +182,9 @@ namespace UltraMarker
         int[, ,] crweight = new int[MaxCriteria, MaxSub + 1, MaxSessions];
         bool[,] crsub = new bool[MaxCriteria, MaxSub + 1];
         //int[,] crpos = new int[MaxCriteria,2];
-        string[, ,] grcrtitle = new string[MaxCriteria, MaxSub + 1, MaxGrades];
-        string[, ,] grcr = new string[MaxCriteria, MaxSub + 1, MaxGrades];
-        string[, ,] grcrfb = new string[MaxCriteria, MaxSub + 1, MaxGrades];
+        string[, ,] grcrtitle = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade title
+        string[, ,] grcr = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria description (maxsub for criteria, and anything less = sub-criteria)
+        string[, ,] grcrfb = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria feedback
 
         string[, ,] crComment = new string[MaxCriteria, MaxSub + 1, MaxSessions]; //comments for each criteria
         bool[, ,] crSelected = new bool[MaxCriteria, MaxSub + 1, MaxSessions];  //selects which criteria is used for each session
@@ -8701,6 +8701,7 @@ namespace UltraMarker
         {
             int i;
             string str1 = "";
+            string str2 = "";
            
             if (!File.Exists(templatetextBox.Text))
             {
@@ -8719,7 +8720,10 @@ namespace UltraMarker
             GForm.AssessNo = ACodeBox.Text;
             GForm.AssessTitle = assessTBox.Text;
             
-            int a = 0;
+            int grade = 0;
+            int counter = 0;
+            int critC = 0;
+            bool firstthru = true;
             try
             {
                 if (listBox1.SelectedIndices.Count > 0)
@@ -8727,21 +8731,43 @@ namespace UltraMarker
                     foreach (Object selecteditem in listBox1.SelectedItems)
                     {
                         str1 = selecteditem as String;
-                        GForm.G[a] = str1;
-                        a++;
-                        if (a == MaxGradeGroups && a == -1)
+                        GForm.G[grade] = str1;
+                        grade++;
+                        if (grade == MaxGradeGroups && grade == -1)
                         {
                             break;
                         }
                     }
-                    a = 0;
-
-                    for (int b = 0; b < CritZ+1; b++)
-                    { 
-                        str1 = crdesc[b, MaxSub];                       
-                        GForm.C[b] = str1;
-                        
+                    for (int c = 0; c < CritZ + 1; c++) //print criteria detail
+                    {
+                        str1 = crdesc[c, MaxSub];
+                        GForm.C[c] = str1;
                     }
+                    for (int c = 0; c < CritZ + 1; c++) //print criteria detail
+                    {
+                        counter = 0;
+                        critC = 0;
+                        firstthru = true;
+                        foreach (Object selecteditem in listBox1.SelectedItems)
+                        {
+                            if (firstthru)
+                            {
+                                str1 = selecteditem as string;
+                                counter = listBox1.FindString(str1);
+                                str2 = grcr[c, MaxSub, counter];
+                                GForm.CG[c, critC] = str2;
+                                firstthru = false;
+                                critC++;
+                            }
+                            else
+                            {
+                                firstthru = true;
+                            }
+                            //counter++;
+                        }
+                    }
+
+                   
 
                 }
             }
