@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -445,6 +445,8 @@
             this.saveFileDialogGroup = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.Gradegrouphelplabel = new System.Windows.Forms.Label();
+            this.gradeDirectioncheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -684,6 +686,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.gradeDirectioncheckBox);
+            this.tabPage2.Controls.Add(this.Gradegrouphelplabel);
             this.tabPage2.Controls.Add(this.templatebutton);
             this.tabPage2.Controls.Add(this.templatelabel);
             this.tabPage2.Controls.Add(this.templatetextBox);
@@ -793,7 +797,7 @@
             // 
             this.templatelabel.AutoSize = true;
             this.templatelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatelabel.Location = new System.Drawing.Point(932, 74);
+            this.templatelabel.Location = new System.Drawing.Point(932, 73);
             this.templatelabel.Name = "templatelabel";
             this.templatelabel.Size = new System.Drawing.Size(110, 20);
             this.templatelabel.TabIndex = 88;
@@ -1732,10 +1736,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode4.Name = "CriteriaNode";
-            treeNode4.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2264,11 +2268,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3300,10 +3304,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4851,6 +4855,32 @@
             // 
             this.GenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.GenFileDialog_FileOk);
             // 
+            // Gradegrouphelplabel
+            // 
+            this.Gradegrouphelplabel.AutoSize = true;
+            this.Gradegrouphelplabel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.Gradegrouphelplabel.Location = new System.Drawing.Point(502, 262);
+            this.Gradegrouphelplabel.Name = "Gradegrouphelplabel";
+            this.Gradegrouphelplabel.Size = new System.Drawing.Size(274, 54);
+            this.Gradegrouphelplabel.TabIndex = 90;
+            this.Gradegrouphelplabel.Text = "Group grades - select upper and lower \r\nlimits of each grade group, eg. select A1" +
+    " \r\nthen A4, then B1 and B3, etc.";
+            this.Gradegrouphelplabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Gradegrouphelplabel.Visible = false;
+            // 
+            // gradeDirectioncheckBox
+            // 
+            this.gradeDirectioncheckBox.AutoSize = true;
+            this.gradeDirectioncheckBox.Checked = true;
+            this.gradeDirectioncheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gradeDirectioncheckBox.Location = new System.Drawing.Point(540, 237);
+            this.gradeDirectioncheckBox.Name = "gradeDirectioncheckBox";
+            this.gradeDirectioncheckBox.Size = new System.Drawing.Size(193, 22);
+            this.gradeDirectioncheckBox.TabIndex = 91;
+            this.gradeDirectioncheckBox.Text = "Highest grades to the left";
+            this.gradeDirectioncheckBox.UseVisualStyleBackColor = true;
+            this.gradeDirectioncheckBox.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5329,6 +5359,8 @@
         private System.Windows.Forms.Label templatelabel;
         private System.Windows.Forms.TextBox templatetextBox;
         private System.Windows.Forms.OpenFileDialog GenFileDialog;
+        private System.Windows.Forms.Label Gradegrouphelplabel;
+        private System.Windows.Forms.CheckBox gradeDirectioncheckBox;
     }
 }
 

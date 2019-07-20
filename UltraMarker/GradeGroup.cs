@@ -14,6 +14,8 @@ namespace UltraMarker
 {
     public partial class GradeGroup : Form
     {
+        public static int maxGradeGroups = 10;
+        public static int maxCriteria = 10;
         public int PeerReview;
 
         public string TemplateFile;
@@ -24,14 +26,22 @@ namespace UltraMarker
         public string UnitCode;
         public string Level;
 
+        public string student;
+
         public string AssessNo;
         public string AssessTitle;
         public int Weight;
 
-        public string[] G = new string[10];
-        public string[] C = new string[10]; //criteria descr
-        public string[,] CG = new string[10, 10]; //criteria for grade
-        public string[] CF = new string[10]; //criteria feedback
+        public string[] G = new string[maxGradeGroups]; //grades
+        public string[] C = new string[maxCriteria]; //criteria descr
+        public string[,] CG = new string[maxCriteria, maxGradeGroups]; //criteria for grade
+        public string[] CF = new string[maxCriteria]; //criteria feedback
+        public string[] CT = new string[maxCriteria]; // criteria title
+        public string[] CM = new string[maxCriteria]; //mark for criteria
+        public string[] comment = new string[maxCriteria]; // comment for mark
+        public string OG; // overallgrade
+        public string OP; // overall mark
+        public string overall; //overall comments for whole assessment
 
 
 
@@ -53,6 +63,8 @@ namespace UltraMarker
         private void GradeGroup_Load(object sender, EventArgs e)
         {
             changesSaved = false;
+            richTextBox1.Clear();
+            Clipboard.Clear();
             LoadTemplate(TemplateFile);
             this.Text = "Assessment";
             richTextBox1.Font = new Font("Calibri", 9);
@@ -80,6 +92,7 @@ namespace UltraMarker
         {
             try
             {
+                Clipboard.Clear();
                 //Clipboard clip;
                 if (str2 == null)
                 {
@@ -106,6 +119,7 @@ namespace UltraMarker
         }
         private void ModifyGeneratedForm()
         {
+            richTextBox1.ReadOnly = false;
             ReplaceString("%Institution%", Institution);
             ReplaceString("%UnitTitle%", UnitTitle);
             ReplaceString("%UnitCode%", UnitCode);
@@ -119,7 +133,7 @@ namespace UltraMarker
             }
             catch { }
 
-
+            ReplaceString("%Student%", student);
             ReplaceString("%G1%", G[0]);
             ReplaceString("%G2%", G[1]);
             ReplaceString("%G3%", G[2]);
@@ -170,6 +184,40 @@ namespace UltraMarker
             ReplaceString("%CG28%", CG[2, 7]);
             ReplaceString("%CG29%", CG[2, 8]);
             ReplaceString("%CG30%", CG[2, 9]);
+            ReplaceString("%CrTitle1%", CT[0]);
+            ReplaceString("%CrTitle2%", CT[1]);
+            ReplaceString("%CrTitle3%", CT[2]);
+            ReplaceString("%CrTitle4%", CT[3]);
+            ReplaceString("%CrTitle5%", CT[4]);
+            ReplaceString("%CrTitle6%", CT[5]);
+            ReplaceString("%CrTitle7%", CT[6]);
+            ReplaceString("%CrTitle8%", CT[7]);
+            ReplaceString("%CrTitle7%", CT[8]);
+            ReplaceString("%CrTitle8%", CT[9]);
+            ReplaceString("%CrMark1%", CM[0]);
+            ReplaceString("%CrMark2%", CM[1]);
+            ReplaceString("%CrMark3%", CM[2]);
+            ReplaceString("%CrMark4%", CM[3]);
+            ReplaceString("%CrMark5%", CM[4]);
+            ReplaceString("%CrMark6%", CM[5]);
+            ReplaceString("%CrMark7%", CM[6]);
+            ReplaceString("%CrMark8%", CM[7]);
+            ReplaceString("%CrMark7%", CM[8]);
+            ReplaceString("%CrMark8%", CM[9]);
+            ReplaceString("%CrComment1%", comment[0]);
+            ReplaceString("%CrComment2%", comment[1]);
+            ReplaceString("%CrComment3%", comment[2]);
+            ReplaceString("%CrComment4%", comment[3]);
+            ReplaceString("%CrComment5%", comment[4]);
+            ReplaceString("%CrComment6%", comment[5]);
+            ReplaceString("%CrComment7%", comment[6]);
+            ReplaceString("%CrComment8%", comment[7]);
+            ReplaceString("%CrComment7%", comment[8]);
+            ReplaceString("%CrComment8%", comment[9]);
+            ReplaceString("%overallGrade%", OG);
+            ReplaceString("%overallPercent%", OP);
+            ReplaceString("%overall%", overall);
+            richTextBox1.ReadOnly = true;
         }
        
         private void savebutton_Click(object sender, EventArgs e)
@@ -196,7 +244,8 @@ namespace UltraMarker
         {
             try
             {
-                richTextBox1.SaveFile(filename);
+                richTextBox1.SaveFile(filename);   
+                
             }
             catch (System.Exception excep)
             {
@@ -240,13 +289,13 @@ namespace UltraMarker
                     this.Close();
                 }
                 else
-                {
-                    this.Close();
+                {                   
+                    this.Close();                  
                 }
             }
             else
-            {
-                this.Close();
+            {               
+                this.Close();                
             }
         }
 

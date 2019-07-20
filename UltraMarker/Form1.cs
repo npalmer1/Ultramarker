@@ -133,11 +133,15 @@ namespace UltraMarker
 
         assessForm AForm = new assessForm();    //assessment title and description form
 
+        GradeGroup GForm = new GradeGroup(); //form for output to a template criteria form
 
         CommentForm CommentsForm = new CommentForm();
         addForm addcommentForm = new addForm();
 
         WeightReport weightForm = new WeightReport();
+
+        int[] Listboxlist = new int[MaxGrades]; //list of selected indices for listbox1
+        int CurrentlySelected = -1;
 
         //string StudentName = "";
 
@@ -267,6 +271,7 @@ namespace UltraMarker
         string prevStudent = "";
         bool startMark = false;
         int CriteriaSelectionType = 0;
+        string templateGenfile = "";
         
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -600,6 +605,7 @@ namespace UltraMarker
                         {
                             listBox1.Items.RemoveAt(pos);
                             listBox1.SelectedIndex = 0;
+                            CurrentlySelected = 0;
                         }
 
                         treeView1.SelectedNode = n;
@@ -1551,6 +1557,7 @@ namespace UltraMarker
         {
             int i = listBox1.FindString(grade, 0);
             listBox1.SelectedIndex = i;
+            CurrentlySelected = i;
         }
 
         private bool Has_Subcriteria(int c)
@@ -2434,6 +2441,7 @@ namespace UltraMarker
                 if (listBox1.Items.Count > 0)
                 {
                     listBox1.SelectedIndex = 0;
+                    CurrentlySelected = 0;
                 }
                 loading = false;
                 Copy_Criteria_Data();
@@ -2618,7 +2626,11 @@ namespace UltraMarker
                                 TChanged = false;
                             }
                         }
-                        if (listBox1.SelectedIndex < 0) { listBox1.SelectedIndex = 0; }
+                        if (listBox1.SelectedIndex < 0)
+                        {
+                            listBox1.SelectedIndex = 0;
+                            CurrentlySelected = 0;
+                        }
                         if (CriteriaSelected)
                         {
                             i = MaxSub;
@@ -2653,8 +2665,10 @@ namespace UltraMarker
                     {
                         MessageBox.Show("No Grades - load a grade file!");
                     }
-                
-                
+                    if (listBox1.SelectionMode == SelectionMode.MultiSimple)
+                    {
+                        //SaveListbox1Selected();
+                    }                                
             }
             catch (System.Exception excep)
             {
@@ -2729,10 +2743,12 @@ namespace UltraMarker
         }*/
 
         private void button3_Click(object sender, EventArgs e)
-        {   //edit criteria or mark student
+        {   //edit criteria or mark student (or generate criteria)
             if (button3.Text.StartsWith("Gen"))
             {
+                SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
+                listBox1.SelectedIndex = CurrentlySelected;
                 if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
                 {
                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
@@ -2765,24 +2781,30 @@ namespace UltraMarker
                 {
                     MessageBox.Show("You need some Grades to start marking!");
                 }
+                
             }
             else if (button3.Text.StartsWith("Marking"))
             {
+                //SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
+                listBox1.SelectedIndex = CurrentlySelected;
                 button3.Text = "Edit Criteria Mode";
                 Show_GenTemplate(false);
                 MarkingMode(false);
                 EditStudent = false;
                 //button1.Visible = false;  //show button
                 Show_Label("Don't forget to Save Marks!", 2000);
+               
             }
             else //if editting and now switch to generating assessment mode
             {
+                listBox1.SelectionMode = SelectionMode.MultiSimple;
+                RecoverSelected();
                 button3.Text = "Gen Assess Mode";
+                CurrentlySelected = listBox1.SelectedIndex;
                 Show_GenTemplate(true);
                 EditStudent = false;
-                listBox1.SelectionMode = SelectionMode.MultiSimple;
-
+               
             }
 
         }
@@ -2792,6 +2814,8 @@ namespace UltraMarker
             templatelabel.Visible = b;
             templatetextBox.Visible = b;
             templatebutton.Visible = b;
+            Gradegrouphelplabel.Visible = b;
+            //gradeDirectioncheckBox.Visible = b;
         }
         private void MarkingMode(bool b)
         {
@@ -3681,6 +3705,7 @@ namespace UltraMarker
                         x = 0;
                     }
                     listBox1.SelectedIndex = x;
+                    CurrentlySelected = x;
                 }
                 catch
                 {
@@ -4220,6 +4245,157 @@ namespace UltraMarker
             return true;          
         }
 
+        private bool Generate_Grade_Group_RTF()
+        {   //generate grade group form layout
+            bool nullText = false;
+            int x = 0;
+          
+            string str = "";
+            string str2 = "";
+
+            float f = 0;
+            float fl = 0;
+            int ST;
+          
+            bool minusone = false;
+            string m1 = "";
+          
+
+
+            FontFamily family = new FontFamily("Calibri");
+            Font fontbold = new Font(family, 12.0f, FontStyle.Bold);
+
+            Calculate_Checks();
+            if (SessionType > 0)
+            {
+                MessageBox.Show("Cannot do this for more than one session");
+            }
+            ST = 1;
+            
+            try
+            {
+
+                GForm.UnitTitle = UnitTitletextBox.Text;
+                GForm.AssessTitle = assess.Title;
+                GForm.AssessNo = assess.Code;
+                GForm.student = StudentcomboBox.Text;
+
+                for (int s = 0; s < ST; s++) //sessions - only allow one here
+                {
+                   
+                    for (int i = 0; i < CritZ + 1; i++)  //criteria grade and feedback
+                    {
+
+                        int j = MaxSub; //for Criteria only (=maxsub - not sub-criteria)
+                       
+                        try
+                        {
+                            if (Marks[i, j, s] != null) //i = criteria, j = maxsub, s = sessions (0)
+                            {
+                                x = listBox1.FindString(Marks[i, j, s].Trim(), x);
+                                if (x < 0)
+                                {
+                                    minusone = true;
+                                }
+                                else
+                                {
+                                    minusone = false;
+                                }
+                            }
+                            else
+                            {
+                                x = 0;
+                            }
+                        }
+                        catch
+                        {
+                        }
+                        if (x < 0 || x > MaxGrades) { x = 0; }
+                        if ((crtitle[i, j] == null || crtitle[i, j].Length < 1))
+                        {
+                            nullText = true;
+                        }
+                        else { nullText = false; }
+                        if ((!nullText) && (crSelected[i, j, s]))
+                        {
+                            ////////
+                            GForm.CT[i] = crtitle[i, j];
+
+                           
+                            if (!Aggregation || (Aggregation && !Has_Subcriteria(i)))
+                            {                               
+                               
+                                m1 = Marks[i, j, s];
+                                if (m1 == null)
+                                {
+                                    m1 = "";
+                                }
+                                if (m1.EndsWith("%"))
+                                {
+                                    m1 = m1.Substring(0, m1.Length - 1) + " %";                                  
+                                }
+                                GForm.CM[i] = m1;
+                              
+                                str2 = Find_Grade_Comments(Marks[i, j, s]);
+                              
+                                str2 = crComment[i, j, s];
+                                if ((str2 != null) && feedOptions.criteriaComment && (str2.Trim().Length > 0))
+                                {
+                                    GForm.comment[i] = "Comments: " + str2;
+                                  
+                                }
+
+                              
+                            }
+                           
+                        }
+                       
+                    }
+                    fl = Generate_Overall_Mark(s);
+
+                    f = f + fl;
+                } //sessions
+                if ((textBox10.Text.Trim().Length > 1))
+                {
+                    GForm.overall = "General comments: " + textBox10.Text.Trim();
+                  
+                }
+            
+
+                    if (overridecheckBox.Checked)
+                    {
+                        string tmp = "";
+                        if (label18.Text.Trim().IndexOf("%") == label18.Text.Length - 1)
+                        {
+                            tmp = label18.Text.TrimEnd('%');
+                        }
+                        else
+                        {
+                            tmp = Find_Percent(label18.Text.Trim());
+                        }
+                        f = Convert.ToSingle(tmp);
+                        GForm.OP = tmp; //overall %
+                        
+                    }
+                 
+                    else
+                    {
+                        f = fl;
+                        GForm.OP =  Convert.ToString(f);
+                    }
+                
+                GForm.OG = Convert_Percent_To_Grade(f);
+
+
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                return false;
+            }
+            return true;
+        }
         /*private void Generate_Feedback_Report(string filename)
         {
             bool nullText = false;
@@ -5288,7 +5464,7 @@ namespace UltraMarker
                             {
                                 modDirectory = str3;
                             }
-
+                           
                             else if (str.StartsWith("Criteria file:"))
                             {
                                 CriteriaFile = str3;
@@ -8693,8 +8869,10 @@ namespace UltraMarker
        
         private void generateButton_Click(object sender, EventArgs e)
         {
-            //genList();     
+            //genList();                
+            Generate_Grade_Group_RTF();
             GenerateFormPopulate();
+            GForm.ShowDialog();
         }
 
         private void GenerateFormPopulate()
@@ -8702,13 +8880,14 @@ namespace UltraMarker
             int i;
             string str1 = "";
             string str2 = "";
-           
+            
+
             if (!File.Exists(templatetextBox.Text))
             {
                 MessageBox.Show("No template file specified");
                 return;
             }
-            GradeGroup GForm = new GradeGroup();
+           
             //PForm.MarkDir = modDirectory;
 
             GForm.TemplateFile = templatetextBox.Text;        
@@ -8723,7 +8902,8 @@ namespace UltraMarker
             int grade = 0;
             int counter = 0;
             int critC = 0;
-            bool firstthru = true;
+            bool firstthru = true;            
+
             try
             {
                 if (listBox1.SelectedIndices.Count > 0)
@@ -8738,19 +8918,22 @@ namespace UltraMarker
                             break;
                         }
                     }
+                    /*for (int c = 0; c < CritZ + 1; c++) //print criteria detail
+                    {
+                        str1 = crdesc[c, MaxSub];
+                        GForm.C[c] = str1;
+                    }*/
+
                     for (int c = 0; c < CritZ + 1; c++) //print criteria detail
                     {
                         str1 = crdesc[c, MaxSub];
                         GForm.C[c] = str1;
-                    }
-                    for (int c = 0; c < CritZ + 1; c++) //print criteria detail
-                    {
                         counter = 0;
                         critC = 0;
                         firstthru = true;
                         foreach (Object selecteditem in listBox1.SelectedItems)
                         {
-                            if (firstthru)
+                            if (firstthru) //take criteria from first item selected (eg. A1 criteria text from A1...A4)
                             {
                                 str1 = selecteditem as string;
                                 counter = listBox1.FindString(str1);
@@ -8766,16 +8949,55 @@ namespace UltraMarker
                             //counter++;
                         }
                     }
+                }
+                    
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
 
-                   
-
+            GForm.OutFilePath = UnitFilePath;
+            //GForm.ShowDialog();
+        }
+        private void PrimeListbox1()
+        {
+                     
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                Listboxlist[i] = 0;                            
+            }           
+        }
+        private void SaveListbox1Selected()
+        {
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                if (listBox1.GetSelected(i))
+                {
+                    Listboxlist[i] = 1;                   
+                }   
+                else
+                {
+                    Listboxlist[i] = 0;
                 }
             }
-            catch { }
- 
-            GForm.OutFilePath = UnitFilePath;
-            GForm.ShowDialog();
         }
+        private void RecoverSelected()
+        {
+            for (int i = 0; i < listBox1.Items.Count; i++)
+            {
+                if (Listboxlist[i] == 1)
+                {
+                    listBox1.SetSelected(i, true);
+                }
+                else
+                {
+                    listBox1.SetSelected(i, false);
+                }
+            }
+        }
+
         /*private void genList()
         {
             string[] row = new string[3];
