@@ -4259,8 +4259,6 @@ namespace UltraMarker
           
             bool minusone = false;
             string m1 = "";
-          
-
 
             FontFamily family = new FontFamily("Calibri");
             Font fontbold = new Font(family, 12.0f, FontStyle.Bold);
@@ -4359,9 +4357,7 @@ namespace UltraMarker
                 {
                     GForm.overall = "General comments: " + textBox10.Text.Trim();
                   
-                }
-            
-
+                }            
                     if (overridecheckBox.Checked)
                     {
                         string tmp = "";
@@ -7817,6 +7813,7 @@ namespace UltraMarker
                     sw.WriteLine("Unit peer template file: " + peerfileTextBox.Text);
                     sw.WriteLine("Unit moderation template file: " + modfileTextBox.Text);
                     sw.WriteLine("Institution: " + institutionTextBox.Text);
+                    sw.WriteLine("Template genfile: " + templatetextBox.Text);
                     Institution = institutionTextBox.Text;
                     sw.Close();
                     UnitFile = filename;
@@ -7927,6 +7924,14 @@ namespace UltraMarker
                             str = str.Substring(i + k, str.Length - k);
                             institutionTextBox.Text = str;
                             Institution = str;
+                        }
+                        else if (str.StartsWith("Template genfile: "))
+                        {
+                            i = str.IndexOf("Template genfile: ");
+                            k = "Template genfile: ".Length;
+                            str = str.Substring(i + k, str.Length - k);
+                            templatetextBox.Text = str;
+                            templateGenfile = str;
                         }
                     }
                     sw.Close();
@@ -8871,11 +8876,13 @@ namespace UltraMarker
         {
             //genList();                
             Generate_Grade_Group_RTF();
-            GenerateFormPopulate();
-            GForm.ShowDialog();
+            if (GenerateFormPopulate())
+            {
+                GForm.ShowDialog();
+            }
         }
 
-        private void GenerateFormPopulate()
+        private bool GenerateFormPopulate()
         {
             int i;
             string str1 = "";
@@ -8885,7 +8892,7 @@ namespace UltraMarker
             if (!File.Exists(templatetextBox.Text))
             {
                 MessageBox.Show("No template file specified");
-                return;
+                return false;
             }
            
             //PForm.MarkDir = modDirectory;
@@ -8959,6 +8966,7 @@ namespace UltraMarker
             }
 
             GForm.OutFilePath = UnitFilePath;
+            return true;
             //GForm.ShowDialog();
         }
         private void PrimeListbox1()

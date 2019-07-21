@@ -63,6 +63,8 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.gradeDirectioncheckBox = new System.Windows.Forms.CheckBox();
+            this.Gradegrouphelplabel = new System.Windows.Forms.Label();
             this.templatebutton = new System.Windows.Forms.Button();
             this.templatelabel = new System.Windows.Forms.Label();
             this.templatetextBox = new System.Windows.Forms.TextBox();
@@ -416,8 +418,6 @@
             this.label89 = new System.Windows.Forms.Label();
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.label88 = new System.Windows.Forms.Label();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.genlistView = new System.Windows.Forms.ListView();
             this.contextMenuStrip7 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editSession = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSession = new System.Windows.Forms.ToolStripMenuItem();
@@ -445,8 +445,6 @@
             this.saveFileDialogGroup = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.Gradegrouphelplabel = new System.Windows.Forms.Label();
-            this.gradeDirectioncheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -472,7 +470,6 @@
             this.groupBox2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
-            this.tabPage10.SuspendLayout();
             this.contextMenuStrip7.SuspendLayout();
             this.contextMenuStrip9.SuspendLayout();
             this.contextMenuStrip10.SuspendLayout();
@@ -779,6 +776,32 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // gradeDirectioncheckBox
+            // 
+            this.gradeDirectioncheckBox.AutoSize = true;
+            this.gradeDirectioncheckBox.Checked = true;
+            this.gradeDirectioncheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.gradeDirectioncheckBox.Location = new System.Drawing.Point(540, 237);
+            this.gradeDirectioncheckBox.Name = "gradeDirectioncheckBox";
+            this.gradeDirectioncheckBox.Size = new System.Drawing.Size(193, 22);
+            this.gradeDirectioncheckBox.TabIndex = 91;
+            this.gradeDirectioncheckBox.Text = "Highest grades to the left";
+            this.gradeDirectioncheckBox.UseVisualStyleBackColor = true;
+            this.gradeDirectioncheckBox.Visible = false;
+            // 
+            // Gradegrouphelplabel
+            // 
+            this.Gradegrouphelplabel.AutoSize = true;
+            this.Gradegrouphelplabel.BackColor = System.Drawing.Color.PaleTurquoise;
+            this.Gradegrouphelplabel.Location = new System.Drawing.Point(502, 262);
+            this.Gradegrouphelplabel.Name = "Gradegrouphelplabel";
+            this.Gradegrouphelplabel.Size = new System.Drawing.Size(274, 54);
+            this.Gradegrouphelplabel.TabIndex = 90;
+            this.Gradegrouphelplabel.Text = "Group grades - select upper and lower \r\nlimits of each grade group, eg. select A1" +
+    " \r\nthen A4, then B1 and B3, etc.";
+            this.Gradegrouphelplabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Gradegrouphelplabel.Visible = false;
             // 
             // templatebutton
             // 
@@ -2352,17 +2375,18 @@
             this.groupsToolStripMenuItem.Name = "groupsToolStripMenuItem";
             this.groupsToolStripMenuItem.Size = new System.Drawing.Size(77, 27);
             this.groupsToolStripMenuItem.Text = "Groups";
+            this.groupsToolStripMenuItem.Visible = false;
             // 
             // saveGroupToolStripMenuItem
             // 
             this.saveGroupToolStripMenuItem.Name = "saveGroupToolStripMenuItem";
-            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.saveGroupToolStripMenuItem.Text = "Save Group";
             // 
             // loadGroupToolStripMenuItem
             // 
             this.loadGroupToolStripMenuItem.Name = "loadGroupToolStripMenuItem";
-            this.loadGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
+            this.loadGroupToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.loadGroupToolStripMenuItem.Text = "Load Group";
             // 
             // tabControl1
@@ -2376,7 +2400,6 @@
             this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Controls.Add(this.tabPage9);
-            this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(2, 0);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
@@ -4677,25 +4700,6 @@
             this.label88.TabIndex = 0;
             this.label88.Text = "Select student CSV import file:";
             // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.genlistView);
-            this.tabPage10.Location = new System.Drawing.Point(4, 27);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(1774, 889);
-            this.tabPage10.TabIndex = 11;
-            this.tabPage10.Text = "Generated";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // genlistView
-            // 
-            this.genlistView.Location = new System.Drawing.Point(26, 28);
-            this.genlistView.Name = "genlistView";
-            this.genlistView.Size = new System.Drawing.Size(1129, 483);
-            this.genlistView.TabIndex = 0;
-            this.genlistView.UseCompatibleStateImageBehavior = false;
-            // 
             // contextMenuStrip7
             // 
             this.contextMenuStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -4855,32 +4859,6 @@
             // 
             this.GenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.GenFileDialog_FileOk);
             // 
-            // Gradegrouphelplabel
-            // 
-            this.Gradegrouphelplabel.AutoSize = true;
-            this.Gradegrouphelplabel.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.Gradegrouphelplabel.Location = new System.Drawing.Point(502, 262);
-            this.Gradegrouphelplabel.Name = "Gradegrouphelplabel";
-            this.Gradegrouphelplabel.Size = new System.Drawing.Size(274, 54);
-            this.Gradegrouphelplabel.TabIndex = 90;
-            this.Gradegrouphelplabel.Text = "Group grades - select upper and lower \r\nlimits of each grade group, eg. select A1" +
-    " \r\nthen A4, then B1 and B3, etc.";
-            this.Gradegrouphelplabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Gradegrouphelplabel.Visible = false;
-            // 
-            // gradeDirectioncheckBox
-            // 
-            this.gradeDirectioncheckBox.AutoSize = true;
-            this.gradeDirectioncheckBox.Checked = true;
-            this.gradeDirectioncheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.gradeDirectioncheckBox.Location = new System.Drawing.Point(540, 237);
-            this.gradeDirectioncheckBox.Name = "gradeDirectioncheckBox";
-            this.gradeDirectioncheckBox.Size = new System.Drawing.Size(193, 22);
-            this.gradeDirectioncheckBox.TabIndex = 91;
-            this.gradeDirectioncheckBox.Text = "Highest grades to the left";
-            this.gradeDirectioncheckBox.UseVisualStyleBackColor = true;
-            this.gradeDirectioncheckBox.Visible = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4936,7 +4914,6 @@
             this.tabPage8.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
-            this.tabPage10.ResumeLayout(false);
             this.contextMenuStrip7.ResumeLayout(false);
             this.contextMenuStrip9.ResumeLayout(false);
             this.contextMenuStrip10.ResumeLayout(false);
@@ -5339,8 +5316,6 @@
         private System.Windows.Forms.Label defaultdirassesslabel;
         private System.Windows.Forms.Label unitlabel;
         private System.Windows.Forms.Button generateButton;
-        private System.Windows.Forms.TabPage tabPage10;
-        private System.Windows.Forms.ListView genlistView;
         private System.Windows.Forms.Label label98;
         private System.Windows.Forms.ListBox GrouplistBox;
         private System.Windows.Forms.ToolStripMenuItem groupsToolStripMenuItem;
