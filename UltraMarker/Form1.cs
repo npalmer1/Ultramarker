@@ -2748,7 +2748,15 @@ namespace UltraMarker
             {
                 SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
-                listBox1.SelectedIndex = CurrentlySelected;
+                try
+                {
+                    listBox1.SelectedIndex = CurrentlySelected;
+                }
+                catch
+                {
+                    listBox1.SelectedIndex = -1;
+                }
+                
                 if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
                 {
                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
@@ -2787,7 +2795,14 @@ namespace UltraMarker
             {
                 //SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
-                listBox1.SelectedIndex = CurrentlySelected;
+                try
+                {
+                    listBox1.SelectedIndex = CurrentlySelected;
+                }
+                catch
+                {
+                    listBox1.SelectedIndex = -1;
+                }
                 button3.Text = "Edit Criteria Mode";
                 Show_GenTemplate(false);
                 MarkingMode(false);
@@ -2801,7 +2816,14 @@ namespace UltraMarker
                 listBox1.SelectionMode = SelectionMode.MultiSimple;
                 RecoverSelected();
                 button3.Text = "Gen Assess Mode";
-                CurrentlySelected = listBox1.SelectedIndex;
+                try
+                {
+                    listBox1.SelectedIndex = CurrentlySelected;
+                }
+                catch
+                {
+                    listBox1.SelectedIndex = -1;
+                }
                 Show_GenTemplate(true);
                 EditStudent = false;
                
