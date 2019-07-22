@@ -47,7 +47,7 @@
             // 
             // printbutton
             // 
-            this.printbutton.Location = new System.Drawing.Point(101, 688);
+            this.printbutton.Location = new System.Drawing.Point(205, 688);
             this.printbutton.Name = "printbutton";
             this.printbutton.Size = new System.Drawing.Size(75, 23);
             this.printbutton.TabIndex = 1;
@@ -58,7 +58,7 @@
             // savebutton
             // 
             this.savebutton.Cursor = System.Windows.Forms.Cursors.No;
-            this.savebutton.Location = new System.Drawing.Point(210, 688);
+            this.savebutton.Location = new System.Drawing.Point(307, 688);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(75, 23);
             this.savebutton.TabIndex = 2;
@@ -68,22 +68,24 @@
             // 
             // editbutton
             // 
-            this.editbutton.Location = new System.Drawing.Point(331, 688);
+            this.editbutton.Location = new System.Drawing.Point(412, 688);
             this.editbutton.Name = "editbutton";
             this.editbutton.Size = new System.Drawing.Size(75, 23);
             this.editbutton.TabIndex = 3;
             this.editbutton.Text = "Edit";
             this.editbutton.UseVisualStyleBackColor = true;
+            this.editbutton.Visible = false;
             this.editbutton.Click += new System.EventHandler(this.editbutton_Click);
             // 
             // cancelbutton
             // 
-            this.cancelbutton.Location = new System.Drawing.Point(466, 688);
+            this.cancelbutton.Location = new System.Drawing.Point(514, 688);
             this.cancelbutton.Name = "cancelbutton";
             this.cancelbutton.Size = new System.Drawing.Size(75, 23);
             this.cancelbutton.TabIndex = 4;
             this.cancelbutton.Text = "Cancel";
             this.cancelbutton.UseVisualStyleBackColor = true;
+            this.cancelbutton.Visible = false;
             this.cancelbutton.Click += new System.EventHandler(this.cancelbutton_Click);
             // 
             // closebutton

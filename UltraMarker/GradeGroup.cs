@@ -42,7 +42,7 @@ namespace UltraMarker
         public string OG; // overallgrade
         public string OP; // overall mark
         public string overall; //overall comments for whole assessment
-
+        public string[,] GChecked = new string[maxCriteria, maxGradeGroups]; //whihc box is checked when marked?
 
 
         Color c1;
@@ -54,6 +54,7 @@ namespace UltraMarker
         string lineToPrint = ""; //lines for the printer
         string[] textlines; //takes lines of text from richtextbox
         int linestoGo = 0; //number of lines in richtextbox remaining for printing
+        
 
         public GradeGroup()
         {
@@ -72,6 +73,16 @@ namespace UltraMarker
             ModifyGeneratedForm();
         }
 
+        public void ClearChecked()
+        {
+            for (int i = 0; i < maxCriteria; i++)
+            {
+                for (int g=0; g < maxGradeGroups; g++)
+                {
+                    GChecked[i, g] = "";
+                }
+            }
+        }
         private void LoadTemplate(string filename)
         {
             string str2 = "";
@@ -90,6 +101,7 @@ namespace UltraMarker
         }
         private void ReplaceString(string str, string str2)
         {
+           
             try
             {
                 Clipboard.Clear();
@@ -110,7 +122,7 @@ namespace UltraMarker
                         Clipboard.SetText(str2);
                     }
                     else { Clipboard.SetText(" "); }
-                    richTextBox1.Paste();
+                    richTextBox1.Paste();                    
                 }
             }
             catch
@@ -119,6 +131,7 @@ namespace UltraMarker
         }
         private void ModifyGeneratedForm()
         {
+           
             richTextBox1.ReadOnly = false;
             ReplaceString("%Institution%", Institution);
             ReplaceString("%UnitTitle%", UnitTitle);
@@ -154,6 +167,7 @@ namespace UltraMarker
             ReplaceString("%Criteria8%", C[7]);
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
+           
             ReplaceString("%CG1%", CG[0, 0]);
             ReplaceString("%CG2%", CG[0, 1]);
             ReplaceString("%CG3%", CG[0, 2]);
@@ -184,6 +198,38 @@ namespace UltraMarker
             ReplaceString("%CG28%", CG[2, 7]);
             ReplaceString("%CG29%", CG[2, 8]);
             ReplaceString("%CG30%", CG[2, 9]);
+          
+            ReplaceString("%Checked1%", GChecked[0, 0]);
+            ReplaceString("%Checked2%", GChecked[0, 1]);
+            ReplaceString("%Checked3%", GChecked[0, 2]);
+            ReplaceString("%Checked4%", GChecked[0, 3]);
+            ReplaceString("%Checked5%", GChecked[0, 4]);
+            ReplaceString("%Checked6%", GChecked[0, 5]);
+            ReplaceString("%Checked7%", GChecked[0, 6]);
+            ReplaceString("%Checked8%", GChecked[0, 7]);
+            ReplaceString("%Checked9%", GChecked[0, 8]);
+            ReplaceString("%Checked10%", GChecked[0, 9]);
+            ReplaceString("%Checked11%", GChecked[1, 0]);
+            ReplaceString("%Checked12%", GChecked[1, 1]);
+            ReplaceString("%Checked13%", GChecked[1, 2]);
+            ReplaceString("%Checked14%", GChecked[1, 3]);
+            ReplaceString("%Checked15%", GChecked[1, 4]);
+            ReplaceString("%Checked16%", GChecked[1, 5]);
+            ReplaceString("%Checked17%", GChecked[1, 6]);
+            ReplaceString("%Checked18%", GChecked[1, 7]);
+            ReplaceString("%Checked19%", GChecked[1, 8]);
+            ReplaceString("%Checked20%", GChecked[1, 9]);
+            ReplaceString("%Checked21%", GChecked[2, 0]);
+            ReplaceString("%Checked22%", GChecked[2, 1]);
+            ReplaceString("%Checked23%", GChecked[2, 2]);
+            ReplaceString("%Checked24%", GChecked[2, 3]);
+            ReplaceString("%Checked25%", GChecked[2, 4]);
+            ReplaceString("%Checked26%", GChecked[2, 5]);
+            ReplaceString("%Checked27%", GChecked[2, 6]);
+            ReplaceString("%Checked28%", GChecked[2, 7]);
+            ReplaceString("%Checked29%", GChecked[2, 8]);
+            ReplaceString("%Checked30%", GChecked[2, 9]);
+
             ReplaceString("%CrTitle1%", CT[0]);
             ReplaceString("%CrTitle2%", CT[1]);
             ReplaceString("%CrTitle3%", CT[2]);
@@ -217,6 +263,7 @@ namespace UltraMarker
             ReplaceString("%overallGrade%", OG);
             ReplaceString("%overallPercent%", OP);
             ReplaceString("%overall%", overall);
+           
             richTextBox1.ReadOnly = true;
         }
        
@@ -235,8 +282,8 @@ namespace UltraMarker
             Save_Report(saveFileDialog1.FileName);
             changesSaved = true;
             richTextBox1.ReadOnly = true;
-            cancelbutton.Visible = false;
-            editbutton.Visible = true;
+            //cancelbutton.Visible = false;
+            //editbutton.Visible = true;
             richTextBox1.BackColor = c1;
             printbutton.Visible = true;
         }
@@ -260,8 +307,8 @@ namespace UltraMarker
             c1 = richTextBox1.BackColor;
             richTextBox1.BackColor = Color.Beige;
             richTextBox1.ReadOnly = false;
-            cancelbutton.Visible = true;
-            editbutton.Visible = false;
+            //cancelbutton.Visible = true;
+            //editbutton.Visible = false;
         }
 
         private void cancelbutton_Click(object sender, EventArgs e)
@@ -269,8 +316,8 @@ namespace UltraMarker
             DialogResult dialogResult = MessageBox.Show("Cancel edit (all changes will be lost) Yes/No?", "Cancel Edit Report", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                cancelbutton.Visible = false;
-                editbutton.Visible = true;
+                //cancelbutton.Visible = false;
+                //editbutton.Visible = true;
                 richTextBox1.ReadOnly = true;
                 richTextBox1.BackColor = c1;
             }

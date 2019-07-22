@@ -4263,6 +4263,7 @@ namespace UltraMarker
             FontFamily family = new FontFamily("Calibri");
             Font fontbold = new Font(family, 12.0f, FontStyle.Bold);
 
+            GForm.ClearChecked();   //clear all checkboxes in template
             Calculate_Checks();
             if (SessionType > 0)
             {
@@ -4317,7 +4318,7 @@ namespace UltraMarker
                         if ((!nullText) && (crSelected[i, j, s]))
                         {
                             ////////
-                            GForm.CT[i] = crtitle[i, j];
+                            GForm.CT[i] = crtitle[i, j];    //criteria title
 
                            
                             if (!Aggregation || (Aggregation && !Has_Subcriteria(i)))
@@ -4332,8 +4333,10 @@ namespace UltraMarker
                                 {
                                     m1 = m1.Substring(0, m1.Length - 1) + " %";                                  
                                 }
-                                GForm.CM[i] = m1;
-                              
+                                GForm.CM[i] = m1;   //grade mark for each criteria
+
+                                FindGradePosition(m1, i);
+
                                 str2 = Find_Grade_Comments(Marks[i, j, s]);
                               
                                 str2 = crComment[i, j, s];
@@ -4392,278 +4395,315 @@ namespace UltraMarker
             }
             return true;
         }
-        /*private void Generate_Feedback_Report(string filename)
-        {
-            bool nullText = false;
-            int x = 0;
-            bool firstSession = true;
-            //int s = 0;
 
-            string str;
-            float f = 0;
-            float fl = 0;
-            int ST;
+        private void FindGradePosition(string m1, int Cr) //Cr = criteria
+        {   //locate in which grade group (box) the current mark is located so that the box can be highlighted (with a cross)
+            bool firstthru = true;
+            int i = 0;
+            int Gg = 0;
+            int prev = -1;           
+            char tick = '\u2714';
 
-            Calculate_Checks();
-            if (SessionType == 0)
+            i = listBox1.FindString(m1);
+            for (int a = 0; a < listBox1.Items.Count; a++)
             {
-                ST = 1;
-            }
-            else
-            {
-                ST = SessionS;
-            }
-            try
-            {
-                using (StreamWriter sw = new StreamWriter(filename))
+                if (listBox1.GetSelected(a))
                 {
-
-                    sw.WriteLine("Student name: " + StudentcomboBox.Text + "       Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm"));
-                    sw.WriteLine("Assessment title: " + assess.Title + ", Code: " + assess.Code);
-                    sw.WriteLine("Assessment weight for unit: " + assess.Weight);
-                    if (feedOptions.full)
+                    if (i < a || i == a)
                     {
-                        sw.WriteLine("Description: ");
-                        sw.WriteLine(assess.Description);
-
+                        if (i < a)
+                        {
+                            Gg--;
+                        }
+                        GForm.GChecked[Cr, Gg] =  "=== " + tick + " ===";
+                        break;
                     }
-                    if (feedOptions.fullLO)
+                    prev = a;
+                    if (firstthru)  //every other count of grade groups
                     {
-                        sw.WriteLine("Learning Outcomes: ");
-                        sw.WriteLine(assess.LOs);
+                        Gg++;
+                        firstthru = false;
                     }
-                    sw.WriteLine("---------------");
-
-                    for (int s = 0; s < ST; s++)
+                    else
                     {
-                        if (s > 0)
-                        {
-                            firstSession = false;
-                        }
-                        if (SessionType > 0)
-                        {
-                            sw.WriteLine("--------------------------------");
-                            sw.WriteLine("Session: " + SessionTitle[s]);
-                            sw.WriteLine("--------------------------------");
-                        }
-                        for (int i = 0; i < CritZ + 1; i++)  //save criteria grade and feedback
-                        {
-
-                            int j = MaxSub;
-                            //if (Marks[i, j, s] == null) { continue; }
-                            x = 0;
-                            if (Marks[i, j, s] != null)
-                            {
-                                try
-                                {
-                                    x = listBox1.FindString(Marks[i, j, s].Trim(), x);
-                                }
-                                catch
-                                {
-                                }
-                            }
-
-                            if (x < 0 || x > MaxGrades) { x = 0; }
-                            if ((crtitle[i, j] == null || crtitle[i, j].Length < 1))
-                            {
-                                nullText = true;
-                            }
-                            else { nullText = false; }
-                            if (!nullText)
-                            {
-                                sw.WriteLine("---");
-                                sw.WriteLine("Criteria: " + crtitle[i, j]);
-                                if (firstSession && feedOptions.description)
-                                {
-                                    sw.WriteLine("Description of requirements for this criteria: ");
-
-                                    sw.WriteLine(crdesc[i, j]);
-                                }
-                                if (firstSession && feedOptions.LO)
-                                {
-                                    sw.WriteLine("Learning Outcomes for this criteria: ");
-
-                                    sw.WriteLine(crLO[i, j]);
-                                }
-                                if (!Aggregation)
-                                {
-                                    sw.WriteLine("Assessment of achievement for this criteria: ");
-                                    if (Marks[i, j, s] != null)
-                                    {
-                                        sw.WriteLine(grcr[i, j, x]);
-                                    }
-
-                                    sw.WriteLine("Grade for this criteria: " + Marks[i, j, s]);
-                                    str = Find_Grade_Comments(Marks[i, j, s]);
-                                    if (str.Length > 1 && feedOptions.generic)
-                                    {
-                                        sw.WriteLine("Generic description of this grade: ");
-                                        sw.WriteLine(str);
-                                    }
-                                    str = crComment[i, j, s];
-                                    if ((str != null) && feedOptions.criteriaComment)
-                                    {
-                                        sw.WriteLine("Additional comment: ");
-                                        sw.WriteLine(str);
-                                    }
-
-                                    if (grcrfb[i, j, x].Length > 1)
-                                    {
-                                        if (firstSession && feedOptions.suggested)
-                                        {
-                                            sw.WriteLine("Suggested feedback for improvement for this criteria: ");
-
-
-                                            if (Marks[i, j, s] != null)
-                                            {
-                                                sw.WriteLine(grcrfb[i, j, x]);
-                                            }
-                                            else
-                                            {
-                                                sw.WriteLine("------- Need to submit something for this criteria");
-                                            }
-                                        }
-                                    }
-                                }
-                                sw.WriteLine();
-                            }
-                            for (int k = 0; k < MaxSub; k++)  //save sub-criteria grade and feedback
-                            {
-                                //if (Marks[i, k, s] == null) { continue; }
-                                x = 0;
-                                if (Marks[i, k, s] != null)
-                                {
-                                    try
-                                    {
-                                        x = listBox1.FindString(Marks[i, k, s].Trim(), x);
-                                    }
-                                    catch
-                                    {
-                                    }
-                                }
-
-                                //x = listBox1.FindString(Marks[i, k, s], x);
-                                if (x < 0 || x > MaxGrades) { x = 0; }
-                                if ((crtitle[i, k] == null || crtitle[i, k].Length < 1))
-                                {
-                                    nullText = true;
-                                }
-                                else { nullText = false; }
-                                if (!nullText)
-                                {
-                                    sw.WriteLine("---");
-                                    sw.WriteLine("Sub-Criteria: " + crtitle[i, k]);
-                                    if (firstSession && feedOptions.description)
-                                    {
-                                        sw.WriteLine("Description of requirements for this sub criteria: ");
-                                        sw.WriteLine(crdesc[i, k]);
-                                    }
-                                    if (firstSession && feedOptions.LO)
-                                    {
-                                        sw.WriteLine("Learning Outcomes for this sub-criteria: ");
-
-                                        sw.WriteLine(crLO[i, k]);
-                                    }
-                                    sw.WriteLine("Assessment of achievement for this sub criteria: ");
-                                    if (Marks[i, k, s] != null)
-                                    {
-                                        sw.WriteLine(grcr[i, k, x]);
-                                    }
-
-                                    sw.WriteLine("Grade for this criteria: " + Marks[i, k, s]);
-                                    str = Find_Grade_Comments(Marks[i, k, s]);
-                                    if (str.Length > 1 && feedOptions.generic)
-                                    {
-                                        sw.WriteLine("Generic description of this grade: ");
-                                        sw.WriteLine(str);
-                                    }
-                                    str = crComment[i, k, s];
-                                    if (str == null) { str = ""; }
-                                    if (str.Length > 0 && feedOptions.criteriaComment)
-                                    {
-                                        sw.WriteLine("Additional comment: ");
-                                        sw.WriteLine(str);
-                                    }
-                                    if (grcrfb[i, k, x].Length > 1)
-                                    {
-                                        if (firstSession && feedOptions.suggested)
-                                        {
-                                            sw.WriteLine("Suggested feedback for improvement for this criteria: ");
-                                            //if (Marks[i, k, s] == null) { break; }
-                                            if (Marks[i, k, s] != null)
-                                            {
-                                                sw.WriteLine(grcrfb[i, k, x]);
-                                            }
-                                            else
-                                            {
-                                                sw.WriteLine("--------Need to submit something for this criteria");
-                                            }
-                                        }
-                                    }
-                                    //sw.WriteLine();
-
-                                }
-
-
-                            }
-                        }
-                        fl = Generate_Overall_Mark(s);
-                        if (SessionType > 0)
-                        {
-                            sw.WriteLine("Overall marks for session " + (s + 1).ToString() + ": " + fl.ToString() + " %");
-                        }
-
-                        f = f + fl;
-                    } //sessions
-                    if ((textBox10.Text.Trim().Length > 1) && feedOptions.additional)
-                    {
-                        sw.WriteLine("----");
-                        sw.WriteLine("General feedback for this work: ");
-                        sw.WriteLine(textBox10.Text.Trim());
+                        firstthru = true;
                     }
-                    sw.WriteLine();
-                    sw.WriteLine("-------------------------------");
-                    //f = Generate_Overall_Mark();
-
-                    if (feedOptions.percent)
-                    {
-                        if (SessionType > 0)
-                        {
-
-                            f = f / SessionS;
-                            sw.WriteLine("Overall mark for all sessions in %: " + Convert.ToString(f));
-                        }
-                        else
-                        {
-                            f = fl;
-                            sw.WriteLine("Overall Mark " + Convert.ToString(f) + " %");
-                        }
-                    }
-                    if (feedOptions.grade)
-                    {
-                        sw.WriteLine("Overall Grade: " + Convert_Percent_To_Grade(f));
-                    }
-                    sw.WriteLine("");
-
-                    sw.Close();
-                    label21.Visible = true;
-                    label22.Visible = true;
-                    label22.Text = Convert.ToString(f);
                 }
             }
-            catch (System.Exception excep)
+        }
+       
+/*private void Generate_Feedback_Report(string filename)
+{
+    bool nullText = false;
+    int x = 0;
+    bool firstSession = true;
+    //int s = 0;
+
+    string str;
+    float f = 0;
+    float fl = 0;
+    int ST;
+
+    Calculate_Checks();
+    if (SessionType == 0)
+    {
+        ST = 1;
+    }
+    else
+    {
+        ST = SessionS;
+    }
+    try
+    {
+        using (StreamWriter sw = new StreamWriter(filename))
+        {
+
+            sw.WriteLine("Student name: " + StudentcomboBox.Text + "       Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm"));
+            sw.WriteLine("Assessment title: " + assess.Title + ", Code: " + assess.Code);
+            sw.WriteLine("Assessment weight for unit: " + assess.Weight);
+            if (feedOptions.full)
             {
-                StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                sw.WriteLine("Description: ");
+                sw.WriteLine(assess.Description);
+
             }
-            button1.Visible = true;
+            if (feedOptions.fullLO)
+            {
+                sw.WriteLine("Learning Outcomes: ");
+                sw.WriteLine(assess.LOs);
+            }
+            sw.WriteLine("---------------");
 
-            rep1.Passvalue = filename;
+            for (int s = 0; s < ST; s++)
+            {
+                if (s > 0)
+                {
+                    firstSession = false;
+                }
+                if (SessionType > 0)
+                {
+                    sw.WriteLine("--------------------------------");
+                    sw.WriteLine("Session: " + SessionTitle[s]);
+                    sw.WriteLine("--------------------------------");
+                }
+                for (int i = 0; i < CritZ + 1; i++)  //save criteria grade and feedback
+                {
 
-            //rep1.ShowDialog();
-        }*/
+                    int j = MaxSub;
+                    //if (Marks[i, j, s] == null) { continue; }
+                    x = 0;
+                    if (Marks[i, j, s] != null)
+                    {
+                        try
+                        {
+                            x = listBox1.FindString(Marks[i, j, s].Trim(), x);
+                        }
+                        catch
+                        {
+                        }
+                    }
 
-        private string Convert_Percent_To_Grade(float percent)
+                    if (x < 0 || x > MaxGrades) { x = 0; }
+                    if ((crtitle[i, j] == null || crtitle[i, j].Length < 1))
+                    {
+                        nullText = true;
+                    }
+                    else { nullText = false; }
+                    if (!nullText)
+                    {
+                        sw.WriteLine("---");
+                        sw.WriteLine("Criteria: " + crtitle[i, j]);
+                        if (firstSession && feedOptions.description)
+                        {
+                            sw.WriteLine("Description of requirements for this criteria: ");
+
+                            sw.WriteLine(crdesc[i, j]);
+                        }
+                        if (firstSession && feedOptions.LO)
+                        {
+                            sw.WriteLine("Learning Outcomes for this criteria: ");
+
+                            sw.WriteLine(crLO[i, j]);
+                        }
+                        if (!Aggregation)
+                        {
+                            sw.WriteLine("Assessment of achievement for this criteria: ");
+                            if (Marks[i, j, s] != null)
+                            {
+                                sw.WriteLine(grcr[i, j, x]);
+                            }
+
+                            sw.WriteLine("Grade for this criteria: " + Marks[i, j, s]);
+                            str = Find_Grade_Comments(Marks[i, j, s]);
+                            if (str.Length > 1 && feedOptions.generic)
+                            {
+                                sw.WriteLine("Generic description of this grade: ");
+                                sw.WriteLine(str);
+                            }
+                            str = crComment[i, j, s];
+                            if ((str != null) && feedOptions.criteriaComment)
+                            {
+                                sw.WriteLine("Additional comment: ");
+                                sw.WriteLine(str);
+                            }
+
+                            if (grcrfb[i, j, x].Length > 1)
+                            {
+                                if (firstSession && feedOptions.suggested)
+                                {
+                                    sw.WriteLine("Suggested feedback for improvement for this criteria: ");
+
+
+                                    if (Marks[i, j, s] != null)
+                                    {
+                                        sw.WriteLine(grcrfb[i, j, x]);
+                                    }
+                                    else
+                                    {
+                                        sw.WriteLine("------- Need to submit something for this criteria");
+                                    }
+                                }
+                            }
+                        }
+                        sw.WriteLine();
+                    }
+                    for (int k = 0; k < MaxSub; k++)  //save sub-criteria grade and feedback
+                    {
+                        //if (Marks[i, k, s] == null) { continue; }
+                        x = 0;
+                        if (Marks[i, k, s] != null)
+                        {
+                            try
+                            {
+                                x = listBox1.FindString(Marks[i, k, s].Trim(), x);
+                            }
+                            catch
+                            {
+                            }
+                        }
+
+                        //x = listBox1.FindString(Marks[i, k, s], x);
+                        if (x < 0 || x > MaxGrades) { x = 0; }
+                        if ((crtitle[i, k] == null || crtitle[i, k].Length < 1))
+                        {
+                            nullText = true;
+                        }
+                        else { nullText = false; }
+                        if (!nullText)
+                        {
+                            sw.WriteLine("---");
+                            sw.WriteLine("Sub-Criteria: " + crtitle[i, k]);
+                            if (firstSession && feedOptions.description)
+                            {
+                                sw.WriteLine("Description of requirements for this sub criteria: ");
+                                sw.WriteLine(crdesc[i, k]);
+                            }
+                            if (firstSession && feedOptions.LO)
+                            {
+                                sw.WriteLine("Learning Outcomes for this sub-criteria: ");
+
+                                sw.WriteLine(crLO[i, k]);
+                            }
+                            sw.WriteLine("Assessment of achievement for this sub criteria: ");
+                            if (Marks[i, k, s] != null)
+                            {
+                                sw.WriteLine(grcr[i, k, x]);
+                            }
+
+                            sw.WriteLine("Grade for this criteria: " + Marks[i, k, s]);
+                            str = Find_Grade_Comments(Marks[i, k, s]);
+                            if (str.Length > 1 && feedOptions.generic)
+                            {
+                                sw.WriteLine("Generic description of this grade: ");
+                                sw.WriteLine(str);
+                            }
+                            str = crComment[i, k, s];
+                            if (str == null) { str = ""; }
+                            if (str.Length > 0 && feedOptions.criteriaComment)
+                            {
+                                sw.WriteLine("Additional comment: ");
+                                sw.WriteLine(str);
+                            }
+                            if (grcrfb[i, k, x].Length > 1)
+                            {
+                                if (firstSession && feedOptions.suggested)
+                                {
+                                    sw.WriteLine("Suggested feedback for improvement for this criteria: ");
+                                    //if (Marks[i, k, s] == null) { break; }
+                                    if (Marks[i, k, s] != null)
+                                    {
+                                        sw.WriteLine(grcrfb[i, k, x]);
+                                    }
+                                    else
+                                    {
+                                        sw.WriteLine("--------Need to submit something for this criteria");
+                                    }
+                                }
+                            }
+                            //sw.WriteLine();
+
+                        }
+
+
+                    }
+                }
+                fl = Generate_Overall_Mark(s);
+                if (SessionType > 0)
+                {
+                    sw.WriteLine("Overall marks for session " + (s + 1).ToString() + ": " + fl.ToString() + " %");
+                }
+
+                f = f + fl;
+            } //sessions
+            if ((textBox10.Text.Trim().Length > 1) && feedOptions.additional)
+            {
+                sw.WriteLine("----");
+                sw.WriteLine("General feedback for this work: ");
+                sw.WriteLine(textBox10.Text.Trim());
+            }
+            sw.WriteLine();
+            sw.WriteLine("-------------------------------");
+            //f = Generate_Overall_Mark();
+
+            if (feedOptions.percent)
+            {
+                if (SessionType > 0)
+                {
+
+                    f = f / SessionS;
+                    sw.WriteLine("Overall mark for all sessions in %: " + Convert.ToString(f));
+                }
+                else
+                {
+                    f = fl;
+                    sw.WriteLine("Overall Mark " + Convert.ToString(f) + " %");
+                }
+            }
+            if (feedOptions.grade)
+            {
+                sw.WriteLine("Overall Grade: " + Convert_Percent_To_Grade(f));
+            }
+            sw.WriteLine("");
+
+            sw.Close();
+            label21.Visible = true;
+            label22.Visible = true;
+            label22.Text = Convert.ToString(f);
+        }
+    }
+    catch (System.Exception excep)
+    {
+        StackTrace stackTrace = new StackTrace();
+        MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+    }
+    button1.Visible = true;
+
+    rep1.Passvalue = filename;
+
+    //rep1.ShowDialog();
+}*/
+
+private string Convert_Percent_To_Grade(float percent)
         {
             for (int i = 0; i < MaxGrades; i++)
             {
@@ -5282,13 +5322,90 @@ namespace UltraMarker
 
                     sw.Close();
                 }
+                SaveGradeListbox();
             }
+           
             catch (System.Exception excep)
             {
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
+
+        private void SaveGradeListbox()
+        {
+            int y = 0;
+            try
+            {
+                using (FileStream stream = new FileStream(DefaultDir + "gradeselected.bin", FileMode.Create))
+                {
+                    using (BinaryWriter writer = new BinaryWriter(stream))
+                    {
+                        try
+                        {
+                            for (int i = 0; i < listBox1.Items.Count; i++)
+                            {
+                                if (button3.Text.StartsWith("Gen"))
+                                {
+                                    if (listBox1.GetSelected(i))
+                                    {
+                                        y = 1;
+                                    }
+                                    else
+                                    {
+                                        y = 0;
+                                    }
+                                }
+                                else
+                                {
+                                    if (Listboxlist[i] == 1)
+                                    {
+                                        y = 1;
+                                    }
+                                    else
+                                    {
+                                        y = 0;
+                                    }
+                                }
+                                writer.Write(y);
+                            }
+                            writer.Close();
+                        }
+                        catch { }
+
+                    }
+                }
+            }
+            catch { }
+        }
+        private void LoadGradeListbox()
+        {
+
+            int i = 0;
+            int a = 0;
+            try
+            {
+                using (FileStream stream = File.OpenRead(DefaultDir + "gradeselected.bin"))
+                {
+                    using (BinaryReader reader = new BinaryReader(stream))
+                    {
+                        // Read in all pairs.
+                        while (reader.BaseStream.Position != reader.BaseStream.Length)
+                        {
+                            i = reader.ReadInt32();
+                            Listboxlist[a] = i;
+                            a++;
+
+                        }
+                        reader.Close();
+                    }
+
+                }
+            }
+            catch { }
+           
+        }
+
         private void LoadSettings()
         {
             //on startup
@@ -5595,6 +5712,7 @@ namespace UltraMarker
                         if (c[13] == '0') { feedOptions.includeheader = false; }
 
                     } //using
+                    LoadGradeListbox();
                 } //try
                 catch (System.Exception excep)
                 {
@@ -8908,7 +9026,7 @@ namespace UltraMarker
             
             int grade = 0;
             int counter = 0;
-            int critC = 0;
+            int Gg = 0; //grade group counter
             bool firstthru = true;            
 
             try
@@ -8918,25 +9036,20 @@ namespace UltraMarker
                     foreach (Object selecteditem in listBox1.SelectedItems)
                     {
                         str1 = selecteditem as String;
-                        GForm.G[grade] = str1;
+                        GForm.G[grade] = str1;  //each grade, eg. A1
                         grade++;
                         if (grade == MaxGradeGroups && grade == -1)
                         {
                             break;
                         }
-                    }
-                    /*for (int c = 0; c < CritZ + 1; c++) //print criteria detail
-                    {
-                        str1 = crdesc[c, MaxSub];
-                        GForm.C[c] = str1;
-                    }*/
+                    }                 
 
                     for (int c = 0; c < CritZ + 1; c++) //print criteria detail
                     {
                         str1 = crdesc[c, MaxSub];
                         GForm.C[c] = str1;
                         counter = 0;
-                        critC = 0;
+                        Gg = 0;  //gradegroup
                         firstthru = true;
                         foreach (Object selecteditem in listBox1.SelectedItems)
                         {
@@ -8945,15 +9058,14 @@ namespace UltraMarker
                                 str1 = selecteditem as string;
                                 counter = listBox1.FindString(str1);
                                 str2 = grcr[c, MaxSub, counter];
-                                GForm.CG[c, critC] = str2;
+                                GForm.CG[c, Gg] = str2;  //criteria for each grade
                                 firstthru = false;
-                                critC++;
+                                Gg++;
                             }
                             else
                             {
                                 firstthru = true;
-                            }
-                            //counter++;
+                            }                          
                         }
                     }
                 }
