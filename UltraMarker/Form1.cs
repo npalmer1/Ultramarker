@@ -272,6 +272,8 @@ namespace UltraMarker
         bool startMark = false;
         int CriteriaSelectionType = 0;
         string templateGenfile = "";
+        bool AllowImpComment = false;
+        bool CalculateImportbyLines = true;
         
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -2853,6 +2855,8 @@ namespace UltraMarker
             settingsToolStripMenuItem.Enabled = !b;
             LOtoolStripMenuItem2.Enabled = !b;
             promptsToolStripMenuItem.Enabled = !b;
+           
+            
             //menuStrip2.Enabled = !b;
             if (startMark)
             {
@@ -2861,6 +2865,8 @@ namespace UltraMarker
                 button6.Visible = b;
                 addButton.Visible = b;
                 textBox10.Enabled = true;
+                ImportcheckBox.Visible = true;
+               
             }
             else
             {
@@ -2869,6 +2875,15 @@ namespace UltraMarker
                 button6.Visible = false;
                 addButton.Visible = false;
                 textBox10.Enabled = false;
+                ImportcheckBox.Visible = false;
+                
+            }
+            ImportcheckBox.Visible = b;
+        
+            if (ImportcheckBox.Checked)
+            {
+                importGroupBox.Visible = b;
+                importCalcLabel.Visible = b;
             }
             textBox10.Visible = b;
             markModeButton.Visible = b;
@@ -4930,7 +4945,10 @@ private string Convert_Percent_To_Grade(float percent)
                     textBox10.Enabled = false;
                     addButton.Visible = false;
                     StudentcomboBox.Enabled = true;
-                    overrideBox.Enabled = false;                   
+                    overrideBox.Enabled = false;
+                    ImportcheckBox.Visible = false;
+                    importGroupBox.Visible = false;
+                    importCalcLabel.Visible = false;
                 }
             }
             else
@@ -4950,6 +4968,14 @@ private string Convert_Percent_To_Grade(float percent)
                 startMark = true;
                 StudentcomboBox.Enabled = false;
                 overrideBox.Enabled = true;
+                ImportcheckBox.Visible = true;
+                importCalcLabel.Visible = true;
+                if (ImportcheckBox.Checked)
+                {
+                    importGroupBox.Visible = true;
+                    importCalcLabel.Visible = true;
+                }               
+                
             }
         }
 
@@ -5341,7 +5367,18 @@ private string Convert_Percent_To_Grade(float percent)
                     catch
                     {
                     }
-
+                    string ch = "false";
+                    if (CalculateImportbyLines)
+                    {
+                        ch = "true";
+                    }
+                    sw.WriteLine("Import calculation by lines?: " + ch);
+                    if (AllowImpComment)
+                    {
+                        ch = "true";
+                    }
+                    else { ch = "false"; }
+                    sw.WriteLine("Import comments?: " + ch);
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -5576,7 +5613,7 @@ private string Convert_Percent_To_Grade(float percent)
                             }
                             else if (str.StartsWith("Default Dir:"))
                             {
-                                DefaultDir = str3;                                
+                                DefaultDir = str3;
                             }
                             else if (str.StartsWith("Unit file path:"))
                             {
@@ -5599,7 +5636,7 @@ private string Convert_Percent_To_Grade(float percent)
                             {
                                 modDirectory = str3;
                             }
-                           
+
                             else if (str.StartsWith("Criteria file:"))
                             {
                                 CriteriaFile = str3;
@@ -5705,6 +5742,28 @@ private string Convert_Percent_To_Grade(float percent)
                                 catch
                                 {
                                 }
+                            }
+                            else if (str.StartsWith("Import calc"))
+                            {
+                                if (str.Contains("true"))
+                                {
+                                     CalculateImportbyLines= true;
+                                     importCalcLabel.Text = "Calculate by lines";
+                                }
+                                else
+                                {
+                                    CalculateImportbyLines = false;
+                                    importCalcLabel.Text = "Calculate by %ages";
+                                }
+                            }
+                            else if (str.StartsWith("Import comm"))
+                            {
+                                if (str.Contains("true"))
+                                {
+                                    AllowImpComment = true;
+                                }
+                                else
+                                { AllowImpComment = false; }
                             }
 
                         }
@@ -9285,6 +9344,284 @@ private string Convert_Percent_To_Grade(float percent)
         private void GenFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             templatetextBox.Text = GenFileDialog.FileName;
+        }
+
+        private void importFilebutton_Click(object sender, EventArgs e)
+        {
+            if (EditStudent && startMark)
+            {
+                importFromFile(importFileBox.Text);
+            }
+        }
+        private void importFromFile(string filename)    //import reults from an external file
+        { //starts with marked file: and ends with conatins percent:
+            string str = "";
+            string str3 = "";
+            string str2 = "";
+            double PCent = 0.0;
+            double pc = 0.0;
+            bool ok = true;
+            int cr = 0;
+            int Lc = 0;
+            int Lf = 0;
+            bool found1 = false;
+            bool found2 = false;
+            bool found3 = false;
+            const int maximportableCriteria = 10;
+            int[] criterias = new int[maximportableCriteria];
+            double[] sumpc = new double[maximportableCriteria];
+            int[] numpc = new int[maximportableCriteria];
+            int[] linesC = new int[maximportableCriteria];
+            int[] linesT = new int[maximportableCriteria];
+            int totallines = 0;
+            for (int a = 0; a < maximportableCriteria; a++)    //null the criteria counter array
+            {
+                sumpc[a] = 0.0;
+                numpc[a] = 0;
+                criterias[a] = 0;
+                linesC[a] = 0;
+                linesT[a] = 0;
+            }
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    using (StreamReader rw = new StreamReader(filename))
+                    {
+                        while (!rw.EndOfStream)
+                        {
+                            str = rw.ReadLine();
+                            if (str.StartsWith("Overall lines:"))
+                            {
+                                str3 = str.Substring(0, "Overall lines:".Length).Trim();
+                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
+                                totallines = ExtractfromSlash(str2, false); //find total (X/totallines)
+                            }
+                        }
+                        rw.Close();
+                    }
+                }
+                catch { MessageBox.Show("Problem reading total lines"); }
+                try
+                {
+                    using (StreamReader rw = new StreamReader(filename))
+                    {
+                        while (!rw.EndOfStream)
+                        {
+
+                            str = rw.ReadLine();
+                            if (str.StartsWith("Criteria:")) //select criteria to import to
+                            {
+                                str3 = str.Substring(0, "Criteria:".Length).Trim();
+                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
+                                cr = Convert.ToInt32(str2);
+                                cr--;
+                                if (cr < 0 || cr > CritZ) //if criteria read from file exceeds number of criteria in Ultramarker
+                                {
+                                    MessageBox.Show("Criteria value does not match criteria in Ultramarker");
+                                    ok = false;
+                                }
+                                else
+                                {
+                                    ok = true;
+                                    found1 = true;
+                                    //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr];
+                                }
+
+                            }
+                            else if (str.Contains("Lines correct:") &&ok) //select criteria to import to
+                            {
+                                str3 = str.Substring(str.IndexOf("Lines correct:") + "Lines correct:".Length).Trim();
+                                Lc = ExtractfromSlash(str3, true); //get lines correct
+                                Lf = ExtractfromSlash(str3, false); //get lines total from this file
+                                found2 = true;
+                            }
+                            else if (str.Contains("Percentage:") && ok) //select criteria to import to
+                            {
+                                try
+                                {
+                                    str3 = str.Substring(str.IndexOf("Percentage:") + "Percentage:".Length).Trim();
+                                    pc = Convert.ToDouble(str3);
+                                    //PCent = Convert.ToInt32(pc);
+                                    for (int a = 0; a < maximportableCriteria; a++)
+                                    {
+                                        if (criterias[a] == cr)
+                                        {
+                                            sumpc[a] = sumpc[a] + pc; //sum of percents for this criteria
+                                            linesC[a] = linesC[a] + Lc; //total lines correct this criteria
+                                            linesT[a] = linesT[a] + Lf; //out of total lines in files for this criteria
+                                            numpc[a]++; //number of percents this criteria
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            if (numpc[a] == 0)
+                                            {
+                                                criterias[a] = cr;
+                                                sumpc[a] = pc;
+                                                linesC[a] = Lc;
+                                                linesT[a] = Lf;
+                                                numpc[a]++;
+                                                break;
+                                            }
+                                        }
+                                        found3 = true;
+                                    }
+                                    //overrideBox.Text = PCent;
+                                    //overridegrade(); // put percentage reult in the override box and update mark
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Percentage value error");
+                                }
+                            }
+                            else if (str.StartsWith("Overall Result".Trim()))
+                            {
+                                //don't save result here
+                            }
+                            else if (str.StartsWith("Result:".Trim()))
+                            {
+                                //ignore this line
+                            }
+                            else
+                            {
+                                if (AllowImpComment)
+                                {
+                                    crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                }
+                            }
+                        }
+                        rw.Close();
+                    }
+                    if (!found1 || !found2 || !found3)
+                    {
+                        MessageBox.Show("Input file not in correct format");
+                        return;
+                    }
+                    ok = false;
+                    for (int a = 0; a < maximportableCriteria; a++)
+                    {
+                        cr = criterias[a];
+                        if (cr > -1 && cr < maximportableCriteria)
+                        {
+                            try
+                            {
+                                if (CalculateImportbyLines) //weight according to lines in files for this criteria - this is the default!
+                                { //eg. if file 1 has 10 lines and file 2 has 20 and file 1 scores 5/10 and file 2 15/20 then overall score is 20/30 = 67%
+                                    pc = (Convert.ToDouble(linesC[a]) / Convert.ToDouble(linesT[a])) * 100;
+                                    PCent = Convert.ToInt32(pc);
+                                }
+                                else //weight evenly between percentages for each file, eg. if file 1 has 30% and file 2 60% then 90/2 = 45% overall
+                                {
+                                    pc = Convert.ToDouble(sumpc[a]) / Convert.ToDouble(numpc[a]); //calculate overall percent
+                                    PCent = Convert.ToInt32(pc);
+                                }
+                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
+                                overrideBox.Text = PCent.ToString(); //put new percentage in override box
+                                overridegrade(); //overide the grade for this criteria
+                                //crComment[cr, MaxSub, 0]
+                            }
+                            catch { }
+                        }
+                    }
+                    MessageBox.Show("Import appears succesful");
+                }
+                catch
+                {
+                    MessageBox.Show("Error occurred");
+                }
+            }
+            else
+            {
+                MessageBox.Show("File does not exist");
+            }
+        }
+
+        private int ExtractfromSlash(string str,  bool leftof)
+        {
+            
+            string[] str2 = new string[2];
+            if (str.Contains('/'))
+            {
+                str2 = str.Split('/');
+                if (leftof) //if left of /
+                {
+                    if (str2.Count() > 0 && str2[0] != null)
+                    {
+                        return Convert.ToInt32(str2[0]);
+                    }                    
+                }
+                else
+                {
+                    //if right of /
+                }
+                {
+                    if (str2.Count() > 1 && str2[1] != null)
+                    {
+                        return Convert.ToInt32(str2[1]);
+                    }
+                }
+            }            
+                return -1;  //if all else fails                       
+        }
+        private void ImportcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ImportcheckBox.Checked && ImportcheckBox.Visible)
+            {
+                importGroupBox.Visible = true;
+                importCalcLabel.Visible = true;
+            }
+            else
+            {
+                importGroupBox.Visible = false;
+                importCalcLabel.Visible = false;
+            }
+        }
+     
+
+        private void ImpFilebutton_Click(object sender, EventArgs e)
+        {
+            ImportFileDialog.InitialDirectory = UnitFilePath;
+            ImportFileDialog.FileName = "";
+            //ImportFileDialog.DefaultExt = "rtf";
+            //ImportFileDialog.Filter = "Rich text files (*.rtf) |*.rtf";
+
+            ImportFileDialog.ShowDialog();
+        }
+
+        private void ImportFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            importFileBox.Text = ImportFileDialog.FileName;
+        }
+
+       
+
+        private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Allow comments from imported files Yes/No?", "Imported Comments", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                AllowImpComment = true;
+            }
+            else
+            {
+                AllowImpComment = false;
+            }
+        }
+
+        private void calculateLinesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Allow calculation of marked import by lines instead of percentages Yes/No?", "Imported Lines/Percentages?", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                CalculateImportbyLines = true;
+                importCalcLabel.Text = "Calculate by lines";
+            }
+            else
+            {
+                CalculateImportbyLines = false;
+                importCalcLabel.Text = "Calculate by %ages";
+            }
         }
     }
 

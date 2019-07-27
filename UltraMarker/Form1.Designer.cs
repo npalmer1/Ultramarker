@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,12 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.importGroupBox = new System.Windows.Forms.GroupBox();
+            this.ImpFilebutton = new System.Windows.Forms.Button();
+            this.importFileBox = new System.Windows.Forms.TextBox();
+            this.label101 = new System.Windows.Forms.Label();
+            this.importFilebutton = new System.Windows.Forms.Button();
+            this.ImportcheckBox = new System.Windows.Forms.CheckBox();
             this.gradeDirectioncheckBox = new System.Windows.Forms.CheckBox();
             this.Gradegrouphelplabel = new System.Windows.Forms.Label();
             this.templatebutton = new System.Windows.Forms.Button();
@@ -160,6 +166,9 @@
             this.overrideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.criteriaSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addAssessmentCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.calculateLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LOtoolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -445,12 +454,16 @@
             this.saveFileDialogGroup = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label102 = new System.Windows.Forms.Label();
+            this.importCalcLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
             this.contextMenuStrip4.SuspendLayout();
             this.contextMenuStrip5.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.importGroupBox.SuspendLayout();
             this.menuStrip2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -683,6 +696,10 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.importCalcLabel);
+            this.tabPage2.Controls.Add(this.label102);
+            this.tabPage2.Controls.Add(this.importGroupBox);
+            this.tabPage2.Controls.Add(this.ImportcheckBox);
             this.tabPage2.Controls.Add(this.gradeDirectioncheckBox);
             this.tabPage2.Controls.Add(this.Gradegrouphelplabel);
             this.tabPage2.Controls.Add(this.templatebutton);
@@ -776,6 +793,68 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // importGroupBox
+            // 
+            this.importGroupBox.Controls.Add(this.ImpFilebutton);
+            this.importGroupBox.Controls.Add(this.importFileBox);
+            this.importGroupBox.Controls.Add(this.label101);
+            this.importGroupBox.Controls.Add(this.importFilebutton);
+            this.importGroupBox.Location = new System.Drawing.Point(1073, 277);
+            this.importGroupBox.Name = "importGroupBox";
+            this.importGroupBox.Size = new System.Drawing.Size(647, 45);
+            this.importGroupBox.TabIndex = 94;
+            this.importGroupBox.TabStop = false;
+            this.importGroupBox.Visible = false;
+            // 
+            // ImpFilebutton
+            // 
+            this.ImpFilebutton.Location = new System.Drawing.Point(519, 15);
+            this.ImpFilebutton.Name = "ImpFilebutton";
+            this.ImpFilebutton.Size = new System.Drawing.Size(31, 23);
+            this.ImpFilebutton.TabIndex = 96;
+            this.ImpFilebutton.Text = "...";
+            this.ImpFilebutton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.ImpFilebutton.UseVisualStyleBackColor = true;
+            this.ImpFilebutton.Click += new System.EventHandler(this.ImpFilebutton_Click);
+            // 
+            // importFileBox
+            // 
+            this.importFileBox.Location = new System.Drawing.Point(111, 15);
+            this.importFileBox.Name = "importFileBox";
+            this.importFileBox.Size = new System.Drawing.Size(402, 24);
+            this.importFileBox.TabIndex = 94;
+            // 
+            // label101
+            // 
+            this.label101.AutoSize = true;
+            this.label101.Location = new System.Drawing.Point(7, 18);
+            this.label101.Name = "label101";
+            this.label101.Size = new System.Drawing.Size(98, 18);
+            this.label101.TabIndex = 93;
+            this.label101.Text = "File to import:";
+            // 
+            // importFilebutton
+            // 
+            this.importFilebutton.Location = new System.Drawing.Point(566, 9);
+            this.importFilebutton.Name = "importFilebutton";
+            this.importFilebutton.Size = new System.Drawing.Size(75, 30);
+            this.importFilebutton.TabIndex = 92;
+            this.importFilebutton.Text = "Import";
+            this.importFilebutton.UseVisualStyleBackColor = true;
+            this.importFilebutton.Click += new System.EventHandler(this.importFilebutton_Click);
+            // 
+            // ImportcheckBox
+            // 
+            this.ImportcheckBox.AutoSize = true;
+            this.ImportcheckBox.Location = new System.Drawing.Point(1627, 332);
+            this.ImportcheckBox.Name = "ImportcheckBox";
+            this.ImportcheckBox.Size = new System.Drawing.Size(111, 22);
+            this.ImportcheckBox.TabIndex = 93;
+            this.ImportcheckBox.Text = "Allow import";
+            this.ImportcheckBox.UseVisualStyleBackColor = true;
+            this.ImportcheckBox.Visible = false;
+            this.ImportcheckBox.CheckedChanged += new System.EventHandler(this.ImportcheckBox_CheckedChanged);
             // 
             // gradeDirectioncheckBox
             // 
@@ -1156,7 +1235,7 @@
             // repCancelbutton3
             // 
             this.repCancelbutton3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.repCancelbutton3.Location = new System.Drawing.Point(1211, 329);
+            this.repCancelbutton3.Location = new System.Drawing.Point(1181, 329);
             this.repCancelbutton3.Margin = new System.Windows.Forms.Padding(4);
             this.repCancelbutton3.Name = "repCancelbutton3";
             this.repCancelbutton3.Size = new System.Drawing.Size(213, 28);
@@ -1759,10 +1838,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode3.Name = "CriteriaNode";
+            treeNode3.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -1830,7 +1909,8 @@
             this.feedbackToolStripMenuItem,
             this.overrideToolStripMenuItem,
             this.criteriaSelectionToolStripMenuItem,
-            this.addAssessmentCodeToolStripMenuItem});
+            this.addAssessmentCodeToolStripMenuItem,
+            this.importCommentsToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(83, 27);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -1883,6 +1963,29 @@
             this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
+            // 
+            // importCommentsToolStripMenuItem
+            // 
+            this.importCommentsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.commentsToolStripMenuItem1,
+            this.calculateLinesToolStripMenuItem});
+            this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.importCommentsToolStripMenuItem.Text = "Import Results";
+            // 
+            // commentsToolStripMenuItem1
+            // 
+            this.commentsToolStripMenuItem1.Name = "commentsToolStripMenuItem1";
+            this.commentsToolStripMenuItem1.Size = new System.Drawing.Size(195, 28);
+            this.commentsToolStripMenuItem1.Text = "Comments";
+            this.commentsToolStripMenuItem1.Click += new System.EventHandler(this.commentsToolStripMenuItem1_Click);
+            // 
+            // calculateLinesToolStripMenuItem
+            // 
+            this.calculateLinesToolStripMenuItem.Name = "calculateLinesToolStripMenuItem";
+            this.calculateLinesToolStripMenuItem.Size = new System.Drawing.Size(195, 28);
+            this.calculateLinesToolStripMenuItem.Text = "Calculate lines";
+            this.calculateLinesToolStripMenuItem.Click += new System.EventHandler(this.calculateLinesToolStripMenuItem_Click);
             // 
             // LOtoolStripMenuItem2
             // 
@@ -2291,11 +2394,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2380,13 +2483,13 @@
             // saveGroupToolStripMenuItem
             // 
             this.saveGroupToolStripMenuItem.Name = "saveGroupToolStripMenuItem";
-            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.saveGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
             this.saveGroupToolStripMenuItem.Text = "Save Group";
             // 
             // loadGroupToolStripMenuItem
             // 
             this.loadGroupToolStripMenuItem.Name = "loadGroupToolStripMenuItem";
-            this.loadGroupToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.loadGroupToolStripMenuItem.Size = new System.Drawing.Size(176, 28);
             this.loadGroupToolStripMenuItem.Text = "Load Group";
             // 
             // tabControl1
@@ -3327,10 +3430,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4859,6 +4962,29 @@
             // 
             this.GenFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.GenFileDialog_FileOk);
             // 
+            // ImportFileDialog
+            // 
+            this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(0, 0);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(62, 18);
+            this.label102.TabIndex = 95;
+            this.label102.Text = "label102";
+            // 
+            // importCalcLabel
+            // 
+            this.importCalcLabel.AutoSize = true;
+            this.importCalcLabel.Location = new System.Drawing.Point(1464, 333);
+            this.importCalcLabel.Name = "importCalcLabel";
+            this.importCalcLabel.Size = new System.Drawing.Size(122, 18);
+            this.importCalcLabel.TabIndex = 96;
+            this.importCalcLabel.Text = "Calculate by lines";
+            this.importCalcLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -4879,6 +5005,8 @@
             this.contextMenuStrip5.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.importGroupBox.ResumeLayout(false);
+            this.importGroupBox.PerformLayout();
             this.menuStrip2.ResumeLayout(false);
             this.menuStrip2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
@@ -5336,6 +5464,18 @@
         private System.Windows.Forms.OpenFileDialog GenFileDialog;
         private System.Windows.Forms.Label Gradegrouphelplabel;
         private System.Windows.Forms.CheckBox gradeDirectioncheckBox;
+        private System.Windows.Forms.Button importFilebutton;
+        private System.Windows.Forms.GroupBox importGroupBox;
+        private System.Windows.Forms.CheckBox ImportcheckBox;
+        private System.Windows.Forms.TextBox importFileBox;
+        private System.Windows.Forms.Label label101;
+        private System.Windows.Forms.Button ImpFilebutton;
+        private System.Windows.Forms.OpenFileDialog ImportFileDialog;
+        private System.Windows.Forms.ToolStripMenuItem importCommentsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem commentsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem calculateLinesToolStripMenuItem;
+        private System.Windows.Forms.Label label102;
+        internal System.Windows.Forms.Label importCalcLabel;
     }
 }
 
