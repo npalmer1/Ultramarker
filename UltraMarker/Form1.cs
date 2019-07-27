@@ -9475,6 +9475,10 @@ private string Convert_Percent_To_Grade(float percent)
                                     MessageBox.Show("Percentage value error");
                                 }
                             }
+                            else if (str.StartsWith("Overall lines".Trim()))
+                            {
+                                //don't save o/a lines here
+                            }
                             else if (str.StartsWith("Overall Result".Trim()))
                             {
                                 //don't save result here
