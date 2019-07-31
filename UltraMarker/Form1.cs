@@ -9352,6 +9352,10 @@ private string Convert_Percent_To_Grade(float percent)
             {
                 importFromFile(importFileBox.Text);
             }
+            else
+            {
+                MessageBox.Show("Need to start marking first");
+            }
         }
         private void importFromFile(string filename)    //import reults from an external file
         { //starts with marked file: and ends with conatins percent:
