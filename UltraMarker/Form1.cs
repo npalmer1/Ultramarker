@@ -2762,7 +2762,20 @@ namespace UltraMarker
                 if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
                 {
                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
-                    return;
+                    
+
+                    DialogResult ret = MessageBox.Show("Do you want to copy grades from Grades tab - yes/no?", "Copy grades", MessageBoxButtons.YesNo);
+                    if (ret == DialogResult.Yes)
+                    {
+                        Copy_GradestoAssess();
+                        Show_Label("Now don't forget to Save updated Assessment before continuing!", 2000);                                         
+                    }
+                    //go back to save assessment:
+                    button3.Text = "Edit Criteria Mode";
+                    Show_GenTemplate(false);
+                    MarkingMode(false);
+                    EditStudent = false;
+                    return; //user needs to save the assessment now before continuing
                 }
                 selectLOs = false;
                 replicate_Criteria = false;
@@ -9629,6 +9642,33 @@ private string Convert_Percent_To_Grade(float percent)
             {
                 CalculateImportbyLines = false;
                 importCalcLabel.Text = "Calculate by %ages";
+            }
+        }
+
+        private void CopyGradesbutton_Click(object sender, EventArgs e)
+        {
+            DialogResult ret = MessageBox.Show("Do you want to copy grades from Grades tab to Assess tab - yes/no?", "Copy grades", MessageBoxButtons.YesNo);
+            if (ret == DialogResult.Yes)
+            {
+                Copy_GradestoAssess();
+            }
+        }
+        private void Copy_GradestoAssess()
+        {
+            try
+            {
+                //copy grades to grades list box in assessment tab
+                int A = 0;
+                listBox1.Items.Clear();
+                while (gradelist[A].grtitle != null)
+                {
+                    listBox1.Items.Add(gradelist[A].grtitle);
+                    A++;
+                }
+                listBox1.SelectedIndex = 0;
+            }
+            catch {
+                MessageBox.Show("Error copying grades"); 
             }
         }
     }
