@@ -48,6 +48,8 @@ namespace UltraMarker
             editing = false;
             Category = true;
             textBox1.Text = "";
+            listBox2.Items.Clear(); //clear comments box to make way for new category
+            textBox2.Text = ""; //clear current comment
             unsaved = true;
             showCategory(true);
 
@@ -57,8 +59,8 @@ namespace UltraMarker
         {
             savebutton.Visible = b;
             cancelbutton.Visible = b;
-            label3.Visible = b;
-            textBox1.Visible = b;
+            //label3.Visible = b;
+            //textBox1.Visible = b;
             textBox1.ReadOnly = !b;
 
             contextMenuStrip2.Enabled = !b;
@@ -82,6 +84,11 @@ namespace UltraMarker
             if (listBox2.Items.Count > 0)
             {
                 listBox2.ContextMenuStrip = contextMenuStrip2;
+                listBox2.SelectedIndex = 0;
+            }
+            if (listBox1.Items.Count > 0)
+            {
+                listBox1.SelectedIndex = 0;
             }
         }
 
@@ -223,11 +230,11 @@ namespace UltraMarker
         {
             savebutton.Visible = b;
             cancelbutton.Visible = b;
-            label3.Visible = b;
-            textBox1.Visible = b;
+            //label3.Visible = b;
+            //textBox1.Visible = b;
             textBox1.ReadOnly = true;
-            textBox2.Visible = b;
-            label4.Visible = b;
+            //textBox2.Visible = b;
+            //label4.Visible = b;
             textBox2.ReadOnly = !b;
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
@@ -356,6 +363,11 @@ namespace UltraMarker
 
                 }
             }
+           
+                if (listBox1.Items.Count >0 )
+                {
+                    textBox1.Text = listBox1.Text; //update comment
+                }            
 
         }
 
@@ -512,8 +524,8 @@ namespace UltraMarker
             }
             cancelbutton.Visible = false;
             savebutton.Visible = false;
-            textBox1.Visible = false;
-            label3.Visible = false;
+            //textBox1.Visible = false;
+            //label3.Visible = false;
             editing = false;
             showCategory(false);
             showComment(false);
@@ -529,6 +541,11 @@ namespace UltraMarker
                 listBox1.Items.Clear();
                 listBox2.Items.Clear();
             }
+        }
+
+        private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            textBox2.Text = listBox2.Text;
         }
     }
 }
