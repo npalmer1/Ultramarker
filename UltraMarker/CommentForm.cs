@@ -162,7 +162,7 @@ namespace UltraMarker
                     {
                         if (listBox1.SelectedIndex > -1)
                         {
-                            listBox1.Items.RemoveAt(listBox1.SelectedIndex);
+                            
                             if (commentlist.Count > 0)
                             {
                                 for (int i = 0; i < commentlist.Count; i++)
@@ -178,6 +178,13 @@ namespace UltraMarker
                                     }
                                 }
                             }
+                            int s = listBox1.SelectedIndex;
+                            if (listBox1.Items.Count > 1)
+                            {
+                                listBox1.SelectedIndex = listBox1.Items.Count - 2;
+                            }
+                        
+                            listBox1.Items.RemoveAt(s);
                         }
                     }
                     textBox1.Text = "";
@@ -186,7 +193,7 @@ namespace UltraMarker
             catch (System.Exception excep)
             {
                 StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
 
@@ -311,14 +318,17 @@ namespace UltraMarker
                     {
                         if (listBox2.SelectedIndex > -1)
                         {
-                            listBox2.Items.RemoveAt(listBox1.SelectedIndex);
+                           
                             if (commentlist.Count > 0)
                             {
                                 commentlist.RemoveAt(listBox2.SelectedIndex);                              
                             }
+                            listBox2.Items.RemoveAt(listBox2.SelectedIndex);
+                            listBox2.SelectedIndex = listBox2.Items.Count - 1;
+                            MessageBox.Show("Now save these comments from the File menu");
                         }
                     }
-                    textBox2.Text = "";
+                   // textBox2.Text = "";
                 }
             }
             catch (System.Exception excep)
@@ -441,6 +451,8 @@ namespace UltraMarker
            
             listBox1.Items.Clear();
             listBox2.Items.Clear();
+            textBox1.Text = "";
+            textBox2.Text = "";
             commentlist.Clear();
             makingChanges = true;
             // read comments from file:
@@ -487,7 +499,14 @@ namespace UltraMarker
                     sw.Close();
                 }                
                 makingChanges = false;
-                listBox1.SelectedIndex = 0;
+                if (listBox1.Items.Count > 0)
+                {
+                    listBox1.SelectedIndex = 0;
+                }
+                else
+                {
+                    MessageBox.Show("Comments file appears to be empty");
+                }
                 if (listBox2.Items.Count > 0)
                 {
                     listBox2.ContextMenuStrip = contextMenuStrip2;
