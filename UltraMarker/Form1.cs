@@ -6700,6 +6700,10 @@ private string Convert_Percent_To_Grade(float percent)
             addcommentForm.ShowDialog();
 
             crComment[SCriteria, s, Session] = addcommentForm.Passvalue[1];
+            if (addcommentForm.ComFile != CommentFile && addcommentForm.ComFile != null)
+            {
+                CommentFile = addcommentForm.ComFile;
+            }
 
         }
 
@@ -8457,6 +8461,10 @@ private string Convert_Percent_To_Grade(float percent)
                     if (CommentStr != null || CommentStr != "")
                     {
                         textBox10.Text = textBox10.Text.Insert(textBox10.SelectionStart + textBox10.SelectionLength, CommentStr);
+                    }
+                    if (CommentsForm.CFile != CommentFile && CommentsForm.CFile != null)
+                    {
+                        CommentFile = CommentsForm.CFile;
                     }
                 }
                 else

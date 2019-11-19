@@ -398,7 +398,8 @@ namespace UltraMarker
                     }
                     sw.Close();
                     //unsaved = false;
-                 }                                              
+                 }
+                this.CFile = file;
             }
             catch (System.Exception excep)
             {
@@ -491,6 +492,7 @@ namespace UltraMarker
                 {
                     listBox2.ContextMenuStrip = contextMenuStrip2;
                 }
+                this.CFile = file;
                
             }
             catch (System.Exception excep)

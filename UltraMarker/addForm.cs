@@ -77,10 +77,12 @@ namespace UltraMarker
                     CForm.CFile = ComFile;
                     CForm.ShowDialog();
                     CommentStr = CForm.Passvalue;
-                    if (CommentStr != null || CommentStr != "")
+                    if (CommentStr != null && CommentStr != "")
                     {
                         textBox1.Text = textBox1.Text.Insert(textBox1.SelectionStart + textBox1.SelectionLength, CommentStr);
+
                     }
+                    ComFile = CForm.CFile;
                 }
                 else
                 {
@@ -89,6 +91,7 @@ namespace UltraMarker
             }
             catch
             {
+                MessageBox.Show("Error");
             }
             
         }
