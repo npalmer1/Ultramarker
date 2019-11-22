@@ -4209,15 +4209,25 @@ namespace UltraMarker
                                     //MessageBox.Show("Need to mark all of the work first!");
                                     //return false;
                                 }
+                                bool perc = false;
                                 if (m1.EndsWith("%"))
                                 {
                                     m1 = m1.Substring(0, m1.Length - 1) + " %";
+                                    perc = true;
                                 }
                                 if (feedOptions.CriteriaGrade)
                                 {
                                     str = str + italS + "Grade for this criteria: " + italE + " " + m1 + nl;
                                 }
-                                str2 = Find_Grade_Comments(Marks[i, k, s]);
+                                if (perc == false && feedOptions.CriteriaPercent)
+                                {
+                                    try
+                                    {
+                                        str = str + italS + "Equivalent %: " + italE + " " + Find_Percent(m1).ToString() + nl;
+                                    }
+                                    catch { }
+                            }
+                            str2 = Find_Grade_Comments(Marks[i, k, s]);
                                 if ((str.Length > 1 && feedOptions.generic) && (!minusone))
                                 {
                                     str = str + italS + "Generic description of this grade: " + italE + nl;
