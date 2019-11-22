@@ -235,6 +235,7 @@ namespace UltraMarker
             public bool CriteriaGrade;
             public bool subdescription;
             public bool includeheader;
+            public bool CriteriaPercent;
         }
         feedbackoptionstruct feedOptions;
        
@@ -475,6 +476,7 @@ namespace UltraMarker
             feedOptions.CriteriaGrade = b;
             feedOptions.subdescription = b;
             feedOptions.includeheader = b;
+            feedOptions.CriteriaPercent = b;
         }
 
         private void Reset_Selected(bool b) //reset selected criteria and sub criteria
@@ -3741,6 +3743,7 @@ namespace UltraMarker
                             {
                                 overridecheckBox.Checked = true;
                                 OverrideGradelabel.Visible = true;
+                                OverrideGradelabel.Text = str3;
                                 Overriedlabel.Visible = true;
                             }
                         }
@@ -4098,14 +4101,24 @@ namespace UltraMarker
                                 {
                                     m1 = "";
                                 }
+                                bool perc = false;
                                 if (m1.EndsWith("%"))
                                 {
                                     m1 = m1.Substring(0, m1.Length - 1) + " %";
+                                    perc = true;
                                     //m1 = "Test";
                                 }
                                 if (feedOptions.CriteriaGrade)
                                 {
                                     str = str + italS + "Grade for this criteria: " + italE + " " + m1 + nl;
+                                }
+                                if (perc == false && feedOptions.CriteriaPercent)
+                                {
+                                    try
+                                    {
+                                        str = str + italS + "Equivalent %: " + italE + " " + Find_Percent(m1).ToString() + nl;
+                                    }
+                                    catch { }
                                 }
                                
                                 str2 = Find_Grade_Comments(Marks[i, j, s]);
@@ -4968,6 +4981,10 @@ private string Convert_Percent_To_Grade(float percent)
                 if (dialogResult == DialogResult.Yes)
                 {
                     Clear_Form_Data();
+                    overridecheckBox.Checked = false; //stop overriding student grade
+                    OverrideGradelabel.Visible = false;
+                    Overriedlabel.Visible = false;
+                       
                     if (CriteriaSelectionType > 1)
                     {
                         Reset_Selected(true);
@@ -5396,7 +5413,8 @@ private string Convert_Percent_To_Grade(float percent)
                     if (!feedOptions.CriteriaGrade) { c[11] = '0'; }
                     if (!feedOptions.subdescription) { c[12] = '0'; }
                     if (!feedOptions.includeheader) { c[13] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13]);
+                    if (!feedOptions.CriteriaPercent) { c[14] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5752,6 +5770,7 @@ private string Convert_Percent_To_Grade(float percent)
                                     c[11] = str3[11];
                                     c[12] = str3[12];
                                     c[13] = str3[13];
+                                    c[14] = str3[14];
                                 }
                                 catch
                                 {
@@ -5844,6 +5863,7 @@ private string Convert_Percent_To_Grade(float percent)
                         if (c[11] == '0') { feedOptions.CriteriaGrade = false; }
                         if (c[12] == '0') { feedOptions.subdescription = false; }
                         if (c[13] == '0') { feedOptions.includeheader = false; }
+                        if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
 
                     } //using
                     LoadGradeListbox();
@@ -6703,6 +6723,7 @@ private string Convert_Percent_To_Grade(float percent)
             FeedForm.Passvalue[11] = feedOptions.CriteriaGrade;
             FeedForm.Passvalue[12] = feedOptions.subdescription;
             FeedForm.Passvalue[13] = feedOptions.includeheader;
+            FeedForm.Passvalue[14] = feedOptions.CriteriaPercent;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -6719,6 +6740,7 @@ private string Convert_Percent_To_Grade(float percent)
             feedOptions.CriteriaGrade = FeedForm.Passvalue[11];
             feedOptions.subdescription = FeedForm.Passvalue[12];
             feedOptions.includeheader = FeedForm.Passvalue[13];
+            feedOptions.CriteriaPercent = FeedForm.Passvalue[14];
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -9124,13 +9146,13 @@ private string Convert_Percent_To_Grade(float percent)
         {
             if (overridecheckBox.Checked && EditStudent)
             {
-                treeView2.Enabled = false;
+                //treeView2.Enabled = false;
                 Overriedlabel.Visible = true;
                 OverrideGradelabel.Visible = true;
             }
             else
             {
-                treeView2.Enabled = true;
+                //treeView2.Enabled = true;
                 Overriedlabel.Visible = false;
                 OverrideGradelabel.Visible = false;
             }
