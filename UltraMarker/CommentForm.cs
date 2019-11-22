@@ -537,12 +537,14 @@ namespace UltraMarker
                 }
                 if (dialogResult == DialogResult.No)
                 {
+                    //Passvalue = "";
                         return;
                 }
                 else
                 { Passvalue = CFile; }//filename
                
             }
+            Passvalue = ""; //closing so don't pass back a comment
             cancelbutton.Visible = false;
             savebutton.Visible = false;
             //textBox1.Visible = false;

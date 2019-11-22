@@ -2746,7 +2746,7 @@ namespace UltraMarker
 
         private void button3_Click(object sender, EventArgs e)
         {   //edit criteria or mark student (or generate criteria)
-            if (button3.Text.StartsWith("Gen"))
+            if (button3.Text.StartsWith("Gen") || (button3.Text.StartsWith("Edit") && !showGenAssessToolStripMenuItem.Checked))
             {
                 SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
@@ -2826,8 +2826,8 @@ namespace UltraMarker
                 Show_Label("Don't forget to Save Marks!", 2000);
                
             }
-            else //if editting and now switch to generating assessment mode
-            {
+            else if (showGenAssessToolStripMenuItem.Checked ) //if editting and now switch to generating assessment mode
+            {               
                 listBox1.SelectionMode = SelectionMode.MultiSimple;
                 RecoverSelected();
                 button3.Text = "Gen Assess Mode";
@@ -2934,7 +2934,7 @@ namespace UltraMarker
                 //checkWbutton.Visible = !b;
             }
 
-            if (allowoverride)
+            if (allowoverride) //of % in individual criteria
             {
                 overrideBox.Visible = b;
                 overrideButton.Visible = b;
@@ -2944,7 +2944,12 @@ namespace UltraMarker
                 overrideBox.Visible = false;
                 overrideButton.Visible = false;
             }
-            overridecheckBox.Visible = b;
+            overridecheckBox.Visible = b; //override overall grade
+            if (b && overridecheckBox.Checked)
+            {
+                Overriedlabel.Visible = true;
+                OverrideGradelabel.Visible = true;
+            }
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -2965,9 +2970,9 @@ namespace UltraMarker
                     }
                     if (listBox1.SelectedIndex > -1)
                     {
-                        if (overridecheckBox.Checked)
+                        if (overridecheckBox.Checked) //override overall grade
                         {
-                            label18.Text = listBox1.SelectedItem.ToString();
+                            OverrideGradelabel.Text = listBox1.SelectedItem.ToString();
                             return;
                         }
                         if (CriteriaSelected)
@@ -3313,7 +3318,8 @@ namespace UltraMarker
                                             sw.WriteLine(crComment[i, k, s]);
                                             sw.WriteLine("endComment:");
                                             PC = Find_Percent(Marks[i, k, s]);
-                                            sw.WriteLine("Percentage: " + PC);
+                                            sw.WriteLine("Percentage: " + PC);                                           
+                                            
                                         }
                                     }
                                     else
@@ -3344,15 +3350,15 @@ namespace UltraMarker
                         {
                             f = f / SessionS; //only if sessions are equally weighted
                         }
-                        if (overridecheckBox.Checked)
+                        if (overridecheckBox.Checked) //if allowed to override whole grade for assessment
                         {
-                            if (label18.Text.Trim().LastIndexOf("%") == label18.Text.Length -1)
+                            if (OverrideGradelabel.Text.Trim().LastIndexOf("%") == OverrideGradelabel.Text.Length -1)
                             {
-                                PC = label18.Text.TrimEnd('%');
+                                PC = OverrideGradelabel.Text.TrimEnd('%');
                             }
                             else
                             {
-                                PC = Find_Percent(label18.Text.Trim());
+                                PC = Find_Percent(OverrideGradelabel.Text.Trim());
                             }
                             f = Convert.ToSingle(PC);
                         }
@@ -3363,6 +3369,12 @@ namespace UltraMarker
                         label22.Visible = true;
                         label21.Visible = true;
                         sw.WriteLine("Equivalent grade: " + Convert_Percent_To_Grade(f));
+                        string org = OverrideGradelabel.Text.Trim();
+                        if (!overridecheckBox.Checked)
+                        {
+                            org = "";
+                        }
+                        sw.WriteLine("ORG: " + org);
                         sw.WriteLine();
 
                         sw.WriteLine("General feedback: ");
@@ -3409,6 +3421,7 @@ namespace UltraMarker
             bool foundgrade = false;
             bool foundcriteria = false;
             bool foundsession = false;
+            
             loading = true;
             try
             {
@@ -3721,6 +3734,15 @@ namespace UltraMarker
                             label22.Text = str3;
                             label22.Visible = true;
                             label21.Visible = true;
+                        }
+                        else if (str.StartsWith("ORG"))
+                        {
+                            if (str3 != null && str3.Length > 0)
+                            {
+                                overridecheckBox.Checked = true;
+                                OverrideGradelabel.Visible = true;
+                                Overriedlabel.Visible = true;
+                            }
                         }
 
                     }
@@ -4223,7 +4245,9 @@ namespace UltraMarker
                         }
                     }
                     fl = Generate_Overall_Mark(s);
-                    
+                   
+
+
                     if (SessionType > 0)
                     {
                         str = str + nl + "Overall marks for session " + (s + 1).ToString() + ": " + fl.ToString() + " %" + nl;
@@ -4231,6 +4255,8 @@ namespace UltraMarker
 
                     f = f + fl;
                 } //sessions
+
+
                 if ((textBox10.Text.Trim().Length > 1) && feedOptions.additional)
                 {
                     str = str + "-------" + nl;
@@ -4241,34 +4267,33 @@ namespace UltraMarker
                 str = str + "-------------------------------" + nl;
 
 
-                if (feedOptions.percent)
-                {
+               
                     if (overridecheckBox.Checked)
                     {
                         string tmp = "";
-                        if (label18.Text.Trim().IndexOf("%") == label18.Text.Length -1)
+                        if (OverrideGradelabel.Text.Trim().IndexOf("%") == label18.Text.Length -1)
                         {
-                            tmp = label18.Text.TrimEnd('%');
+                            tmp = OverrideGradelabel.Text.TrimEnd('%');
                         }
                         else
                         { 
-                            tmp = Find_Percent(label18.Text.Trim());
+                            tmp = Find_Percent(OverrideGradelabel.Text.Trim());
                         }
                         f = Convert.ToSingle(tmp);
-                        str = str + boldS + "Overall Mark " + tmp + " %" + boldE + nl;
+                        if (feedOptions.percent) { str = str + boldS + "Overall Mark " + tmp + " %" + boldE + nl; }
                     }
                     else if (SessionType > 0)
                     {
 
                         f = f / SessionCount;
-                        str = str + boldS + "Overall mark for all sessions in %: " + Convert.ToString(f) + boldE + nl;
+                        if (feedOptions.percent) { str = str + boldS + "Overall mark for all sessions in %: " + Convert.ToString(f) + boldE + nl; }
                     }
                     else
                     {
                         f = fl;
-                        str = str + boldS + "Overall Mark " + Convert.ToString(f) + " %" + boldE + nl;
+                        if (feedOptions.percent) { str = str + boldS + "Overall Mark " + Convert.ToString(f) + " %" + boldE + nl; }
                     }
-                }
+                
                 
                 if (feedOptions.grade)
                 {
@@ -5392,6 +5417,12 @@ private string Convert_Percent_To_Grade(float percent)
                     }
                     else { ch = "false"; }
                     sw.WriteLine("Import comments?: " + ch);
+                    if (showGenAssessToolStripMenuItem.Checked)
+                    {
+                        ch = "true";
+                    }
+                    else { ch = "false"; }
+                    sw.WriteLine("ShowGenAssess?: " + ch);
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -5777,6 +5808,15 @@ private string Convert_Percent_To_Grade(float percent)
                                 }
                                 else
                                 { AllowImpComment = false; }
+                            }
+                            else if (str.StartsWith("ShowGenAssess"))
+                            {
+                                if (str.Contains("true"))
+                                {
+                                    showGenAssessToolStripMenuItem.Checked = true;
+                                }
+                                else
+                                { showGenAssessToolStripMenuItem.Checked = false; }
                             }
 
                         }
@@ -9085,10 +9125,14 @@ private string Convert_Percent_To_Grade(float percent)
             if (overridecheckBox.Checked && EditStudent)
             {
                 treeView2.Enabled = false;
+                Overriedlabel.Visible = true;
+                OverrideGradelabel.Visible = true;
             }
             else
             {
                 treeView2.Enabled = true;
+                Overriedlabel.Visible = false;
+                OverrideGradelabel.Visible = false;
             }
         }
        
@@ -9677,6 +9721,29 @@ private string Convert_Percent_To_Grade(float percent)
             }
             catch {
                 MessageBox.Show("Error copying grades"); 
+            }
+        }
+
+        private void showGenAssessToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!showGenAssessToolStripMenuItem.Checked)
+            {
+                if (button3.Text.StartsWith("Gen"))
+                {
+                    button3_Click(sender, e);
+                }
+            }
+        }
+
+        private void showGenAssessToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!showGenAssessToolStripMenuItem.Checked)
+            {
+                showGenAssessToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                showGenAssessToolStripMenuItem.Checked = false;
             }
         }
     }

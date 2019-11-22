@@ -170,6 +170,7 @@
             this.importCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showGenAssessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LOtoolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -457,6 +458,8 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.Overriedlabel = new System.Windows.Forms.Label();
+            this.OverrideGradelabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -696,6 +699,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.OverrideGradelabel);
+            this.tabPage2.Controls.Add(this.Overriedlabel);
             this.tabPage2.Controls.Add(this.importCalcLabel);
             this.tabPage2.Controls.Add(this.importGroupBox);
             this.tabPage2.Controls.Add(this.ImportcheckBox);
@@ -918,7 +923,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(1056, 70);
+            this.templatetextBox.Location = new System.Drawing.Point(1048, 69);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(353, 27);
             this.templatetextBox.TabIndex = 87;
@@ -957,9 +962,10 @@
             // overridecheckBox
             // 
             this.overridecheckBox.AutoSize = true;
-            this.overridecheckBox.Location = new System.Drawing.Point(355, 534);
+            this.overridecheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overridecheckBox.Location = new System.Drawing.Point(345, 539);
             this.overridecheckBox.Name = "overridecheckBox";
-            this.overridecheckBox.Size = new System.Drawing.Size(166, 22);
+            this.overridecheckBox.Size = new System.Drawing.Size(187, 24);
             this.overridecheckBox.TabIndex = 82;
             this.overridecheckBox.Text = "Select Overall Grade";
             this.overridecheckBox.UseVisualStyleBackColor = true;
@@ -1486,7 +1492,7 @@
             // 
             this.label22.BackColor = System.Drawing.Color.GreenYellow;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(1144, 145);
+            this.label22.Location = new System.Drawing.Point(1216, 148);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(55, 26);
@@ -1498,7 +1504,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(932, 145);
+            this.label21.Location = new System.Drawing.Point(1018, 151);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(195, 20);
@@ -1633,7 +1639,7 @@
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.Aqua;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(821, 133);
+            this.label18.Location = new System.Drawing.Point(742, 133);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(58, 18);
@@ -1657,7 +1663,7 @@
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.MintCream;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(573, 132);
+            this.label16.Location = new System.Drawing.Point(489, 131);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(245, 20);
@@ -1799,7 +1805,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(1271, 153);
+            this.label7.Location = new System.Drawing.Point(1285, 151);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(216, 20);
@@ -1919,7 +1925,8 @@
             this.overrideToolStripMenuItem,
             this.criteriaSelectionToolStripMenuItem,
             this.addAssessmentCodeToolStripMenuItem,
-            this.importCommentsToolStripMenuItem});
+            this.importCommentsToolStripMenuItem,
+            this.showGenAssessToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(83, 27);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -1927,49 +1934,49 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
             // weightingToolStripMenuItem
             // 
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
-            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.overrideToolStripMenuItem.Text = "Override";
             this.overrideToolStripMenuItem.Click += new System.EventHandler(this.overrideToolStripMenuItem_Click);
             // 
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -1979,7 +1986,7 @@
             this.commentsToolStripMenuItem1,
             this.calculateLinesToolStripMenuItem});
             this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
-            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(215, 28);
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.importCommentsToolStripMenuItem.Text = "Import Results";
             // 
             // commentsToolStripMenuItem1
@@ -1995,6 +2002,16 @@
             this.calculateLinesToolStripMenuItem.Size = new System.Drawing.Size(195, 28);
             this.calculateLinesToolStripMenuItem.Text = "Calculate lines";
             this.calculateLinesToolStripMenuItem.Click += new System.EventHandler(this.calculateLinesToolStripMenuItem_Click);
+            // 
+            // showGenAssessToolStripMenuItem
+            // 
+            this.showGenAssessToolStripMenuItem.Checked = true;
+            this.showGenAssessToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.showGenAssessToolStripMenuItem.Name = "showGenAssessToolStripMenuItem";
+            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.showGenAssessToolStripMenuItem.Text = "Show Gen Assess";
+            this.showGenAssessToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showGenAssessToolStripMenuItem_CheckedChanged);
+            this.showGenAssessToolStripMenuItem.Click += new System.EventHandler(this.showGenAssessToolStripMenuItem_Click);
             // 
             // LOtoolStripMenuItem2
             // 
@@ -4987,6 +5004,28 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // Overriedlabel
+            // 
+            this.Overriedlabel.AutoSize = true;
+            this.Overriedlabel.Location = new System.Drawing.Point(851, 132);
+            this.Overriedlabel.Name = "Overriedlabel";
+            this.Overriedlabel.Size = new System.Drawing.Size(161, 18);
+            this.Overriedlabel.TabIndex = 97;
+            this.Overriedlabel.Text = "Overrride overall grade:";
+            this.Overriedlabel.Visible = false;
+            // 
+            // OverrideGradelabel
+            // 
+            this.OverrideGradelabel.AutoSize = true;
+            this.OverrideGradelabel.BackColor = System.Drawing.Color.Plum;
+            this.OverrideGradelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OverrideGradelabel.Location = new System.Drawing.Point(1037, 130);
+            this.OverrideGradelabel.Name = "OverrideGradelabel";
+            this.OverrideGradelabel.Size = new System.Drawing.Size(57, 20);
+            this.OverrideGradelabel.TabIndex = 98;
+            this.OverrideGradelabel.Text = "        ";
+            this.OverrideGradelabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5478,6 +5517,9 @@
         private System.Windows.Forms.ToolStripMenuItem calculateLinesToolStripMenuItem;
         internal System.Windows.Forms.Label importCalcLabel;
         private System.Windows.Forms.Button CopyGradesbutton;
+        private System.Windows.Forms.ToolStripMenuItem showGenAssessToolStripMenuItem;
+        private System.Windows.Forms.Label OverrideGradelabel;
+        private System.Windows.Forms.Label Overriedlabel;
     }
 }
 
