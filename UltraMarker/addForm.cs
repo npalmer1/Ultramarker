@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows.Controls;
 
 
 namespace UltraMarker
@@ -62,7 +63,7 @@ namespace UltraMarker
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+                          
         }
 
         private void textBox1_DoubleClick(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace UltraMarker
             {
                 if (File.Exists(ComFile))
                 {
-                    CForm.selectComment = true;
+                    CForm.selectComment = true; //loads form anyway
                     CForm.CFile = ComFile;
                     CForm.ShowDialog();
                     CommentStr = CForm.Passvalue;
@@ -85,9 +86,11 @@ namespace UltraMarker
                     ComFile = CForm.CFile;
                 }
                 else
-                {
-                    MessageBox.Show("No comments file selected");
+                { 
+
+                    MessageBox.Show("No comments file selected - you need to select or create one from Comments menu");
                 }
+                
             }
             catch
             {
@@ -100,5 +103,7 @@ namespace UltraMarker
         {
 
         }
+
+       
     }
 }

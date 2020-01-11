@@ -529,7 +529,7 @@ namespace UltraMarker
             {
                 if (unsaved)
                 {
-                     dialogResult = MessageBox.Show("Exit without saving comments?", "Exit", MessageBoxButtons.YesNo);
+                    dialogResult = MessageBox.Show("Exit without saving comments?", "Exit", MessageBoxButtons.YesNo);
                 }
                 else
                 {
@@ -537,14 +537,17 @@ namespace UltraMarker
                 }
                 if (dialogResult == DialogResult.No)
                 {
-                    //Passvalue = "";
-                        return;
+                    Passvalue = "";
+                    return;
                 }
                 else
                 { Passvalue = CFile; }//filename
-               
+
             }
-            Passvalue = ""; //closing so don't pass back a comment
+            else
+            {
+                Passvalue = ""; //closing 
+            }
             cancelbutton.Visible = false;
             savebutton.Visible = false;
             //textBox1.Visible = false;

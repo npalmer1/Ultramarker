@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Net;
 using System.Text.RegularExpressions;
 
 //using Microsoft.Office.Core;
@@ -351,7 +352,8 @@ namespace UltraMarker
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
             this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2019                    (F1 for help)";
-            tabControl1.TabPages.Remove(tabPage3);
+            tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
+            tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             label23.Text = "";
             LOtextBox.Text = "";
             button7.Text = "Start marking student";
@@ -8499,7 +8501,7 @@ private string Convert_Percent_To_Grade(float percent)
             rtfopenFileDialog.ShowDialog();
         }
 
-        private void commentsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void commentsToolStripMenuItem_Click(object sender, EventArgs e) //comments menu
         {
             //CommentForm CommentsForm = new CommentForm();
             CommentsForm.selectComment = false;
@@ -9776,6 +9778,39 @@ private string Convert_Percent_To_Grade(float percent)
             else
             {
                 showGenAssessToolStripMenuItem.Checked = false;
+            }
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            WebSend();
+        }
+        private bool WebSend()
+        {
+            label104.Text = "";
+            try
+            {
+                // URI to post data to 
+                String uriString = textBox5.Text;
+
+                // Create a new WebClient instance.
+                WebClient myWebClient = new WebClient();
+
+               // fully qualified path of the file to be uploaded to the URI
+                string fileName = textBox6.Text;
+               
+                // Upload the file to the URI.
+                // The 'UploadFile(uriString,fileName)' method implicitly uses HTTP POST method.
+                byte[] responseArray = myWebClient.UploadFile(uriString, fileName);
+
+                // Decode and display the response.
+                label104.Text = "Response Received.The contents of the file uploaded are: {0}" + System.Text.Encoding.ASCII.GetString(responseArray);
+                return true;
+            }
+            catch
+            {
+                MessageBox.Show("Failed to post file");
+                return false;
             }
         }
     }
