@@ -351,7 +351,7 @@ namespace UltraMarker
             }
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
-            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2019                    (F1 for help)";
+            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2020                    (F1 for help)";
             tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
             tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             label23.Text = "";
@@ -7139,12 +7139,13 @@ private string Convert_Percent_To_Grade(float percent)
 
         }
 
-        private void editStripMenuItem_Click(object sender, EventArgs e)
+        private void editStripMenuItem_Click(object sender, EventArgs e) 
         {  //edit LO
             string str;
+         
             listBox2.BeginUpdate();
             if (listBox2.SelectedIndex >= 0)
-            {
+            {              
                 oldindex = listBox2.SelectedIndex;
                 //editingLO = true;
                 addLOmode = false;

@@ -58,6 +58,8 @@
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Closebutton = new System.Windows.Forms.Button();
+            this.Movebutton = new System.Windows.Forms.Button();
+            this.cancelMovebutton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -257,6 +259,7 @@
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(1299, 24);
             this.textBox2.TabIndex = 11;
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label4
             // 
@@ -337,11 +340,35 @@
             this.Closebutton.UseVisualStyleBackColor = true;
             this.Closebutton.Click += new System.EventHandler(this.Closebutton_Click);
             // 
+            // Movebutton
+            // 
+            this.Movebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Movebutton.Location = new System.Drawing.Point(11, 635);
+            this.Movebutton.Name = "Movebutton";
+            this.Movebutton.Size = new System.Drawing.Size(149, 36);
+            this.Movebutton.TabIndex = 16;
+            this.Movebutton.Text = "Move Comments";
+            this.Movebutton.UseVisualStyleBackColor = true;
+            this.Movebutton.Click += new System.EventHandler(this.Movebutton_Click);
+            // 
+            // cancelMovebutton
+            // 
+            this.cancelMovebutton.Location = new System.Drawing.Point(198, 639);
+            this.cancelMovebutton.Name = "cancelMovebutton";
+            this.cancelMovebutton.Size = new System.Drawing.Size(100, 29);
+            this.cancelMovebutton.TabIndex = 17;
+            this.cancelMovebutton.Text = "Cancel";
+            this.cancelMovebutton.UseVisualStyleBackColor = true;
+            this.cancelMovebutton.Visible = false;
+            this.cancelMovebutton.Click += new System.EventHandler(this.cancelMovebutton_Click);
+            // 
             // CommentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1323, 710);
+            this.Controls.Add(this.cancelMovebutton);
+            this.Controls.Add(this.Movebutton);
             this.Controls.Add(this.Closebutton);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -401,5 +428,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button Closebutton;
         private System.Windows.Forms.ToolStripMenuItem newCommentsToolStripMenuItem;
+        private System.Windows.Forms.Button Movebutton;
+        private System.Windows.Forms.Button cancelMovebutton;
     }
 }

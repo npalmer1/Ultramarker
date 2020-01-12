@@ -19,6 +19,8 @@ namespace UltraMarker
         public string CFile = "";
         public string CPath = "";
         bool unsaved = false;
+        bool moveItems = false;
+        string oldCategory = "";
 
         private string Nm;
 
@@ -45,6 +47,11 @@ namespace UltraMarker
 
         private void addHeadingToolStripMenuItem_Click(object sender, EventArgs e)
         { //add category to listbox1
+            if (Movebutton.Text == "Move Selected")
+            {
+                MessageBox.Show("Invalid - moving comments");
+                return;
+            }
             editing = false;
             Category = true;
             textBox1.Text = "";
@@ -62,6 +69,7 @@ namespace UltraMarker
             //label3.Visible = b;
             //textBox1.Visible = b;
             textBox1.ReadOnly = !b;
+            Movebutton.Visible = !b;
 
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
@@ -104,6 +112,7 @@ namespace UltraMarker
                 saveComment();
             }
             MessageBox.Show("Now save these comments from the File menu");
+            makingChanges = false;
         }
         private void saveCategory()
         {
@@ -120,12 +129,33 @@ namespace UltraMarker
                 if (listBox1.SelectedIndex > -1)
                 {
                     listBox1.Items[listBox1.SelectedIndex] = textBox1.Text;
+                    updateCategoryComments(textBox1.Text);
                   
                 }
             }
             showCategory(false);
         }
 
+        private void updateCategoryComments(string cat)
+        {
+            comments c;
+            for (int i =0; i < commentlist.Count; i++)
+            {
+                try
+                {
+                    if (commentlist[i].category == oldCategory)
+                    {
+                        c.comment = commentlist[i].comment;
+                        c.index = commentlist[i].index;
+                        c.category = cat;
+                        commentlist.Insert(i, c);
+                        commentlist.RemoveAt(i + 1);
+                    }
+                }
+                catch { }
+            }
+           
+        }
         
 
         private void cancelbutton_Click(object sender, EventArgs e)
@@ -151,6 +181,12 @@ namespace UltraMarker
 
         private void deleteCategory()
         {
+            if (Movebutton.Text == "Move Selected")
+            {
+                MessageBox.Show("Invalid - moving comments");
+                return;
+            }
+            Movebutton.Visible = false;
             comments c;
             c.category = listBox1.SelectedItem.ToString();
             try
@@ -195,15 +231,21 @@ namespace UltraMarker
                 StackTrace stackTrace = new StackTrace();
                 //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
+            Movebutton.Visible = true;
         }
 
         private void contextMenuStrip1_Click(object sender, EventArgs e)
         {
-            
+            if (Movebutton.Text == "Move Selected")
+            {
+                MessageBox.Show("Invalid - moving comments");
+                return;
+            }
             if (contextMenuStrip1.Items[0].Selected) //edit category
             {
                 if (listBox1.SelectedIndex > -1)
                 {
+                    oldCategory = listBox1.SelectedItem.ToString();
                     editing = true;
                     Category = true;
                     makingChanges = true;
@@ -246,6 +288,7 @@ namespace UltraMarker
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
             menuStrip1.Enabled = !b;
+            Movebutton.Visible = !b;
         }
 
         private void saveComment()
@@ -282,6 +325,11 @@ namespace UltraMarker
 
         private void contextMenuStrip2_Click(object sender, EventArgs e)
         {
+            if (Movebutton.Text == "Move Selected")
+            {
+                MessageBox.Show("Invalid - moving comments");
+                return;
+            }
             Category = false;
             if (contextMenuStrip2.Items[0].Selected) //edit comment
             {
@@ -307,6 +355,12 @@ namespace UltraMarker
 
         private void deleteComment()
         {
+            if (Movebutton.Text == "Move Selected")
+            {
+                MessageBox.Show("Invalid - moving comments");
+                return;
+            }
+            Movebutton.Visible = false;
             comments c;
             c.category = listBox1.SelectedItem.ToString();
             try
@@ -336,6 +390,7 @@ namespace UltraMarker
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
+            Movebutton.Visible = true;
         }
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
@@ -356,29 +411,35 @@ namespace UltraMarker
             this.Hide();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e) //when select categories listbox
+        {
+            updateCategoryListBox();
+        }
+        private void updateCategoryListBox()
         {
             if (!makingChanges)
             {
-                listBox2.Items.Clear();
-                if (commentlist.Count > 0)
+                if (!moveItems)
                 {
-                    for (int i = 0; i < commentlist.Count; i++)
+                    listBox2.Items.Clear();
+                    if (commentlist.Count > 0)
                     {
-                        if (commentlist[i].category == listBox1.SelectedItem.ToString())
+                        for (int i = 0; i < commentlist.Count; i++)
                         {
-                            listBox2.Items.Add(commentlist[i].comment);
+                            if (commentlist[i].category == listBox1.SelectedItem.ToString())
+                            {
+                                listBox2.Items.Add(commentlist[i].comment);
+                            }
                         }
-                    }
 
+                    }
                 }
             }
-           
-                if (listBox1.Items.Count >0 )
-                {
-                    textBox1.Text = listBox1.Text; //update comment
-                }            
 
+            if (listBox1.Items.Count > 0)
+            {
+                textBox1.Text = listBox1.Text; //update comment
+            }
         }
 
         private void saveCommentsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -572,6 +633,100 @@ namespace UltraMarker
         private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBox2.Text = listBox2.Text;
+        }
+
+        private void Movebutton_Click(object sender, EventArgs e)
+        {
+            if (Movebutton.Text.Trim() == "Move Selected")
+            {
+               if (oldCategory == listBox1.SelectedItem.ToString())
+                {
+                    MessageBox.Show("Cannot move comments to same category");
+                    return;
+                }
+                MoveSelected();
+                Movebutton.Text = " Move Comments";
+                moveItems = false;
+                listBox2.SelectionMode = SelectionMode.One;
+                cancelMovebutton.Visible = false;
+            }
+            else
+            {
+                listBox2.SelectionMode = SelectionMode.MultiSimple;
+                oldCategory = listBox1.SelectedItem.ToString();
+                MessageBox.Show("Select Comments to move then select new category and hit Move Selected");
+                Movebutton.Text = "Move Selected";
+                moveItems = true; //prevent category listbox from being updated whilest moving
+                cancelMovebutton.Visible = true;
+            }
+        }
+        private void MoveSelected()
+        {
+            comments c;
+            string str = "";
+            for (int i = 0; i < listBox2.Items.Count; i++)
+            {
+                if (listBox2.SelectedIndices.Contains(i))
+                {
+                  
+                    str = listBox1.SelectedItem.ToString();
+                    c.category = str;
+                    c.comment = listBox2.Items[i].ToString();
+                    c.index = listBox1.SelectedIndex;
+                    commentlist.Add(c);
+
+                }
+            }
+           
+            for (int i = listBox2.Items.Count -1; i >=0;  i--)
+            {
+                if (listBox2.SelectedIndices.Contains(i))
+                {
+                    deleteMovedComment(str, i);
+                }
+            }
+            moveItems = false;  //allow category listbox to be updated now
+            updateCategoryListBox();
+            listBox2.SelectedIndex = listBox2.Items.Count - 1;
+            MessageBox.Show("Now save these comments from the File menu");
+        }
+        private void deleteMovedComment(string str, int i)
+        {
+            comments c;
+            c.category = str;
+            try
+            {
+               
+                    if (listBox2.Items.Count > 0)
+                    {                        
+                            if (commentlist.Count > 0)
+                            {
+                                commentlist.RemoveAt(i);
+                            }
+                            listBox2.Items.RemoveAt(i);                           
+                        
+                    }
+                    // textBox2.Text = "";
+                
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cancelMovebutton_Click(object sender, EventArgs e)
+        {
+            Movebutton.Text = " Move Comments";
+            moveItems = false;
+            listBox2.SelectionMode = SelectionMode.One;
+            cancelMovebutton.Visible = false;
         }
     }
 }
