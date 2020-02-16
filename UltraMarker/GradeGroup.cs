@@ -14,7 +14,7 @@ namespace UltraMarker
 {
     public partial class GradeGroup : Form
     {
-        public static int maxGradeGroups = 10;
+        public static int maxGradeGroups = 14;
         public static int maxCriteria = 10;
         public int PeerReview;
 
@@ -133,6 +133,8 @@ namespace UltraMarker
         {
            
             richTextBox1.ReadOnly = false;
+            //richTextBox1.Text = @"{\rtf1\ansi \paperw15840\paperh12240\margl1440\margr1440\margt1440\margb1440\gutter0\ltrsect " + richTextBox1.Text + "}";
+
             ReplaceString("%Institution%", Institution);
             ReplaceString("%UnitTitle%", UnitTitle);
             ReplaceString("%UnitCode%", UnitCode);
@@ -147,7 +149,7 @@ namespace UltraMarker
             catch { }
 
             ReplaceString("%Student%", student);
-            ReplaceString("%G1%", G[0]);
+            ReplaceString("%G1%", G[0]);    //grade
             ReplaceString("%G2%", G[1]);
             ReplaceString("%G3%", G[2]);
             ReplaceString("%G4%", G[3]);
@@ -157,7 +159,11 @@ namespace UltraMarker
             ReplaceString("%G8%", G[7]);
             ReplaceString("%G9%", G[8]);
             ReplaceString("%G10%", G[9]);
-            ReplaceString("%Criteria1%", C[0]);
+            ReplaceString("%G11%", G[10]);
+            ReplaceString("%G12%", G[11]);
+            ReplaceString("%G13%", G[12]);
+            ReplaceString("%G14%", G[13]);
+            ReplaceString("%Criteria1%", C[0]); //criteria
             ReplaceString("%Criteria2%", C[1]);
             ReplaceString("%Criteria3%", C[2]);
             ReplaceString("%Criteria4%", C[3]);
@@ -168,7 +174,7 @@ namespace UltraMarker
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
            
-            ReplaceString("%CG1%", CG[0, 0]);
+            ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
             ReplaceString("%CG2%", CG[0, 1]);
             ReplaceString("%CG3%", CG[0, 2]);
             ReplaceString("%CG4%", CG[0, 3]);
@@ -178,27 +184,41 @@ namespace UltraMarker
             ReplaceString("%CG8%", CG[0, 7]);
             ReplaceString("%CG9%", CG[0, 8]);
             ReplaceString("%CG10%", CG[0, 9]);
-            ReplaceString("%CG11%", CG[1, 0]);
-            ReplaceString("%CG12%", CG[1, 1]);
-            ReplaceString("%CG13%", CG[1, 2]);
-            ReplaceString("%CG14%", CG[1, 3]);
-            ReplaceString("%CG15%", CG[1, 4]);
-            ReplaceString("%CG16%", CG[1, 5]);
-            ReplaceString("%CG17%", CG[1, 6]);
-            ReplaceString("%CG18%", CG[1, 7]);
-            ReplaceString("%CG19%", CG[1, 8]);
-            ReplaceString("%CG20%", CG[1, 9]);
-            ReplaceString("%CG21%", CG[2, 0]);
-            ReplaceString("%CG22%", CG[2, 1]);
-            ReplaceString("%CG23%", CG[2, 2]);
-            ReplaceString("%CG24%", CG[2, 3]);
-            ReplaceString("%CG25%", CG[2, 4]);
-            ReplaceString("%CG26%", CG[2, 5]);
-            ReplaceString("%CG27%", CG[2, 6]);
-            ReplaceString("%CG28%", CG[2, 7]);
-            ReplaceString("%CG29%", CG[2, 8]);
-            ReplaceString("%CG30%", CG[2, 9]);
-          
+            ReplaceString("%CG11%", CG[0, 10]);
+            ReplaceString("%CG12%", CG[0, 11]);
+            ReplaceString("%CG13%", CG[0, 12]);
+            ReplaceString("%CG14%", CG[0, 13]);
+
+            ReplaceString("%CG21%", CG[1, 0]);
+            ReplaceString("%CG22%", CG[1, 1]);
+            ReplaceString("%CG23%", CG[1, 2]);
+            ReplaceString("%CG24%", CG[1, 3]);
+            ReplaceString("%CG25%", CG[1, 4]);
+            ReplaceString("%CG26%", CG[1, 5]);
+            ReplaceString("%CG27%", CG[1, 6]);
+            ReplaceString("%CG28%", CG[1, 7]);
+            ReplaceString("%CG29%", CG[1, 8]);
+            ReplaceString("%CG30%", CG[1, 9]);
+            ReplaceString("%CG31%", CG[1, 10]);
+            ReplaceString("%CG32%", CG[1, 11]);
+            ReplaceString("%CG33%", CG[1, 12]);
+            ReplaceString("%CG34%", CG[1, 13]);
+
+            ReplaceString("%CG41%", CG[2, 0]);
+            ReplaceString("%CG42%", CG[2, 1]);
+            ReplaceString("%CG43%", CG[2, 2]);
+            ReplaceString("%CG44%", CG[2, 3]);
+            ReplaceString("%CG45%", CG[2, 4]);
+            ReplaceString("%CG46%", CG[2, 5]);
+            ReplaceString("%CG47%", CG[2, 6]);
+            ReplaceString("%CG48%", CG[2, 7]);
+            ReplaceString("%CG49%", CG[2, 8]);
+            ReplaceString("%CG50%", CG[2, 9]);
+            ReplaceString("%CG51%", CG[2, 10]);
+            ReplaceString("%CG52%", CG[2, 11]);
+            ReplaceString("%CG53%", CG[2, 12]);
+            ReplaceString("%CG54%", CG[2, 13]);
+
             ReplaceString("%Checked1%", GChecked[0, 0]);
             ReplaceString("%Checked2%", GChecked[0, 1]);
             ReplaceString("%Checked3%", GChecked[0, 2]);
@@ -209,26 +229,41 @@ namespace UltraMarker
             ReplaceString("%Checked8%", GChecked[0, 7]);
             ReplaceString("%Checked9%", GChecked[0, 8]);
             ReplaceString("%Checked10%", GChecked[0, 9]);
-            ReplaceString("%Checked11%", GChecked[1, 0]);
-            ReplaceString("%Checked12%", GChecked[1, 1]);
-            ReplaceString("%Checked13%", GChecked[1, 2]);
-            ReplaceString("%Checked14%", GChecked[1, 3]);
-            ReplaceString("%Checked15%", GChecked[1, 4]);
-            ReplaceString("%Checked16%", GChecked[1, 5]);
-            ReplaceString("%Checked17%", GChecked[1, 6]);
-            ReplaceString("%Checked18%", GChecked[1, 7]);
-            ReplaceString("%Checked19%", GChecked[1, 8]);
-            ReplaceString("%Checked20%", GChecked[1, 9]);
-            ReplaceString("%Checked21%", GChecked[2, 0]);
-            ReplaceString("%Checked22%", GChecked[2, 1]);
-            ReplaceString("%Checked23%", GChecked[2, 2]);
-            ReplaceString("%Checked24%", GChecked[2, 3]);
-            ReplaceString("%Checked25%", GChecked[2, 4]);
-            ReplaceString("%Checked26%", GChecked[2, 5]);
-            ReplaceString("%Checked27%", GChecked[2, 6]);
-            ReplaceString("%Checked28%", GChecked[2, 7]);
-            ReplaceString("%Checked29%", GChecked[2, 8]);
-            ReplaceString("%Checked30%", GChecked[2, 9]);
+            ReplaceString("%Checked11%", GChecked[0, 10]);
+            ReplaceString("%Checked12%", GChecked[0, 11]);
+            ReplaceString("%Checked13%", GChecked[0, 12]);
+            ReplaceString("%Checked14%", GChecked[0, 13]);
+
+            ReplaceString("%Checked21%", GChecked[1, 0]);
+            ReplaceString("%Checked22%", GChecked[1, 1]);
+            ReplaceString("%Checked23%", GChecked[1, 2]);
+            ReplaceString("%Checked24%", GChecked[1, 3]);
+            ReplaceString("%Checked25%", GChecked[1, 4]);
+            ReplaceString("%Checked26%", GChecked[1, 5]);
+            ReplaceString("%Checked27%", GChecked[1, 6]);
+            ReplaceString("%Checked28%", GChecked[1, 7]);
+            ReplaceString("%Checked29%", GChecked[1, 8]);
+            ReplaceString("%Checked30%", GChecked[1, 9]);
+            ReplaceString("%Checked31%", GChecked[1, 10]);
+            ReplaceString("%Checked32%", GChecked[1, 11]);
+            ReplaceString("%Checked33%", GChecked[1, 12]);
+            ReplaceString("%Checked34%", GChecked[1, 13]);
+
+            ReplaceString("%Checked41%", GChecked[2, 0]);
+            ReplaceString("%Checked42%", GChecked[2, 1]);
+            ReplaceString("%Checked43%", GChecked[2, 2]);
+            ReplaceString("%Checked44%", GChecked[2, 3]);
+            ReplaceString("%Checked45%", GChecked[2, 4]);
+            ReplaceString("%Checked46%", GChecked[2, 5]);
+            ReplaceString("%Checked47%", GChecked[2, 6]);
+            ReplaceString("%Checked48%", GChecked[2, 7]);
+            ReplaceString("%Checked49%", GChecked[2, 8]);
+            ReplaceString("%Checked50%", GChecked[2, 9]);
+            ReplaceString("%Checked51%", GChecked[2, 10]);
+            ReplaceString("%Checked52%", GChecked[2, 11]);
+            ReplaceString("%Checked53%", GChecked[2, 12]);
+            ReplaceString("%Checked54%", GChecked[2, 13]);
+          
 
             ReplaceString("%CrTitle1%", CT[0]);
             ReplaceString("%CrTitle2%", CT[1]);
@@ -240,6 +275,7 @@ namespace UltraMarker
             ReplaceString("%CrTitle8%", CT[7]);
             ReplaceString("%CrTitle7%", CT[8]);
             ReplaceString("%CrTitle8%", CT[9]);
+
             ReplaceString("%CrMark1%", CM[0]);
             ReplaceString("%CrMark2%", CM[1]);
             ReplaceString("%CrMark3%", CM[2]);
@@ -272,7 +308,7 @@ namespace UltraMarker
             string fname = "";
             saveFileDialog1.InitialDirectory = OutFilePath;
 
-            saveFileDialog1.FileName = UnitCode+ "_" + AssessNo + ".rtf";
+            saveFileDialog1.FileName = student+ "_" + AssessNo + "T.rtf"; //t for table
             saveFileDialog1.DefaultExt = ".rtf";          
             saveFileDialog1.ShowDialog();
         }
@@ -291,7 +327,7 @@ namespace UltraMarker
         {
             try
             {
-                richTextBox1.SaveFile(filename);   
+                richTextBox1.SaveFile(filename, RichTextBoxStreamType.RichText);   
                 
             }
             catch (System.Exception excep)
@@ -453,6 +489,8 @@ namespace UltraMarker
         {
             Printing_From_RichTextBox();
         }
+
+     
     }
 
 }
