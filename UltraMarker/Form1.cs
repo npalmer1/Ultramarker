@@ -138,6 +138,9 @@ namespace UltraMarker
 
         CommentForm CommentsForm = new CommentForm();
         addForm addcommentForm = new addForm();
+        addForm2 addcommentForm2 = new addForm2();
+
+        addComment addcommentX = new addComment();
 
         WeightReport weightForm = new WeightReport();
 
@@ -6757,6 +6760,10 @@ private string Convert_Percent_To_Grade(float percent)
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            addCommentsX();
+        }
+        private void addComments()
+        {
             int s = 0;
             if (CriteriaSelected)//criteria or sub-criteria selected?
             {
@@ -6778,7 +6785,30 @@ private string Convert_Percent_To_Grade(float percent)
             {
                 CommentFile = addcommentForm.ComFile;
             }
+        }
+        private void addCommentsX() //open XML add comments form - experimental version - not working
+        {
+            int s = 0;
+            if (CriteriaSelected)//criteria or sub-criteria selected?
+            {
+                s = MaxSub;
+            }
+            else
+            {
+                s = SSub;
+            }
 
+            addcommentForm2.Passvalue[0] = criteriaTitleBox.Text;
+            addcommentForm2.Passvalue[1] = crComment[SCriteria, s, Session];
+            //addcommentForm.CForm = CommentsForm;
+            addcommentForm2.ComFile = CommentFile;
+            addcommentForm2.ShowDialog();
+
+            crComment[SCriteria, s, Session] = addcommentForm2.Passvalue[1];
+            if (addcommentForm2.ComFile != CommentFile && addcommentForm2.ComFile != null)
+            {
+                CommentFile = addcommentForm2.ComFile;
+            }
         }
 
 

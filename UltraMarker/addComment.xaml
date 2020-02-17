@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="UltraMarker.addComment"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UltraMarker"
+             mc:Ignorable="d" Height="546.307" Width="762.767">
+    <Grid x:Name="addComment1" Margin="0,32,91,29.2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="44*"/>
+            <ColumnDefinition Width="437*"/>
+            <ColumnDefinition Width="310*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="Label2" Content="Additional  feedback comments just for this criteria:" HorizontalAlignment="Left" Margin="8.2,10,0,0" VerticalAlignment="Top" Width="472" Grid.ColumnSpan="2" Grid.Column="3"/>
+        <TextBox x:Name="TextBox1" Grid.ColumnSpan="2" Grid.Column="3" HorizontalAlignment="Left" Height="434" Margin="22.2,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="594" TextChanged="TextBox1_TextChanged_1" MouseDoubleClick="TextBox1_MouseDoubleClick" AcceptsReturn="True" FontSize="14"/>
+
+    </Grid>
+</UserControl>

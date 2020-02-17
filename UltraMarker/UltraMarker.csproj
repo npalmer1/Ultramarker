@@ -26,8 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <MinimumRequiredVersion>0.5.0.9</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>46</ApplicationRevision>
-    <ApplicationVersion>0.9.2.46</ApplicationVersion>
+    <ApplicationRevision>47</ApplicationRevision>
+    <ApplicationVersion>0.9.2.47</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -107,11 +107,20 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addComment.xaml.cs">
+      <DependentUpon>addComment.xaml</DependentUpon>
+    </Compile>
     <Compile Include="addForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="addForm.Designer.cs">
       <DependentUpon>addForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="addForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addForm2.Designer.cs">
+      <DependentUpon>addForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="assessForm.cs">
       <SubType>Form</SubType>
@@ -231,6 +240,9 @@
     </Compile>
     <EmbeddedResource Include="addForm.resx">
       <DependentUpon>addForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="addForm2.resx">
+      <DependentUpon>addForm2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="assessForm.resx">
       <DependentUpon>assessForm.cs</DependentUpon>
@@ -359,6 +371,12 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="addComment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
