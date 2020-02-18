@@ -42,11 +42,13 @@ namespace UltraMarker
         public string OG; // overallgrade
         public string OP; // overall mark
         public string overall; //overall comments for whole assessment
-        public string[,] GChecked = new string[maxCriteria, maxGradeGroups]; //whihc box is checked when marked?
+        public bool[,] GChecked = new bool[maxCriteria, maxGradeGroups]; //whihc box is checked when marked?
 
 
         Color c1;
         bool changesSaved = false;
+        char tick = '\u2714';
+        string nl = Environment.NewLine;
 
         private Font printFont;
         private StreamReader streamToPrint;
@@ -79,7 +81,7 @@ namespace UltraMarker
             {
                 for (int g=0; g < maxGradeGroups; g++)
                 {
-                    GChecked[i, g] = "";
+                    GChecked[i, g] = false;
                 }
             }
         }
@@ -173,7 +175,19 @@ namespace UltraMarker
             ReplaceString("%Criteria8%", C[7]);
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
-           
+
+            for (int t = 0; t < maxGradeGroups; t++)
+            {               
+                for (int c = 0; c < maxCriteria; c++)
+                {
+                    if (GChecked[c, t] || GChecked[c, t + 1])
+                    {
+                        CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
+                    }
+                }
+                t++;
+            }
+
             ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
             ReplaceString("%CG2%", CG[0, 1]);
             ReplaceString("%CG3%", CG[0, 2]);
@@ -203,6 +217,7 @@ namespace UltraMarker
             ReplaceString("%CG32%", CG[1, 11]);
             ReplaceString("%CG33%", CG[1, 12]);
             ReplaceString("%CG34%", CG[1, 13]);
+           
 
             ReplaceString("%CG41%", CG[2, 0]);
             ReplaceString("%CG42%", CG[2, 1]);
@@ -219,51 +234,7 @@ namespace UltraMarker
             ReplaceString("%CG53%", CG[2, 12]);
             ReplaceString("%CG54%", CG[2, 13]);
 
-            ReplaceString("%Checked1%", GChecked[0, 0]);
-            ReplaceString("%Checked2%", GChecked[0, 1]);
-            ReplaceString("%Checked3%", GChecked[0, 2]);
-            ReplaceString("%Checked4%", GChecked[0, 3]);
-            ReplaceString("%Checked5%", GChecked[0, 4]);
-            ReplaceString("%Checked6%", GChecked[0, 5]);
-            ReplaceString("%Checked7%", GChecked[0, 6]);
-            ReplaceString("%Checked8%", GChecked[0, 7]);
-            ReplaceString("%Checked9%", GChecked[0, 8]);
-            ReplaceString("%Checked10%", GChecked[0, 9]);
-            ReplaceString("%Checked11%", GChecked[0, 10]);
-            ReplaceString("%Checked12%", GChecked[0, 11]);
-            ReplaceString("%Checked13%", GChecked[0, 12]);
-            ReplaceString("%Checked14%", GChecked[0, 13]);
-
-            ReplaceString("%Checked21%", GChecked[1, 0]);
-            ReplaceString("%Checked22%", GChecked[1, 1]);
-            ReplaceString("%Checked23%", GChecked[1, 2]);
-            ReplaceString("%Checked24%", GChecked[1, 3]);
-            ReplaceString("%Checked25%", GChecked[1, 4]);
-            ReplaceString("%Checked26%", GChecked[1, 5]);
-            ReplaceString("%Checked27%", GChecked[1, 6]);
-            ReplaceString("%Checked28%", GChecked[1, 7]);
-            ReplaceString("%Checked29%", GChecked[1, 8]);
-            ReplaceString("%Checked30%", GChecked[1, 9]);
-            ReplaceString("%Checked31%", GChecked[1, 10]);
-            ReplaceString("%Checked32%", GChecked[1, 11]);
-            ReplaceString("%Checked33%", GChecked[1, 12]);
-            ReplaceString("%Checked34%", GChecked[1, 13]);
-
-            ReplaceString("%Checked41%", GChecked[2, 0]);
-            ReplaceString("%Checked42%", GChecked[2, 1]);
-            ReplaceString("%Checked43%", GChecked[2, 2]);
-            ReplaceString("%Checked44%", GChecked[2, 3]);
-            ReplaceString("%Checked45%", GChecked[2, 4]);
-            ReplaceString("%Checked46%", GChecked[2, 5]);
-            ReplaceString("%Checked47%", GChecked[2, 6]);
-            ReplaceString("%Checked48%", GChecked[2, 7]);
-            ReplaceString("%Checked49%", GChecked[2, 8]);
-            ReplaceString("%Checked50%", GChecked[2, 9]);
-            ReplaceString("%Checked51%", GChecked[2, 10]);
-            ReplaceString("%Checked52%", GChecked[2, 11]);
-            ReplaceString("%Checked53%", GChecked[2, 12]);
-            ReplaceString("%Checked54%", GChecked[2, 13]);
-          
+           
 
             ReplaceString("%CrTitle1%", CT[0]);
             ReplaceString("%CrTitle2%", CT[1]);

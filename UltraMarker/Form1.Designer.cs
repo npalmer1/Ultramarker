@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,8 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.Clicklabel2 = new System.Windows.Forms.Label();
+            this.Clicklabel1 = new System.Windows.Forms.Label();
             this.OverrideGradelabel = new System.Windows.Forms.Label();
             this.Overriedlabel = new System.Windows.Forms.Label();
             this.importCalcLabel = new System.Windows.Forms.Label();
@@ -432,6 +434,14 @@
             this.label89 = new System.Windows.Forms.Label();
             this.listBox4 = new System.Windows.Forms.ListBox();
             this.label88 = new System.Windows.Forms.Label();
+            this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.label104 = new System.Windows.Forms.Label();
+            this.label103 = new System.Windows.Forms.Label();
+            this.label102 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.contextMenuStrip7 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editSession = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteSession = new System.Windows.Forms.ToolStripMenuItem();
@@ -460,14 +470,6 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.tabPage10 = new System.Windows.Forms.TabPage();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label102 = new System.Windows.Forms.Label();
-            this.label103 = new System.Windows.Forms.Label();
-            this.label104 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -494,11 +496,11 @@
             this.groupBox2.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.tabPage10.SuspendLayout();
             this.contextMenuStrip7.SuspendLayout();
             this.contextMenuStrip9.SuspendLayout();
             this.contextMenuStrip10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.tabPage10.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -708,6 +710,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.Clicklabel2);
+            this.tabPage2.Controls.Add(this.Clicklabel1);
             this.tabPage2.Controls.Add(this.OverrideGradelabel);
             this.tabPage2.Controls.Add(this.Overriedlabel);
             this.tabPage2.Controls.Add(this.importCalcLabel);
@@ -806,6 +810,32 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // Clicklabel2
+            // 
+            this.Clicklabel2.AutoSize = true;
+            this.Clicklabel2.BackColor = System.Drawing.Color.Bisque;
+            this.Clicklabel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Clicklabel2.Location = new System.Drawing.Point(1220, 749);
+            this.Clicklabel2.Name = "Clicklabel2";
+            this.Clicklabel2.Size = new System.Drawing.Size(87, 20);
+            this.Clicklabel2.TabIndex = 100;
+            this.Clicklabel2.Text = "Click to edit";
+            this.Clicklabel2.Visible = false;
+            this.Clicklabel2.Click += new System.EventHandler(this.Clicklabel2_Click);
+            // 
+            // Clicklabel1
+            // 
+            this.Clicklabel1.AutoSize = true;
+            this.Clicklabel1.BackColor = System.Drawing.Color.Bisque;
+            this.Clicklabel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Clicklabel1.Location = new System.Drawing.Point(372, 749);
+            this.Clicklabel1.Name = "Clicklabel1";
+            this.Clicklabel1.Size = new System.Drawing.Size(87, 20);
+            this.Clicklabel1.TabIndex = 99;
+            this.Clicklabel1.Text = "Click to edit";
+            this.Clicklabel1.Visible = false;
+            this.Clicklabel1.Click += new System.EventHandler(this.Clicklabel1_Click);
             // 
             // OverrideGradelabel
             // 
@@ -1017,14 +1047,17 @@
             // 
             // textBox2Comments
             // 
+            this.textBox2Comments.BackColor = System.Drawing.SystemColors.Control;
             this.textBox2Comments.Location = new System.Drawing.Point(1055, 767);
             this.textBox2Comments.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2Comments.Multiline = true;
             this.textBox2Comments.Name = "textBox2Comments";
+            this.textBox2Comments.ReadOnly = true;
             this.textBox2Comments.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox2Comments.Size = new System.Drawing.Size(676, 85);
             this.textBox2Comments.TabIndex = 79;
             this.textBox2Comments.Visible = false;
+            this.textBox2Comments.DoubleClick += new System.EventHandler(this.textBox2Comments_DoubleClick);
             // 
             // textBox2nd
             // 
@@ -1563,8 +1596,9 @@
             this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
             this.textBox10.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox10.Size = new System.Drawing.Size(1017, 86);
+            this.textBox10.Size = new System.Drawing.Size(1017, 87);
             this.textBox10.TabIndex = 29;
             this.textBox10.Visible = false;
             this.textBox10.TextChanged += new System.EventHandler(this.textBox10_TextChanged);
@@ -1885,10 +1919,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2464,11 +2498,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3501,10 +3535,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4874,6 +4908,81 @@
             this.label88.TabIndex = 0;
             this.label88.Text = "Select student CSV import file:";
             // 
+            // tabPage10
+            // 
+            this.tabPage10.Controls.Add(this.label104);
+            this.tabPage10.Controls.Add(this.label103);
+            this.tabPage10.Controls.Add(this.label102);
+            this.tabPage10.Controls.Add(this.textBox6);
+            this.tabPage10.Controls.Add(this.textBox5);
+            this.tabPage10.Controls.Add(this.textBox3);
+            this.tabPage10.Controls.Add(this.button1);
+            this.tabPage10.Location = new System.Drawing.Point(4, 27);
+            this.tabPage10.Name = "tabPage10";
+            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage10.Size = new System.Drawing.Size(1774, 889);
+            this.tabPage10.TabIndex = 11;
+            this.tabPage10.Text = "Web connection";
+            this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // label104
+            // 
+            this.label104.AutoSize = true;
+            this.label104.Location = new System.Drawing.Point(283, 373);
+            this.label104.Name = "label104";
+            this.label104.Size = new System.Drawing.Size(62, 18);
+            this.label104.TabIndex = 6;
+            this.label104.Text = "label104";
+            // 
+            // label103
+            // 
+            this.label103.AutoSize = true;
+            this.label103.Location = new System.Drawing.Point(133, 271);
+            this.label103.Name = "label103";
+            this.label103.Size = new System.Drawing.Size(100, 18);
+            this.label103.TabIndex = 5;
+            this.label103.Text = "File to upload:";
+            // 
+            // label102
+            // 
+            this.label102.AutoSize = true;
+            this.label102.Location = new System.Drawing.Point(120, 136);
+            this.label102.Name = "label102";
+            this.label102.Size = new System.Drawing.Size(146, 18);
+            this.label102.TabIndex = 4;
+            this.label102.Text = "URL to upload file to:";
+            // 
+            // textBox6
+            // 
+            this.textBox6.Location = new System.Drawing.Point(301, 271);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(401, 24);
+            this.textBox6.TabIndex = 3;
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(301, 133);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(751, 24);
+            this.textBox5.TabIndex = 2;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(0, 0);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(100, 24);
+            this.textBox3.TabIndex = 1;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(282, 465);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
             // contextMenuStrip7
             // 
             this.contextMenuStrip7.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -5037,81 +5146,6 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // tabPage10
-            // 
-            this.tabPage10.Controls.Add(this.label104);
-            this.tabPage10.Controls.Add(this.label103);
-            this.tabPage10.Controls.Add(this.label102);
-            this.tabPage10.Controls.Add(this.textBox6);
-            this.tabPage10.Controls.Add(this.textBox5);
-            this.tabPage10.Controls.Add(this.textBox3);
-            this.tabPage10.Controls.Add(this.button1);
-            this.tabPage10.Location = new System.Drawing.Point(4, 27);
-            this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage10.Size = new System.Drawing.Size(1774, 889);
-            this.tabPage10.TabIndex = 11;
-            this.tabPage10.Text = "Web connection";
-            this.tabPage10.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(282, 465);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(0, 0);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 24);
-            this.textBox3.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(301, 133);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(751, 24);
-            this.textBox5.TabIndex = 2;
-            // 
-            // textBox6
-            // 
-            this.textBox6.Location = new System.Drawing.Point(301, 271);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(401, 24);
-            this.textBox6.TabIndex = 3;
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Location = new System.Drawing.Point(120, 136);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(146, 18);
-            this.label102.TabIndex = 4;
-            this.label102.Text = "URL to upload file to:";
-            // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Location = new System.Drawing.Point(133, 271);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(100, 18);
-            this.label103.TabIndex = 5;
-            this.label103.Text = "File to upload:";
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Location = new System.Drawing.Point(283, 373);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(62, 18);
-            this.label104.TabIndex = 6;
-            this.label104.Text = "label104";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5169,12 +5203,12 @@
             this.tabPage8.PerformLayout();
             this.tabPage9.ResumeLayout(false);
             this.tabPage9.PerformLayout();
+            this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
             this.contextMenuStrip7.ResumeLayout(false);
             this.contextMenuStrip9.ResumeLayout(false);
             this.contextMenuStrip10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.tabPage10.ResumeLayout(false);
-            this.tabPage10.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -5616,6 +5650,8 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label103;
         private System.Windows.Forms.Label label104;
+        private System.Windows.Forms.Label Clicklabel1;
+        private System.Windows.Forms.Label Clicklabel2;
     }
 }
 

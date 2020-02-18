@@ -17,7 +17,7 @@ namespace UltraMarker
         //public CommentForm CForm = new CommentForm();
         CommentForm CForm = new CommentForm();
         public string ComFile;
-        Control[] control1;
+        //Control[] control1;
 
         public string[] Passvalue
         {
@@ -30,7 +30,7 @@ namespace UltraMarker
         }
         private void addForm2_Load(object sender, EventArgs e)
         {
-            //addComment1.Content = Passvalue[0];
+            label2.Text = Passvalue[0];
             addComment1.TextBox1.Text = Passvalue[1];
             addComment1.ComFile = ComFile;
         }
@@ -88,6 +88,11 @@ namespace UltraMarker
         }
 
         private void elementHost1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }

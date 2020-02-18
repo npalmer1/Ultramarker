@@ -2001,7 +2001,7 @@ namespace UltraMarker
             {
                 criteriaTitleBox.Text = "";
                 textBox4.Text = "";
-                textBox7.Text = "";
+                textBox7.Text = ""; //textbox7 is text box containing "criteria to achieve grade"
                 textBox8.Text = "";
                 textBox10.Text = "";
             }
@@ -2630,7 +2630,7 @@ namespace UltraMarker
                             }
                             if (dialogResult == DialogResult.Yes)
                             {
-                                grcr[SCriteria, SSub, PrevIndex] = textBox7.Text;
+                                grcr[SCriteria, SSub, PrevIndex] = textBox7.Text; //textbox7 is text box containing "criteria to achieve grade"
                                 grcrfb[SCriteria, SSub, PrevIndex] = textBox8.Text;
                                 TChanged = false;
                             }
@@ -2686,7 +2686,7 @@ namespace UltraMarker
             }
         }
 
-        private void textBox7_TextChanged(object sender, EventArgs e)
+        private void textBox7_TextChanged(object sender, EventArgs e) //textbox7 is text box containing "criteria to achieve grade"
         {
             if (EditCriteria)
             {
@@ -2884,7 +2884,7 @@ namespace UltraMarker
                 button5.Visible = b;
                 button6.Visible = b;
                 addButton.Visible = b;
-                textBox10.Enabled = true;
+                //textBox10.Enabled = true;
                 ImportcheckBox.Visible = true;
                
             }
@@ -2894,7 +2894,7 @@ namespace UltraMarker
                 button5.Visible = b;
                 button6.Visible = false;
                 addButton.Visible = false;
-                textBox10.Enabled = false;
+                //textBox10.Enabled = false;
                 ImportcheckBox.Visible = false;
                 
             }
@@ -2906,6 +2906,7 @@ namespace UltraMarker
                 importCalcLabel.Visible = b;
             }
             textBox10.Visible = b;
+            //Clicklabel1.Visible = b;
             markModeButton.Visible = b;
             markModelabel.Visible = b;
             sittingButton.Visible = b;
@@ -4518,7 +4519,8 @@ namespace UltraMarker
                         {
                             Gg--;
                         }
-                        GForm.GChecked[Cr, Gg] =  "=== " + tick + " ===";
+                        //GForm.GChecked[Cr, Gg] =  "=== " + tick + " ===";
+                        GForm.GChecked[Cr, Gg] = true;
                         break;
                     }
                     prev = a;
@@ -5012,13 +5014,14 @@ private string Convert_Percent_To_Grade(float percent)
                     button4.Visible = false;
                     button5.Visible = true;
                     button6.Visible = false;
-                    textBox10.Enabled = false;
+                    //textBox10.Enabled = false;
                     addButton.Visible = false;
                     StudentcomboBox.Enabled = true;
                     overrideBox.Enabled = false;
                     ImportcheckBox.Visible = false;
                     importGroupBox.Visible = false;
                     importCalcLabel.Visible = false;
+                    Clicklabel1.Visible = false;
                 }
             }
             else
@@ -5028,12 +5031,13 @@ private string Convert_Percent_To_Grade(float percent)
                     MessageBox.Show("Student name is blank");
                     return;
                 }
+                Clicklabel1.Visible = true;
                 button7.Text = "Clear form/mark another";
                 button4.Visible = true;
                 button5.Visible = false;
                 button6.Visible = true;
                 //textBox10.Visible = true;
-                textBox10.Enabled = true;
+                //textBox10.Enabled = true;
                 addButton.Visible = true;
                 startMark = true;
                 StudentcomboBox.Enabled = false;
@@ -7976,6 +7980,7 @@ private string Convert_Percent_To_Grade(float percent)
             textBox2nd.Visible = t;
             label2ndComments.Visible = t;
             textBox2Comments.Visible = t;
+            Clicklabel2.Visible = t;
         }
         private void markModeButton_Click(object sender, EventArgs e)
         {
@@ -8554,7 +8559,9 @@ private string Convert_Percent_To_Grade(float percent)
 
         private void textBox10_DoubleClick(object sender, EventArgs e)
         {
-            string CommentStr;
+            textBox10 = EditSpecific(textBox10); //edit comments text box if double click on it
+
+            /*string CommentStr;
             try
             {
                 if (File.Exists(CommentFile))
@@ -8578,6 +8585,8 @@ private string Convert_Percent_To_Grade(float percent)
                 }
             }
             catch { }
+            */
+
         }
 
         private void unitFolderbutton_Click(object sender, EventArgs e)
@@ -9843,6 +9852,52 @@ private string Convert_Percent_To_Grade(float percent)
                 MessageBox.Show("Failed to post file");
                 return false;
             }
+        }
+
+        private TextBox EditSpecific(TextBox box)
+        {
+            int s = 0;
+            if (CriteriaSelected)//criteria or sub-criteria selected?
+            {
+                s = MaxSub;
+            }
+            else
+            {
+                s = SSub;
+            }
+
+            addcommentForm2.Passvalue[0] = "General Comments";
+            addcommentForm2.Passvalue[1] = box.Text;
+            //addcommentForm.CForm = CommentsForm;
+            addcommentForm2.ComFile = CommentFile;
+            addcommentForm2.ShowDialog();
+
+            box.Text = addcommentForm2.Passvalue[1];
+            if (addcommentForm2.ComFile != CommentFile && addcommentForm2.ComFile != null)
+            {
+                CommentFile = addcommentForm2.ComFile;
+            }
+            return box;
+        }
+
+        private void specificEditbutton_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void textBox2Comments_DoubleClick(object sender, EventArgs e)
+        {
+            textBox2Comments = EditSpecific(textBox2Comments); //edit comments text box if double click on it
+        }
+
+        private void Clicklabel2_Click(object sender, EventArgs e)
+        {
+            textBox2Comments = EditSpecific(textBox2Comments); //edit comments text box if double click on it
+        }
+
+        private void Clicklabel1_Click(object sender, EventArgs e)
+        {
+            textBox10 = EditSpecific(textBox10); //edit comments text box if double click on it
         }
     }
 
