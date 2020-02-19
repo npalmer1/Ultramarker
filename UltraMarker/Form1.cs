@@ -2840,7 +2840,8 @@ namespace UltraMarker
                 button3.Text = "Gen Assess Mode";
                 try
                 {
-                    listBox1.SelectedIndex = CurrentlySelected;
+                    listBox1.SelectedIndex = 0;
+                    //listBox1.SelectedIndex = -1;
                 }
                 catch
                 {
@@ -5499,6 +5500,7 @@ namespace UltraMarker
                     }
                     else { ch = "false"; }
                     sw.WriteLine("ShowGenAssess?: " + ch);
+                    sw.WriteLine("Gen template: " + templatetextBox.Text);
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -5895,7 +5897,11 @@ namespace UltraMarker
                                 else
                                 { showGenAssessToolStripMenuItem.Checked = false; }
                             }
-
+                            else if (str.StartsWith("Gen template:"))
+                            {
+                                string tmp = str.Substring(str.IndexOf("Gen template:")+("Gen template:").Length);
+                                templatetextBox.Text = tmp.Trim();
+                            }
                         }
                         if (SessionType == 0)
                         {
@@ -9942,6 +9948,11 @@ namespace UltraMarker
             {
                 textBox10 = EditSpecific(textBox10); //edit comments text box if double click on it
             }
+        }
+
+        private void templatelabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

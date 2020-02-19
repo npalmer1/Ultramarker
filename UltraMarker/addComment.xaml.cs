@@ -72,6 +72,16 @@ namespace UltraMarker
             }
         }
 
+        private void TextBox1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        /*private void TextBox1_MouseDoubleClick_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }*/
+
 
 
 
