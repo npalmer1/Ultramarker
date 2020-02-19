@@ -176,16 +176,15 @@ namespace UltraMarker
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
 
-            for (int t = 0; t < maxGradeGroups; t++)
+            for (int c = 0; c < maxCriteria; c++)
             {               
-                for (int c = 0; c < maxCriteria; c++)
+                for (int t = 0; t < maxGradeGroups; t++)
                 {
-                    if (GChecked[c, t] || GChecked[c, t + 1])
+                    if (GChecked[c, t])
                     {
                         CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
                     }
-                }
-                t++;
+                }              
             }
 
             ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade

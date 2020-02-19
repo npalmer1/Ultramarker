@@ -39,7 +39,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(123, 485);
+            this.button1.Location = new System.Drawing.Point(96, 696);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(85, 36);
             this.button1.TabIndex = 1;
@@ -49,7 +49,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(289, 485);
+            this.button2.Location = new System.Drawing.Point(305, 696);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(83, 36);
             this.button2.TabIndex = 2;
@@ -59,7 +59,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(619, 485);
+            this.button3.Location = new System.Drawing.Point(624, 696);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(99, 36);
             this.button3.TabIndex = 3;
@@ -90,10 +90,10 @@
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(-1, -2);
+            this.elementHost1.Location = new System.Drawing.Point(12, 30);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(977, 481);
-            this.elementHost1.TabIndex = 4;
+            this.elementHost1.Size = new System.Drawing.Size(1286, 651);
+            this.elementHost1.TabIndex = 7;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.addComment1;
             // 
@@ -104,13 +104,13 @@
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(977, 651);
+            this.ClientSize = new System.Drawing.Size(1373, 802);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.elementHost1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.elementHost1);
             this.Name = "addForm2";
             this.Text = "Additional Comments";
             this.Load += new System.EventHandler(this.addForm2_Load);
@@ -123,9 +123,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Integration.ElementHost elementHost1;
-        private addComment addComment1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Integration.ElementHost elementHost1;
+        private addComment addComment1;
     }
 }
