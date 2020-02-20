@@ -295,10 +295,12 @@ namespace UltraMarker
         }
         private void Save_Report(string filename)
         {
+            string filetmp = filename + ".tmp";
             try
             {
-                richTextBox1.SaveFile(filename, RichTextBoxStreamType.RichText);   
-                
+                //richTextBox1.Text = richTextBox1.Text + @"{ \landscape }";
+                richTextBox1.SaveFile(filetmp, RichTextBoxStreamType.RichText);
+                formatOrientation(filename, filetmp);
             }
             catch (System.Exception excep)
             {
@@ -308,6 +310,39 @@ namespace UltraMarker
             printFilePath = filename;
         }
 
+        private void formatOrientation(string fname, string ftemp)
+        {
+            string str = "";
+            try
+            {
+                using (StreamReader rw = new StreamReader(ftemp))
+                {
+                    using (StreamWriter nw = new StreamWriter(fname))
+                    {
+                        while (!rw.EndOfStream)
+                        {
+                            str = rw.ReadLine();
+                            if (str.StartsWith(@"{\rtf1"))
+                            {
+                                nw.WriteLine(str);
+                                nw.WriteLine(@"\paperw16838\paperh11906\margl1000\margr1440\margt1440\margb1440\gutter0\ltrsect");
+                            }
+                            else
+                            {
+                                nw.WriteLine(str);
+                            }
+                        }
+                        nw.Close();
+                    }
+                    rw.Close();
+                }
+                File.Delete(ftemp);
+            }
+            catch
+            {
+                MessageBox.Show("Problem saving file");
+            }
+        }
         private void editbutton_Click(object sender, EventArgs e)
         {
             c1 = richTextBox1.BackColor;
