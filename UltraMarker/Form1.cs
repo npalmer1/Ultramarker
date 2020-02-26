@@ -2755,6 +2755,7 @@ namespace UltraMarker
         {   //edit criteria or mark student (or generate criteria)
             if (button3.Text.StartsWith("Gen") || (button3.Text.StartsWith("Edit") && !showGenAssessToolStripMenuItem.Checked))
             {
+                highlightButton.Visible = false;
                 SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
                 try
@@ -2815,6 +2816,7 @@ namespace UltraMarker
             }
             else if (button3.Text.StartsWith("Marking"))
             {
+                highlightButton.Visible = false;
                 //SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
                 try
@@ -2834,7 +2836,8 @@ namespace UltraMarker
                
             }
             else if (showGenAssessToolStripMenuItem.Checked ) //if editting and now switch to generating assessment mode
-            {               
+            {
+                highlightButton.Visible = true;
                 listBox1.SelectionMode = SelectionMode.MultiSimple;
                 RecoverSelected();
                 button3.Text = "Gen Assess Mode";
@@ -5501,6 +5504,7 @@ namespace UltraMarker
                     else { ch = "false"; }
                     sw.WriteLine("ShowGenAssess?: " + ch);
                     sw.WriteLine("Gen template: " + templatetextBox.Text);
+                    sw.WriteLine("Tick: " + highlightButton.Text);
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -5901,6 +5905,11 @@ namespace UltraMarker
                             {
                                 string tmp = str.Substring(str.IndexOf("Gen template:")+("Gen template:").Length);
                                 templatetextBox.Text = tmp.Trim();
+                            }
+                            else if (str.StartsWith("Tick:"))
+                            {
+                                string tmp = str.Substring(str.IndexOf("Tick:") + ("Tick:").Length);
+                                highlightButton.Text = tmp.Trim();
                             }
                         }
                         if (SessionType == 0)
@@ -9261,6 +9270,16 @@ namespace UltraMarker
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())
             {
+                GForm.addtick = false;
+                GForm.highlight = false;
+                if (highlightButton.Text == "tick" || highlightButton.Text == "both")
+                {
+                    GForm.addtick = true;
+                }
+                if (highlightButton.Text == "bold" || highlightButton.Text == "both")
+                {
+                    GForm.highlight = true;
+                }
                 GForm.ShowDialog();
             }
         }
@@ -9954,10 +9973,31 @@ namespace UltraMarker
         {
 
         }
+
+        private void highlightButton_Click(object sender, EventArgs e)
+        {
+            if (highlightButton.Text == "tick")
+            {
+                highlightButton.Text = "bold";
+            }
+            else if (highlightButton.Text == "bold")
+            {
+                highlightButton.Text = "both";
+            }
+            else if (highlightButton.Text == "both")
+            {
+                highlightButton.Text = "no tick";
+            }
+            else if(highlightButton.Text == "no tick")
+            {
+                highlightButton.Text = "tick";
+            }
+        }
     }
 
        
     }
+
 
 
 

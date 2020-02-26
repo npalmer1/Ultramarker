@@ -470,6 +470,7 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.highlightButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -710,6 +711,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.highlightButton);
             this.tabPage2.Controls.Add(this.Clicklabel2);
             this.tabPage2.Controls.Add(this.Clicklabel1);
             this.tabPage2.Controls.Add(this.OverrideGradelabel);
@@ -1644,7 +1646,7 @@
             // textBox4
             // 
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(492, 175);
+            this.textBox4.Location = new System.Drawing.Point(492, 177);
             this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
@@ -5147,6 +5149,18 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // highlightButton
+            // 
+            this.highlightButton.Location = new System.Drawing.Point(939, 145);
+            this.highlightButton.Margin = new System.Windows.Forms.Padding(0);
+            this.highlightButton.Name = "highlightButton";
+            this.highlightButton.Size = new System.Drawing.Size(75, 25);
+            this.highlightButton.TabIndex = 101;
+            this.highlightButton.Text = "tick";
+            this.highlightButton.UseVisualStyleBackColor = true;
+            this.highlightButton.Visible = false;
+            this.highlightButton.Click += new System.EventHandler(this.highlightButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5653,6 +5667,7 @@
         private System.Windows.Forms.Label label104;
         private System.Windows.Forms.Label Clicklabel1;
         private System.Windows.Forms.Label Clicklabel2;
+        private System.Windows.Forms.Button highlightButton;
     }
 }
 

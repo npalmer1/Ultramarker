@@ -14,9 +14,17 @@ namespace UltraMarker
 {
     public partial class GradeGroup : Form
     {
+        string newline = " \\line ";
+        string boldS = "\\b ";
+        string boldE = " \\b0 ";
+        string italS = "\\i\\f0";
+        string italE = "\\i0";
+
         public static int maxGradeGroups = 14;
         public static int maxCriteria = 10;
         public int PeerReview;
+        public bool addtick = false;
+        public bool highlight = false;
 
         public string TemplateFile;
         public string OutputFile;
@@ -176,16 +184,32 @@ namespace UltraMarker
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
 
-            for (int c = 0; c < maxCriteria; c++)
-            {               
-                for (int t = 0; t < maxGradeGroups; t++)
+            if (highlight)
+            {
+                for (int c = 0; c < maxCriteria; c++)
                 {
-                    if (GChecked[c, t])
+                    for (int t = 0; t < maxGradeGroups; t++)
                     {
-                        CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
+                        if (GChecked[c, t])
+                        {
+                            CG[c, t] = "%BStart%" + CG[c, t] + "%BEnd%";
+                        }
                     }
-                }              
+                }
             }
+            if (addtick) //if a tick then add a tick
+            {
+                for (int c = 0; c < maxCriteria; c++)
+                {
+                    for (int t = 0; t < maxGradeGroups; t++)
+                    {
+                        if (GChecked[c, t])
+                        {
+                            CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
+                        }
+                    }
+                }
+            }                        
 
             ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
             ReplaceString("%CG2%", CG[0, 1]);
@@ -326,6 +350,23 @@ namespace UltraMarker
                             {
                                 nw.WriteLine(str);
                                 nw.WriteLine(@"\paperw16838\paperh11906\margl1000\margr1440\margt1440\margb1440\gutter0\ltrsect");
+                            }
+                            else if (str.Contains("%BStart%"))
+                            {
+                                str = str.Replace("%BStart%", boldS);
+                                //str = str.Replace("%BStart%", "\\highlight7 ");
+                                if (str.Contains("%BEnd%"))
+                                {
+                                    str = str.Replace("%BEnd%", boldE);
+                                    //str = str.Replace("%BEnd%", "\\highlight0 ");
+                                }
+                                nw.WriteLine(str);
+                            }
+                            else if (str.Contains("%BEnd%"))
+                            {
+                                str = str.Replace("%BEnd%", boldE);
+                                //str = str.Replace("%BEnd%", "\\highlight0 ");
+                                nw.WriteLine(str);
                             }
                             else
                             {
