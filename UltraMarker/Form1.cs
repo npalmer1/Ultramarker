@@ -9272,13 +9272,18 @@ namespace UltraMarker
             {
                 GForm.addtick = false;
                 GForm.highlight = false;
-                if (highlightButton.Text == "tick" || highlightButton.Text == "both")
+                GForm.bold = false;
+                if (highlightButton.Text.Contains("tick") && !highlightButton.Text.Contains("no"))
                 {
                     GForm.addtick = true;
                 }
-                if (highlightButton.Text == "bold" || highlightButton.Text == "both")
+                if (highlightButton.Text.Contains("high"))
                 {
                     GForm.highlight = true;
+                }
+                if (highlightButton.Text.Contains("bold"))
+                {
+                    GForm.bold = true;
                 }
                 GForm.ShowDialog();
             }
@@ -9978,17 +9983,25 @@ namespace UltraMarker
         {
             if (highlightButton.Text == "tick")
             {
-                highlightButton.Text = "bold";
+                highlightButton.Text = "highlight";
             }
-            else if (highlightButton.Text == "bold")
+            else if (highlightButton.Text == "highlight")
             {
-                highlightButton.Text = "both";
+                highlightButton.Text = "tick+high";
             }
-            else if (highlightButton.Text == "both")
+            else if (highlightButton.Text == "tick+high")
+            {
+                highlightButton.Text = "tick+high+bold";
+            }
+            else if (highlightButton.Text == "tick+high+bold")
+            {
+                highlightButton.Text = "high+bold";
+            }
+            else if (highlightButton.Text == "high+bold")
             {
                 highlightButton.Text = "no tick";
             }
-            else if(highlightButton.Text == "no tick")
+            else if (highlightButton.Text == "no tick")
             {
                 highlightButton.Text = "tick";
             }

@@ -16,7 +16,9 @@ namespace UltraMarker
     {
         string newline = " \\line ";
         string boldS = "\\b ";
-        string boldE = " \\b0 ";
+        string highS = "\\highlight1 ";
+        string boldE = "\\b0 ";
+        string highE = "\\highlight0 ";
         string italS = "\\i\\f0";
         string italE = "\\i0";
 
@@ -25,6 +27,7 @@ namespace UltraMarker
         public int PeerReview;
         public bool addtick = false;
         public bool highlight = false;
+        public bool bold = false;
 
         public string TemplateFile;
         public string OutputFile;
@@ -184,15 +187,16 @@ namespace UltraMarker
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
 
-            if (highlight)
+            if (highlight || bold)
             {
+               
                 for (int c = 0; c < maxCriteria; c++)
                 {
                     for (int t = 0; t < maxGradeGroups; t++)
                     {
                         if (GChecked[c, t])
                         {
-                            CG[c, t] = "%BStart%" + CG[c, t] + "%BEnd%";
+                            CG[c, t] = "%HStart%" + CG[c, t] + "%HEnd%";
                         }
                     }
                 }
@@ -343,6 +347,27 @@ namespace UltraMarker
                 {
                     using (StreamWriter nw = new StreamWriter(fname))
                     {
+                        string Start = "";
+                        string End = "";
+                        if (highlight && !bold)
+                        {
+                            Start = highS;
+                            End = highE;
+                        }
+                        else if (highlight && bold)
+                        {
+                            Start = highS + boldS;
+                            End = boldE + highE;
+                        }
+                        else if (!highlight && bold)
+                        {
+                            Start = boldS;
+                            End = boldE;
+                        }
+                        else //no highlight or bold
+                        {
+
+                        }
                         while (!rw.EndOfStream)
                         {
                             str = rw.ReadLine();
@@ -351,20 +376,20 @@ namespace UltraMarker
                                 nw.WriteLine(str);
                                 nw.WriteLine(@"\paperw16838\paperh11906\margl1000\margr1440\margt1440\margb1440\gutter0\ltrsect");
                             }
-                            else if (str.Contains("%BStart%"))
+                            else if (str.Contains("%HStart%"))
                             {
-                                str = str.Replace("%BStart%", boldS);
+                                str = str.Replace("%HStart%", Start);
                                 //str = str.Replace("%BStart%", "\\highlight7 ");
-                                if (str.Contains("%BEnd%"))
+                                if (str.Contains("%HEnd%"))
                                 {
-                                    str = str.Replace("%BEnd%", boldE);
+                                    str = str.Replace("%HEnd%", End);
                                     //str = str.Replace("%BEnd%", "\\highlight0 ");
                                 }
                                 nw.WriteLine(str);
                             }
-                            else if (str.Contains("%BEnd%"))
+                            else if (str.Contains("%HEnd%"))
                             {
-                                str = str.Replace("%BEnd%", boldE);
+                                str = str.Replace("%HEnd%", End);
                                 //str = str.Replace("%BEnd%", "\\highlight0 ");
                                 nw.WriteLine(str);
                             }

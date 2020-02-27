@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,7 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.highlightButton = new System.Windows.Forms.Button();
             this.Clicklabel2 = new System.Windows.Forms.Label();
             this.Clicklabel1 = new System.Windows.Forms.Label();
             this.OverrideGradelabel = new System.Windows.Forms.Label();
@@ -470,7 +471,6 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.highlightButton = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -812,6 +812,19 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
+            // 
+            // highlightButton
+            // 
+            this.highlightButton.BackColor = System.Drawing.Color.Gold;
+            this.highlightButton.Location = new System.Drawing.Point(887, 145);
+            this.highlightButton.Margin = new System.Windows.Forms.Padding(0);
+            this.highlightButton.Name = "highlightButton";
+            this.highlightButton.Size = new System.Drawing.Size(127, 29);
+            this.highlightButton.TabIndex = 101;
+            this.highlightButton.Text = "tick";
+            this.highlightButton.UseVisualStyleBackColor = false;
+            this.highlightButton.Visible = false;
+            this.highlightButton.Click += new System.EventHandler(this.highlightButton_Click);
             // 
             // Clicklabel2
             // 
@@ -1922,10 +1935,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2501,11 +2514,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3538,10 +3551,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5148,18 +5161,6 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
-            // 
-            // highlightButton
-            // 
-            this.highlightButton.Location = new System.Drawing.Point(939, 145);
-            this.highlightButton.Margin = new System.Windows.Forms.Padding(0);
-            this.highlightButton.Name = "highlightButton";
-            this.highlightButton.Size = new System.Drawing.Size(75, 25);
-            this.highlightButton.TabIndex = 101;
-            this.highlightButton.Text = "tick";
-            this.highlightButton.UseVisualStyleBackColor = true;
-            this.highlightButton.Visible = false;
-            this.highlightButton.Click += new System.EventHandler(this.highlightButton_Click);
             // 
             // Form1
             // 
