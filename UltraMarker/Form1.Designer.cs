@@ -471,6 +471,7 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.Ticklabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -711,6 +712,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.Controls.Add(this.Ticklabel);
             this.tabPage2.Controls.Add(this.highlightButton);
             this.tabPage2.Controls.Add(this.Clicklabel2);
             this.tabPage2.Controls.Add(this.Clicklabel1);
@@ -816,7 +818,7 @@
             // highlightButton
             // 
             this.highlightButton.BackColor = System.Drawing.Color.Gold;
-            this.highlightButton.Location = new System.Drawing.Point(887, 145);
+            this.highlightButton.Location = new System.Drawing.Point(1022, 138);
             this.highlightButton.Margin = new System.Windows.Forms.Padding(0);
             this.highlightButton.Name = "highlightButton";
             this.highlightButton.Size = new System.Drawing.Size(127, 29);
@@ -1898,7 +1900,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(488, 153);
+            this.label6.Location = new System.Drawing.Point(481, 154);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(335, 20);
@@ -5162,6 +5164,18 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // Ticklabel
+            // 
+            this.Ticklabel.AutoSize = true;
+            this.Ticklabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ticklabel.ForeColor = System.Drawing.Color.Crimson;
+            this.Ticklabel.Location = new System.Drawing.Point(842, 145);
+            this.Ticklabel.Name = "Ticklabel";
+            this.Ticklabel.Size = new System.Drawing.Size(189, 17);
+            this.Ticklabel.TabIndex = 102;
+            this.Ticklabel.Text = "Option for highlighted grade:";
+            this.Ticklabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -5669,6 +5683,7 @@
         private System.Windows.Forms.Label Clicklabel1;
         private System.Windows.Forms.Label Clicklabel2;
         private System.Windows.Forms.Button highlightButton;
+        private System.Windows.Forms.Label Ticklabel;
     }
 }
 

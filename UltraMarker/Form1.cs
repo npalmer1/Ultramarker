@@ -2756,6 +2756,7 @@ namespace UltraMarker
             if (button3.Text.StartsWith("Gen") || (button3.Text.StartsWith("Edit") && !showGenAssessToolStripMenuItem.Checked))
             {
                 highlightButton.Visible = false;
+                Ticklabel.Visible = false;
                 SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
                 try
@@ -2817,6 +2818,7 @@ namespace UltraMarker
             else if (button3.Text.StartsWith("Marking"))
             {
                 highlightButton.Visible = false;
+                Ticklabel.Visible = false;
                 //SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
                 try
@@ -2838,6 +2840,7 @@ namespace UltraMarker
             else if (showGenAssessToolStripMenuItem.Checked ) //if editting and now switch to generating assessment mode
             {
                 highlightButton.Visible = true;
+                Ticklabel.Visible = true;
                 listBox1.SelectionMode = SelectionMode.MultiSimple;
                 RecoverSelected();
                 button3.Text = "Gen Assess Mode";
