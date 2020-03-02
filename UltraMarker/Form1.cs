@@ -294,6 +294,7 @@ namespace UltraMarker
         {            
             string str = "";
             feedOptions.includeheader = true;
+           
             if (RunningPlatform() == Platform.Windows)
             {
                 slash = "\\";
@@ -5043,6 +5044,8 @@ namespace UltraMarker
                 DialogResult dialogResult = MessageBox.Show("This will delete form data (you should save your marks first) - do you wish to clear form Yes/No?", "Clear Form", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    Markerlabel.Visible = false;
+                    MarkertextBox.Visible = false;
                     Clear_Form_Data();
                     overridecheckBox.Checked = false; //stop overriding student grade
                     OverrideGradelabel.Visible = false;
@@ -5077,6 +5080,8 @@ namespace UltraMarker
                     MessageBox.Show("Student name is blank");
                     return;
                 }
+                Markerlabel.Visible = true;
+                MarkertextBox.Visible = true;
                 Clicklabel1.Visible = true;
                 button7.Text = "Clear form/mark another";
                 button4.Visible = true;
@@ -5508,6 +5513,7 @@ namespace UltraMarker
                     sw.WriteLine("ShowGenAssess?: " + ch);
                     sw.WriteLine("Gen template: " + templatetextBox.Text);
                     sw.WriteLine("Tick: " + highlightButton.Text);
+                    sw.WriteLine("Marker: " + MarkertextBox.Text);
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -5913,6 +5919,11 @@ namespace UltraMarker
                             {
                                 string tmp = str.Substring(str.IndexOf("Tick:") + ("Tick:").Length);
                                 highlightButton.Text = tmp.Trim();
+                            }
+                            else if (str.StartsWith("Marker:"))
+                            {
+                                string tmp = str.Substring(str.IndexOf("Marker:") + ("Marker:").Length);
+                               MarkertextBox.Text = tmp.Trim();
                             }
                         }
                         if (SessionType == 0)
@@ -9315,6 +9326,7 @@ namespace UltraMarker
           
             GForm.AssessNo = ACodeBox.Text;
             GForm.AssessTitle = assessTBox.Text;
+            GForm.Marker = MarkertextBox.Text;
             
             int grade = 0;
             int counter = 0;
@@ -9982,6 +9994,7 @@ namespace UltraMarker
 
         }
 
+
         private void highlightButton_Click(object sender, EventArgs e)
         {
             if (highlightButton.Text == "tick")
@@ -10009,6 +10022,8 @@ namespace UltraMarker
                 highlightButton.Text = "tick";
             }
         }
+
+       
     }
 
        

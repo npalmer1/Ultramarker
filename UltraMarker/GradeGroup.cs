@@ -54,6 +54,7 @@ namespace UltraMarker
         public string OP; // overall mark
         public string overall; //overall comments for whole assessment
         public bool[,] GChecked = new bool[maxCriteria, maxGradeGroups]; //whihc box is checked when marked?
+        public string Marker = "";
 
 
         Color c1;
@@ -297,7 +298,10 @@ namespace UltraMarker
             ReplaceString("%overallGrade%", OG);
             ReplaceString("%overallPercent%", OP);
             ReplaceString("%overall%", overall);
-           
+            ReplaceString("%marker%", Marker);
+            ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy  HH:mm"));
+
+
             richTextBox1.ReadOnly = true;
         }
        
