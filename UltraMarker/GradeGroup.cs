@@ -299,7 +299,7 @@ namespace UltraMarker
             ReplaceString("%overallPercent%", OP);
             ReplaceString("%overall%", overall);
             ReplaceString("%marker%", Marker);
-            ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy  HH:mm"));
+            ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy"));
 
 
             richTextBox1.ReadOnly = true;
