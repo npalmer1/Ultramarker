@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,8 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.MarkertextBox = new System.Windows.Forms.TextBox();
+            this.Markerlabel = new System.Windows.Forms.Label();
             this.Ticklabel = new System.Windows.Forms.Label();
             this.highlightButton = new System.Windows.Forms.Button();
             this.Clicklabel2 = new System.Windows.Forms.Label();
@@ -472,8 +474,6 @@
             this.openFileDialogGroup = new System.Windows.Forms.OpenFileDialog();
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.Markerlabel = new System.Windows.Forms.Label();
-            this.MarkertextBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -819,6 +819,25 @@
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // MarkertextBox
+            // 
+            this.MarkertextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.MarkertextBox.Location = new System.Drawing.Point(1495, 8);
+            this.MarkertextBox.Name = "MarkertextBox";
+            this.MarkertextBox.Size = new System.Drawing.Size(241, 24);
+            this.MarkertextBox.TabIndex = 104;
+            this.MarkertextBox.Visible = false;
+            // 
+            // Markerlabel
+            // 
+            this.Markerlabel.AutoSize = true;
+            this.Markerlabel.Location = new System.Drawing.Point(1389, 11);
+            this.Markerlabel.Name = "Markerlabel";
+            this.Markerlabel.Size = new System.Drawing.Size(100, 18);
+            this.Markerlabel.TabIndex = 103;
+            this.Markerlabel.Text = "Marker name:";
+            this.Markerlabel.Visible = false;
+            // 
             // Ticklabel
             // 
             this.Ticklabel.AutoSize = true;
@@ -1018,7 +1037,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(1048, 69);
+            this.templatetextBox.Location = new System.Drawing.Point(1041, 69);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(353, 27);
             this.templatetextBox.TabIndex = 87;
@@ -1266,7 +1285,7 @@
             // copyWeightbutton
             // 
             this.copyWeightbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyWeightbutton.Location = new System.Drawing.Point(1535, 108);
+            this.copyWeightbutton.Location = new System.Drawing.Point(1535, 109);
             this.copyWeightbutton.Margin = new System.Windows.Forms.Padding(4);
             this.copyWeightbutton.Name = "copyWeightbutton";
             this.copyWeightbutton.Size = new System.Drawing.Size(203, 28);
@@ -1577,7 +1596,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(1401, 107);
+            this.button7.Location = new System.Drawing.Point(1401, 109);
             this.button7.Margin = new System.Windows.Forms.Padding(4);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(192, 28);
@@ -1953,10 +1972,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode3.Name = "CriteriaNode";
-            treeNode3.Text = "Criteria";
+            treeNode2.Name = "CriteriaNode";
+            treeNode2.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2532,11 +2551,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Grades";
+            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode3});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3569,10 +3588,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Sessions";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5179,25 +5198,6 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
-            // 
-            // Markerlabel
-            // 
-            this.Markerlabel.AutoSize = true;
-            this.Markerlabel.Location = new System.Drawing.Point(1389, 11);
-            this.Markerlabel.Name = "Markerlabel";
-            this.Markerlabel.Size = new System.Drawing.Size(100, 18);
-            this.Markerlabel.TabIndex = 103;
-            this.Markerlabel.Text = "Marker name:";
-            this.Markerlabel.Visible = false;
-            // 
-            // MarkertextBox
-            // 
-            this.MarkertextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.MarkertextBox.Location = new System.Drawing.Point(1495, 8);
-            this.MarkertextBox.Name = "MarkertextBox";
-            this.MarkertextBox.Size = new System.Drawing.Size(241, 24);
-            this.MarkertextBox.TabIndex = 104;
-            this.MarkertextBox.Visible = false;
             // 
             // Form1
             // 

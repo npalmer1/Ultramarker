@@ -9284,6 +9284,9 @@ namespace UltraMarker
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())
             {
+                string str = marksDirectory + "\\" + assess.Code;
+                GForm.OutFilePath = str;
+
                 GForm.addtick = false;
                 GForm.highlight = false;
                 GForm.bold = false;
