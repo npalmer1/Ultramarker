@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -171,6 +171,9 @@
             this.criteriaTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.weightingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fine05ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.normal1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.coarse5ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.feedbackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overrideToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.criteriaSelectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1972,10 +1975,10 @@
             this.treeView2.Location = new System.Drawing.Point(8, 37);
             this.treeView2.Margin = new System.Windows.Forms.Padding(4);
             this.treeView2.Name = "treeView2";
-            treeNode2.Name = "CriteriaNode";
-            treeNode2.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(473, 495);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2066,10 +2069,35 @@
             // 
             // weightingToolStripMenuItem
             // 
+            this.weightingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fine05ToolStripMenuItem,
+            this.normal1ToolStripMenuItem,
+            this.coarse5ToolStripMenuItem});
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
             this.weightingToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
+            // 
+            // fine05ToolStripMenuItem
+            // 
+            this.fine05ToolStripMenuItem.Name = "fine05ToolStripMenuItem";
+            this.fine05ToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.fine05ToolStripMenuItem.Text = "Fine (0.5%)";
+            this.fine05ToolStripMenuItem.Click += new System.EventHandler(this.fine05ToolStripMenuItem_Click);
+            // 
+            // normal1ToolStripMenuItem
+            // 
+            this.normal1ToolStripMenuItem.Name = "normal1ToolStripMenuItem";
+            this.normal1ToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.normal1ToolStripMenuItem.Text = "Normal (1%)";
+            this.normal1ToolStripMenuItem.Click += new System.EventHandler(this.normal1ToolStripMenuItem_Click);
+            // 
+            // coarse5ToolStripMenuItem
+            // 
+            this.coarse5ToolStripMenuItem.Name = "coarse5ToolStripMenuItem";
+            this.coarse5ToolStripMenuItem.Size = new System.Drawing.Size(216, 28);
+            this.coarse5ToolStripMenuItem.Text = "Coarse (5%)";
+            this.coarse5ToolStripMenuItem.Click += new System.EventHandler(this.coarse5ToolStripMenuItem_Click);
             // 
             // feedbackToolStripMenuItem
             // 
@@ -2551,11 +2579,11 @@
             this.treeView1.Location = new System.Drawing.Point(0, 37);
             this.treeView1.Margin = new System.Windows.Forms.Padding(4);
             this.treeView1.Name = "treeView1";
-            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(411, 643);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3588,10 +3616,10 @@
             this.treeView3.Location = new System.Drawing.Point(4, 37);
             this.treeView3.Margin = new System.Windows.Forms.Padding(4);
             this.treeView3.Name = "treeView3";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(560, 574);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5709,6 +5737,9 @@
         private System.Windows.Forms.Label Ticklabel;
         private System.Windows.Forms.TextBox MarkertextBox;
         private System.Windows.Forms.Label Markerlabel;
+        private System.Windows.Forms.ToolStripMenuItem fine05ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem normal1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem coarse5ToolStripMenuItem;
     }
 }
 

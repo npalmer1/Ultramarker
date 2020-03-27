@@ -187,7 +187,8 @@ namespace UltraMarker
         string[,] crdesc = new string[MaxCriteria, MaxSub + 1];
         string[,] crLO = new string[MaxCriteria, MaxSub + 1];  //learning outcome
 
-        int[, ,] crweight = new int[MaxCriteria, MaxSub + 1, MaxSessions];
+        //int[, ,] crweight = new int[MaxCriteria, MaxSub + 1, MaxSessions];
+        float[,,] crweight = new float[MaxCriteria, MaxSub + 1, MaxSessions];
         bool[,] crsub = new bool[MaxCriteria, MaxSub + 1];
         //int[,] crpos = new int[MaxCriteria,2];
         string[, ,] grcrtitle = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade title
@@ -202,7 +203,7 @@ namespace UltraMarker
         bool NChecked = false;
         bool Aggregation = false;
 
-        bool fineWeight = false; //determines whether criteria weighting can used fine (1%) or coarse (5%) weighting in combobox
+        double fineWeight = 1; //determines whether criteria weighting can used fine (1%) or coarse (5%) weighting in combobox
 
         string[] SessionTitle = new string[MaxSessions];
         string[] SessionDesc = new string[MaxSessions];
@@ -386,8 +387,9 @@ namespace UltraMarker
                 Import_Students();
             }
             Build_Grade_Lists();
-            Build_Criteria_List();
-            
+
+            Set_Weights();
+
             Build_Session_Weight();
             LoadLOCombo();
             setGradeTree();
@@ -1758,19 +1760,24 @@ namespace UltraMarker
             double i = 100;
             double f = 1.0;
             comboBox3.Items.Clear();
-            if (fineWeight)
+            if (fineWeight ==1)
             {
                 f = 1;
             }
-            else
+            else if (fineWeight == 5)
             {
                 f = 5;
+            }
+            else
+            {
+                f = 0.5;
             }
             while (i > 0)
             {
                 comboBox3.Items.Add(Convert.ToString(i));
                 i = i - f;
             }
+            Show_Label("Weight box set to " + Convert.ToString(f) + "%", 1500);
         }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
@@ -1805,7 +1812,7 @@ namespace UltraMarker
                     crtitle[SCriteria, i] = criteriaTitleBox.Text;
                     crdesc[SCriteria, i] = textBox4.Text;
                     crLO[SCriteria, i] = LOtextBox.Text;
-                    crweight[SCriteria, i, Session] = Convert.ToInt32(comboBox3.Text);
+                    crweight[SCriteria, i, Session] = Convert.ToSingle(comboBox3.Text);
                     //ADD CODE HERE TO SAVE TO 
                     grcr[SCriteria, SSub, listBox1.SelectedIndex] = textBox7.Text;
                     grcrfb[SCriteria, SSub, listBox1.SelectedIndex] = textBox8.Text;
@@ -2217,7 +2224,7 @@ namespace UltraMarker
                                         if (crs[se] != null)
                                         {
                                             if (crs[se].Trim() != "")
-                                            { crweight[C, S, se] = Convert.ToInt32(crs[se].Trim()); }
+                                            { crweight[C, S, se] = Convert.ToSingle(crs[se].Trim()); }
                                         }
                                         //}
                                         //catch
@@ -2352,7 +2359,7 @@ namespace UltraMarker
                                         {
                                             if (crs[se] != null)
                                             {
-                                                crweight[C, S, se] = Convert.ToInt32(crs[se].Trim());
+                                                crweight[C, S, se] = Convert.ToSingle(crs[se].Trim());
                                             }
                                         }
                                         catch
@@ -5413,9 +5420,14 @@ namespace UltraMarker
                     c[i] = '1';  //set feedbackoptions to selected
                 }
 
-                if (fineWeight)
+                if (fineWeight == 1)
                 { str = "1%"; }
-                else { str = "5%"; }
+                else if (fineWeight == 5)
+                { str = "5%"; }
+                else
+                {
+                    str = "0.5%";
+                }
 
                 try
                 {
@@ -5697,8 +5709,9 @@ namespace UltraMarker
                             }
                             else if (str.StartsWith("Weighting type:"))
                             {
-                                if (str3 == "1%") { fineWeight = true; }
-                                else { fineWeight = false; }
+                                if (str3 == "1%") { fineWeight = 1; }
+                                else if (str3 == "5%") { fineWeight = 5; }
+                                else { fineWeight = 0.5; }
                             }
 
                             else if (str.StartsWith("Marks Directory:"))
@@ -6734,22 +6747,27 @@ namespace UltraMarker
 
         private void weightingToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            return;
             string fine = "";
             string oldfine = "";
-            if (fineWeight)
+            if (fineWeight == 1)
             {
-                fine = "Coarse (5%)";
-                oldfine = "Fine (1%)";
+                fine = "Coarse 5%";
+                oldfine = "Medium 1%";
+            }
+            else if (fineWeight == 5)
+            {
+                fine = "Fine (0.5%)";
+                oldfine = "Coarse (5%)";
             }
             else
             {
-                fine = "Fine (1%)";
-                oldfine = "Coarse (5%)";
+
             }
             DialogResult dialogResult = MessageBox.Show("Weightings for criteria are set to: " + oldfine + ", change to: " + fine + " Yes/No?", "Criteria Weighting", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                fineWeight = !fineWeight;
+                //fineWeight = !fineWeight;
                 Build_Criteria_List();
             }
         }
@@ -7658,9 +7676,9 @@ namespace UltraMarker
 
         private void CheckWeights() //not used
         {
-            int TotW = 0;
+            float TotW = 0;
             int TotS = 0;
-            int SubW = 0;
+            float SubW = 0;
             bool ok = true;
             if (SessionType == 0) //single session
             {
@@ -7720,9 +7738,9 @@ namespace UltraMarker
 
         private void CheckWeightReport()
         {
-            int TotW = 0;
+            float TotW = 0;
             int TotS = 0;
-            int SubW = 0;
+            float SubW = 0;
             bool ok = true;
             int TempSessionNum = 0;
             string nl = System.Environment.NewLine;
@@ -10026,7 +10044,45 @@ namespace UltraMarker
             }
         }
 
-       
+        private void fine05ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fineWeight = 0.5;
+            Set_Weights();
+        }
+
+        private void normal1ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fineWeight = 1;
+            Set_Weights();
+        }
+
+        private void coarse5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fineWeight = 5;
+            Set_Weights();
+        }
+        private void Set_Weights()
+        {
+            if (fineWeight == 1)
+            {
+                normal1ToolStripMenuItem.Checked = true;
+                fine05ToolStripMenuItem.Checked = false;
+                coarse5ToolStripMenuItem.Checked = false;
+            }
+            else if (fineWeight == 5)
+            {
+                coarse5ToolStripMenuItem.Checked = true;
+                normal1ToolStripMenuItem.Checked = false;
+                fine05ToolStripMenuItem.Checked = false;
+            }
+            else //0.5
+            {
+                fine05ToolStripMenuItem.Checked = true;
+                normal1ToolStripMenuItem.Checked = false;
+                coarse5ToolStripMenuItem.Checked = false;
+            }
+            Build_Criteria_List();
+        }
     }
 
        
