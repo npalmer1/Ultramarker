@@ -37,7 +37,8 @@ namespace UltraMarker
 
         private void button1_Click(object sender, EventArgs e)
         {
-                Passvalue[1] = addComment1.TextBox1.Text;                
+                Passvalue[1] = addComment1.TextBox1.Text;
+                this.ComFile = addComment1.ComFile;
                 this.Close();
         }
 
@@ -84,6 +85,7 @@ namespace UltraMarker
 
         private void button2_Click(object sender, EventArgs e)
         {
+            this.ComFile = addComment1.ComFile;
             this.Close();
         }
 
@@ -96,5 +98,6 @@ namespace UltraMarker
         {
 
         }
+
     }
 }

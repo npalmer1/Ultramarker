@@ -113,6 +113,7 @@ namespace UltraMarker
         bool firstcount = false;
         bool replicate_Criteria = false;
         bool replicate_Feedback = false;
+        bool replicate_Description = false;
         bool replicate_LO = false;
 
         string slash = "\\";
@@ -1319,7 +1320,7 @@ namespace UltraMarker
 
             if (treeView2.Nodes[0].Nodes.Count > 0)
             {
-                if ((!replicate_Criteria) || (!replicate_Feedback) || (!replicate_LO))
+                if ((!replicate_Criteria) || (!replicate_Feedback) || (!replicate_LO) || (!replicate_Description))
                 {
                     treeView2.SelectedNode = e.Node;
                 }
@@ -1371,7 +1372,7 @@ namespace UltraMarker
                     i = MaxSub;
                 }
 
-                if ((!replicate_Criteria) && (!replicate_Feedback) && (!replicate_LO)) //do this unless replicating criteria, feedback or LO
+                if ((!replicate_Criteria) && (!replicate_Feedback) && (!replicate_LO) && (!replicate_Description)) //do this unless replicating criteria, feedback or LO
                 {
                     criteriaTitleBox.Text = crtitle[SCriteria, i];
                     textBox4.Text = crdesc[SCriteria, i];
@@ -1460,6 +1461,14 @@ namespace UltraMarker
                         PreNode = treeView2.SelectedNode;
                     }
                 }
+                else if (replicate_Description) //replicate feedback
+                {
+                    if (PreNode != treeView2.SelectedNode)
+                    {
+                        Replicate_Criteria_Description_Function(SCriteria, i);
+                        PreNode = treeView2.SelectedNode;
+                    }
+                }
                 else if (replicate_LO) //replicate LO
                 {
                     if (PreNode != treeView2.SelectedNode)
@@ -1508,6 +1517,25 @@ namespace UltraMarker
             {
                 replicate_Criteria = false;
                 repCancelbutton1.Visible = false;
+                treeView2.SelectedNode = SelNode;
+            }
+            criteriaTitleBox.Text = treeView2.SelectedNode.Text;
+
+        }
+
+        private void Replicate_Criteria_Description_Function(int s, int i)
+        {
+            bool all = false;
+            DialogResult dialogResult = MessageBox.Show("Replicate criteria description or cancel replication?", "Replicate criteria description", MessageBoxButtons.YesNoCancel);
+            if (dialogResult == DialogResult.Yes)
+            {
+                crdesc[s, i] = textBox4.Text;                
+
+            }
+            else if (dialogResult == DialogResult.Cancel)
+            {
+                replicate_Description = false;
+                repCancelbutton4.Visible = false;
                 treeView2.SelectedNode = SelNode;
             }
             criteriaTitleBox.Text = treeView2.SelectedNode.Text;
@@ -1641,7 +1669,7 @@ namespace UltraMarker
                     { MessageBox.Show("Criteria type (checkboxes yes/no) doesn't currently support sub-criteria"); return; }
                     Add_Sub_Criteria(); //Add sub-criteria
                 }
-                else if (contextMenuStrip4.Items[4].Selected)
+                else if (contextMenuStrip4.Items[5].Selected)
                 {
                     //replicate criteria
                     replicate_Criteria = true;
@@ -1658,7 +1686,7 @@ namespace UltraMarker
                     MessageBox.Show("Select criteria to replicate to");
 
                 }
-                else if (contextMenuStrip4.Items[5].Selected)
+                else if (contextMenuStrip4.Items[6].Selected)
                 {
                     //replicate feedback
                     replicate_Feedback = true;
@@ -1675,7 +1703,7 @@ namespace UltraMarker
                     MessageBox.Show("Select feedback to replicate to");
 
                 }
-                else if (contextMenuStrip4.Items[6].Selected)
+                else if (contextMenuStrip4.Items[7].Selected)
                 {
                     //replicate LO
                     replicate_LO = true;
@@ -1690,6 +1718,23 @@ namespace UltraMarker
                     SelCr = SCriteria;
                     repCancelbutton3.Visible = true;
                     MessageBox.Show("Select criteria to replicate to");
+                }
+                else if (contextMenuStrip4.Items[4].Selected)
+                {
+                    //replicate criteria Description
+                    replicate_Description = true;
+                    treeView2.Enabled = true;
+                    SelNode = treeView2.SelectedNode;
+                    SelSub = SSub;
+                    if (CriteriaSelected)
+                    {
+                        SelSub = MaxSub;
+                    }
+                    SelCr = SCriteria;
+                    PreNode = SelNode;
+                    repCancelbutton4.Visible = true;
+                    MessageBox.Show("Select criteria description to replicate to");
+
                 }
             }
             catch (System.Exception excep)
@@ -2568,6 +2613,22 @@ namespace UltraMarker
             }
             else if (contextMenuStrip5.Items[2].Selected)
             {
+                //replicate criteria description
+                replicate_Description = true;
+                treeView2.Enabled = true;
+                SelNode = treeView2.SelectedNode;
+                PreNode = SelNode;
+                SelSub = SSub;
+                if (CriteriaSelected)
+                {
+                    SelSub = MaxSub;
+                }
+                SelCr = SCriteria;
+                repCancelbutton4.Visible = true;
+                MessageBox.Show("Select criteria description to replicate to");
+            }
+            else if (contextMenuStrip5.Items[3].Selected)
+            {
                 //replicate criteria
                 replicate_Criteria = true;
                 treeView2.Enabled = true;
@@ -2582,7 +2643,7 @@ namespace UltraMarker
                 repCancelbutton1.Visible = true;
                 MessageBox.Show("Select criteria to replicate to");
             }
-            else if (contextMenuStrip5.Items[3].Selected)
+            else if (contextMenuStrip5.Items[4].Selected)
             {
                 //replicate feedback
                 replicate_Feedback = true;
@@ -2598,7 +2659,7 @@ namespace UltraMarker
                 repCancelbutton2.Visible = true;
                 MessageBox.Show("Select criteria to replicate to");
             }
-            else if (contextMenuStrip5.Items[4].Selected)
+            else if (contextMenuStrip5.Items[5].Selected)
             {
                 //replicate LO
                 replicate_LO = true;
@@ -10082,6 +10143,14 @@ namespace UltraMarker
                 coarse5ToolStripMenuItem.Checked = false;
             }
             Build_Criteria_List();
+        }
+
+        private void repCancelbutton4_Click(object sender, EventArgs e)
+        {
+            replicate_Description = false;
+            treeView2.SelectedNode = SelNode;
+            Show_Label("Don't forget to save changes!", 1500);
+            repCancelbutton4.Visible = false;
         }
     }
 
