@@ -427,6 +427,10 @@ namespace UltraMarker
                     MessageBox.Show("Save comments from the File menu");
                 }
             }
+            else
+            {
+                this.Hide();
+            }
                 
             
         }
