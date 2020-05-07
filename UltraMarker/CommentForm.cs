@@ -16,6 +16,7 @@ namespace UltraMarker
         bool Category = true;
         bool editing = false;
         bool makingChanges = false;
+       
         public string CFile = "";
         public string CPath = "";
         bool unsaved = false;
@@ -395,20 +396,39 @@ namespace UltraMarker
 
         private void listBox2_DoubleClick(object sender, EventArgs e)
         {
-            if (selectComment)
+            try
             {
-                string str = listBox2.SelectedItem.ToString();
-                if (str.Length > 0)
+                if (selectComment)
                 {
-                    Passvalue = listBox2.SelectedItem.ToString();
+                    string str = listBox2.SelectedItem.ToString();
+                    if (str.Length > 0)
+                    {
+                        Passvalue = listBox2.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No comment highlighted");
+                        return;
+                    }
+                }
+            }
+            catch {
+                
+            }
+            if (unsaved)
+            {
+                DialogResult dialogResult = MessageBox.Show("You have unsaved comments - exit Yes/No?", "Unsaved comments", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.Hide();
                 }
                 else
                 {
-                    MessageBox.Show("No comment highlighted");
-                    return;
+                    MessageBox.Show("Save comments from the File menu");
                 }
             }
-            this.Hide();
+                
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e) //when select categories listbox
@@ -599,6 +619,7 @@ namespace UltraMarker
                 if (dialogResult == DialogResult.No)
                 {
                     Passvalue = "";
+                    MessageBox.Show("Save comments from File menu");
                     return;
                 }
                 else
@@ -616,7 +637,15 @@ namespace UltraMarker
             editing = false;
             showCategory(false);
             showComment(false);
-            Category = false;   
+            Category = false;
+            if (unsaved)
+            {
+                if (MessageBox.Show("Exit without saving comments?", "Exit", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    MessageBox.Show("Save comments from File menu");
+                    return;
+                }                
+            }
             this.Hide();
         }
 
