@@ -22,6 +22,7 @@ namespace UltraMarker
         bool unsaved = false;
         bool moveItems = false;
         string oldCategory = "";
+        int CommentIndex = -1;
 
         private string Nm;
 
@@ -313,8 +314,10 @@ namespace UltraMarker
             {
                 if (listBox2.SelectedIndex > -1)
                 {
+                    
                     listBox2.Items[listBox2.SelectedIndex] = textBox2.Text;
-                    int i = listBox2.SelectedIndex;
+                    //int i = listBox2.SelectedIndex;
+                    int i = CommentIndex;
                     c = commentlist[i];
                     c.comment = textBox2.Text;
                     commentlist[i] = c;                   
@@ -335,8 +338,9 @@ namespace UltraMarker
             if (contextMenuStrip2.Items[0].Selected) //edit comment
             {
                 if (listBox2.SelectedIndex > -1)
-                {
+                {                    
                     textBox2.Text = listBox2.SelectedItem.ToString();
+                    CommentIndex = FindCommentIndex(textBox1.Text,textBox2.Text); //find the index of the comment
                     editing = true;
                     Category = false;
                     showComment(true);
@@ -354,6 +358,22 @@ namespace UltraMarker
            
         }
 
+        private int FindCommentIndex(string cat, string comm)
+        {
+            comments c;
+            c.category = cat;
+            c.comment = comm;
+            c.index = 0;
+            for (int i = 0; i < commentlist.Count; i++)
+            {
+                if ((commentlist[i].category == cat) && (commentlist[i].comment == comm))
+                {
+                    return i;
+                }
+            }
+            return - 1;
+        }
+
         private void deleteComment()
         {
             if (Movebutton.Text == "Move Selected")
@@ -364,6 +384,7 @@ namespace UltraMarker
             Movebutton.Visible = false;
             comments c;
             c.category = listBox1.SelectedItem.ToString();
+            CommentIndex = FindCommentIndex(textBox1.Text, textBox2.Text); //find the index of the comment
             try
             {
                 DialogResult dialogResult = MessageBox.Show("Delete commentsYes/No?", "Delete comment", MessageBoxButtons.YesNo);
@@ -376,7 +397,8 @@ namespace UltraMarker
                            
                             if (commentlist.Count > 0)
                             {
-                                commentlist.RemoveAt(listBox2.SelectedIndex);                              
+                                //commentlist.RemoveAt(listBox2.SelectedIndex);  
+                                commentlist.RemoveAt(CommentIndex);
                             }
                             listBox2.Items.RemoveAt(listBox2.SelectedIndex);
                             listBox2.SelectedIndex = listBox2.Items.Count - 1;
