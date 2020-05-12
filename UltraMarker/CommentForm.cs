@@ -265,6 +265,7 @@ namespace UltraMarker
             }
             else if (contextMenuStrip1.Items[2].Selected) //add comment
             {
+                StopMove();
                 if (listBox1.SelectedIndex > -1)
                 {
                     textBox1.Text = listBox1.SelectedItem.ToString();
@@ -338,6 +339,7 @@ namespace UltraMarker
             Category = false;
             if (contextMenuStrip2.Items[0].Selected) //edit comment
             {
+                StopMove();
                 if (listBox2.SelectedIndex > -1)
                 {                    
                     textBox2.Text = listBox2.SelectedItem.ToString();
@@ -443,6 +445,7 @@ namespace UltraMarker
                 DialogResult dialogResult = MessageBox.Show("You have unsaved comments - exit Yes/No?", "Unsaved comments", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    StopMove();
                     this.Hide();
                 }
                 else
@@ -452,6 +455,7 @@ namespace UltraMarker
             }
             else
             {
+                StopMove();
                 this.Hide();
             }
                 
@@ -676,6 +680,7 @@ namespace UltraMarker
                     return;
                 }                
             }
+            StopMove();
             this.Hide();
         }
 
@@ -791,6 +796,10 @@ namespace UltraMarker
         }
 
         private void cancelMovebutton_Click(object sender, EventArgs e)
+        {
+            StopMove();
+        }
+        private void StopMove()
         {
             Movebutton.Text = "Move Comments";
             moveItems = false;
