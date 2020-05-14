@@ -76,7 +76,7 @@ namespace UltraMarker
         int SCriteria = 0;
         int SSub = 0;
         const int MaxCriteria = 50;
-        static int MaxSub = 20;
+        static int MaxSub = 30;
         //const int MaxGrades = 25;
         const int MaxGrades = 50;
         const int MaxSessions = 20;
@@ -3378,13 +3378,13 @@ namespace UltraMarker
                                 }//if criteria selected
                                 else
                                 {
-                                    try
+                                    /*try
                                     {
                                         sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
                                         sw.WriteLine("Criteria title: " + crtitle[i, j]);
                                         sw.WriteLine("Grade: n/a");
                                     }
-                                    catch { }
+                                    catch { }*/
 
                                     /*if (CriteriaSelectionType > 1) //if allow individual criteria deselection
                                     {
@@ -3416,13 +3416,13 @@ namespace UltraMarker
                                     }
                                     else
                                     {
-                                        try
+                                        /*try
                                         {
                                             sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
                                             sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
                                             sw.WriteLine("Grade: n/a");
                                         }
-                                        catch { }
+                                        catch { }*/
                                         /* if (CriteriaSelectionType > 1) //if allow individual criteria deselection
                                          {
                                              sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
