@@ -3090,7 +3090,7 @@ namespace UltraMarker
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)      //save button
         {   //save student mark
             string addstr = "";
             if (addCode)
@@ -3378,12 +3378,20 @@ namespace UltraMarker
                                 }//if criteria selected
                                 else
                                 {
+                                    try
+                                    {
+                                        sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
+                                        sw.WriteLine("Criteria title: " + crtitle[i, j]);
+                                        sw.WriteLine("Grade: n/a");
+                                    }
+                                    catch { }
+
                                     /*if (CriteriaSelectionType > 1) //if allow individual criteria deselection
                                     {
                                         sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
                                     }*/
                                 }
-                               
+
                                 for (int k = 0; k < MaxSub; k++)
                                 {
                                     if (crSelected[i, k, s])
@@ -3408,10 +3416,17 @@ namespace UltraMarker
                                     }
                                     else
                                     {
-                                       /* if (CriteriaSelectionType > 1) //if allow individual criteria deselection
+                                        try
                                         {
-                                            sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
-                                        }*/
+                                            sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
+                                            sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
+                                            sw.WriteLine("Grade: n/a");
+                                        }
+                                        catch { }
+                                        /* if (CriteriaSelectionType > 1) //if allow individual criteria deselection
+                                         {
+                                             sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
+                                         }*/
                                     }
                                 }
                             }
