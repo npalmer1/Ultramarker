@@ -262,7 +262,80 @@ namespace UltraMarker
             ReplaceString("%CG53%", CG[2, 12]);
             ReplaceString("%CG54%", CG[2, 13]);
 
-           
+            ReplaceString("%CG61%", CG[3, 0]);
+            ReplaceString("%CG62%", CG[3, 1]);
+            ReplaceString("%CG63%", CG[3, 2]);
+            ReplaceString("%CG64%", CG[3, 3]);
+            ReplaceString("%CG65%", CG[3, 4]);
+            ReplaceString("%CG66%", CG[3, 5]);
+            ReplaceString("%CG67%", CG[3, 6]);
+            ReplaceString("%CG68%", CG[3, 7]);
+            ReplaceString("%CG69%", CG[3, 8]);
+            ReplaceString("%CG70%", CG[3, 9]);
+            ReplaceString("%CG71%", CG[3, 10]);
+            ReplaceString("%CG72%", CG[3, 11]);
+            ReplaceString("%CG73%", CG[3, 12]);
+            ReplaceString("%CG74%", CG[3, 13]);
+
+            ReplaceString("%CG81%", CG[4, 0]);
+            ReplaceString("%CG82%", CG[4, 1]);
+            ReplaceString("%CG83%", CG[4, 2]);
+            ReplaceString("%CG84%", CG[4, 3]);
+            ReplaceString("%CG85%", CG[4, 4]);
+            ReplaceString("%CG86%", CG[4, 5]);
+            ReplaceString("%CG87%", CG[4, 6]);
+            ReplaceString("%CG88%", CG[4, 7]);
+            ReplaceString("%CG89%", CG[4, 8]);
+            ReplaceString("%CG90%", CG[4, 9]);
+            ReplaceString("%CG91%", CG[4, 10]);
+            ReplaceString("%CG92%", CG[4, 11]);
+            ReplaceString("%CG93%", CG[4, 12]);
+            ReplaceString("%CG94%", CG[4, 13]);
+
+            ReplaceString("%CG101%", CG[5, 0]);
+            ReplaceString("%CG102%", CG[5, 1]);
+            ReplaceString("%CG103%", CG[5, 2]);
+            ReplaceString("%CG104%", CG[5, 3]);
+            ReplaceString("%CG105%", CG[5, 4]);
+            ReplaceString("%CG106%", CG[5, 5]);
+            ReplaceString("%CG107%", CG[5, 6]);
+            ReplaceString("%CG108%", CG[5, 7]);
+            ReplaceString("%CG109%", CG[5, 8]);
+            ReplaceString("%CG110%", CG[5, 9]);
+            ReplaceString("%CG111%", CG[5, 10]);
+            ReplaceString("%CG112%", CG[5, 11]);
+            ReplaceString("%CG113%", CG[5, 12]);
+            ReplaceString("%CG114%", CG[5, 13]);
+
+            ReplaceString("%CG121%", CG[6, 0]);
+            ReplaceString("%CG122%", CG[6, 1]);
+            ReplaceString("%CG123%", CG[6, 2]);
+            ReplaceString("%CG124%", CG[6, 3]);
+            ReplaceString("%CG125%", CG[6, 4]);
+            ReplaceString("%CG126%", CG[6, 5]);
+            ReplaceString("%CG127%", CG[6, 6]);
+            ReplaceString("%CG128%", CG[6, 7]);
+            ReplaceString("%CG129%", CG[6, 8]);
+            ReplaceString("%CG130%", CG[6, 9]);
+            ReplaceString("%CG131%", CG[6, 10]);
+            ReplaceString("%CG132%", CG[6, 11]);
+            ReplaceString("%CG133%", CG[6, 12]);
+            ReplaceString("%CG134%", CG[6, 13]);
+
+            ReplaceString("%CG141%", CG[7, 0]);
+            ReplaceString("%CG142%", CG[7, 1]);
+            ReplaceString("%CG143%", CG[7, 2]);
+            ReplaceString("%CG144%", CG[7, 3]);
+            ReplaceString("%CG145%", CG[7, 4]);
+            ReplaceString("%CG146%", CG[7, 5]);
+            ReplaceString("%CG147%", CG[7, 6]);
+            ReplaceString("%CG148%", CG[7, 7]);
+            ReplaceString("%CG149%", CG[7, 8]);
+            ReplaceString("%CG150%", CG[7, 9]);
+            ReplaceString("%CG151%", CG[7, 10]);
+            ReplaceString("%CG152%", CG[7, 11]);
+            ReplaceString("%CG153%", CG[7, 12]);
+            ReplaceString("%CG154%", CG[7, 13]);
 
             ReplaceString("%CrTitle1%", CT[0]);
             ReplaceString("%CrTitle2%", CT[1]);
