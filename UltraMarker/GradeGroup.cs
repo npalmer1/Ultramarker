@@ -220,9 +220,17 @@ namespace UltraMarker
                                 CG[c, t] = nl + "%HStart% ===" + tick + "=== %HEnd%";
                             }
                         }
+                        else
+                        {
+                            if (onlyTick)
+                            {
+                                CG[c, t] = "";
+                            }
+                        }
                     }
                 }
-            }                        
+            } 
+            
 
             ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
             ReplaceString("%CG2%", CG[0, 1]);
