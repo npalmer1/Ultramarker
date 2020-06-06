@@ -9450,6 +9450,7 @@ namespace UltraMarker
                         }
                     }                 
 
+                
                     for (int c = 0; c < CritZ + 1; c++) //print criteria detail
                     {
                         str1 = crdesc[c, MaxSub];
