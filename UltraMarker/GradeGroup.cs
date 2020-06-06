@@ -28,6 +28,7 @@ namespace UltraMarker
         public bool addtick = false;
         public bool highlight = false;
         public bool bold = false;
+        public bool onlyTick = false;
 
         public string TemplateFile;
         public string OutputFile;
@@ -188,7 +189,7 @@ namespace UltraMarker
             ReplaceString("%Criteria7%", C[8]);
             ReplaceString("%Criteria8%", C[9]);
 
-            if (highlight || bold)
+            if (highlight || bold && !onlyTick)
             {
                
                 for (int c = 0; c < maxCriteria; c++)
@@ -210,7 +211,14 @@ namespace UltraMarker
                     {
                         if (GChecked[c, t])
                         {
-                            CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
+                            if (!onlyTick)
+                            {
+                                CG[c, t] = CG[c, t] + nl + "===" + tick + "===";
+                            }
+                            else
+                            {
+                                CG[c, t] = nl + "%HStart% ===" + tick + "=== %HEnd%";
+                            }
                         }
                     }
                 }

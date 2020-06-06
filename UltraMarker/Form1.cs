@@ -9384,6 +9384,7 @@ namespace UltraMarker
                 GForm.addtick = false;
                 GForm.highlight = false;
                 GForm.bold = false;
+                GForm.onlyTick = false;
                 if (highlightButton.Text.Contains("tick") && !highlightButton.Text.Contains("no"))
                 {
                     GForm.addtick = true;
@@ -9395,6 +9396,10 @@ namespace UltraMarker
                 if (highlightButton.Text.Contains("bold"))
                 {
                     GForm.bold = true;
+                }
+                if (highlightButton.Text.ToLower().Contains("append"))
+                {
+                    GForm.onlyTick = true;
                 }
                 GForm.ShowDialog();
             }
@@ -10115,6 +10120,10 @@ namespace UltraMarker
                 highlightButton.Text = "no tick";
             }
             else if (highlightButton.Text == "no tick")
+            {
+                highlightButton.Text = "append tick";
+            }
+            else if (highlightButton.Text == "append tick")
             {
                 highlightButton.Text = "tick";
             }
