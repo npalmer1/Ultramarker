@@ -15,10 +15,13 @@ namespace UltraMarker
     public partial class GradeGroup : Form
     {
         string newline = " \\line ";
+        string n = " \\line";
         string boldS = "\\b ";
-        string highS = "\\highlight1 ";
+        string highS = " \\highlight1 ";
+        //string highS = "{\\rtlch\\fcs1 \\highlight1}";
         string boldE = "\\b0 ";
-        string highE = "\\highlight0 ";
+        string highE = " \\highlight0 ";
+        //string highE = "{\\rtlch\\fcs1 \\highlight0}";
         string italS = "\\i\\f0";
         string italE = "\\i0";
 
@@ -361,8 +364,19 @@ namespace UltraMarker
             ReplaceString("%CrTitle6%", CT[5]);
             ReplaceString("%CrTitle7%", CT[6]);
             ReplaceString("%CrTitle8%", CT[7]);
-            ReplaceString("%CrTitle7%", CT[8]);
-            ReplaceString("%CrTitle8%", CT[9]);
+            ReplaceString("%CrTitle9%", CT[8]);
+            ReplaceString("%CrTitle10%", CT[9]);
+
+            ReplaceString("%CrTitle1%", CT[0]);
+            ReplaceString("%CrTitle2%", CT[1]);
+            ReplaceString("%CrTitle3%", CT[2]);
+            ReplaceString("%CrTitle4%", CT[3]);
+            ReplaceString("%CrTitle5%", CT[4]);
+            ReplaceString("%CrTitle6%", CT[5]);
+            ReplaceString("%CrTitle7%", CT[6]);
+            ReplaceString("%CrTitle8%", CT[7]);
+            ReplaceString("%CrTitle9%", CT[8]);
+            ReplaceString("%CrTitle10%", CT[9]);
 
             ReplaceString("%CrMark1%", CM[0]);
             ReplaceString("%CrMark2%", CM[1]);

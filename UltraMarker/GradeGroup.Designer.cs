@@ -39,17 +39,19 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(50, 12);
+            this.richTextBox1.Location = new System.Drawing.Point(38, 10);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1290, 651);
+            this.richTextBox1.Size = new System.Drawing.Size(968, 529);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
             // 
             // printbutton
             // 
-            this.printbutton.Location = new System.Drawing.Point(205, 688);
+            this.printbutton.Location = new System.Drawing.Point(154, 551);
+            this.printbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.printbutton.Name = "printbutton";
-            this.printbutton.Size = new System.Drawing.Size(75, 23);
+            this.printbutton.Size = new System.Drawing.Size(56, 27);
             this.printbutton.TabIndex = 1;
             this.printbutton.Text = "Print";
             this.printbutton.UseVisualStyleBackColor = true;
@@ -58,9 +60,10 @@
             // savebutton
             // 
             this.savebutton.Cursor = System.Windows.Forms.Cursors.No;
-            this.savebutton.Location = new System.Drawing.Point(307, 688);
+            this.savebutton.Location = new System.Drawing.Point(230, 551);
+            this.savebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.savebutton.Name = "savebutton";
-            this.savebutton.Size = new System.Drawing.Size(75, 23);
+            this.savebutton.Size = new System.Drawing.Size(59, 27);
             this.savebutton.TabIndex = 2;
             this.savebutton.Text = "Save";
             this.savebutton.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // 
             // editbutton
             // 
-            this.editbutton.Location = new System.Drawing.Point(412, 688);
+            this.editbutton.Location = new System.Drawing.Point(309, 551);
+            this.editbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.editbutton.Name = "editbutton";
-            this.editbutton.Size = new System.Drawing.Size(75, 23);
+            this.editbutton.Size = new System.Drawing.Size(56, 27);
             this.editbutton.TabIndex = 3;
             this.editbutton.Text = "Edit";
             this.editbutton.UseVisualStyleBackColor = true;
@@ -79,9 +83,10 @@
             // 
             // cancelbutton
             // 
-            this.cancelbutton.Location = new System.Drawing.Point(514, 688);
+            this.cancelbutton.Location = new System.Drawing.Point(386, 551);
+            this.cancelbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelbutton.Name = "cancelbutton";
-            this.cancelbutton.Size = new System.Drawing.Size(75, 23);
+            this.cancelbutton.Size = new System.Drawing.Size(56, 27);
             this.cancelbutton.TabIndex = 4;
             this.cancelbutton.Text = "Cancel";
             this.cancelbutton.UseVisualStyleBackColor = true;
@@ -90,9 +95,10 @@
             // 
             // closebutton
             // 
-            this.closebutton.Location = new System.Drawing.Point(616, 688);
+            this.closebutton.Location = new System.Drawing.Point(462, 551);
+            this.closebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.closebutton.Name = "closebutton";
-            this.closebutton.Size = new System.Drawing.Size(75, 23);
+            this.closebutton.Size = new System.Drawing.Size(56, 27);
             this.closebutton.TabIndex = 5;
             this.closebutton.Text = "Close";
             this.closebutton.UseVisualStyleBackColor = true;
@@ -104,15 +110,16 @@
             // 
             // GradeGroup
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1352, 723);
+            this.ClientSize = new System.Drawing.Size(1014, 587);
             this.Controls.Add(this.closebutton);
             this.Controls.Add(this.cancelbutton);
             this.Controls.Add(this.editbutton);
             this.Controls.Add(this.savebutton);
             this.Controls.Add(this.printbutton);
             this.Controls.Add(this.richTextBox1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "GradeGroup";
             this.Text = "GradeGroup";
             this.Load += new System.EventHandler(this.GradeGroup_Load);
