@@ -17,7 +17,7 @@ namespace UltraMarker
         string newline = " \\line ";
         string n = " \\line";
         string boldS = "\\b ";
-        string highS = " \\highlight1 ";
+        string highS = "{\\colortbl;\\red0\\green0\\blue0;\\red255\\green0\\blue0;\\red255\\green255\\blue0;}\\highlight3";
         //string highS = "{\\rtlch\\fcs1 \\highlight1}";
         string boldE = "\\b0 ";
         string highE = " \\highlight0 ";
