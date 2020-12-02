@@ -733,7 +733,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.Beige;
+            this.tabPage2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage2.Controls.Add(this.repCancelbutton4);
             this.tabPage2.Controls.Add(this.MarkertextBox);
             this.tabPage2.Controls.Add(this.Markerlabel);
@@ -874,12 +874,12 @@
             // Ticklabel
             // 
             this.Ticklabel.AutoSize = true;
-            this.Ticklabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Ticklabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Ticklabel.ForeColor = System.Drawing.Color.Crimson;
-            this.Ticklabel.Location = new System.Drawing.Point(632, 118);
+            this.Ticklabel.Location = new System.Drawing.Point(610, 112);
             this.Ticklabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Ticklabel.Name = "Ticklabel";
-            this.Ticklabel.Size = new System.Drawing.Size(140, 13);
+            this.Ticklabel.Size = new System.Drawing.Size(162, 15);
             this.Ticklabel.TabIndex = 102;
             this.Ticklabel.Text = "Option for highlighted grade:";
             this.Ticklabel.Visible = false;
@@ -887,7 +887,7 @@
             // highlightButton
             // 
             this.highlightButton.BackColor = System.Drawing.Color.Gold;
-            this.highlightButton.Location = new System.Drawing.Point(766, 112);
+            this.highlightButton.Location = new System.Drawing.Point(774, 112);
             this.highlightButton.Margin = new System.Windows.Forms.Padding(0);
             this.highlightButton.Name = "highlightButton";
             this.highlightButton.Size = new System.Drawing.Size(95, 24);
@@ -1410,6 +1410,7 @@
             // 
             // LOtextBox
             // 
+            this.LOtextBox.BackColor = System.Drawing.Color.Snow;
             this.LOtextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOtextBox.Location = new System.Drawing.Point(581, 293);
             this.LOtextBox.Multiline = true;
@@ -1652,6 +1653,7 @@
             // 
             // textBox10
             // 
+            this.textBox10.BackColor = System.Drawing.Color.Snow;
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox10.Location = new System.Drawing.Point(6, 622);
             this.textBox10.Multiline = true;
@@ -1687,6 +1689,7 @@
             // 
             // textBox7
             // 
+            this.textBox7.BackColor = System.Drawing.Color.Snow;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.Location = new System.Drawing.Point(581, 375);
             this.textBox7.Multiline = true;
@@ -1699,6 +1702,7 @@
             // 
             // textBox4
             // 
+            this.textBox4.BackColor = System.Drawing.Color.Snow;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(369, 144);
             this.textBox4.Multiline = true;
@@ -1873,6 +1877,7 @@
             // 
             // listBox1
             // 
+            this.listBox1.BackColor = System.Drawing.Color.Snow;
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
@@ -1948,6 +1953,7 @@
             // 
             // treeView2
             // 
+            this.treeView2.BackColor = System.Drawing.Color.Snow;
             this.treeView2.ContextMenuStrip = this.contextMenuStrip3;
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
@@ -2182,7 +2188,7 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.Beige;
+            this.tabPage1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage1.Controls.Add(this.CopyGradesbutton);
             this.tabPage1.Controls.Add(this.GroupscheckBox);
             this.tabPage1.Controls.Add(this.GrouptextBox);
@@ -2246,6 +2252,7 @@
             // 
             // GrouptextBox
             // 
+            this.GrouptextBox.BackColor = System.Drawing.Color.Snow;
             this.GrouptextBox.Enabled = false;
             this.GrouptextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GrouptextBox.Location = new System.Drawing.Point(880, 71);
@@ -2411,6 +2418,7 @@
             // 
             // percentcombo
             // 
+            this.percentcombo.BackColor = System.Drawing.Color.Snow;
             this.percentcombo.Enabled = false;
             this.percentcombo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.percentcombo.FormattingEnabled = true;
@@ -2458,6 +2466,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.BackColor = System.Drawing.Color.Snow;
             this.comboBox2.Enabled = false;
             this.comboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox2.FormattingEnabled = true;
@@ -2508,6 +2517,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.BackColor = System.Drawing.Color.Snow;
             this.comboBox1.Enabled = false;
             this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
@@ -2518,6 +2528,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.Snow;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(340, 141);
             this.textBox2.Multiline = true;
@@ -2528,6 +2539,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.Snow;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(336, 56);
             this.textBox1.Name = "textBox1";
@@ -2538,6 +2550,7 @@
             // 
             // treeView1
             // 
+            this.treeView1.BackColor = System.Drawing.Color.Snow;
             this.treeView1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
@@ -2661,7 +2674,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.BackColor = System.Drawing.Color.Beige;
+            this.tabPage5.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage5.Controls.Add(this.configdirlabel);
             this.tabPage5.Controls.Add(this.label97);
             this.tabPage5.Controls.Add(this.defaultdirlabel);
@@ -3060,6 +3073,7 @@
             // label53
             // 
             this.label53.AutoSize = true;
+            this.label53.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label53.Location = new System.Drawing.Point(40, 53);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(105, 15);
@@ -3161,28 +3175,28 @@
             // institutionToolStripMenuItem
             // 
             this.institutionToolStripMenuItem.Name = "institutionToolStripMenuItem";
-            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.institutionToolStripMenuItem.Text = "Institution";
             this.institutionToolStripMenuItem.Click += new System.EventHandler(this.institutionToolStripMenuItem_Click);
             // 
             // defaultDirToolStripMenuItem
             // 
             this.defaultDirToolStripMenuItem.Name = "defaultDirToolStripMenuItem";
-            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.defaultDirToolStripMenuItem.Text = "Default Dir";
             this.defaultDirToolStripMenuItem.Click += new System.EventHandler(this.defaultDirToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Visible = false;
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
             // 
             // tabPage4
             // 
-            this.tabPage4.BackColor = System.Drawing.Color.Beige;
+            this.tabPage4.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage4.Controls.Add(this.LOcomboBox);
             this.tabPage4.Controls.Add(this.transferButton);
             this.tabPage4.Controls.Add(this.label29);
@@ -3204,6 +3218,7 @@
             // LOcomboBox
             // 
             this.LOcomboBox.AllowDrop = true;
+            this.LOcomboBox.BackColor = System.Drawing.Color.Snow;
             this.LOcomboBox.Enabled = false;
             this.LOcomboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LOcomboBox.FormattingEnabled = true;
@@ -3257,6 +3272,7 @@
             // 
             // loDescBox
             // 
+            this.loDescBox.BackColor = System.Drawing.Color.Snow;
             this.loDescBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loDescBox.Location = new System.Drawing.Point(442, 156);
             this.loDescBox.Multiline = true;
@@ -3296,6 +3312,7 @@
             // 
             // listBox2
             // 
+            this.listBox2.BackColor = System.Drawing.Color.Snow;
             this.listBox2.ContextMenuStrip = this.contextMenuStrip8;
             this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox2.FormattingEnabled = true;
@@ -3391,7 +3408,7 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.BackColor = System.Drawing.Color.Beige;
+            this.tabPage3.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.sessionWlabel);
             this.tabPage3.Controls.Add(this.sessionCombo);
@@ -3583,7 +3600,7 @@
             // 
             // tabPage6
             // 
-            this.tabPage6.BackColor = System.Drawing.Color.Beige;
+            this.tabPage6.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage6.Controls.Add(this.PeerSigBox);
             this.tabPage6.Controls.Add(this.label96);
             this.tabPage6.Controls.Add(this.PeerSigButton);
@@ -4084,7 +4101,7 @@
             // 
             // tabPage7
             // 
-            this.tabPage7.BackColor = System.Drawing.Color.Beige;
+            this.tabPage7.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage7.Controls.Add(this.modfileButton);
             this.tabPage7.Controls.Add(this.label74);
             this.tabPage7.Controls.Add(this.modDirTextBox);
@@ -4502,7 +4519,7 @@
             // 
             // tabPage8
             // 
-            this.tabPage8.BackColor = System.Drawing.Color.Beige;
+            this.tabPage8.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage8.Controls.Add(this.label84);
             this.tabPage8.Controls.Add(this.OKcheckBox);
             this.tabPage8.Controls.Add(this.label82);
@@ -4663,7 +4680,7 @@
             // 
             // tabPage9
             // 
-            this.tabPage9.BackColor = System.Drawing.Color.Beige;
+            this.tabPage9.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage9.Controls.Add(this.label91);
             this.tabPage9.Controls.Add(this.label90);
             this.tabPage9.Controls.Add(this.Importbutton);
@@ -4763,6 +4780,7 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.tabPage10.Controls.Add(this.label104);
             this.tabPage10.Controls.Add(this.label103);
             this.tabPage10.Controls.Add(this.label102);
@@ -4777,7 +4795,6 @@
             this.tabPage10.Size = new System.Drawing.Size(1328, 720);
             this.tabPage10.TabIndex = 11;
             this.tabPage10.Text = "Web connection";
-            this.tabPage10.UseVisualStyleBackColor = true;
             // 
             // label104
             // 
