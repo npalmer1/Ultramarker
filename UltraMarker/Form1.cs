@@ -9684,7 +9684,7 @@ namespace UltraMarker
             }
         }
         private void importFromFile(string filename)    //import reults from an external file
-        { //starts with marked file: and ends with conatins percent:
+        { //starts with marked file: and ends with contains percent:
             string str = "";
             string str3 = "";
             string str2 = "";
@@ -9775,6 +9775,8 @@ namespace UltraMarker
                                     //PCent = Convert.ToInt32(pc);
                                     for (int a = 0; a < maximportableCriteria; a++)
                                     {
+                                        found3 = true;
+
                                         if (criterias[a] == cr)
                                         {
                                             sumpc[a] = sumpc[a] + pc; //sum of percents for this criteria
@@ -9795,7 +9797,6 @@ namespace UltraMarker
                                                 break;
                                             }
                                         }
-                                        found3 = true;
                                     }
                                     //overrideBox.Text = PCent;
                                     //overridegrade(); // put percentage reult in the override box and update mark
@@ -9829,7 +9830,7 @@ namespace UltraMarker
                     }
                     if (!found1 || !found2 || !found3)
                     {
-                        MessageBox.Show("Input file not in correct format");
+                        MessageBox.Show("Input file not in correct format - see help");
                         return;
                     }
                     ok = false;
