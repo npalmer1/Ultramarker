@@ -172,7 +172,7 @@ namespace UltraMarker
                 if (dialogResult == DialogResult.Yes)
                 {
                     saveFileDialog1.DefaultExt = "rtf";
-                    saveFileDialog1.FileName = textBox1.Text.Trim();
+                    saveFileDialog1.FileName = textBox1.Text.Trim()+ addstr;
                     saveFileDialog1.ShowDialog();
                     
                     this.Close();

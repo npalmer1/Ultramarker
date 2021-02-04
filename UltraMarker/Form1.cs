@@ -357,7 +357,7 @@ namespace UltraMarker
             }
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
-            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2020                    (F1 for help)";
+            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
             tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
             tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             label23.Text = "";
@@ -1108,6 +1108,39 @@ namespace UltraMarker
                 i = i - f;
             }
         }
+
+        private string findGrade(string s) //find grade from percentage
+        {
+            double a = 0;
+            a = Convert.ToDouble(s);
+            string ret = "";
+
+            for (int i = 0; i < MaxGrades; i++)
+            {
+                if ((gradelist[i].grupper >= a) && (gradelist[i].grlower <= a))
+                {
+                    ret = gradelist[i].grtitle;
+                    break;
+                }
+            }
+            return ret;
+        }
+
+        private void showGrade(string pcent)  //show grade from percent
+        {
+            int sub = 0;
+            string s = "";
+            if (CriteriaSelected)
+            {
+                sub = MaxSub;
+            }
+            else
+            { sub = SSub; }
+            s = findGrade(pcent); //findgrade from percent
+            Marks[SCriteria, sub, Session] = s;
+        }
+
+      
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -9704,6 +9737,7 @@ namespace UltraMarker
             int[] linesC = new int[maximportableCriteria];
             int[] linesT = new int[maximportableCriteria];
             int totallines = 0;
+            int crnum = 0;
             for (int a = 0; a < maximportableCriteria; a++)    //null the criteria counter array
             {
                 sumpc[a] = 0.0;
@@ -9853,7 +9887,14 @@ namespace UltraMarker
                                 }
                                 treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
                                 overrideBox.Text = PCent.ToString(); //put new percentage in override box
-                                overridegrade(); //overide the grade for this criteria
+                                if (ImportasCheckBox.Checked)
+                                {
+                                    overridegrade(); //overide the grade for this criteria
+                                }
+                                else
+                                {
+                                    showGrade(overrideBox.Text);
+                                }
                                 //crComment[cr, MaxSub, 0]
                             }
                             catch { }
@@ -9905,11 +9946,14 @@ namespace UltraMarker
             {
                 importGroupBox.Visible = true;
                 importCalcLabel.Visible = true;
+                ImportasCheckBox.Visible = true;
+
             }
             else
             {
                 importGroupBox.Visible = false;
                 importCalcLabel.Visible = false;
+                ImportasCheckBox.Visible = false;
             }
         }
      
@@ -10178,6 +10222,8 @@ namespace UltraMarker
             Show_Label("Don't forget to save changes!", 1500);
             repCancelbutton4.Visible = false;
         }
+
+        
     }
 
        
