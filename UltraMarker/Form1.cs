@@ -9725,6 +9725,7 @@ namespace UltraMarker
             double pc = 0.0;
             bool ok = true;
             int cr = 0;
+            int mf = 0;
             int Lc = 0;
             int Lf = 0;
             bool found1 = false;
@@ -9857,6 +9858,10 @@ namespace UltraMarker
                                 if (AllowImpComment)
                                 {
                                     crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                   /* if (str.StartsWith("Marked file"))
+                                    {
+                                        mf++;                                                                               
+                                    }*/
                                 }
                             }
                         }
