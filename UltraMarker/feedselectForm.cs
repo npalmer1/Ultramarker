@@ -57,6 +57,7 @@ namespace UltraMarker
                 Passvalue[6] = checkBox7.Checked;
                 Passvalue[7] = checkBox8.Checked;
                 Passvalue[8] = checkBox9.Checked;
+                Passvalue[9] = checkBox10.Checked;
                 Passvalue[10] = checkBox11.Checked;
                 Passvalue[11] = checkBox12.Checked;
                 Passvalue[12] = checkBox13.Checked;
