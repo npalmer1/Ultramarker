@@ -242,6 +242,7 @@ namespace UltraMarker
             public bool subdescription;
             public bool includeheader;
             public bool CriteriaPercent;
+            public bool ShowMarker;
         }
         feedbackoptionstruct feedOptions;
        
@@ -281,6 +282,7 @@ namespace UltraMarker
         string templateGenfile = "";
         bool AllowImpComment = false;
         bool CalculateImportbyLines = true;
+        bool LoadFromFile = false;
         
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -486,6 +488,7 @@ namespace UltraMarker
             feedOptions.subdescription = b;
             feedOptions.includeheader = b;
             feedOptions.CriteriaPercent = b;
+            feedOptions.ShowMarker = b;
         }
 
         private void Reset_Selected(bool b) //reset selected criteria and sub criteria
@@ -1945,6 +1948,7 @@ namespace UltraMarker
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
                     sw.WriteLine("File Version: 2");
+                    sw.WriteLine("Unit/Module: " + UnitTitletextBox.Text);
                     sw.WriteLine("Assessment title: " + assessTitleBox.Text);
                     sw.WriteLine("assessdesc: ");
                     sw.WriteLine(assess.Description);
@@ -3164,7 +3168,7 @@ namespace UltraMarker
                 try
                 {
                     Directory.CreateDirectory(str);
-                    assessHeaderlabel.Text = "Assessments mark in: " + str;
+                    assessHeaderlabel.Text = "Marks in: " + str;
                 }
                 catch
                 {
@@ -3187,8 +3191,10 @@ namespace UltraMarker
                     {
                         if (MarkMode == 0)
                         {
-                            saveFileDialog3.Filter = "Moderated Marked files (.mrm)|*.mrm";
-                            saveFileDialog3.DefaultExt = "mrm";
+                            /*saveFileDialog3.Filter = "Moderated Marked files (.mrm)|*.mrm";
+                            saveFileDialog3.DefaultExt = "mrm";*/
+                            saveFileDialog3.Filter = "Marked files (.mrk)|*.mrk";
+                            saveFileDialog3.DefaultExt = "mrk";     //now use a flag "Moderated:" to indicate this
                         }
                     }
                     else
@@ -3227,9 +3233,10 @@ namespace UltraMarker
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void Load_Marked(bool LoadFF)
         {
             //load marked files
+            
             DialogResult dialogResult = DialogResult.Yes;
             if (marksDirectory.Length < 1)
             {
@@ -3239,13 +3246,13 @@ namespace UltraMarker
                 }
                 else
                 {
-                    marksDirectory = DefaultDir;  
+                    marksDirectory = DefaultDir;
                 }
             }
-         
+
             openFileDialog3.FileName = "";
-            openFileDialog3.InitialDirectory = marksDirectory + "\\" +assess.Code;
-            if (StudentcomboBox.Text.Trim().Length > 0)
+            openFileDialog3.InitialDirectory = marksDirectory + "\\" + assess.Code;
+            if ((StudentcomboBox.Text.Trim().Length > 0 ) && LoadFF)
             {
                 dialogResult = MessageBox.Show("Clear form data and load marks from file Yes/No?", "Load marks", MessageBoxButtons.YesNo);
 
@@ -3272,6 +3279,13 @@ namespace UltraMarker
 
                 openFileDialog3.ShowDialog();
             }
+            LoadFromFile = true;
+        }
+    
+        private void button5_Click(object sender, EventArgs e)  //Load button
+        {
+            Load_Marked(false);
+            
         }
 
         private void openFileDialog3_FileOk(object sender, CancelEventArgs e)
@@ -3280,7 +3294,7 @@ namespace UltraMarker
             if (str == "mrk" || str == "mrm" || str == "2nd" || str == "3rd") //if marked files
             {
                 Load_Marked_File(openFileDialog3.FileName);
-                assessHeaderlabel.Text = Path.GetDirectoryName(openFileDialog3.FileName);
+                assessHeaderlabel.Text = "Marks in: " + Path.GetDirectoryName(openFileDialog3.FileName);
             }
             else
             {
@@ -3290,10 +3304,11 @@ namespace UltraMarker
 
         private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)
         {   //saved marked student work
-            if (saveFileDialog3.DefaultExt == "mrk")
+            string str = saveFileDialog3.DefaultExt;
+            if (str == "mrk" || str == "mrm" || str == "2nd" || str == "3rd")
             {
                 Save_Marked_File(saveFileDialog3.FileName);
-                assessHeaderlabel.Text = "Assessments mark in: " + Path.GetDirectoryName(saveFileDialog3.FileName);
+                assessHeaderlabel.Text = "Marks in: " + Path.GetDirectoryName(saveFileDialog3.FileName);
             }
             else
             {
@@ -3332,6 +3347,12 @@ namespace UltraMarker
                         sw.WriteLine("Unit: " + UnitTitletextBox.Text);
                         sw.WriteLine("Assessment title: " + assess.Title);
                         sw.WriteLine("Student: " + StudentcomboBox.Text);
+                        string mstr = "N";
+                        if (modSelect.Checked)
+                        {
+                            mstr = "Y";
+                        }
+                        sw.WriteLine("Moderated: " + mstr);
                         try
                         {
                             ctype = CriteriaType.ToString();
@@ -3553,7 +3574,8 @@ namespace UltraMarker
             bool foundgrade = false;
             bool foundcriteria = false;
             bool foundsession = false;
-            
+            modSelect.Checked = false; //uncheck moderation checkbox
+
             loading = true;
             try
             {
@@ -3745,6 +3767,15 @@ namespace UltraMarker
                         if (str.StartsWith("Student: "))
                         {
                             StudentcomboBox.Text = str3;
+                        }
+                        if (str.StartsWith("Moderated: "))
+                        {
+                            if (str.Contains("Y"))
+                            {
+                                modSelect.Checked = true;
+                            }
+                            else modSelect.Checked = false;
+
                         }
                         if (str.StartsWith("Unit: "))
                         {
@@ -4122,6 +4153,10 @@ namespace UltraMarker
                     str = str + boldS + "Student name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
                     str = str + boldS + "Assessment title: " + assess.Title + boldE + ", Code: " + assess.Code + nl;
                     str = str + "Iteration: " + Sitting + nl;
+                    if (feedOptions.ShowMarker)
+                    {
+                        str = str + "Marker: " + MarkertextBox.Text.Trim() + nl;
+                    }
 
 
                     //richTextBox1.Rtf = @"{\rtf1\ansi \b " + selstr + " \b0 ";
@@ -5191,15 +5226,33 @@ namespace UltraMarker
             }
             else
             {
-                if (StudentcomboBox.Text.Trim() == "")
+                String StuN = StudentcomboBox.Text.Trim();
+                if (StuN == "")
                 {
                     MessageBox.Show("Student name is blank");
                     return;
                 }
+                else
+                {
+                    if (checkNameExists(StuN + "_" + assess.Code) && !LoadFromFile )
+                    {
+                        DialogResult dialogResult = MessageBox.Show("File exists for " + StuN + " - load it?", "File exists", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes )
+                        {
+                            Load_Marked(LoadFromFile);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Creating new entry for " + StuN);
+                        }
+                    }
+                }
+                LoadFromFile = false;
                 Markerlabel.Visible = true;
                 MarkertextBox.Visible = true;
                 Clicklabel1.Visible = true;
                 button7.Text = "Clear form/mark another";
+                modSelect.Checked = false;
                 button4.Visible = true;
                 button5.Visible = false;
                 button6.Visible = true;
@@ -5217,6 +5270,18 @@ namespace UltraMarker
                     importCalcLabel.Visible = true;
                 }               
                 
+            }
+        }
+        private bool checkNameExists(string Name)
+        {
+            string NPath = marksDirectory + "\\" + assess.Code + "\\" + Name;
+            if (File.Exists(NPath + ".mrk") || File.Exists(NPath + ".mrm") || File.Exists(NPath + ".2nd") || File.Exists(NPath + "3rd"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -5605,7 +5670,8 @@ namespace UltraMarker
                     if (!feedOptions.subdescription) { c[12] = '0'; }
                     if (!feedOptions.includeheader) { c[13] = '0'; }
                     if (!feedOptions.CriteriaPercent) { c[14] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14]);
+                    if (!feedOptions.ShowMarker) { c[15] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5966,6 +6032,7 @@ namespace UltraMarker
                                     c[12] = str3[12];
                                     c[13] = str3[13];
                                     c[14] = str3[14];
+                                    c[15] = str3[15];
                                 }
                                 catch
                                 {
@@ -6073,6 +6140,7 @@ namespace UltraMarker
                         if (c[12] == '0') { feedOptions.subdescription = false; }
                         if (c[13] == '0') { feedOptions.includeheader = false; }
                         if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
+                        if (c[15] == '0') { feedOptions.ShowMarker = false; }
 
                     } //using
                     LoadGradeListbox();
@@ -6938,6 +7006,7 @@ namespace UltraMarker
             FeedForm.Passvalue[12] = feedOptions.subdescription;
             FeedForm.Passvalue[13] = feedOptions.includeheader;
             FeedForm.Passvalue[14] = feedOptions.CriteriaPercent;
+            FeedForm.Passvalue[15] = feedOptions.ShowMarker;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -6955,6 +7024,7 @@ namespace UltraMarker
             feedOptions.subdescription = FeedForm.Passvalue[12];
             feedOptions.includeheader = FeedForm.Passvalue[13];
             feedOptions.CriteriaPercent = FeedForm.Passvalue[14];
+            feedOptions.ShowMarker = FeedForm.Passvalue[15];
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -7455,21 +7525,21 @@ namespace UltraMarker
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (LOFilePath.Length < 1)
-            {
+            //if (LOFilePath.Length < 1)
+            //{
                 LOFilePath = UnitFilePath;
                 saveFileDialog5.InitialDirectory = LOFilePath;
-            }
+            //}
             saveFileDialog5.InitialDirectory = LOFilePath;
             saveFileDialog5.ShowDialog();
         }
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {  //load LOs
-            if (LOFilePath.Length < 1)
-            {
+            //if (LOFilePath.Length < 1)
+            //{
                 LOFilePath = UnitFilePath;
-            }
+            //}
             openFileDialog4.FileName = "";
             openFileDialog4.InitialDirectory = LOFilePath;
             openFileDialog4.ShowDialog();
@@ -9283,6 +9353,7 @@ namespace UltraMarker
             {
                 sForm.marksDirectory = marksDirectory;
             }
+            sForm.moduleName = UnitTitletextBox.Text;
             sForm.assessmentFilePath = CriteriaFile;
             sForm.assessmentTitle = assess.Title;
             sForm.assessmentCode = assess.Code;
@@ -10228,7 +10299,13 @@ namespace UltraMarker
             repCancelbutton4.Visible = false;
         }
 
-        
+        private void clearStudentlistbutton_Click(object sender, EventArgs e)
+        {
+            StudentImportTextBox.Text = "";
+            StudentImportFile = "";
+            StuEmailtextBox.Text = "";
+            listBox4.Items.Clear();
+        }
     }
 
        

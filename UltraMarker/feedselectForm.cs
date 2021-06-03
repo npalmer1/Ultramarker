@@ -40,6 +40,7 @@ namespace UltraMarker
             checkBox13.Checked = Passvalue[12];
             checkBox14.Checked = Passvalue[13];
             checkBox15.Checked = Passvalue[14];
+            checkBox16.Checked = Passvalue[15];
 
         }
 
@@ -63,6 +64,7 @@ namespace UltraMarker
                 Passvalue[12] = checkBox13.Checked;
                 Passvalue[13] = checkBox14.Checked;
                 Passvalue[14] = checkBox15.Checked;
+                Passvalue[15] = checkBox16.Checked;
             }
             this.Close();
         }

@@ -22,6 +22,7 @@ namespace UltraMarker
         public string assessmentTitle = "";
         public string assessmentCode = "";
         public string UnitPath;
+        public string moduleName;
 
         struct st_struct
         {
@@ -29,6 +30,7 @@ namespace UltraMarker
             public string surname;
             public string percent;
             public string grade;
+            public string mod;
         }
         List<st_struct> list1 = new List<st_struct>();
         
@@ -48,6 +50,8 @@ namespace UltraMarker
 
         private void summaryForm_Load(object sender, EventArgs e)
         {
+
+            ModuletextBox.Text = moduleName;
             textBox1.Text = assessmentFilePath;
             marksDirectory = marksDirectory + "\\" + assessmentCode;
             textBox3.Text = marksDirectory;
@@ -136,6 +140,14 @@ namespace UltraMarker
                         str.Trim();
                         if (str.Length > 0)
                         {
+                            if (str.Contains("Unit/Module:"))
+                            {
+                                int a = str.IndexOf(":");
+                                str3 = str.Substring(a + 1).Trim();
+                                ModuletextBox.Text = str3;
+                                moduleName = str3;
+                                return;
+                            }
                             if (str.Contains("Assessment title:"))
                             {
                                 int a = str.IndexOf(":");
@@ -222,6 +234,7 @@ namespace UltraMarker
             sts.surname = "";
             sts.percent = "";
             sts.grade = "";
+            sts.mod = "";
             float group_total = 0;
             string[] name = new string[3];
             list1.Clear();
@@ -230,9 +243,15 @@ namespace UltraMarker
             {
                 using (StreamWriter sw2 = new StreamWriter(filename))
                 {
+                    sw2.WriteLine("Unit/module: " + moduleName);
+                    sw2.WriteLine("-------");
                     sw2.WriteLine("Summary report for assessment: " + assessmentTitle +" , Code: " + assessmentCode);
                     sw2.WriteLine("-----------------------------");
-                    sw2.WriteLine("Student".PadRight(30) + "\t\t % \t Grade");
+                    string pc = "";
+                    string gr = "";
+                    if (checkBox1.Checked) pc = "%";
+                    if (checkBox2.Checked) gr = "Grade";
+                    sw2.WriteLine("Student".PadRight(30) + "\t\t "+ pc + " \t "+ gr);
                     sw2.WriteLine();
                     string[] files = Directory.GetFiles(marksDirectory);
                     if (files.Count() <1)
@@ -247,6 +266,7 @@ namespace UltraMarker
                         sts.surname = "";
                         sts.percent = "";
                         sts.grade = "";
+                        sts.mod = "";
                         if (file.Contains(".mrk") || (file.Contains(".mrm")))
                         {                            
                             using (StreamReader sw = new StreamReader(file))
@@ -317,6 +337,13 @@ namespace UltraMarker
                                         {
                                             sts.grade = str3;
                                         }
+                                        else if (str.Contains("Moderated:"))
+                                        {
+                                            if (str3.Contains("Y") && modBox.Checked)
+                                            {
+                                                sts.mod = "*";
+                                            }
+                                        }
 
                                     }
                                   
@@ -334,12 +361,12 @@ namespace UltraMarker
                      {
                          if (sort_type == 1)
                          {                        
-                                sw2.Write((st.surname + " " + st.firstname).PadRight(35,'-') + " \t" + st.percent + " \t" + st.grade);
+                                sw2.Write((st.surname + " " + st.firstname).PadRight(35,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
                                 sw2.WriteLine();
                          }
                          else 
                          {
-                             sw2.Write((st.firstname + " " + st.surname).PadRight(39,'-') + " \t" + st.percent + " \t" + st.grade);
+                             sw2.Write((st.firstname + " " + st.surname).PadRight(39,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
                              sw2.WriteLine();
                          }
                            
@@ -347,8 +374,10 @@ namespace UltraMarker
                      sw2.WriteLine();
                     try
                     {
-                        sw2.WriteLine("Average percentage: " + Convert.ToString(Math.Round(group_total/list1.Count)) + " %");
+                        if (checkBox1.Checked) sw2.WriteLine("Average percentage: " + Convert.ToString(Math.Round(group_total/list1.Count)) + " %");
                         sw2.WriteLine("Number of students marked: " + Convert.ToString(list1.Count));
+                        if (modBox.Checked)
+                        { sw2.WriteLine(" \t" + "* moderated"); }
                     }
                     catch{
                     }
@@ -414,7 +443,9 @@ namespace UltraMarker
             {
                 using (StreamWriter sw2 = new StreamWriter(filename))
                 {
-                    sw2.WriteLine("Summary report for assessment: " + textBox2.Text);
+                    sw2.WriteLine("Unit/module: " + moduleName);
+                    sw2.WriteLine("-------");
+                    sw2.WriteLine("Summary report for assessment: " + textBox2.Text + " Code: " + assessmentCode);
                     sw2.WriteLine("-----------------------------");
                     sw2.WriteLine("Student \t\t % \t Grade");
                     string[] files = Directory.GetFiles(textBox3.Text);
@@ -495,6 +526,7 @@ namespace UltraMarker
                 }
                 hForm.Passvalue = str;
                 hForm.filePath = summaryFilename;
+                hForm.module = moduleName;
                 hForm.Show();
             }
             catch (System.Exception excep)

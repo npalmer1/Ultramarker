@@ -40,7 +40,7 @@
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(38, 10);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(968, 529);
             this.richTextBox1.TabIndex = 0;
@@ -49,7 +49,7 @@
             // printbutton
             // 
             this.printbutton.Location = new System.Drawing.Point(154, 551);
-            this.printbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.printbutton.Margin = new System.Windows.Forms.Padding(2);
             this.printbutton.Name = "printbutton";
             this.printbutton.Size = new System.Drawing.Size(56, 27);
             this.printbutton.TabIndex = 1;
@@ -59,9 +59,9 @@
             // 
             // savebutton
             // 
-            this.savebutton.Cursor = System.Windows.Forms.Cursors.No;
+            this.savebutton.Cursor = System.Windows.Forms.Cursors.Default;
             this.savebutton.Location = new System.Drawing.Point(230, 551);
-            this.savebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.savebutton.Margin = new System.Windows.Forms.Padding(2);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(59, 27);
             this.savebutton.TabIndex = 2;
@@ -72,7 +72,7 @@
             // editbutton
             // 
             this.editbutton.Location = new System.Drawing.Point(309, 551);
-            this.editbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.editbutton.Margin = new System.Windows.Forms.Padding(2);
             this.editbutton.Name = "editbutton";
             this.editbutton.Size = new System.Drawing.Size(56, 27);
             this.editbutton.TabIndex = 3;
@@ -84,7 +84,7 @@
             // cancelbutton
             // 
             this.cancelbutton.Location = new System.Drawing.Point(386, 551);
-            this.cancelbutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cancelbutton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelbutton.Name = "cancelbutton";
             this.cancelbutton.Size = new System.Drawing.Size(56, 27);
             this.cancelbutton.TabIndex = 4;
@@ -96,7 +96,7 @@
             // closebutton
             // 
             this.closebutton.Location = new System.Drawing.Point(462, 551);
-            this.closebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.closebutton.Margin = new System.Windows.Forms.Padding(2);
             this.closebutton.Name = "closebutton";
             this.closebutton.Size = new System.Drawing.Size(56, 27);
             this.closebutton.TabIndex = 5;
@@ -119,7 +119,7 @@
             this.Controls.Add(this.savebutton);
             this.Controls.Add(this.printbutton);
             this.Controls.Add(this.richTextBox1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GradeGroup";
             this.Text = "GradeGroup";
             this.Load += new System.EventHandler(this.GradeGroup_Load);

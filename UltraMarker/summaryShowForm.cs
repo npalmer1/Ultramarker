@@ -16,6 +16,7 @@ namespace UltraMarker
         private Font printFont;
         private StreamReader streamToPrint;
         public string filePath;
+        public string module;
         
 
         private string Nm;
@@ -40,8 +41,10 @@ namespace UltraMarker
             richTextBox1.Text = str;
             if (str.Contains("Summary report for assessment: "))
             {
-                i = str.IndexOf("----");
-                label1.Text = str2 + str.Substring("Summary report for assessment: ".Length, i - "Summary report for assessment: ".Length).Trim();
+
+                //i = str.IndexOf("----");
+                //label1.Text = str2 + str.Substring("Summary report for assessment: ".Length, i - "Summary report for assessment: ".Length).Trim();
+                label1.Text = module;
             }
                
         }

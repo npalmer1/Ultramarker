@@ -436,6 +436,7 @@
             this.utBox = new System.Windows.Forms.TextBox();
             this.label76 = new System.Windows.Forms.Label();
             this.tabPage9 = new System.Windows.Forms.TabPage();
+            this.clearStudentlistbutton = new System.Windows.Forms.Button();
             this.label91 = new System.Windows.Forms.Label();
             this.label90 = new System.Windows.Forms.Label();
             this.Importbutton = new System.Windows.Forms.Button();
@@ -867,17 +868,17 @@
             // MarkertextBox
             // 
             this.MarkertextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.MarkertextBox.Location = new System.Drawing.Point(1121, 6);
+            this.MarkertextBox.Location = new System.Drawing.Point(1159, 7);
             this.MarkertextBox.Margin = new System.Windows.Forms.Padding(2);
             this.MarkertextBox.Name = "MarkertextBox";
-            this.MarkertextBox.Size = new System.Drawing.Size(182, 21);
+            this.MarkertextBox.Size = new System.Drawing.Size(154, 21);
             this.MarkertextBox.TabIndex = 104;
             this.MarkertextBox.Visible = false;
             // 
             // Markerlabel
             // 
             this.Markerlabel.AutoSize = true;
-            this.Markerlabel.Location = new System.Drawing.Point(1042, 9);
+            this.Markerlabel.Location = new System.Drawing.Point(1071, 9);
             this.Markerlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Markerlabel.Name = "Markerlabel";
             this.Markerlabel.Size = new System.Drawing.Size(84, 15);
@@ -1090,7 +1091,7 @@
             // 
             this.templatelabel.AutoSize = true;
             this.templatelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatelabel.Location = new System.Drawing.Point(699, 59);
+            this.templatelabel.Location = new System.Drawing.Point(690, 59);
             this.templatelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.templatelabel.Name = "templatelabel";
             this.templatelabel.Size = new System.Drawing.Size(93, 17);
@@ -1102,7 +1103,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(791, 54);
+            this.templatetextBox.Location = new System.Drawing.Point(791, 57);
             this.templatetextBox.Margin = new System.Windows.Forms.Padding(2);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(266, 23);
@@ -1125,7 +1126,7 @@
             // unitlabel
             // 
             this.unitlabel.AutoSize = true;
-            this.unitlabel.Location = new System.Drawing.Point(448, 11);
+            this.unitlabel.Location = new System.Drawing.Point(843, 12);
             this.unitlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.unitlabel.Name = "unitlabel";
             this.unitlabel.Size = new System.Drawing.Size(32, 15);
@@ -1285,11 +1286,11 @@
             // assessHeaderlabel
             // 
             this.assessHeaderlabel.AutoSize = true;
-            this.assessHeaderlabel.Location = new System.Drawing.Point(430, 11);
+            this.assessHeaderlabel.Location = new System.Drawing.Point(417, 11);
             this.assessHeaderlabel.Name = "assessHeaderlabel";
-            this.assessHeaderlabel.Size = new System.Drawing.Size(13, 15);
+            this.assessHeaderlabel.Size = new System.Drawing.Size(79, 15);
             this.assessHeaderlabel.TabIndex = 68;
-            this.assessHeaderlabel.Text = "  ";
+            this.assessHeaderlabel.Text = "  Assessment";
             // 
             // label85
             // 
@@ -1497,7 +1498,7 @@
             // assessTitleBox
             // 
             this.assessTitleBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.assessTitleBox.Location = new System.Drawing.Point(448, 30);
+            this.assessTitleBox.Location = new System.Drawing.Point(451, 30);
             this.assessTitleBox.Name = "assessTitleBox";
             this.assessTitleBox.ReadOnly = true;
             this.assessTitleBox.Size = new System.Drawing.Size(575, 22);
@@ -4696,6 +4697,7 @@
             // tabPage9
             // 
             this.tabPage9.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage9.Controls.Add(this.clearStudentlistbutton);
             this.tabPage9.Controls.Add(this.label91);
             this.tabPage9.Controls.Add(this.label90);
             this.tabPage9.Controls.Add(this.Importbutton);
@@ -4711,6 +4713,16 @@
             this.tabPage9.Size = new System.Drawing.Size(1328, 720);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
+            // 
+            // clearStudentlistbutton
+            // 
+            this.clearStudentlistbutton.Location = new System.Drawing.Point(141, 107);
+            this.clearStudentlistbutton.Name = "clearStudentlistbutton";
+            this.clearStudentlistbutton.Size = new System.Drawing.Size(75, 47);
+            this.clearStudentlistbutton.TabIndex = 9;
+            this.clearStudentlistbutton.Text = "Clear";
+            this.clearStudentlistbutton.UseVisualStyleBackColor = true;
+            this.clearStudentlistbutton.Click += new System.EventHandler(this.clearStudentlistbutton_Click);
             // 
             // label91
             // 
@@ -5555,6 +5567,7 @@
         private System.Windows.Forms.ToolStripMenuItem replicateDescriptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem replicateDescriptionToolStripMenuItem1;
         private System.Windows.Forms.CheckBox ImportasCheckBox;
+        private System.Windows.Forms.Button clearStudentlistbutton;
     }
 }
 
