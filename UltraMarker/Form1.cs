@@ -5586,7 +5586,7 @@ namespace UltraMarker
 
         private void SaveSettings()
         {
-            char[] c = new char[20];
+            char[] c = new char[25];
             string bl = "true";
             //string c = "111111111";
             string str = "";
@@ -5597,7 +5597,7 @@ namespace UltraMarker
                 {
                     bl = "false";
                 }
-                for (int i = 0; i < 20; i++)
+                for (int i = 0; i < 25; i++)
                 {
                     c[i] = '1';  //set feedbackoptions to selected
                 }
@@ -5680,7 +5680,8 @@ namespace UltraMarker
                     if (!feedOptions.CriteriaPercent) { c[14] = '0'; }
                     if (!feedOptions.ShowMarker) { c[15] = '0'; }
                     if (!feedOptions.ShowWeight) { c[16] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15] + c[16]);
+                    if (!feedOptions.ShowSubWeight) { c[17] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15] + c[16] + c[17]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5799,12 +5800,12 @@ namespace UltraMarker
         private void LoadSettings()
         {
             //on startup
-            char[] c = new char[20];
+            char[] c = new char[25];
             string str = "";
             string[] str2 = new string[2];
             string str3 = "";
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 25; i++)
             {
                 c[i] = '1';  //set feedbackoptions to selected
             }
@@ -6042,6 +6043,8 @@ namespace UltraMarker
                                     c[13] = str3[13];
                                     c[14] = str3[14];
                                     c[15] = str3[15];
+                                    c[16] = str3[16];
+                                    c[17] = str3[17];
                                 }
                                 catch
                                 {
@@ -6151,6 +6154,7 @@ namespace UltraMarker
                         if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
                         if (c[15] == '0') { feedOptions.ShowMarker = false; }
                         if (c[16] == '0') { feedOptions.ShowWeight = false; }
+                        if (c[17] == '0') { feedOptions.ShowSubWeight = false; }
 
                     } //using
                     LoadGradeListbox();
