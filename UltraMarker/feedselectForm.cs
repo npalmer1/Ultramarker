@@ -11,7 +11,7 @@ namespace UltraMarker
 {
     public partial class feedselectForm : Form
     {
-        private bool[] Nm = new bool[20];
+        private bool[] Nm = new bool[25];
 
         public bool[] Passvalue
         {
@@ -41,6 +41,8 @@ namespace UltraMarker
             checkBox14.Checked = Passvalue[13];
             checkBox15.Checked = Passvalue[14];
             checkBox16.Checked = Passvalue[15];
+            checkBox17.Checked = Passvalue[16];
+            checkBox18.Checked = Passvalue[17];
 
         }
 
@@ -65,6 +67,8 @@ namespace UltraMarker
                 Passvalue[13] = checkBox14.Checked;
                 Passvalue[14] = checkBox15.Checked;
                 Passvalue[15] = checkBox16.Checked;
+                Passvalue[16] = checkBox17.Checked;
+                Passvalue[17] = checkBox18.Checked;
             }
             this.Close();
         }

@@ -23,6 +23,7 @@ namespace UltraMarker
         public string assessmentCode = "";
         public string UnitPath;
         public string moduleName;
+        string marksCodeDir = "";
 
         struct st_struct
         {
@@ -51,10 +52,11 @@ namespace UltraMarker
         private void summaryForm_Load(object sender, EventArgs e)
         {
 
+            marksCodeDir = marksDirectory + "\\" + assessmentCode;
             ModuletextBox.Text = moduleName;
             textBox1.Text = assessmentFilePath;
-            marksDirectory = marksDirectory + "\\" + assessmentCode;
-            textBox3.Text = marksDirectory;
+            
+            textBox3.Text = marksCodeDir;
             textBox2.Text = assessmentTitle;
             textBox4.Text = assessmentCode;
             try
@@ -112,10 +114,10 @@ namespace UltraMarker
         private void button2_Click(object sender, EventArgs e)
         {
            
-            folderBrowserDialog1.SelectedPath = marksDirectory;// marks directory
+            folderBrowserDialog1.SelectedPath = marksCodeDir;// marks directory
             folderBrowserDialog1.ShowDialog();
             textBox3.Text = folderBrowserDialog1.SelectedPath;
-            marksDirectory = textBox3.Text;
+            marksCodeDir = textBox3.Text;
         }
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -146,7 +148,7 @@ namespace UltraMarker
                                 str3 = str.Substring(a + 1).Trim();
                                 ModuletextBox.Text = str3;
                                 moduleName = str3;
-                                return;
+                                //return;
                             }
                             if (str.Contains("Assessment title:"))
                             {
@@ -154,7 +156,7 @@ namespace UltraMarker
                                 str3 = str.Substring(a+1).Trim();
                                 textBox2.Text = str3;
                                 assessmentTitle = str3;
-                                return;
+                                //return;
 
                             }
                             if (str.Contains("Assessment code:"))
@@ -163,7 +165,7 @@ namespace UltraMarker
                                 str3 = str.Substring(a + 1).Trim();
                                 textBox4.Text = str3;
                                 assessmentCode = str3;
-                                return;
+                                //return;
 
                             }
                             
@@ -171,8 +173,8 @@ namespace UltraMarker
                       
                     }
                     sw.Close();
-                    marksDirectory = marksDirectory + "\\" + assessmentCode;
-                    textBox3.Text = marksDirectory;
+                    marksCodeDir = marksDirectory + "\\" + assessmentCode;
+                    textBox3.Text = marksCodeDir;
                 }
               
             }
@@ -197,7 +199,7 @@ namespace UltraMarker
             {
                 if ((textBox1.Text.Trim().Length <1) || (textBox3.Text.Trim().Length <1))
                 {
-                    MessageBox.Show("Assessment filename and loaction of marks are not specified");
+                    MessageBox.Show("Assessment filename and location of marks are not specified");
                     return;
                 }
 
@@ -253,7 +255,7 @@ namespace UltraMarker
                     if (checkBox2.Checked) gr = "Grade";
                     sw2.WriteLine("Student".PadRight(30) + "\t\t "+ pc + " \t "+ gr);
                     sw2.WriteLine();
-                    string[] files = Directory.GetFiles(marksDirectory);
+                    string[] files = Directory.GetFiles(marksCodeDir);
                     if (files.Count() <1)
                     {
                         MessageBox.Show("Folder contains no marked files");

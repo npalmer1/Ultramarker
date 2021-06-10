@@ -243,6 +243,8 @@ namespace UltraMarker
             public bool includeheader;
             public bool CriteriaPercent;
             public bool ShowMarker;
+            public bool ShowWeight;
+            public bool ShowSubWeight;
         }
         feedbackoptionstruct feedOptions;
        
@@ -489,6 +491,8 @@ namespace UltraMarker
             feedOptions.includeheader = b;
             feedOptions.CriteriaPercent = b;
             feedOptions.ShowMarker = b;
+            feedOptions.ShowWeight = b;
+            feedOptions.ShowSubWeight = b;
         }
 
         private void Reset_Selected(bool b) //reset selected criteria and sub criteria
@@ -4234,7 +4238,9 @@ namespace UltraMarker
                         if ((!nullText) && (crSelected[i, j, s]))
                         {
                             str = str + "-----------" + nl;
-                            str = str + boldS + "Criteria: " + crtitle[i, j] + boldE + nl;
+                            str = str + boldS + "Criteria: " + crtitle[i, j] + boldE;
+                            if (feedOptions.ShowWeight) { str = str + " - Weight%: " + crweight[i, j, Session] + nl; }
+                            else { str = str + nl; }
                             if (firstSession && feedOptions.description)
                             {
                                 str = str + italS + "Description of requirements for this criteria: " + italE + nl;
@@ -4344,7 +4350,9 @@ namespace UltraMarker
                             if ((!nullText) && (crSelected[i, k, s]))
                             {
                                 str = str + "+++++++" + nl;
-                                str = str + boldS + " Sub-Criteria: " + crtitle[i, k] + boldE + nl;
+                                str = str + boldS + " Sub-Criteria: " + crtitle[i, k] + boldE;
+                                if (feedOptions.ShowSubWeight) { str = str + " - Weight within criteria%: " + crweight[i, k, Session] + nl; }
+                                else { str = str + nl; }
                                 if (firstSession && feedOptions.subdescription)
                                 {
                                     str = str + italS + "Description of requirements for this sub criteria: " + italE + nl;
@@ -5671,7 +5679,8 @@ namespace UltraMarker
                     if (!feedOptions.includeheader) { c[13] = '0'; }
                     if (!feedOptions.CriteriaPercent) { c[14] = '0'; }
                     if (!feedOptions.ShowMarker) { c[15] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15]);
+                    if (!feedOptions.ShowWeight) { c[16] = '0'; }
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15] + c[16]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -6141,6 +6150,7 @@ namespace UltraMarker
                         if (c[13] == '0') { feedOptions.includeheader = false; }
                         if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
                         if (c[15] == '0') { feedOptions.ShowMarker = false; }
+                        if (c[16] == '0') { feedOptions.ShowWeight = false; }
 
                     } //using
                     LoadGradeListbox();
@@ -7007,6 +7017,8 @@ namespace UltraMarker
             FeedForm.Passvalue[13] = feedOptions.includeheader;
             FeedForm.Passvalue[14] = feedOptions.CriteriaPercent;
             FeedForm.Passvalue[15] = feedOptions.ShowMarker;
+            FeedForm.Passvalue[16] = feedOptions.ShowWeight;
+            FeedForm.Passvalue[17] = feedOptions.ShowSubWeight;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -7025,6 +7037,8 @@ namespace UltraMarker
             feedOptions.includeheader = FeedForm.Passvalue[13];
             feedOptions.CriteriaPercent = FeedForm.Passvalue[14];
             feedOptions.ShowMarker = FeedForm.Passvalue[15];
+            feedOptions.ShowWeight = FeedForm.Passvalue[16];
+            feedOptions.ShowSubWeight = FeedForm.Passvalue[17];
         }
 
         private void addButton_Click(object sender, EventArgs e)
