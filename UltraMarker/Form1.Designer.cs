@@ -992,10 +992,10 @@
             // 
             // ImpFilebutton
             // 
-            this.ImpFilebutton.Location = new System.Drawing.Point(389, 12);
-            this.ImpFilebutton.Margin = new System.Windows.Forms.Padding(2);
+            this.ImpFilebutton.Location = new System.Drawing.Point(390, 10);
+            this.ImpFilebutton.Margin = new System.Windows.Forms.Padding(1);
             this.ImpFilebutton.Name = "ImpFilebutton";
-            this.ImpFilebutton.Size = new System.Drawing.Size(23, 19);
+            this.ImpFilebutton.Size = new System.Drawing.Size(31, 24);
             this.ImpFilebutton.TabIndex = 96;
             this.ImpFilebutton.Text = "...";
             this.ImpFilebutton.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -1022,14 +1022,14 @@
             // 
             // importFilebutton
             // 
-            this.importFilebutton.Location = new System.Drawing.Point(424, 7);
+            this.importFilebutton.Location = new System.Drawing.Point(424, 10);
             this.importFilebutton.Margin = new System.Windows.Forms.Padding(2);
             this.importFilebutton.Name = "importFilebutton";
             this.importFilebutton.Size = new System.Drawing.Size(56, 24);
             this.importFilebutton.TabIndex = 92;
             this.importFilebutton.Text = "Import";
             this.importFilebutton.UseVisualStyleBackColor = true;
-            this.importFilebutton.Click += new System.EventHandler(this.importFilebutton_Click);
+            this.importFilebutton.Visible = false;
             // 
             // ImportcheckBox
             // 
@@ -1721,6 +1721,7 @@
             this.textBox4.BackColor = System.Drawing.Color.Snow;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(369, 144);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(1);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;

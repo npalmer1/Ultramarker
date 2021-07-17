@@ -3591,7 +3591,7 @@ namespace UltraMarker
                 else
                 {
                  * */
-                Clear_Form_Data();
+                Clear_Form_Data(false);
                 Reset_Selected(false);
                
                 using (StreamReader sw1 = new StreamReader(filename))
@@ -3957,7 +3957,7 @@ namespace UltraMarker
                 if (listBox1.Items.Count < 1)
                 {
                     MessageBox.Show("Warning - cannot load student file - no grade file loaded that matches!");
-                    Clear_Form_Data();
+                    Clear_Form_Data(false);
                 }
                 Change_Session_Selection();
                 loading = false;
@@ -4607,13 +4607,13 @@ namespace UltraMarker
                                 GForm.CM[i] = m1;   //grade mark for each criteria
 
                                 FindGradePositionV2(m1, i);
-
-                                str2 = Find_Grade_Comments(Marks[i, j, s]);
-                              
+                                str2 = "";
+                                //str2 = Find_Grade_Comments(Marks[i, j, s]);
+                                
                                 str2 = crComment[i, j, s];
                                 if ((str2 != null) && feedOptions.criteriaComment && (str2.Trim().Length > 0))
                                 {
-                                    GForm.comment[i] = "Comments: " + str2;
+                                    GForm.comment[i] = "Comments: " + str2 + System.Environment.NewLine; ;
                                   
                                 }
 
@@ -5205,7 +5205,7 @@ namespace UltraMarker
                 {
                     Markerlabel.Visible = false;
                     MarkertextBox.Visible = false;
-                    Clear_Form_Data();
+                    Clear_Form_Data(false);
                     overridecheckBox.Checked = false; //stop overriding student grade
                     OverrideGradelabel.Visible = false;
                     Overriedlabel.Visible = false;
@@ -5293,24 +5293,27 @@ namespace UltraMarker
             }
         }
 
-        private void Clear_Form_Data()
+        private void Clear_Form_Data(bool dataOnly)
         {
             //clears all marking data on the form (warnings should be placed in calling method)
 
-            StudentcomboBox.Text = "";
-            textBox10.Text = "";
-            LOtextBox.Text = "";
-            //assessTitleBox.Text = "";
-            //assess.Title = assessTitleBox.Text;
-            //assess.Description = "";
-            //assess.Code = "";
-            //assess.Weight = "";
+            if (!dataOnly)
+            {
+                StudentcomboBox.Text = "";
+                textBox10.Text = "";
+                LOtextBox.Text = "";
+                //assessTitleBox.Text = "";
+                //assess.Title = assessTitleBox.Text;
+                //assess.Description = "";
+                //assess.Code = "";
+                //assess.Weight = "";
 
-            label22.Text = "";
-            //Feedback = "";
-            label18.Text = "  ";
-            gradelbl.Text = "    ";
-            fblbl.Text = "    ";
+                label22.Text = "";
+                //Feedback = "";
+                label18.Text = "  ";
+                gradelbl.Text = "    ";
+                fblbl.Text = "    ";
+            }
            
             for (int i = 0; i < MaxCriteria; i++)
             {
@@ -6846,7 +6849,7 @@ namespace UltraMarker
             if (dialogResult == DialogResult.Yes)
             {
                 Clear_All_Criteria(true);
-                Clear_Form_Data();
+                Clear_Form_Data(false);
                 MaxSub = 20;
                 Reset_Selected(true); //clear selected criteria
 
@@ -9794,10 +9797,11 @@ namespace UltraMarker
             templatetextBox.Text = GenFileDialog.FileName;
         }
 
-        private void importFilebutton_Click(object sender, EventArgs e)
+        /*private void importFilebutton_Click(object sender, EventArgs e)
         {
             if (EditStudent && startMark)
             {
+                Clear_Form_Data(true); //just clear commetns and marks
                 importFromFile(importFileBox.Text);
             }
             else
@@ -9805,6 +9809,7 @@ namespace UltraMarker
                 MessageBox.Show("Need to start marking first");
             }
         }
+        */
         private void importFromFile(string filename)    //import reults from an external file
         { //starts with marked file: and ends with contains percent:
             string str = "";
@@ -10065,6 +10070,20 @@ namespace UltraMarker
         private void ImportFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             importFileBox.Text = ImportFileDialog.FileName;
+            if (EditStudent && startMark && (importFileBox.Text.Trim() !=""))
+            {
+                DialogResult dialogResult = MessageBox.Show("Import results from this file?", "Import Results", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Clear_Form_Data(true); //just clear commetns and marks
+                    importFromFile(importFileBox.Text);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Need to start marking first");
+            }
+
         }
 
        
