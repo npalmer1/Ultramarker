@@ -2571,9 +2571,22 @@ namespace UltraMarker
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
-
+            defaultSelectAll();      
             ReadCriteriaFromFile(openFileDialog2.FileName, true);
             updatePeerForms();
+        }
+        private void defaultSelectAll()
+        {
+            for (int i =0; i<MaxCriteria; i++)
+            {
+                for (int s = 0; s < MaxSub; s++)
+                {
+                    for (int n = 0; n < MaxSessions; n++)
+                    {
+                        crSelected[i, s, n] = true;
+                    }
+                }
+            }
         }
 
         private void updatePeerForms()
