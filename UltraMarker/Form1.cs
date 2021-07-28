@@ -285,12 +285,27 @@ namespace UltraMarker
         bool AllowImpComment = false;
         bool CalculateImportbyLines = true;
         bool LoadFromFile = false;
+        bool platformlinux = false;
         
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
 
         public Form1()
         {
+            try
+            {
+                string[] args = Environment.GetCommandLineArgs();
+
+                if (args != null)
+                {
+                    if (args[1].StartsWith("-linux"))
+                    {
+                        platformlinux = true;
+
+                    }
+                }
+            }
+            catch { }
             InitializeComponent();
         }
 
@@ -350,7 +365,7 @@ namespace UltraMarker
                     MessageBox.Show("Problem creating default directory");
                 }
             }
-            else if (RunningPlatform() == Platform.Linux)
+            else if (RunningPlatform() == Platform.Linux || platformlinux)
             {
                 slash = "/";
                 var homePath = Environment.GetEnvironmentVariable("HOME");
