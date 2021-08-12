@@ -2914,6 +2914,7 @@
             this.marksFoldertextBox.ReadOnly = true;
             this.marksFoldertextBox.Size = new System.Drawing.Size(280, 21);
             this.marksFoldertextBox.TabIndex = 28;
+            this.marksFoldertextBox.TextChanged += new System.EventHandler(this.marksFoldertextBox_TextChanged);
             // 
             // label87
             // 
@@ -2940,6 +2941,7 @@
             this.unitFoldertextBox.ReadOnly = true;
             this.unitFoldertextBox.Size = new System.Drawing.Size(281, 21);
             this.unitFoldertextBox.TabIndex = 25;
+            this.unitFoldertextBox.TextChanged += new System.EventHandler(this.unitFoldertextBox_TextChanged);
             // 
             // extTemplatebutton
             // 

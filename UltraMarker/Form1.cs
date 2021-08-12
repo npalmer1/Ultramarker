@@ -8942,6 +8942,8 @@ namespace UltraMarker
             {
                 MessageBox.Show("Unable to create directory");
             }
+            marksDirectory = UnitFilePath + "\\Marks";
+            marksFoldertextBox.Text = marksDirectory;
 
         }
 
@@ -10468,11 +10470,51 @@ namespace UltraMarker
             listBox4.Items.Clear();
         }
 
-       
+        private void unitFoldertextBox_TextChanged(object sender, EventArgs e)
+        {
+            //DialogResult reply;
+            
+            if (!unitFoldertextBox.ReadOnly)
+            {
+                
+                try
+                {
+                    if (!Directory.Exists(UnitFilePath))
+                    {
+                        Directory.CreateDirectory(UnitFilePath);
+                    }
+                    UnitFilePath = unitFoldertextBox.Text;
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to create directory");
+                }
+            }
+        }
+
+        private void marksFoldertextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!marksFoldertextBox.ReadOnly)
+            {
+                try
+                {
+                    if (!Directory.Exists(marksDirectory))
+                    {
+                        Directory.CreateDirectory(marksDirectory);
+                    }
+                    marksDirectory = marksFoldertextBox.Text;
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to create directory");
+                }
+            }
+        }
+        }
     }
 
        
-    }
+    
 
 
 
