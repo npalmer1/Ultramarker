@@ -315,7 +315,8 @@ namespace UltraMarker
         {            
             string str = "";
             feedOptions.includeheader = true;
-           
+            ConfigDir = "C:\\Ultramarker" + slash;
+
             if (RunningPlatform() == Platform.Windows)
             {
                 slash = "\\";
@@ -324,8 +325,8 @@ namespace UltraMarker
                 if (startPath == null)
                 {
                     ConfigDir = "C:\\Ultramarker" + slash;
-                    DefaultDir = startPath;
-                    setDefaultDir("Set initial default directory: ");
+                    DefaultDir = ConfigDir;
+                    editDefaultDir("Initial directory: "+ DefaultDir);
                     if (DefaultDir == "" || DefaultDir == null)
                     {
                         MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
@@ -334,14 +335,21 @@ namespace UltraMarker
                 }
                 else if (!File.Exists(startPath + slash + "UltraMarker.dir"))
                 {
-                    DefaultDir = startPath;                    
-                    setDefaultDir("Set initial default directory: "); //set the default directory on initial startup
+                    //DefaultDir = startPath;
+                    DefaultDir = "C:\\Ultramarker" + slash;
+                    editDefaultDir("Initial directory: " + DefaultDir); //set the default directory on initial startup
                     if (DefaultDir == "" || DefaultDir == null)
                     {
                         MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
                         DefaultDir = "C:\\Ultramarker";
                     }
-                    ConfigDir = startPath + slash;                   
+                    ConfigDir = startPath + slash;
+                    //ConfigDir = DefaultDir;
+                }
+                else if (File.Exists(startPath + slash + "UltraMarker.dir"))
+                {
+                    ConfigDir = startPath + slash;
+                    DefaultDir = "C:\\Ultramarker" + slash;  //this will be overridden if present in ultramarker.dir file in config dir
                 }
                 else //if ultramarker.dir file exists
                 {
@@ -3161,7 +3169,7 @@ namespace UltraMarker
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)      //save button
+        private void button4_Click(object sender, EventArgs e)      //SAVE button
         {   //save student mark
             string addstr = "";
             if (addCode)
@@ -3175,8 +3183,16 @@ namespace UltraMarker
             }
             string str = marksDirectory + "\\" + assess.Code;
             if (!Directory.Exists(marksDirectory))
+            {
+                Directory.CreateDirectory(marksDirectory);
+            }
+            if (!Directory.Exists(str))
+            {
+                Directory.CreateDirectory(str);
+            }
+            if (!Directory.Exists(str))
             {   //check if you've lost connection to online resource nad if so save locally instead temporarily
-                MessageBox.Show("Unable to save - check path or connection to: " + marksDirectory);
+                MessageBox.Show("Unable to save - check path or connection to: " + str);
                 DialogResult ret = MessageBox.Show("Save marks temporarily in: " + ConfigDir + " Yes/No?", "Save marks", MessageBoxButtons.YesNo);
                 if (ret == DialogResult.Yes)
                 {
@@ -5081,28 +5097,31 @@ namespace UltraMarker
             string b = "";
             try
             {
-                if (str.EndsWith("%"))
+                if (str != null)
                 {
-                    s = str.Substring(0, str.Length-1);
-                }
-                else
-                {
-                    for (int i = 0; i < MaxGrades - 1; i++)
+                    if (str.EndsWith("%"))
                     {
-                        if (singleGrades)
+                        s = str.Substring(0, str.Length - 1);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < MaxGrades - 1; i++)
                         {
-                            b = gradelist[i].grtitle.Trim();
-                        }
-                        else
-                        {
-                            b = gradelist[i].gralias.Trim();
-                        }
+                            if (singleGrades)
+                            {
+                                b = gradelist[i].grtitle.Trim();
+                            }
+                            else
+                            {
+                                b = gradelist[i].gralias.Trim();
+                            }
 
-                        if (str.Trim() == b)
-                        {
-                            s = Convert.ToString(gradelist[i].grpercent).Trim();
+                            if (str.Trim() == b)
+                            {
+                                s = Convert.ToString(gradelist[i].grpercent).Trim();
+                            }
+                            if (s.Length > 0) { break; }
                         }
-                        if (s.Length > 0) { break; }
                     }
                 }
             }
@@ -8912,6 +8931,17 @@ namespace UltraMarker
             unitFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
 
             UnitFilePath = unitFoldertextBox.Text;
+            try
+            {
+                if (!Directory.Exists(UnitFilePath))
+                {
+                    Directory.CreateDirectory(UnitFilePath);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Unable to create directory");
+            }
 
         }
 
@@ -8926,6 +8956,18 @@ namespace UltraMarker
             marksFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
 
             marksDirectory = marksFoldertextBox.Text;
+            try
+            {
+                if (!Directory.Exists(marksDirectory))
+                {
+                    Directory.CreateDirectory(marksDirectory);
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Unable to create directory");
+            }
+
         }
 
         private void newUnitbutton_Click(object sender, EventArgs e)
@@ -9173,11 +9215,7 @@ namespace UltraMarker
             }
         }
 
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void institutionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string str = "";
@@ -9192,10 +9230,64 @@ namespace UltraMarker
 
         private void defaultDirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            setDefaultDir("Enter default directory: ");  //set the default directory for ultramarker work, eg. C:\Ultramarker   
+            editDefaultDir("Default directory: " + DefaultDir);  //set the default directory for ultramarker work, eg. C:\Ultramarker   
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
         }
-        private void setDefaultDir(string message) 
+       
+        private void editDefaultDir(string message)
+        {
+            string sl = "";
+            DialogResult reply;
+            folderBrowserDialog2.SelectedPath = DefaultDir;
+            folderBrowserDialog2.Description = message;
+            folderBrowserDialog2.ShowDialog();
+            string str = folderBrowserDialog2.SelectedPath;
+            if (Directory.Exists(str) == false)
+            {
+                reply = MessageBox.Show("Directory does not exist, create yes/no?", "Directory", MessageBoxButtons.YesNo);
+                if (reply == DialogResult.Yes)
+                {
+                    try
+                    {
+                        Directory.CreateDirectory(str);
+                        //DefaultDir = str;
+                        //outl = true;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Invalid path");
+                    }
+                }
+            }
+            if (str.Trim() == DefaultDir.Trim())
+            {
+                reply = MessageBox.Show("This is already the Default directory for Ultamarker - reset all paths yes/no?", "Reset default Directory", MessageBoxButtons.YesNoCancel);
+            }
+            else
+            {
+                reply = MessageBox.Show("Change the Default directory and rest all paths yes/no?", "Change Default Directory", MessageBoxButtons.YesNoCancel);
+            }
+            if (reply == DialogResult.Yes)
+            {
+                if (str.LastIndexOf("\\") == str.Length - 1) //is last charcater a slash?
+                { sl = ""; }
+                else { sl = slash; }
+                DefaultDir = str + sl;
+                GradeFile = "";
+                GradePath = str + sl;
+                UnitFile = "";
+                UnitFilePath = str + sl;
+                LOFilePath = str + sl;
+                LOFile = "";
+                CriteriaPath = str + sl;
+                CriteriaFile = "";
+                CommentFile = "";
+                CommentFilePath = str + sl;
+                MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
+            }
+        }
+
+        /*private void setDefaultDir(string message) 
         {
             string str = "";
             string sl = "";
@@ -9209,6 +9301,7 @@ namespace UltraMarker
             input.Passvalue = message;
             while (outl == false)
             {
+                
                 input.ShowDialog();
                 if (input.cancel)
                 {
@@ -9272,7 +9365,8 @@ namespace UltraMarker
                 CommentFilePath = str + sl;
                 MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
             }
-        }
+        }*/
+       
 
         private void loadConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -10373,6 +10467,8 @@ namespace UltraMarker
             StuEmailtextBox.Text = "";
             listBox4.Items.Clear();
         }
+
+       
     }
 
        
