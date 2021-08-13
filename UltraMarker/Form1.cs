@@ -6288,6 +6288,7 @@ namespace UltraMarker
             
             sessionlabel3.Visible = a;
             sessionlabel4.Visible = a;
+            sessionlabel4.Text = "";
 
             if (a)  //true = multi-sessions
             {
@@ -6308,7 +6309,7 @@ namespace UltraMarker
                     tabControl1.TabPages.Remove(tabPage3);
                 }
                 Session = 0;
-                SessionS = 0;
+                //SessionS = 0;
                 label7.Text = "....Weight for this criteria %:";
                 checkWbutton.Visible = true;
             }
@@ -6337,6 +6338,7 @@ namespace UltraMarker
                 insessionLabel.Visible = false;
                 copyWeightbutton.Visible = false;
                 Set_Session(false);
+                sessionbutton1.Visible = false;
                 Reset_Selected(true); //reset criteria selections - only use this in multi-session
             }
             //Change_Session_Selection();
@@ -6345,29 +6347,34 @@ namespace UltraMarker
 
         private void sessionbutton1_Click(object sender, EventArgs e)
         {
+
             //Previous session button:
-            if (Session > 0)
+            try
             {
-                Session--;
-                DeselectSessioncheckBox.Checked = DeselectSession[Session];
-                sessionbutton2.Visible = true;
-                if (Session == 0)
+                if (Session > 0)
                 {
-                    copyWeightbutton.Visible = false;
-                    sessionbutton1.Visible = false;
+                    Session--;
+                    DeselectSessioncheckBox.Checked = DeselectSession[Session];
+                    sessionbutton2.Visible = true;
+                    if (Session == 0)
+                    {
+                        copyWeightbutton.Visible = false;
+                        sessionbutton1.Visible = false;
+                    }
+                    sessionlabel2.Text = (Session + 1).ToString();
+                    sessionlabel4.Text = SessionTitle[Session];
+                    label18.Text = "";
+                    //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[0];
+                    SelNode = treeView2.SelectedNode;
+                    if (EditStudent)
+                    {
+                        Change_Selected_Criteria();
+                    }
+                    Change_Session_Selection();
+                    treeView2.SelectedNode = SelNode;
                 }
-                sessionlabel2.Text = (Session + 1).ToString();
-                sessionlabel4.Text = SessionTitle[Session];
-                label18.Text = "";
-                //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[0];
-                SelNode = treeView2.SelectedNode;
-                if (EditStudent)
-                {
-                    Change_Selected_Criteria();
-                }
-                Change_Session_Selection();
-                treeView2.SelectedNode = SelNode;
             }
+            catch { }
 
         }
 
@@ -6551,7 +6558,7 @@ namespace UltraMarker
 
         private void saveSessionbutton_Click(object sender, EventArgs e)
         {
-
+           
             //Save sessions to sessiontitle array:
             DialogResult dialogResult = MessageBox.Show("Save Yes/No?", "Save Session title", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -6580,6 +6587,7 @@ namespace UltraMarker
                 cancelSessionbutton.Visible = false;
                 sessionCombo.Enabled = false;
                 Show_Label("Don't forget to save changes from the File menu!", 2000);
+                S++;
             }
             treeView3.Enabled = true;
 
