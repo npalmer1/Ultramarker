@@ -483,6 +483,9 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.label105 = new System.Windows.Forms.Label();
+            this.label106 = new System.Windows.Forms.Label();
+            this.label107 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -2207,6 +2210,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage1.Controls.Add(this.label107);
             this.tabPage1.Controls.Add(this.CopyGradesbutton);
             this.tabPage1.Controls.Add(this.GroupscheckBox);
             this.tabPage1.Controls.Add(this.GrouptextBox);
@@ -2246,7 +2250,7 @@
             // CopyGradesbutton
             // 
             this.CopyGradesbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CopyGradesbutton.Location = new System.Drawing.Point(674, 526);
+            this.CopyGradesbutton.Location = new System.Drawing.Point(604, 526);
             this.CopyGradesbutton.Margin = new System.Windows.Forms.Padding(2);
             this.CopyGradesbutton.Name = "CopyGradesbutton";
             this.CopyGradesbutton.Size = new System.Drawing.Size(148, 27);
@@ -3216,6 +3220,7 @@
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage4.Controls.Add(this.label106);
             this.tabPage4.Controls.Add(this.LOcomboBox);
             this.tabPage4.Controls.Add(this.transferButton);
             this.tabPage4.Controls.Add(this.label29);
@@ -3268,7 +3273,7 @@
             // 
             // cancelLObutton
             // 
-            this.cancelLObutton.Location = new System.Drawing.Point(707, 356);
+            this.cancelLObutton.Location = new System.Drawing.Point(694, 332);
             this.cancelLObutton.Name = "cancelLObutton";
             this.cancelLObutton.Size = new System.Drawing.Size(75, 23);
             this.cancelLObutton.TabIndex = 6;
@@ -3279,7 +3284,7 @@
             // 
             // saveLObutton
             // 
-            this.saveLObutton.Location = new System.Drawing.Point(484, 356);
+            this.saveLObutton.Location = new System.Drawing.Point(488, 332);
             this.saveLObutton.Name = "saveLObutton";
             this.saveLObutton.Size = new System.Drawing.Size(75, 23);
             this.saveLObutton.TabIndex = 5;
@@ -3427,6 +3432,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage3.Controls.Add(this.label105);
             this.tabPage3.Controls.Add(this.checkBox2);
             this.tabPage3.Controls.Add(this.sessionWlabel);
             this.tabPage3.Controls.Add(this.sessionCombo);
@@ -3450,7 +3456,7 @@
             // 
             this.checkBox2.AutoSize = true;
             this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox2.Location = new System.Drawing.Point(495, 383);
+            this.checkBox2.Location = new System.Drawing.Point(495, 394);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(194, 20);
             this.checkBox2.TabIndex = 10;
@@ -3501,7 +3507,7 @@
             // 
             // cancelSessionbutton
             // 
-            this.cancelSessionbutton.Location = new System.Drawing.Point(663, 278);
+            this.cancelSessionbutton.Location = new System.Drawing.Point(663, 268);
             this.cancelSessionbutton.Name = "cancelSessionbutton";
             this.cancelSessionbutton.Size = new System.Drawing.Size(75, 23);
             this.cancelSessionbutton.TabIndex = 4;
@@ -3513,7 +3519,7 @@
             // saveSessionbutton
             // 
             this.saveSessionbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveSessionbutton.Location = new System.Drawing.Point(495, 278);
+            this.saveSessionbutton.Location = new System.Drawing.Point(495, 268);
             this.saveSessionbutton.Name = "saveSessionbutton";
             this.saveSessionbutton.Size = new System.Drawing.Size(75, 23);
             this.saveSessionbutton.TabIndex = 3;
@@ -5053,6 +5059,37 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // label105
+            // 
+            this.label105.AutoSize = true;
+            this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label105.ForeColor = System.Drawing.Color.Black;
+            this.label105.Location = new System.Drawing.Point(492, 316);
+            this.label105.Name = "label105";
+            this.label105.Size = new System.Drawing.Size(424, 16);
+            this.label105.TabIndex = 11;
+            this.label105.Text = "Once you have added sessions  - finally save them  from the File menu";
+            // 
+            // label106
+            // 
+            this.label106.AutoSize = true;
+            this.label106.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label106.Location = new System.Drawing.Point(485, 376);
+            this.label106.Name = "label106";
+            this.label106.Size = new System.Drawing.Size(429, 16);
+            this.label106.TabIndex = 12;
+            this.label106.Text = "Once you have added outcomes  - finally save them  from the File menu";
+            // 
+            // label107
+            // 
+            this.label107.AutoSize = true;
+            this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label107.Location = new System.Drawing.Point(804, 502);
+            this.label107.Name = "label107";
+            this.label107.Size = new System.Drawing.Size(413, 16);
+            this.label107.TabIndex = 31;
+            this.label107.Text = "Once you have added grades  - finally save them  from the File menu";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5571,6 +5608,9 @@
         private System.Windows.Forms.CheckBox ImportasCheckBox;
         private System.Windows.Forms.Button clearStudentlistbutton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
+        private System.Windows.Forms.Label label105;
+        private System.Windows.Forms.Label label107;
+        private System.Windows.Forms.Label label106;
     }
 }
 

@@ -286,6 +286,8 @@ namespace UltraMarker
         bool CalculateImportbyLines = true;
         bool LoadFromFile = false;
         bool platformlinux = false;
+
+        bool readyToSave = false;
         
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -1801,6 +1803,7 @@ namespace UltraMarker
                     MessageBox.Show("Select criteria description to replicate to");
 
                 }
+                setFileMenuColor(true);
             }
             catch (System.Exception excep)
             {
@@ -1897,8 +1900,8 @@ namespace UltraMarker
             //Build_Criteria_List();
         }
 
-        private void saveButton2_Click(object sender, EventArgs e)
-        {
+        private void saveButton2_Click(object sender, EventArgs e)  
+        {   //save criteria
             int i;
             DialogResult dialogResult = DialogResult.Yes;
             //Save the criteria to the criteria list struct
@@ -1940,6 +1943,27 @@ namespace UltraMarker
                 }
             }
             Show_Label("Don't forget to save changes to the Assessment from File menu!", 2500);
+            setFileMenuColor(true);
+          
+        }
+
+        private void setFileMenuColor(bool Red)
+        {
+            if (Red)
+            {
+                toolStripMenuItem1.ForeColor = Color.Red;
+                toolStripMenuItem1.Font = new Font(toolStripMenuItem1.Font, FontStyle.Bold);
+                saveCriteriaToolStripMenuItem.Font = new Font(saveCriteriaToolStripMenuItem.Font, FontStyle.Bold);
+                loadCriteriaToolStripMenuItem.Font = new Font(loadCriteriaToolStripMenuItem.Font, FontStyle.Regular);
+                newCriteriaToolStripMenuItem.Font = new Font(newCriteriaToolStripMenuItem.Font, FontStyle.Regular);
+                readyToSave = true;
+            }
+            else
+            {
+                toolStripMenuItem1.ForeColor = Color.Black;
+                toolStripMenuItem1.Font = new Font(toolStripMenuItem1.Font, FontStyle.Regular);
+                readyToSave = false;
+            }
         }
 
 
@@ -2102,6 +2126,7 @@ namespace UltraMarker
                     sw.Close();
                     CriteriaFile = filename;
                     CriteriaPath = Path.GetDirectoryName(filename);
+                    setFileMenuColor(false);
                 }
             }
             catch (System.Exception excep)
@@ -2147,6 +2172,7 @@ namespace UltraMarker
                     }
                 }
             }
+            setFileMenuColor(false);
         }
 
         private void ReadCriteriaFromFile(string filename, bool cleartextboxes)
@@ -2319,7 +2345,7 @@ namespace UltraMarker
                                                 ChildNode.ContextMenuStrip = contextMenuStrip4;
                                             }
                                         }
-                                    }
+                                    }                                    
                                 }
                                 else if (str.StartsWith("crweight: "))
                                 {
@@ -2572,6 +2598,8 @@ namespace UltraMarker
                     CurrentlySelected = 0;
                 }
                 loading = false;
+                toolStripMenuItem1.ForeColor = Color.Black;
+                toolStripMenuItem1.Font = new Font(toolStripMenuItem1.Font, FontStyle.Regular);
                 Copy_Criteria_Data();
             }//try
             catch (System.Exception excep)
@@ -2627,6 +2655,20 @@ namespace UltraMarker
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (readyToSave && !(tabControl1.SelectedTab == tabPage2))
+            {
+                //Show_Label("You have unsaved changes - go to the Assess tab File menu to save them", 2500);
+                DialogResult dialogResult = MessageBox.Show("Go back to save changes y/n?", "You have unsaved changes", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    tabControl1.SelectedTab = tabPage2; //assess
+                    return;
+                }
+                else
+                {
+                    setFileMenuColor(false);
+                }
+            }
             string nl = System.Environment.NewLine;
             try
             {   //if changing from tab 1 to 2 ensure that first grade is selected
@@ -2671,89 +2713,94 @@ namespace UltraMarker
 
         private void contextMenuStrip5_Click(object sender, EventArgs e)
         {
-            if (EditStudent) { MessageBox.Show("Cannot do this whilst editing student"); return; }
-            //edit or delete criteria, or add sub-criteria:
-            if (contextMenuStrip5.Items[0].Selected)
+            try
             {
-                Editable_Criteria(true);
-                firstcount = true;
-                //EditMode = true;
+                if (EditStudent) { MessageBox.Show("Cannot do this whilst editing student"); return; }
+                //edit or delete criteria, or add sub-criteria:
+                if (contextMenuStrip5.Items[0].Selected)
+                {
+                    Editable_Criteria(true);
+                    firstcount = true;
+                    //EditMode = true;
 
-            }
-            else if (contextMenuStrip5.Items[1].Selected)
-            {
-                //remove the node (gets selected node from treeview1_NodeMouseClick):
-                DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove Sub-Criteria", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    treeView2.Nodes[0].Nodes[SCriteria].Nodes[SSub].Remove();
-                    CriteriaExists[SCriteria, SSub] = false;
                 }
-            }
-            else if (contextMenuStrip5.Items[2].Selected)
-            {
-                //replicate criteria description
-                replicate_Description = true;
-                treeView2.Enabled = true;
-                SelNode = treeView2.SelectedNode;
-                PreNode = SelNode;
-                SelSub = SSub;
-                if (CriteriaSelected)
+                else if (contextMenuStrip5.Items[1].Selected)
                 {
-                    SelSub = MaxSub;
+                    //remove the node (gets selected node from treeview1_NodeMouseClick):
+                    DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove Sub-Criteria", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        treeView2.Nodes[0].Nodes[SCriteria].Nodes[SSub].Remove();
+                        CriteriaExists[SCriteria, SSub] = false;
+                    }
                 }
-                SelCr = SCriteria;
-                repCancelbutton4.Visible = true;
-                MessageBox.Show("Select criteria description to replicate to");
-            }
-            else if (contextMenuStrip5.Items[3].Selected)
-            {
-                //replicate criteria
-                replicate_Criteria = true;
-                treeView2.Enabled = true;
-                SelNode = treeView2.SelectedNode;
-                PreNode = SelNode;
-                SelSub = SSub;
-                if (CriteriaSelected)
+                else if (contextMenuStrip5.Items[2].Selected)
                 {
-                    SelSub = MaxSub;
+                    //replicate criteria description
+                    replicate_Description = true;
+                    treeView2.Enabled = true;
+                    SelNode = treeView2.SelectedNode;
+                    PreNode = SelNode;
+                    SelSub = SSub;
+                    if (CriteriaSelected)
+                    {
+                        SelSub = MaxSub;
+                    }
+                    SelCr = SCriteria;
+                    repCancelbutton4.Visible = true;
+                    MessageBox.Show("Select criteria description to replicate to");
                 }
-                SelCr = SCriteria;
-                repCancelbutton1.Visible = true;
-                MessageBox.Show("Select criteria to replicate to");
-            }
-            else if (contextMenuStrip5.Items[4].Selected)
-            {
-                //replicate feedback
-                replicate_Feedback = true;
-                treeView2.Enabled = true;
-                SelNode = treeView2.SelectedNode;
-                PreNode = SelNode;
-                SelSub = SSub;
-                if (CriteriaSelected)
+                else if (contextMenuStrip5.Items[3].Selected)
                 {
-                    SelSub = MaxSub;
+                    //replicate criteria
+                    replicate_Criteria = true;
+                    treeView2.Enabled = true;
+                    SelNode = treeView2.SelectedNode;
+                    PreNode = SelNode;
+                    SelSub = SSub;
+                    if (CriteriaSelected)
+                    {
+                        SelSub = MaxSub;
+                    }
+                    SelCr = SCriteria;
+                    repCancelbutton1.Visible = true;
+                    MessageBox.Show("Select criteria to replicate to");
                 }
-                SelCr = SCriteria;
-                repCancelbutton2.Visible = true;
-                MessageBox.Show("Select criteria to replicate to");
-            }
-            else if (contextMenuStrip5.Items[5].Selected)
-            {
-                //replicate LO
-                replicate_LO = true;
-                treeView2.Enabled = true;
-                SelNode = treeView2.SelectedNode;
-                PreNode = SelNode;
-                SelSub = SSub;
-                if (CriteriaSelected)
+                else if (contextMenuStrip5.Items[4].Selected)
                 {
-                    SelSub = MaxSub;
+                    //replicate feedback
+                    replicate_Feedback = true;
+                    treeView2.Enabled = true;
+                    SelNode = treeView2.SelectedNode;
+                    PreNode = SelNode;
+                    SelSub = SSub;
+                    if (CriteriaSelected)
+                    {
+                        SelSub = MaxSub;
+                    }
+                    SelCr = SCriteria;
+                    repCancelbutton2.Visible = true;
+                    MessageBox.Show("Select criteria to replicate to");
                 }
-                SelCr = SCriteria;
-                repCancelbutton3.Visible = true;
-                MessageBox.Show("Select criteria to replicate to");
+                else if (contextMenuStrip5.Items[5].Selected)
+                {
+                    //replicate LO
+                    replicate_LO = true;
+                    treeView2.Enabled = true;
+                    SelNode = treeView2.SelectedNode;
+                    PreNode = SelNode;
+                    SelSub = SSub;
+                    if (CriteriaSelected)
+                    {
+                        SelSub = MaxSub;
+                    }
+                    SelCr = SCriteria;
+                    repCancelbutton3.Visible = true;
+                    MessageBox.Show("Select criteria to replicate to");
+                }
+                setFileMenuColor(true);
             }
+            catch { }
 
         }
 
@@ -5624,7 +5671,7 @@ namespace UltraMarker
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Close application without saving data Yes/No?", "Close form", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Close application Yes/No? - select No if you have unsaved changes that you wish to keep!", "Close form Yes/No?", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.No)
             {
                 e.Cancel = true;
@@ -9563,6 +9610,7 @@ namespace UltraMarker
             {
                 DeselectSession[Session] = false;
             }
+            MessageBox.Show("Now need to re-adjust session weightings from Session tab");
         }
 
         private void criteriaSelectionToolStripMenuItem_Click(object sender, EventArgs e)
