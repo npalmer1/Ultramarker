@@ -1259,8 +1259,8 @@ namespace UltraMarker
                 CriteriaExists[num, MaxSub] = true;
                 CritZ = CritZ + 1;
             }
-
-
+            Show_Label("Don't forget to save changes from File menu!", 2000);
+            setFileMenuColor(true);
         }
 
         private void InsertMoveCriteria(int InsI, string str)
@@ -1714,7 +1714,7 @@ namespace UltraMarker
                     {
                         RemoveCriteria(SCriteria);
                         treeView2.Nodes[0].Nodes[SCriteria].Remove();
-                        
+                        setFileMenuColor(true);
                         
 
                     }
@@ -1727,6 +1727,7 @@ namespace UltraMarker
                     }
                     else
                     {
+
                         AddCriteria(insert); //insert criteria
                     }
                 }
@@ -1751,6 +1752,7 @@ namespace UltraMarker
                     SelCr = SCriteria;
                     repCancelbutton1.Visible = true;
                     MessageBox.Show("Select criteria to replicate to");
+                    setFileMenuColor(true);
 
                 }
                 else if (contextMenuStrip4.Items[6].Selected)
@@ -1768,6 +1770,7 @@ namespace UltraMarker
                     PreNode = SelNode;
                     repCancelbutton2.Visible = true;
                     MessageBox.Show("Select feedback to replicate to");
+                    setFileMenuColor(true);
 
                 }
                 else if (contextMenuStrip4.Items[7].Selected)
@@ -1785,6 +1788,7 @@ namespace UltraMarker
                     SelCr = SCriteria;
                     repCancelbutton3.Visible = true;
                     MessageBox.Show("Select criteria to replicate to");
+                    setFileMenuColor(true);
                 }
                 else if (contextMenuStrip4.Items[4].Selected)
                 {
@@ -1803,7 +1807,7 @@ namespace UltraMarker
                     MessageBox.Show("Select criteria description to replicate to");
 
                 }
-                setFileMenuColor(true);
+                //setFileMenuColor(true);
             }
             catch (System.Exception excep)
             {
@@ -1986,6 +1990,7 @@ namespace UltraMarker
                 //listBox3.Enabled = false;
                 clearLObutton.Visible = false;
                 Show_Label("Don't forget to save changes!", 1500);
+                setFileMenuColor(false);
             }
         }
 
@@ -2828,6 +2833,7 @@ namespace UltraMarker
                                 grcr[SCriteria, SSub, PrevIndex] = textBox7.Text; //textbox7 is text box containing "criteria to achieve grade"
                                 grcrfb[SCriteria, SSub, PrevIndex] = textBox8.Text;
                                 TChanged = false;
+                                setFileMenuColor(true);
                             }
                         }
                         if (listBox1.SelectedIndex < 0)
@@ -7097,8 +7103,14 @@ namespace UltraMarker
             assess.Code = AForm.Passvalue[2];
 
             assess.Weight = AForm.Passvalue[3];
+            if (!AForm.cancelEdit)
+            {
 
-            Copy_Criteria_Data(); //copy data to peer and mod forms etc.
+                Copy_Criteria_Data(); //copy data to peer and mod forms etc.
+                setFileMenuColor(true);
+                Show_Label("Now save Assessment from File menu!", 2000);
+
+            }
 
             //assess.LOs = AForm.Passvalue[5];
         }
@@ -7210,7 +7222,7 @@ namespace UltraMarker
         private void editAssess_Click(object sender, EventArgs e)
         {
             Open_Assessment_Form(true);
-            Show_Label("Now save Assessment from File menu!", 2000);
+            //Show_Label("Now save Assessment from File menu!", 2000);
         }
 
         private void createSummaryToolStripMenuItem_Click(object sender, EventArgs e)

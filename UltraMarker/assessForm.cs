@@ -12,7 +12,7 @@ namespace UltraMarker
     public partial class assessForm : Form
     {
 
-     
+        public bool cancelEdit = true;
         bool EditMode = true;
         public string thisLOFile;
 
@@ -37,6 +37,7 @@ namespace UltraMarker
             //save data
             if (EditMode)
             {
+                cancelEdit = false;
                 //DialogResult dialogResult = MessageBox.Show("Save assessment information Yes/No?", "Assessment Information", MessageBoxButtons.YesNo);
                 //if (dialogResult == DialogResult.Yes)
                 //{
@@ -79,9 +80,9 @@ namespace UltraMarker
         }
 
         private void button2_Click(object sender, EventArgs e)
-        {
+        {   //cancel
             if (EditMode)
-            {
+            {   
                 //DialogResult dialogResult = MessageBox.Show("Exit without saving assessment info. Yes/No?", "Assessment Information", MessageBoxButtons.YesNo);
                 //if (dialogResult == DialogResult.Yes)
                 //{
