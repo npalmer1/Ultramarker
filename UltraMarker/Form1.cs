@@ -6480,7 +6480,7 @@ namespace UltraMarker
 
 
         private void contextMenuStrip6_Click(object sender, EventArgs e)
-        {
+        {   //add session
             string str;
             if (SessionS > MaxSessions - 1)
             {
@@ -6498,6 +6498,7 @@ namespace UltraMarker
                 saveSessionbutton.Visible = true;
                 cancelSessionbutton.Visible = true;
                 AddSession = true;
+                //SessionS++;
 
                 /*InputForm input = new InputForm();
                 input.Passvalue = "Enter a title for Session:";
@@ -6598,6 +6599,16 @@ namespace UltraMarker
             sessionCombo.Text = SessionWeight[S].ToString();
         }
 
+        private void treeView3_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        {
+            if ((treeView3.SelectedNode != e.Node) && (saveSessionbutton.Visible == true))
+            {
+                if (firstcount) { MessageBox.Show("Need to save session"); }
+                e.Cancel = true;
+                firstcount = false;
+            }
+        }
+
         private void treeView3_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             //need to find which child node is selected in order to remove it ***
@@ -6611,20 +6622,31 @@ namespace UltraMarker
 
         private void saveSessionbutton_Click(object sender, EventArgs e)
         {
-           
+            int SeS = 0;
+            if (AddSession)
+            {
+                SeS = SessionS;
+            }
+            else   //edit          
+            {
+                SeS = S;
+            }
+            {
+
+            }
             //Save sessions to sessiontitle array:
             DialogResult dialogResult = MessageBox.Show("Save Yes/No?", "Save Session title", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                SessionTitle[S] = sessionTextBox.Text;
-                SessionWeight[S] = Convert.ToInt32(sessionCombo.Text);
-                SessionDesc[S] = sessionDescBox.Text;
+                SessionTitle[SeS] = sessionTextBox.Text;
+                SessionWeight[SeS] = Convert.ToInt32(sessionCombo.Text);
+                SessionDesc[SeS] = sessionDescBox.Text;
 
                 if (SessionTitleChanged && !AddSession)
                 {
-                    treeView3.Nodes[0].Nodes[S].Text = sessionTextBox.Text;
+                    treeView3.Nodes[0].Nodes[SeS].Text = sessionTextBox.Text;
                     SessionTitleChanged = false;
-                    if (S == 0)
+                    if (SeS == 0)
                     {
                         sessionlabel4.Text = sessionTextBox.Text; //update label on assess tab
                     }
@@ -6640,10 +6662,11 @@ namespace UltraMarker
                 cancelSessionbutton.Visible = false;
                 sessionCombo.Enabled = false;
                 Show_Label("Don't forget to save changes from the File menu!", 2000);
-                S++;
+                //S++;
+                matchSessionstoCriteriaWeight();      //matches sessions to criteria weightings           
             }
             treeView3.Enabled = true;
-
+            
         }
         private void AddNewSession()
         {
@@ -6711,15 +6734,7 @@ namespace UltraMarker
             SessionTitleChanged = true;
         }
 
-        private void treeView3_BeforeSelect(object sender, TreeViewCancelEventArgs e)
-        {
-            if ((treeView3.SelectedNode != e.Node) && (saveSessionbutton.Visible == true))
-            {
-                if (firstcount) { MessageBox.Show("Need to save session"); }
-                e.Cancel = true;
-                firstcount = false;
-            }
-        }
+       
 
         private void tabPage3_Click(object sender, EventArgs e)
         {
@@ -6937,6 +6952,7 @@ namespace UltraMarker
                     sessionCombo.Text = SessionWeight[0].ToString();
                     sessionDescBox.Text = SessionDesc[0];
                     treeView3.SelectedNode = treeView3.Nodes[0].Nodes[0];
+                    matchSessionstoCriteriaWeight();
 
                 }
             }//try
@@ -6948,6 +6964,23 @@ namespace UltraMarker
 
         }
 
+        private void matchSessionstoCriteriaWeight()
+        {
+            try
+            {
+                for (int SeS = 0; SeS < SessionS; SeS++)
+                {
+                    for (int s = 0; s < CritZ + 1; s++)
+                    {
+                        for (int i = 0; i < MaxSub + 1; i++)
+                        {
+                            crweight[s, i, SeS] = crweight[s, i, 0];
+                        }
+                    }
+                }
+            }
+            catch { }
+        }
         private void newCriteriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (EditCriteria)
@@ -6988,7 +7021,7 @@ namespace UltraMarker
         }
 
         private void newSessionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {   //New Sessions
             if (!treeView3.Enabled)
             {
                 MessageBox.Show("Editing sessions - save first");
@@ -7010,6 +7043,8 @@ namespace UltraMarker
                 SessionS = 0;
             }
             sessionTextBox.Text = "";
+            sessionDescBox.Text = "";
+            sessionCombo.Text = "0";
             treeView3.Nodes[0].Remove();
             treeView3.Nodes.Add("Sessions");
 
@@ -8052,7 +8087,7 @@ namespace UltraMarker
             }
         }
 
-        private void CheckWeightReport()
+        private void CheckWeightReport()    //check weights
         {
             float TotW = 0;
             int TotS = 0;
@@ -8060,6 +8095,7 @@ namespace UltraMarker
             bool ok = true;
             int TempSessionNum = 0;
             string nl = System.Environment.NewLine;
+            float SessionW = 0;
             if (SessionType == 0)
             {
                 weightForm.WReport = "This is a report on the weights for each criteria:" + nl;
@@ -8094,23 +8130,35 @@ namespace UltraMarker
                     {
                         for (int i = 0; i < MaxSub + 1; i++)
                         {
-                            if (SessionType == 0 || crSelected[s, i, se])
-                            { TotW = TotW + crweight[s, i, se]; }
+                            //if (SessionType == 0 || crSelected[s, i, se])
+                            if (crSelected[s, i, se])
+                            { TotW = TotW + crweight[s, i, se]; }                                
                         }
                     }
                     if (SessionType == 0) { sess = ""; }
                     else { sess = "In Session " + (se + 1).ToString() + ":  "; }
-                    if (TotW != 100)
+                    if (SessionType > 0)
+                    {
+                        float Swe = 0;
+                        Swe = Convert.ToSingle(SessionWeight[se]);
+                        TotW = TotW * Swe/100;
+                    }
+                    if (TotW != 100 && SessionType == 0)
                     {
                         weightForm.WReport = weightForm.WReport + sess + "Total weight for criteria is " + TotW.ToString() + "% ,but should be 100%" + nl;
                         ok = false;
                         //MessageBox.Show("Total weight for criteria is " + (TotW + 1).ToString() + " but should be 100%");
                     }
-                    else
+                    else if (SessionType >0)
                     {
-                        weightForm.WReport = weightForm.WReport + sess + "Criteria weights ok at 100%" + nl;
+                        weightForm.WReport = weightForm.WReport + sess + "Session and criteria weight " + TotW + nl;
+                        SessionW = SessionW + TotW;
 
                         //MessageBox.Show("Weights ok = 100%");
+                    }
+                    else
+                    {
+                        weightForm.WReport = weightForm.WReport + sess + "Criteria weight correct at 100%" + nl;
                     }
                 }
                 else if (CriteriaType == 1 || CriteriaType == 3)  //sub-criteria are part of the weight for criteria
@@ -8128,6 +8176,7 @@ namespace UltraMarker
                         for (int i = 0; i < MaxSub; i++)
                         {
                             if (SessionType == 0 || crSelected[s, i, se])
+                            //if (crSelected[s,i,se])
                             { SubW = SubW + crweight[s, i, se]; }
                         }
 
@@ -8160,15 +8209,17 @@ namespace UltraMarker
             if (SessionType != 0)
             {
 
-                TotW = 0;
+                //TotW = 0;
                 for (int se = 0; se < SessionS; se++)
                 {
-                    TotW = TotW + SessionWeight[se];
+                    //TotW = TotW + SessionWeight[se];
                     TempSessionNum = TempSessionNum + 1;
                 }
-                if ((TotW > 100) || (TotW < 100))
+                
+
+                if ((SessionW > 100) || (SessionW < 100))
                 {
-                    weightForm.WReport = weightForm.WReport + "Total Session weights are " + TotW.ToString() + "% ,but should be 100%" + nl;
+                    weightForm.WReport = weightForm.WReport + "Total Session weights are " + SessionW.ToString() + "% ,but should be 100%" + nl;
                     ok = false;
                 }
                 else
