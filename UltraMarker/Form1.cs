@@ -7328,26 +7328,28 @@ namespace UltraMarker
             {
                 return;
             }
-            if (CriteriaSelected)//criteria or sub-criteria selected?
-            {
-                s = MaxSub;
-            }
-            else
-            {
-                s = SSub;
-            }
-            if (crSelected[SCriteria, s, Session])
+            
+                if (CriteriaSelected)//criteria or sub-criteria selected?
+                {
+                    s = MaxSub;
+                }
+                else
+                {
+                    s = SSub;
+                }
+           
+            if (crSelected[SCriteria, s, Session])  //deselect criteria
             {
                 crSelected[SCriteria, s, Session] = false;
                 Marks[SCriteria, s, Session] = "n/a";             
                 label18.Text = "n/a";
             }
             else
-            {
+            {       //criteria selected
                 crSelected[SCriteria, s, Session] = true;
             }
 
-            if (crSelected[SCriteria, s, Session])
+            if (crSelected[SCriteria, s, Session])  //if true
             {
                 //select this session
                 treeView2.SelectedNode.ForeColor = Color.Black;
@@ -7356,7 +7358,7 @@ namespace UltraMarker
             }
             else
             {
-                treeView2.SelectedNode.ForeColor = Color.Gray;
+                treeView2.SelectedNode.ForeColor = Color.Gray;      //if deselected
 
                 treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Strikeout | FontStyle.Italic);
                 insessionLabel.Visible = false;
@@ -9717,11 +9719,35 @@ namespace UltraMarker
             CSForm.ShowDialog();
 
             t = CSForm.Passvalue;
+            if (t==3)   //clear all deselected criteria
+            {
+                t = 0; //now set to not allow deselection of criteria
+                try
+                {                                       
+                    CriteriaSelectionType = t;
+                    ReSelect_All_Criteria();
+                    //Change_Session_Selection();
+                }
+                catch { }
+                t = 0; //now set to not allow deselection of criteria
+
+            }
             CriteriaSelectionType = t;
             
         }
+        private void ReSelect_All_Criteria()
+        {           
+            Reset_Selected(true);   //reset all
+            for (int n = 0; n < treeView2.Nodes[0].Nodes.Count; n++)
+            {
+                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[n];        
+                treeView2.SelectedNode.ForeColor = Color.Black;
+                treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Regular);              
+            }
+           
+        }
 
-      
+
 
         private void ULSigButton_Click_1(object sender, EventArgs e)
         {
