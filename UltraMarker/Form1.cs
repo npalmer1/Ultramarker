@@ -2361,8 +2361,15 @@ namespace UltraMarker
                                         //try
                                         //{
                                         SessionS = SessionS++;
-                                        if (SessionS > 1) { SessionType = 1; }
-                                        else { SessionType = 0; }
+                                        if (SessionS > 1) 
+                                        { 
+                                            SessionType = 1;
+                                            Set_Session(true);
+                                        }
+                                        else { 
+                                            SessionType = 0;
+                                            Set_Session(false);
+                                        }
                                         if (crs[se] != null)
                                         {
                                             if (crs[se].Trim() != "")
@@ -6353,6 +6360,7 @@ namespace UltraMarker
                 {
                     tabControl1.TabPages.Insert(4, tabPage3);
                 }
+                matchSessionstoCriteriaWeight();
                 //checkWbutton.Visible = false;
             }
             else //single (or no) sessions
@@ -6369,7 +6377,7 @@ namespace UltraMarker
         }
 
         private void sessionsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {   //select single or multiple sessions
             int t = 0;
             SessionForm SForm = new SessionForm();
             //set grade type to normal by default:
@@ -8161,13 +8169,13 @@ namespace UltraMarker
                         ok = false;
                         //MessageBox.Show("Total weight for criteria is " + (TotW + 1).ToString() + " but should be 100%");
                     }
-                    else if (SessionType >0)
+                    /*else if (SessionType >0)
                     {
                         weightForm.WReport = weightForm.WReport + sess + "Session and criteria weight " + TotW + nl;
                         SessionW = SessionW + TotW;
 
                         //MessageBox.Show("Weights ok = 100%");
-                    }
+                    }*/
                     else
                     {
                         weightForm.WReport = weightForm.WReport + sess + "Criteria weight correct at 100%" + nl;
@@ -8221,9 +8229,10 @@ namespace UltraMarker
             if (SessionType != 0)
             {
 
-                //TotW = 0;
+                SessionW = 0;
                 for (int se = 0; se < SessionS; se++)
                 {
+                        SessionW = SessionW + SessionWeight[se];
                     //TotW = TotW + SessionWeight[se];
                     TempSessionNum = TempSessionNum + 1;
                 }
