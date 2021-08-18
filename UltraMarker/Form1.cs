@@ -6663,11 +6663,23 @@ namespace UltraMarker
                 sessionCombo.Enabled = false;
                 Show_Label("Don't forget to save changes from the File menu!", 2000);
                 //S++;
-                matchSessionstoCriteriaWeight();      //matches sessions to criteria weightings           
+
+                //Match session session to criteria weighting :
+                try
+                {
+                        for (int s = 0; s < CritZ + 1; s++)
+                        {
+                            for (int i = 0; i < MaxSub + 1; i++)
+                            {
+                                crweight[s, i, SeS] = crweight[s, i, 0];    //set weight to same as session1
+                            }
+                        }                    
+                }
+                catch { }
             }
-            treeView3.Enabled = true;
-            
+            treeView3.Enabled = true;            
         }
+
         private void AddNewSession()
         {
             string str = sessionTextBox.Text;
