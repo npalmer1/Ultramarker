@@ -3481,7 +3481,7 @@ namespace UltraMarker
                         sw.WriteLine("Session file: " + SessionFile);
                         for (int s = 0; s < Se; s++)
                         {
-                            if (SessionS > 0)
+                            if (SessionS > 0 && SessionType > 0)
                             {
                                 sw.WriteLine("----------------------------------------");
                                 if (DeselectSession[s])
@@ -6360,6 +6360,10 @@ namespace UltraMarker
                 {
                     tabControl1.TabPages.Insert(4, tabPage3);
                 }
+                if (treeView3.Nodes[0].Nodes.Count > 0)
+                {
+                    SessionS = treeView3.Nodes[0].Nodes.Count;
+                }
                 matchSessionstoCriteriaWeight();
                 //checkWbutton.Visible = false;
             }
@@ -6373,6 +6377,12 @@ namespace UltraMarker
                 //SessionS = 0;
                 label7.Text = "....Weight for this criteria %:";
                 checkWbutton.Visible = true;
+                if (SessionS > 0)
+                {
+                    MessageBox.Show("Sessions will be reset to 0");
+                    SessionS = 0;
+                    S = 0;
+                }
             }
         }
 
