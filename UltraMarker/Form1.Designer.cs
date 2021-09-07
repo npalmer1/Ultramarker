@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -1034,6 +1034,7 @@
             this.importFilebutton.Text = "Import";
             this.importFilebutton.UseVisualStyleBackColor = true;
             this.importFilebutton.Visible = false;
+            this.importFilebutton.Click += new System.EventHandler(this.importFilebutton_Click);
             // 
             // ImportcheckBox
             // 
@@ -1979,10 +1980,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode3.Name = "CriteriaNode";
+            treeNode3.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2587,11 +2588,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3585,10 +3586,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);

@@ -41,6 +41,7 @@ namespace UltraMarker
 
         string UnitFile = "";
         string UnitFilePath = "C:";
+        string ImportFilePath = "C:";
         string GradeFile = "";
         string GradePath = "";
         string CriteriaFile = "";
@@ -1160,16 +1161,16 @@ namespace UltraMarker
             return ret;
         }
 
-        private void showGrade(string pcent)  //show grade from percent
+        private void showGrade(string pcent, int sub)  //show grade from percent
         {
-            int sub = 0;
+            //int sub = 0;
             string s = "";
-            if (CriteriaSelected)
+            /*if (CriteriaSelected)
             {
                 sub = MaxSub;
             }
             else
-            { sub = SSub; }
+            { sub = SSub; }*/
             s = findGrade(pcent); //findgrade from percent
             Marks[SCriteria, sub, Session] = s;
         }
@@ -6065,6 +6066,7 @@ namespace UltraMarker
                                 if (str3.Length > 0)
                                 {
                                     UnitFilePath = str3;
+                                    ImportFilePath = str3; //default path for import of TCA files
                                 }
                             }
                             else if (str.StartsWith("Unit file:"))
@@ -10121,6 +10123,14 @@ namespace UltraMarker
             double pc = 0.0;
             bool ok = true;
             int cr = 0;
+            int task = 0; //current task
+           
+            const int maxlines = 500; //max lines in imported file
+            int[] tasklinescorrect = new int[maxlines]; //counter for current no. correct lines for task
+            int[] tasklinestotal = new int[maxlines];  //counter for current total lines for task
+            double subtotal = 0; //current no.sub-crietria (for tasks)
+            int taskNo = 0; //number of tasks overall
+            int prevTaskNo = 0; //previous task number
             int mf = 0;
             int Lc = 0;
             int Lf = 0;
@@ -10135,6 +10145,7 @@ namespace UltraMarker
             int[] linesT = new int[maximportableCriteria];
             int totallines = 0;
             int crnum = 0;
+            int criteriaTasks = 0; //number of tasks for each criterion (reset each criterion)
             for (int a = 0; a < maximportableCriteria; a++)    //null the criteria counter array
             {
                 sumpc[a] = 0.0;
@@ -10188,7 +10199,83 @@ namespace UltraMarker
                                     found1 = true;
                                     //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr];
                                 }
+                                
+                                
+                                if (taskNo >prevTaskNo)   //have found criteria and tasks already
+                                {
+                                    //create totals for sub-criteria
+                                    prevTaskNo = taskNo;
+                                    subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
+                                    int temp = Convert.ToInt32(subtotal * 100);
+                                    overrideBox.Text = temp.ToString();
+                                    for (int t = criteriaTasks; t > 0; t--)
+                                    {
+                                        Marks[cr - 1, t - 1, Session] = overrideBox.Text; //this is the previous criteria
+                                        criteriaTasks = 0;
+                                    }
+                                                                    
+                                }
+                                
 
+                            }
+                            else if (str.StartsWith("Task:"))
+                            {
+                                try
+                                {
+                                    
+                                    int dot = str.IndexOf(".");
+                                    str2 = str.Substring(5, dot - 5).Trim();  //find the task number
+                                    //prevtask = task;                                    
+                                    task = Convert.ToInt32(str2);
+                                    
+                                    if (task >0)
+                                    {
+                                        if (task > taskNo)
+                                        {
+                                            taskNo++;  //total global number of tasks
+                                            
+                                        }
+                                        if (task > criteriaTasks)
+                                        {
+                                            
+                                            criteriaTasks++;
+                                        }
+                                        if (AllowImpComment)
+                                        {
+
+                                            if (criteriaTasks == MaxSub)
+                                            {
+                                                MessageBox.Show("Warning: more tasks than maximum allowable sub-criteria");
+                                            }
+                                            else
+                                            {
+                                                //if a task put into sub-criteria
+                                                crComment[cr, task-1,0] = crComment[cr, task-1, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                            }
+                                        }
+                                        if (str.Contains("Command:"))
+                                        {
+                                            tasklinescorrect[task]++;
+                                            tasklinestotal[task]++;
+                                        }
+                                        else if (str.Contains("NOT Found:"))
+                                        {
+                                            tasklinestotal[task]++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //task is 0 so just show comments
+                                        if (AllowImpComment)
+                                        {
+                                            crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                        }
+                                        
+
+                                    }
+                                   
+                                }
+                                catch { }
                             }
                             else if (str.Contains("Lines correct:") &&ok) //select criteria to import to
                             {
@@ -10253,7 +10340,9 @@ namespace UltraMarker
                             {
                                 if (AllowImpComment)
                                 {
-                                    crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                   //doesn't start with "task:" >0 so output
+                                   crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                    
                                    /* if (str.StartsWith("Marked file"))
                                     {
                                         mf++;                                                                               
@@ -10287,6 +10376,25 @@ namespace UltraMarker
                                     PCent = Convert.ToInt32(pc);
                                 }
                                 treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
+                                if (treeView2.Nodes[0].Nodes[cr].GetNodeCount(false) >0)
+                                {
+                                    //sub-criteria
+                                    for (int n = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); n >0; n--)
+                                    {
+                                        treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr].Nodes[n-1];
+                                        overrideBox.Text = Marks[cr, n-1, Session];
+                                        if (ImportasCheckBox.Checked)
+                                        {
+                                            overridegrade(); //overide the grade for this criteria
+                                        }
+                                        else
+                                        {                                            
+                                            showGrade(overrideBox.Text, n-1);
+                                        }
+                                    }
+
+                                }
+                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
                                 overrideBox.Text = PCent.ToString(); //put new percentage in override box
                                 if (ImportasCheckBox.Checked)
                                 {
@@ -10294,7 +10402,7 @@ namespace UltraMarker
                                 }
                                 else
                                 {
-                                    showGrade(overrideBox.Text);
+                                    showGrade(overrideBox.Text, MaxSub);
                                 }
                                 //crComment[cr, MaxSub, 0]
                             }
@@ -10355,13 +10463,14 @@ namespace UltraMarker
                 importGroupBox.Visible = false;
                 importCalcLabel.Visible = false;
                 ImportasCheckBox.Visible = false;
+                importFilebutton.Visible = false;
             }
         }
      
 
         private void ImpFilebutton_Click(object sender, EventArgs e)
         {
-            ImportFileDialog.InitialDirectory = UnitFilePath;
+            ImportFileDialog.InitialDirectory = ImportFilePath; 
             ImportFileDialog.FileName = "";
             //ImportFileDialog.DefaultExt = "rtf";
             //ImportFileDialog.Filter = "Rich text files (*.rtf) |*.rtf";
@@ -10372,7 +10481,14 @@ namespace UltraMarker
         private void ImportFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             importFileBox.Text = ImportFileDialog.FileName;
-            if (EditStudent && startMark && (importFileBox.Text.Trim() !=""))
+            ImportFilePath = importFileBox.Text;
+            importFilebutton.Visible = true;
+            startImport();
+
+        }
+        private void startImport()
+        {
+            if (EditStudent && startMark && (importFileBox.Text.Trim() != ""))
             {
                 DialogResult dialogResult = MessageBox.Show("Import results from this file?", "Import Results", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -10385,12 +10501,11 @@ namespace UltraMarker
             {
                 MessageBox.Show("Need to start marking first");
             }
-
         }
 
-       
 
-        private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
+
+private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Allow comments from imported files Yes/No?", "Imported Comments", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -10686,7 +10801,15 @@ namespace UltraMarker
                 }
             }
         }
+
+        private void importFilebutton_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(ImportFilePath))
+            {
+                startImport();
+            }
         }
+    }
     }
 
        
