@@ -5139,12 +5139,15 @@ namespace UltraMarker
             string s = "";
             try
             {
-                for (int i = 0; i < MaxGrades - 1; i++)
+                if (str != null)
                 {
-                    if (str.Trim() == gradelist[i].grtitle.Trim())
+                    for (int i = 0; i < MaxGrades - 1; i++)
                     {
-                        s = gradelist[i].grfb;
-                        return s;
+                        if (str.Trim() == gradelist[i].grtitle.Trim())
+                        {
+                            s = gradelist[i].grfb;
+                            return s;
+                        }
                     }
                 }
             }
