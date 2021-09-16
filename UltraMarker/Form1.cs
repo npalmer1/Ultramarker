@@ -6706,7 +6706,7 @@ namespace UltraMarker
         }
 
         private void saveSessionbutton_Click(object sender, EventArgs e)
-        {
+        {            
             int SeS = 0;
             if (AddSession)
             {
@@ -6723,24 +6723,28 @@ namespace UltraMarker
             DialogResult dialogResult = MessageBox.Show("Save Yes/No?", "Save Session title", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                SessionTitle[SeS] = sessionTextBox.Text;
-                SessionWeight[SeS] = Convert.ToSingle(sessionCombo.Text);
-                SessionDesc[SeS] = sessionDescBox.Text;
-
-                if (SessionTitleChanged && !AddSession)
+                try
                 {
-                    treeView3.Nodes[0].Nodes[SeS].Text = sessionTextBox.Text;
-                    SessionTitleChanged = false;
-                    if (SeS == 0)
+                    SessionTitle[SeS] = sessionTextBox.Text;
+                    SessionWeight[SeS] = Convert.ToSingle(sessionCombo.Text);
+                    SessionDesc[SeS] = sessionDescBox.Text;
+
+                    if (SessionTitleChanged && !AddSession)
                     {
-                        sessionlabel4.Text = sessionTextBox.Text; //update label on assess tab
+                        treeView3.Nodes[0].Nodes[SeS].Text = sessionTextBox.Text;
+                        SessionTitleChanged = false;
+                        if (SeS == 0)
+                        {
+                            sessionlabel4.Text = sessionTextBox.Text; //update label on assess tab
+                        }
+                    }
+                    if (AddSession)
+                    {
+                        AddNewSession();
+                        AddSession = false;
                     }
                 }
-                if (AddSession)
-                {
-                    AddNewSession();
-                    AddSession = false;
-                }
+                catch { }
                 sessionTextBox.ReadOnly = true;
                 sessionDescBox.ReadOnly = true;
                 saveSessionbutton.Visible = false;
