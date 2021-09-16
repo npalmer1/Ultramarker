@@ -612,9 +612,9 @@ namespace UltraMarker
                                 ChildNode.ContextMenuStrip = contextMenuStrip2;
                             }
                         }
-                        X++;
+                        
                         gradelist[X].grtitle = str;
-                       
+                        X++;
                         //Now populate listbox on next tab:
                         if (singleGrades)
                         {
@@ -916,13 +916,14 @@ namespace UltraMarker
         {
             // write grades to file:
             string grtype = "single";
+            int g = treeView1.Nodes[0].Nodes.Count;
             if (!singleGrades) { grtype = "dual"; }
             try
             {
                 using (StreamWriter sw = new StreamWriter(filename))
                 {
                     sw.WriteLine("Grade type: " + grtype);
-                    for (int i = 0; i < MaxGrades; i++)
+                    for (int i = 0; i < g; i++)
                     {
                         if (gradelist[i].grtitle != null)
                         {
