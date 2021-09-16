@@ -60,11 +60,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 36);
+            this.label1.Location = new System.Drawing.Point(92, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 16);
+            this.label1.Size = new System.Drawing.Size(65, 16);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Learning Outcome:";
+            this.label1.Text = "Outcome:";
             // 
             // label2
             // 
@@ -91,11 +91,11 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 77);
+            this.label3.Location = new System.Drawing.Point(57, 77);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(153, 16);
+            this.label3.Size = new System.Drawing.Size(100, 16);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Leraning outcome Type:";
+            this.label3.Text = "Outcome Type:";
             // 
             // textBox2
             // 
@@ -119,7 +119,7 @@
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox1);
             this.Name = "ShowLO";
-            this.Text = "Learning Outcome";
+            this.Text = "Outcome";
             this.Load += new System.EventHandler(this.ShowLO_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

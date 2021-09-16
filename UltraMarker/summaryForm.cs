@@ -15,6 +15,7 @@ namespace UltraMarker
     {
         string[] Nm = new string[6];
         public int sort_type;
+        public bool industrial;
         string percent_grade = "11";
 
         public string marksDirectory = "";
@@ -51,7 +52,7 @@ namespace UltraMarker
 
         private void summaryForm_Load(object sender, EventArgs e)
         {
-
+            radioButton2.Checked = true;
             marksCodeDir = marksDirectory + "\\" + assessmentCode;
             ModuletextBox.Text = moduleName;
             textBox1.Text = assessmentFilePath;
@@ -59,6 +60,13 @@ namespace UltraMarker
             textBox3.Text = marksCodeDir;
             textBox2.Text = assessmentTitle;
             textBox4.Text = assessmentCode;
+            if (industrial)
+            {
+                modBox.Visible = false;
+                radioButton2.Text = "Name";
+                radioButton1.Visible = false;
+
+            }
             try
             {
                 

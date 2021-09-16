@@ -173,9 +173,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(97, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(218, 13);
+            this.label4.Size = new System.Drawing.Size(308, 13);
             this.label4.TabIndex = 11;
-            this.label4.Text = "Produce a summary report for an assessment";
+            this.label4.Text = "Produce a summary report for an assessment collection or group";
             // 
             // saveFileDialog1
             // 
@@ -202,7 +202,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(954, 56);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(132, 223);
+            this.groupBox1.Size = new System.Drawing.Size(132, 190);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Sort by:";
@@ -210,7 +210,7 @@
             // radioButton4
             // 
             this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(24, 193);
+            this.radioButton4.Location = new System.Drawing.Point(24, 64);
             this.radioButton4.Name = "radioButton4";
             this.radioButton4.Size = new System.Drawing.Size(54, 17);
             this.radioButton4.TabIndex = 3;
@@ -222,7 +222,7 @@
             // radioButton3
             // 
             this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(24, 141);
+            this.radioButton3.Location = new System.Drawing.Point(24, 23);
             this.radioButton3.Name = "radioButton3";
             this.radioButton3.Size = new System.Drawing.Size(80, 17);
             this.radioButton3.TabIndex = 2;
@@ -234,7 +234,7 @@
             // radioButton2
             // 
             this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(24, 92);
+            this.radioButton2.Location = new System.Drawing.Point(24, 110);
             this.radioButton2.Name = "radioButton2";
             this.radioButton2.Size = new System.Drawing.Size(67, 17);
             this.radioButton2.TabIndex = 1;
@@ -246,7 +246,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(24, 41);
+            this.radioButton1.Location = new System.Drawing.Point(24, 147);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(70, 17);
             this.radioButton1.TabIndex = 0;

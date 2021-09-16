@@ -20,6 +20,8 @@ namespace UltraMarker
 {
     public partial class Form1 : Form
     {
+        //bool industrial = true;
+        bool industrial = false;
         const bool sub = true;
         const bool cri = false;
         bool firstS = true;
@@ -58,6 +60,7 @@ namespace UltraMarker
         string PeerSigFilePath = "";
 
         string marksDirectory = "";
+      
 
         string Feedback = "";
         int CriteriaType = 0;
@@ -306,6 +309,10 @@ namespace UltraMarker
                         platformlinux = true;
 
                     }
+                    else if (args[1].StartsWith("-s"))
+                    {
+                        industrial = true;
+                    }
                 }
             }
             catch { }
@@ -387,12 +394,10 @@ namespace UltraMarker
             }
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
-            this.Text = "UltraMarker                   " + theVersion + "                      GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
-            tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
-            tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
+            
             label23.Text = "";
             LOtextBox.Text = "";
-            button7.Text = "Start marking student";
+            button7.Text = "Start marking   ";
             //treeView1.Font.Style = FontStyle.Regular;
             aggregatedlist.SelectedIndex = 0;
             dateTimePicker1.Value = DateTime.Today;
@@ -412,7 +417,7 @@ namespace UltraMarker
            // GroupscheckBox.Checked = false;
             LoadSettings();
            
-            if (StudentImportFile.Length > 0)
+            if ((StudentImportFile.Length > 0) && (!industrial))
             {
                 StudentImportTextBox.Text = StudentImportFile;
                 Import_Students();
@@ -422,10 +427,37 @@ namespace UltraMarker
             Set_Weights();
 
             Build_Session_Weight();
-            LoadLOCombo();
+            if (!industrial) { LoadLOCombo(); }
             setGradeTree();
             Change_Session_Selection();
             loading = false;
+            tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
+            tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
+            if (!industrial)
+            {
+                this.Text = "UltraMarker                   " + theVersion + "                    GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
+            }
+            else
+            {
+                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "               GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
+            }
+           
+            if (industrial)
+            {
+                tabControl1.TabPages.Remove(tabPage9); //if industrial assessment don't need to show student import
+                tabControl1.TabPages.Remove(tabPage6); //if industrial assessment don't need to show peer tab
+                tabControl1.TabPages.Remove(tabPage7); //if industrial assessment don't need to show moderation tab
+                LO_title_Label.Text = "Outcomes";
+                label15.Text = "Report name:";
+                label52.Text = "Assessor name:";
+                label95.Text = "Signature file--:";
+                groupBox5.Visible = false;
+                groupBox4.Visible = false;
+            }
+            else
+            {
+                LO_title_Label.Text = "Learning Outcomes";
+            }
         }
 
         public enum Platform
@@ -779,7 +811,7 @@ namespace UltraMarker
             }
             else
             {
-                MessageBox.Show("Cannot edit criteria whilst editing student");
+                MessageBox.Show("Cannot edit criteria whilst marking");
             }
             //listBox1.Enabled = !b;
         }
@@ -1646,7 +1678,7 @@ namespace UltraMarker
         private void Replicate_LO_Function(int s, int i)
         {
 
-            DialogResult dialogResult = MessageBox.Show("Replicate learning outcomes to selected criteria or cancel replication?", "Replicate Learning Outcomes", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogResult = MessageBox.Show("Replicate outcomes to selected criteria or cancel replication?", "Replicate Outcomes", MessageBoxButtons.YesNoCancel);
             if (dialogResult == DialogResult.Yes)
             {
                 crLO[s, i] = crLO[SelCr, SelSub];
@@ -1693,7 +1725,7 @@ namespace UltraMarker
         private void contextMenuStrip4_Click(object sender, EventArgs e)
         {
             bool insert = true;
-            if (EditStudent) { MessageBox.Show("Cannot do this whilst marking student"); return; }
+            if (EditStudent) { MessageBox.Show("Cannot do this whilst marking"); return; }
 
             try
             {
@@ -2728,7 +2760,7 @@ namespace UltraMarker
         {
             try
             {
-                if (EditStudent) { MessageBox.Show("Cannot do this whilst editing student"); return; }
+                if (EditStudent) { MessageBox.Show("Cannot do this whilst marking"); return; }
                 //edit or delete criteria, or add sub-criteria:
                 if (contextMenuStrip5.Items[0].Selected)
                 {
@@ -3123,11 +3155,15 @@ namespace UltraMarker
             }
             textBox10.Visible = b;
             Clicklabel1.Visible = b;
-            markModeButton.Visible = b;
-            markModelabel.Visible = b;
-            sittingButton.Visible = b;
-            sittinglabel.Visible = b;
-            modSelect.Visible = b;
+                        
+            if (!industrial)
+            {
+                markModeButton.Visible = b;
+                markModelabel.Visible = b;
+                modSelect.Visible = b;
+                sittingButton.Visible = b;
+                sittinglabel.Visible = b;
+            }
 
             label20.Visible = b;
             
@@ -3339,7 +3375,7 @@ namespace UltraMarker
                 }
                 else
                 {
-                    MessageBox.Show("Student name blank");
+                    MessageBox.Show("Name blank");
                 }
             }
         }
@@ -3457,7 +3493,7 @@ namespace UltraMarker
                         }
                         sw.WriteLine("Unit: " + UnitTitletextBox.Text);
                         sw.WriteLine("Assessment title: " + assess.Title);
-                        sw.WriteLine("Student: " + StudentcomboBox.Text);
+                        sw.WriteLine("Name: " + StudentcomboBox.Text);
                         string mstr = "N";
                         if (modSelect.Checked)
                         {
@@ -3879,6 +3915,10 @@ namespace UltraMarker
                         {
                             StudentcomboBox.Text = str3;
                         }
+                        if (str.StartsWith("Name: "))
+                        {
+                            StudentcomboBox.Text = str3;
+                        }
                         if (str.StartsWith("Moderated: "))
                         {
                             if (str.Contains("Y"))
@@ -4063,7 +4103,7 @@ namespace UltraMarker
                 //} //if
                 if (listBox1.Items.Count < 1)
                 {
-                    MessageBox.Show("Warning - cannot load student file - no grade file loaded that matches!");
+                    MessageBox.Show("Warning - cannot load file - no grade file loaded that matches!");
                     Clear_Form_Data(false);
                 }
                 Change_Session_Selection();
@@ -4261,7 +4301,7 @@ namespace UltraMarker
                 if (feedOptions.includeheader)
                 {
                     str = str + boldS + "Unit: " + UnitTitletextBox.Text + boldE + nl;
-                    str = str + boldS + "Student name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
+                    str = str + boldS + "Name: " + StudentcomboBox.Text + nl + boldE + "Date /time: " + DateTime.Now.ToString("dd/MM/yy  HH:mm") + nl;
                     str = str + boldS + "Assessment title: " + assess.Title + boldE + ", Code: " + assess.Code + nl;
                     str = str + "Iteration: " + Sitting + nl;
                     if (feedOptions.ShowMarker)
@@ -4284,7 +4324,14 @@ namespace UltraMarker
                     {
                         string lo = assess.LOs;
                         lo = lo.Replace("\r\n", nl);
-                        str = str + italS + "Learning Outcomes: " + italE + nl + lo + nl;
+                        if (!industrial)
+                        {
+                            str = str + italS + "Learning Outcomes: " + italE + nl + lo + nl;
+                        }
+                        else
+                        {
+                            str = str + italS + "Outcomes: " + italE + nl + lo + nl;
+                        }
                     }
                 } //end include report header
                 //str = str + "-------------------------------" + nl;
@@ -4356,7 +4403,14 @@ namespace UltraMarker
                             }
                             if (firstSession && feedOptions.LO)
                             {
-                                str = str + italS + "Learning Outcomes for this criteria: " + italE + nl;
+                                if (!industrial)
+                                {
+                                    str = str + italS + "Learning Outcomes for this criteria: " + italE + nl;
+                                }
+                                else
+                                {
+                                    str = str + italS + "Outcomes for this criteria: " + italE + nl;
+                                }
                                 str = str + crLO[i, j] + nl;
                             }
                             if (!Aggregation || (Aggregation && !Has_Subcriteria(i)))
@@ -4467,7 +4521,14 @@ namespace UltraMarker
                                 }
                                 if (firstSession && feedOptions.SubLO)
                                 {
-                                    str = str + italS + "Learning Outcomes for this sub criteria: " + italE + nl;
+                                    if (!industrial)
+                                    {
+                                        str = str + italS + "Learning Outcomes for this sub criteria: " + italE + nl;
+                                    }
+                                    else
+                                    {
+                                        str = str + italS + "Outcomes for this sub criteria: " + italE + nl;
+                                    }
                                     str = str + crLO[i, k] + nl;
                                 }
                                 str = str + nl + italS + "Assessment of achievement for this sub criteria: " + italE + nl;
@@ -5330,7 +5391,7 @@ namespace UltraMarker
                     }
                     //button1.Visible = false;
                     savedStudent = false;
-                    button7.Text = "Start marking student";
+                    button7.Text = "Start marking   ";
                     startMark = false;
                     button4.Visible = false;
                     button5.Visible = true;
@@ -5350,7 +5411,7 @@ namespace UltraMarker
                 String StuN = StudentcomboBox.Text.Trim();
                 if (StuN == "")
                 {
-                    MessageBox.Show("Student name is blank");
+                    MessageBox.Show("Name is blank");
                     return;
                 }
                 else
@@ -5765,7 +5826,7 @@ namespace UltraMarker
                     sw.WriteLine("Comments file: " + CommentFile);
                     sw.WriteLine("Comments path: " + CommentFilePath);
                     sw.WriteLine("Moderation Dir: " + modDirectory);
-                    sw.WriteLine("Student import file: " + StudentImportFile);
+                    sw.WriteLine("External import file: " + StudentImportFile);
 
                     if (SessionType == 0)
                     {
@@ -6111,7 +6172,7 @@ namespace UltraMarker
                             {
                                 CommentFilePath = str3; //used to open comments on comments form                              
                             }
-                            else if (str.StartsWith("Student import file:"))
+                            else if (str.StartsWith("External import file:"))
                             {
                                 StudentImportFile = str3; //used to open comments on comments form                              
                             }
@@ -7042,7 +7103,7 @@ namespace UltraMarker
                 assess.Weight = "";
                 AWeightBox.Text = ""; //update peer and mod
                 assessWeightBox.Text = "";
-                DialogResult dialogResult2 = MessageBox.Show("Remove Assessment Learning Outcomes Yes/No?", "Learning Outcomes", MessageBoxButtons.YesNo);
+                DialogResult dialogResult2 = MessageBox.Show("Remove Assessment Outcomes Yes/No?", "Outcomes", MessageBoxButtons.YesNo);
                 if (dialogResult2 == DialogResult.Yes)
                 {
                     assess.LOs = "";
@@ -7514,7 +7575,7 @@ namespace UltraMarker
 
         private void showToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Show Learning Outcomes for criteria?", "Learning Outcomes", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Show Outcomes for criteria?", "Outcomes", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 LOtextBox.Visible = true;
@@ -7623,7 +7684,7 @@ namespace UltraMarker
             }
             else
             {
-                MessageBox.Show("Learning Outcome title cannot be empty");
+                MessageBox.Show("Outcome title cannot be empty");
             }
         }
 
@@ -7770,7 +7831,7 @@ namespace UltraMarker
                 {
                     for (int i = 0; i < listBox2.Items.Count; i++)
                     {
-                        sw.WriteLine("Learning Outcome: ");
+                        sw.WriteLine("Outcome: ");
                         sw.Write(LOTitle[i] + " || ");
                         sw.Write(LOType[i] + " || ");
                         sw.WriteLine(LODesc[i]);
@@ -7808,6 +7869,9 @@ namespace UltraMarker
                     {
                         str = sw.ReadLine();
                         if (str.StartsWith("Learning Outcome: "))
+                        {
+                        }
+                        else if (str.StartsWith("Outcome: "))
                         {
                         }
                         else if (str.StartsWith("EndLO:"))
@@ -7876,7 +7940,7 @@ namespace UltraMarker
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //clear all current LOs to start a new series of LOs
-            DialogResult dialogResult = MessageBox.Show("Clear all current Learning Outcomes Yes/No?", "Clear LO", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Clear all current Outcomes Yes/No?", "Clear LO", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 listBox2.Items.Clear();
@@ -7957,10 +8021,10 @@ namespace UltraMarker
         {
             string str = "";
             string nl = System.Environment.NewLine;
-            DialogResult dialogResult = MessageBox.Show("Use these Learning Outcomes in the current Assessment Yes/No?", "Use LOs", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Use these Outcomes in the current Assessment Yes/No?", "Use LOs", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                DialogResult dialogResult2 = MessageBox.Show("Overwrite currently selected LOs Yes/No?", "Overwrite LOs", MessageBoxButtons.YesNo);
+                DialogResult dialogResult2 = MessageBox.Show("Overwrite currently selected outcomes Yes/No?", "Overwrite outcomes", MessageBoxButtons.YesNo);
                 if (dialogResult2 == DialogResult.Yes)
                 {
                     listBox3.Items.Clear();
@@ -8625,8 +8689,8 @@ namespace UltraMarker
                     sw.WriteLine("Unit Leader: " + ULTextBox.Text);
                     sw.WriteLine("Unit Tutors: " + tutorsTextBox.Text);
                     sw.WriteLine("Pass mark: " + passMarktextBox.Text);
-                    sw.WriteLine("Student marks folder: " + marksDirectory);
-                    sw.WriteLine("Student names file: " + StudentImportFile);
+                    sw.WriteLine("Marks folder: " + marksDirectory);
+                    sw.WriteLine("Names file: " + StudentImportFile);
                     sw.WriteLine("Unit peer template file: " + peerfileTextBox.Text);
                     sw.WriteLine("Unit moderation template file: " + modfileTextBox.Text);
                     sw.WriteLine("Institution: " + institutionTextBox.Text);
@@ -8701,19 +8765,19 @@ namespace UltraMarker
                             str = str.Substring(i + k, str.Length - k);
                             passMarktextBox.Text = str;
                         }
-                        else if (str.StartsWith("Student names file: "))
+                        else if (str.StartsWith("Names file: "))
                         {
-                            i = str.IndexOf("Student names file: ");
-                            k = "Student names file: ".Length;
+                            i = str.IndexOf("Names file: ");
+                            k = "Names file: ".Length;
                             str = str.Substring(i + k, str.Length - k);
                             StudentImportFile = str;
                             StudentImportTextBox.Text = str;
                             StudentFiletextBox.Text = str;
                         }
-                        else if (str.StartsWith("Student marks folder: "))
+                        else if (str.StartsWith("Marks folder: "))
                         {
-                            i = str.IndexOf("Student marks folder: ");
-                            k = "Student marks folder: ".Length;
+                            i = str.IndexOf("Marks folder: ");
+                            k = "Marks folder: ".Length;
                             str = str.Substring(i + k, str.Length - k);
                             marksFoldertextBox.Text = str;
                             marksDirectory = str;
@@ -9282,7 +9346,7 @@ namespace UltraMarker
 
         private void Importbutton_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Load new student list - (this will overwrite current list) Y/N?", "Import Students", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Load new list - (this will overwrite current list) Y/N?", "Import Students", MessageBoxButtons.YesNo);
              if (dialogResult == DialogResult.Yes)
              {
                  Import_Students();
@@ -9369,7 +9433,7 @@ namespace UltraMarker
         {
             if (!savedStudent)
             {
-                MessageBox.Show("Warning: student name changed before saving");
+                MessageBox.Show("Warning: name changed before saving");
             }
         }
 
@@ -9660,6 +9724,7 @@ namespace UltraMarker
             sForm.assessmentFilePath = CriteriaFile;
             sForm.assessmentTitle = assess.Title;
             sForm.assessmentCode = assess.Code;
+            sForm.industrial = industrial;
             if (UnitFilePath.Trim() == "")
             {
                 sForm.UnitPath = DefaultDir;

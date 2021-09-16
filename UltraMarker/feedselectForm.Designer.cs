@@ -155,9 +155,9 @@
             this.checkBox8.AutoSize = true;
             this.checkBox8.Location = new System.Drawing.Point(68, 269);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(220, 17);
+            this.checkBox8.Size = new System.Drawing.Size(176, 17);
             this.checkBox8.TabIndex = 10;
-            this.checkBox8.Text = "Show Learning Outcome for each Criteria";
+            this.checkBox8.Text = "Show Outcome for each Criteria";
             this.checkBox8.UseVisualStyleBackColor = true;
             // 
             // checkBox9
@@ -175,9 +175,9 @@
             this.checkBox10.AutoSize = true;
             this.checkBox10.Location = new System.Drawing.Point(68, 338);
             this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(258, 17);
+            this.checkBox10.Size = new System.Drawing.Size(214, 17);
             this.checkBox10.TabIndex = 12;
-            this.checkBox10.Text = "Overall Learning Outcomes for whole assessment";
+            this.checkBox10.Text = "Overall Outcomes for whole assessment";
             this.checkBox10.UseVisualStyleBackColor = true;
             // 
             // checkBox11
@@ -185,9 +185,9 @@
             this.checkBox11.AutoSize = true;
             this.checkBox11.Location = new System.Drawing.Point(68, 292);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(246, 17);
+            this.checkBox11.Size = new System.Drawing.Size(202, 17);
             this.checkBox11.TabIndex = 13;
-            this.checkBox11.Text = "Show Learning Outcomes for each Sub-criteria";
+            this.checkBox11.Text = "Show Outcomes for each Sub-criteria";
             this.checkBox11.UseVisualStyleBackColor = true;
             // 
             // checkBox12
@@ -238,9 +238,9 @@
             this.checkBox16.AutoSize = true;
             this.checkBox16.Location = new System.Drawing.Point(68, 382);
             this.checkBox16.Name = "checkBox16";
-            this.checkBox16.Size = new System.Drawing.Size(117, 17);
+            this.checkBox16.Size = new System.Drawing.Size(126, 17);
             this.checkBox16.TabIndex = 18;
-            this.checkBox16.Text = "Show marker name";
+            this.checkBox16.Text = "Show assessor name";
             this.checkBox16.UseVisualStyleBackColor = true;
             // 
             // checkBox17
