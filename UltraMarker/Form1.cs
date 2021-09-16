@@ -212,7 +212,8 @@ namespace UltraMarker
 
         string[] SessionTitle = new string[MaxSessions];
         string[] SessionDesc = new string[MaxSessions];
-        int[] SessionWeight = new int[MaxSessions];
+        //int[] SessionWeight = new int[MaxSessions];
+        double[] SessionWeight = new double[MaxSessions];
         bool SessionsEqual = false;
         bool[] DeselectSession = new bool[MaxSessions];
 
@@ -3635,8 +3636,8 @@ namespace UltraMarker
                             fl = Generate_Overall_Mark(s);
 
                             if ((SessionType > 0) && (!SessionsEqual)) //if multisession and sessions are weighted
-                            {
-                                float w = Convert.ToSingle(SessionWeight[s]);
+                            {                               
+                               float w = Convert.ToSingle(SessionWeight[s]);
                                 f = f + (fl * (w / 100));   //apply session weight
                             }
                         } //sessions s
@@ -6723,7 +6724,7 @@ namespace UltraMarker
             if (dialogResult == DialogResult.Yes)
             {
                 SessionTitle[SeS] = sessionTextBox.Text;
-                SessionWeight[SeS] = Convert.ToInt32(sessionCombo.Text);
+                SessionWeight[SeS] = Convert.ToSingle(sessionCombo.Text);
                 SessionDesc[SeS] = sessionDescBox.Text;
 
                 if (SessionTitleChanged && !AddSession)
@@ -7006,7 +7007,7 @@ namespace UltraMarker
                                 SessionsEqual = false;
                                 int a = str.IndexOf(":");
                                 str3 = str.Substring(a + 1).Trim();
-                                SessionWeight[SessionS] = Convert.ToInt32(str3);
+                                SessionWeight[SessionS] = Convert.ToSingle(str3);
                                 sessionCombo.Visible = true;
                                 sessionWlabel.Visible = true;
                                 checkBox2.Checked = false;
@@ -7489,11 +7490,6 @@ namespace UltraMarker
             catch
             {
             }
-
-        }
-
-        private void sessionCombo_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
         }
 
@@ -8313,7 +8309,7 @@ namespace UltraMarker
                 SessionW = 0;
                 for (int se = 0; se < SessionS; se++)
                 {
-                        SessionW = SessionW + SessionWeight[se];
+                        SessionW = SessionW + Convert.ToSingle(SessionWeight[se]);
                     //TotW = TotW + SessionWeight[se];
                     TempSessionNum = TempSessionNum + 1;
                 }

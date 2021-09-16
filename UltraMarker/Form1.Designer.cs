@@ -3500,7 +3500,7 @@
             this.sessionCombo.Name = "sessionCombo";
             this.sessionCombo.Size = new System.Drawing.Size(72, 23);
             this.sessionCombo.TabIndex = 8;
-            this.sessionCombo.SelectedIndexChanged += new System.EventHandler(this.sessionCombo_SelectedIndexChanged);
+           
             // 
             // label10
             // 
