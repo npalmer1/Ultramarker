@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -193,6 +193,7 @@
             this.commentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.summaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label94 = new System.Windows.Forms.Label();
             this.label107 = new System.Windows.Forms.Label();
             this.CopyGradesbutton = new System.Windows.Forms.Button();
             this.GroupscheckBox = new System.Windows.Forms.CheckBox();
@@ -235,19 +236,29 @@
             this.loadGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label56 = new System.Windows.Forms.Label();
+            this.levelTextBox = new System.Windows.Forms.TextBox();
+            this.passMarktextBox = new System.Windows.Forms.TextBox();
+            this.label75 = new System.Windows.Forms.Label();
+            this.tutorsTextBox = new System.Windows.Forms.TextBox();
+            this.label93 = new System.Windows.Forms.Label();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.StuFilelabel = new System.Windows.Forms.Label();
+            this.StudentFiletextBox = new System.Windows.Forms.TextBox();
+            this.label92 = new System.Windows.Forms.Label();
+            this.peerfileTextBox = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.modfileTextBox = new System.Windows.Forms.TextBox();
+            this.label55 = new System.Windows.Forms.Label();
+            this.moderationTemplateButton = new System.Windows.Forms.Button();
+            this.peerTemplateButton = new System.Windows.Forms.Button();
             this.configdirlabel = new System.Windows.Forms.Label();
             this.label97 = new System.Windows.Forms.Label();
             this.defaultdirlabel = new System.Windows.Forms.Label();
             this.ULSigButton = new System.Windows.Forms.Button();
             this.label95 = new System.Windows.Forms.Label();
             this.ULSigBox = new System.Windows.Forms.TextBox();
-            this.label93 = new System.Windows.Forms.Label();
-            this.tutorsTextBox = new System.Windows.Forms.TextBox();
-            this.label92 = new System.Windows.Forms.Label();
-            this.StuFilelabel = new System.Windows.Forms.Label();
-            this.StudentFiletextBox = new System.Windows.Forms.TextBox();
-            this.label75 = new System.Windows.Forms.Label();
-            this.passMarktextBox = new System.Windows.Forms.TextBox();
             this.newUnitbutton = new System.Windows.Forms.Button();
             this.marksFolderbutton = new System.Windows.Forms.Button();
             this.unitFolderbutton = new System.Windows.Forms.Button();
@@ -259,15 +270,7 @@
             this.extfileTextBox = new System.Windows.Forms.TextBox();
             this.label83 = new System.Windows.Forms.Label();
             this.unitEditbutton = new System.Windows.Forms.Button();
-            this.label56 = new System.Windows.Forms.Label();
-            this.levelTextBox = new System.Windows.Forms.TextBox();
             this.loadUnitButton = new System.Windows.Forms.Button();
-            this.moderationTemplateButton = new System.Windows.Forms.Button();
-            this.peerTemplateButton = new System.Windows.Forms.Button();
-            this.label55 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.modfileTextBox = new System.Windows.Forms.TextBox();
-            this.peerfileTextBox = new System.Windows.Forms.TextBox();
             this.unitCancelButton = new System.Windows.Forms.Button();
             this.unitSaveButton = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
@@ -285,6 +288,7 @@
             this.defaultDirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.LO_title_Label = new System.Windows.Forms.Label();
             this.label106 = new System.Windows.Forms.Label();
             this.LOcomboBox = new System.Windows.Forms.ComboBox();
             this.transferButton = new System.Windows.Forms.Button();
@@ -485,10 +489,6 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.LO_title_Label = new System.Windows.Forms.Label();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label94 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -502,6 +502,8 @@
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.groupBox5.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.menuStrip5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.contextMenuStrip8.SuspendLayout();
@@ -520,8 +522,6 @@
             this.contextMenuStrip9.SuspendLayout();
             this.contextMenuStrip10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -1407,9 +1407,9 @@
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.Location = new System.Drawing.Point(1, 442);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(127, 16);
+            this.label28.Size = new System.Drawing.Size(72, 16);
             this.label28.TabIndex = 57;
-            this.label28.Text = "Learning Outcomes:";
+            this.label28.Text = "Outcomes:";
             // 
             // listBox3
             // 
@@ -1985,10 +1985,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode4.Name = "CriteriaNode";
-            treeNode4.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2065,14 +2065,14 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
@@ -2083,7 +2083,7 @@
             this.normal1ToolStripMenuItem,
             this.coarse5ToolStripMenuItem});
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
@@ -2111,28 +2111,28 @@
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
-            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.overrideToolStripMenuItem.Text = "Override";
             this.overrideToolStripMenuItem.Click += new System.EventHandler(this.overrideToolStripMenuItem_Click);
             // 
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -2142,7 +2142,7 @@
             this.commentsToolStripMenuItem1,
             this.calculateLinesToolStripMenuItem});
             this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
-            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.importCommentsToolStripMenuItem.Text = "Import Results";
             // 
             // commentsToolStripMenuItem1
@@ -2164,7 +2164,7 @@
             this.showGenAssessToolStripMenuItem.Checked = true;
             this.showGenAssessToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showGenAssessToolStripMenuItem.Name = "showGenAssessToolStripMenuItem";
-            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.showGenAssessToolStripMenuItem.Text = "Show Gen Assess";
             this.showGenAssessToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showGenAssessToolStripMenuItem_CheckedChanged);
             this.showGenAssessToolStripMenuItem.Click += new System.EventHandler(this.showGenAssessToolStripMenuItem_Click);
@@ -2181,14 +2181,14 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Visible = false;
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.showToolStripMenuItem.Text = "Show?";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click_1);
             // 
@@ -2253,6 +2253,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // label94
+            // 
+            this.label94.AutoSize = true;
+            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label94.Location = new System.Drawing.Point(335, 30);
+            this.label94.Name = "label94";
+            this.label94.Size = new System.Drawing.Size(148, 16);
+            this.label94.TabIndex = 32;
+            this.label94.Text = "Grades for Assessment";
             // 
             // label107
             // 
@@ -2594,11 +2604,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2753,6 +2763,172 @@
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label56);
+            this.groupBox5.Controls.Add(this.levelTextBox);
+            this.groupBox5.Controls.Add(this.passMarktextBox);
+            this.groupBox5.Controls.Add(this.label75);
+            this.groupBox5.Controls.Add(this.tutorsTextBox);
+            this.groupBox5.Controls.Add(this.label93);
+            this.groupBox5.Location = new System.Drawing.Point(439, 162);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(506, 90);
+            this.groupBox5.TabIndex = 48;
+            this.groupBox5.TabStop = false;
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Location = new System.Drawing.Point(4, 17);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(39, 15);
+            this.label56.TabIndex = 19;
+            this.label56.Text = "Level:";
+            // 
+            // levelTextBox
+            // 
+            this.levelTextBox.Location = new System.Drawing.Point(54, 14);
+            this.levelTextBox.Name = "levelTextBox";
+            this.levelTextBox.ReadOnly = true;
+            this.levelTextBox.Size = new System.Drawing.Size(42, 21);
+            this.levelTextBox.TabIndex = 18;
+            // 
+            // passMarktextBox
+            // 
+            this.passMarktextBox.Location = new System.Drawing.Point(218, 14);
+            this.passMarktextBox.Name = "passMarktextBox";
+            this.passMarktextBox.ReadOnly = true;
+            this.passMarktextBox.Size = new System.Drawing.Size(35, 21);
+            this.passMarktextBox.TabIndex = 33;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(132, 17);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(82, 15);
+            this.label75.TabIndex = 34;
+            this.label75.Text = "Pass mark %:";
+            // 
+            // tutorsTextBox
+            // 
+            this.tutorsTextBox.Location = new System.Drawing.Point(54, 54);
+            this.tutorsTextBox.Name = "tutorsTextBox";
+            this.tutorsTextBox.ReadOnly = true;
+            this.tutorsTextBox.Size = new System.Drawing.Size(416, 21);
+            this.tutorsTextBox.TabIndex = 38;
+            // 
+            // label93
+            // 
+            this.label93.AutoSize = true;
+            this.label93.Location = new System.Drawing.Point(4, 57);
+            this.label93.Name = "label93";
+            this.label93.Size = new System.Drawing.Size(44, 15);
+            this.label93.TabIndex = 39;
+            this.label93.Text = "Tutors:";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.StuFilelabel);
+            this.groupBox4.Controls.Add(this.StudentFiletextBox);
+            this.groupBox4.Controls.Add(this.label92);
+            this.groupBox4.Controls.Add(this.peerfileTextBox);
+            this.groupBox4.Controls.Add(this.label54);
+            this.groupBox4.Controls.Add(this.modfileTextBox);
+            this.groupBox4.Controls.Add(this.label55);
+            this.groupBox4.Controls.Add(this.moderationTemplateButton);
+            this.groupBox4.Controls.Add(this.peerTemplateButton);
+            this.groupBox4.Location = new System.Drawing.Point(123, 353);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(719, 99);
+            this.groupBox4.TabIndex = 47;
+            this.groupBox4.TabStop = false;
+            // 
+            // StuFilelabel
+            // 
+            this.StuFilelabel.AutoSize = true;
+            this.StuFilelabel.Location = new System.Drawing.Point(35, 17);
+            this.StuFilelabel.Name = "StuFilelabel";
+            this.StuFilelabel.Size = new System.Drawing.Size(141, 15);
+            this.StuFilelabel.TabIndex = 36;
+            this.StuFilelabel.Text = "Student names  CSV file:";
+            // 
+            // StudentFiletextBox
+            // 
+            this.StudentFiletextBox.Location = new System.Drawing.Point(182, 14);
+            this.StudentFiletextBox.Name = "StudentFiletextBox";
+            this.StudentFiletextBox.ReadOnly = true;
+            this.StudentFiletextBox.Size = new System.Drawing.Size(280, 21);
+            this.StudentFiletextBox.TabIndex = 35;
+            // 
+            // label92
+            // 
+            this.label92.AutoSize = true;
+            this.label92.Location = new System.Drawing.Point(468, 17);
+            this.label92.Name = "label92";
+            this.label92.Size = new System.Drawing.Size(164, 15);
+            this.label92.TabIndex = 37;
+            this.label92.Text = "configured from Students tab";
+            // 
+            // peerfileTextBox
+            // 
+            this.peerfileTextBox.Location = new System.Drawing.Point(181, 41);
+            this.peerfileTextBox.Name = "peerfileTextBox";
+            this.peerfileTextBox.ReadOnly = true;
+            this.peerfileTextBox.Size = new System.Drawing.Size(281, 21);
+            this.peerfileTextBox.TabIndex = 11;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(8, 43);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(168, 15);
+            this.label54.TabIndex = 13;
+            this.label54.Text = "Unit peer review template file:";
+            // 
+            // modfileTextBox
+            // 
+            this.modfileTextBox.Location = new System.Drawing.Point(181, 68);
+            this.modfileTextBox.Name = "modfileTextBox";
+            this.modfileTextBox.ReadOnly = true;
+            this.modfileTextBox.Size = new System.Drawing.Size(281, 21);
+            this.modfileTextBox.TabIndex = 12;
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Location = new System.Drawing.Point(9, 68);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(168, 15);
+            this.label55.TabIndex = 14;
+            this.label55.Text = "Unit moderation template file:";
+            // 
+            // moderationTemplateButton
+            // 
+            this.moderationTemplateButton.Enabled = false;
+            this.moderationTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.moderationTemplateButton.Location = new System.Drawing.Point(471, 67);
+            this.moderationTemplateButton.Name = "moderationTemplateButton";
+            this.moderationTemplateButton.Size = new System.Drawing.Size(31, 23);
+            this.moderationTemplateButton.TabIndex = 16;
+            this.moderationTemplateButton.Text = "...";
+            this.moderationTemplateButton.UseVisualStyleBackColor = true;
+            this.moderationTemplateButton.Click += new System.EventHandler(this.moderationTemplateButton_Click);
+            // 
+            // peerTemplateButton
+            // 
+            this.peerTemplateButton.Enabled = false;
+            this.peerTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.peerTemplateButton.Location = new System.Drawing.Point(471, 39);
+            this.peerTemplateButton.Name = "peerTemplateButton";
+            this.peerTemplateButton.Size = new System.Drawing.Size(31, 23);
+            this.peerTemplateButton.TabIndex = 15;
+            this.peerTemplateButton.Text = "...";
+            this.peerTemplateButton.UseVisualStyleBackColor = true;
+            this.peerTemplateButton.Click += new System.EventHandler(this.peerTemplateButton_Click);
+            // 
             // configdirlabel
             // 
             this.configdirlabel.AutoSize = true;
@@ -2810,66 +2986,6 @@
             this.ULSigBox.Name = "ULSigBox";
             this.ULSigBox.Size = new System.Drawing.Size(335, 21);
             this.ULSigBox.TabIndex = 41;
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(4, 57);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(44, 15);
-            this.label93.TabIndex = 39;
-            this.label93.Text = "Tutors:";
-            // 
-            // tutorsTextBox
-            // 
-            this.tutorsTextBox.Location = new System.Drawing.Point(54, 54);
-            this.tutorsTextBox.Name = "tutorsTextBox";
-            this.tutorsTextBox.ReadOnly = true;
-            this.tutorsTextBox.Size = new System.Drawing.Size(416, 21);
-            this.tutorsTextBox.TabIndex = 38;
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(468, 17);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(164, 15);
-            this.label92.TabIndex = 37;
-            this.label92.Text = "configured from Students tab";
-            // 
-            // StuFilelabel
-            // 
-            this.StuFilelabel.AutoSize = true;
-            this.StuFilelabel.Location = new System.Drawing.Point(35, 17);
-            this.StuFilelabel.Name = "StuFilelabel";
-            this.StuFilelabel.Size = new System.Drawing.Size(141, 15);
-            this.StuFilelabel.TabIndex = 36;
-            this.StuFilelabel.Text = "Student names  CSV file:";
-            // 
-            // StudentFiletextBox
-            // 
-            this.StudentFiletextBox.Location = new System.Drawing.Point(182, 14);
-            this.StudentFiletextBox.Name = "StudentFiletextBox";
-            this.StudentFiletextBox.ReadOnly = true;
-            this.StudentFiletextBox.Size = new System.Drawing.Size(280, 21);
-            this.StudentFiletextBox.TabIndex = 35;
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(132, 17);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(82, 15);
-            this.label75.TabIndex = 34;
-            this.label75.Text = "Pass mark %:";
-            // 
-            // passMarktextBox
-            // 
-            this.passMarktextBox.Location = new System.Drawing.Point(218, 14);
-            this.passMarktextBox.Name = "passMarktextBox";
-            this.passMarktextBox.ReadOnly = true;
-            this.passMarktextBox.Size = new System.Drawing.Size(35, 21);
-            this.passMarktextBox.TabIndex = 33;
             // 
             // newUnitbutton
             // 
@@ -2980,23 +3096,6 @@
             this.unitEditbutton.UseVisualStyleBackColor = true;
             this.unitEditbutton.Click += new System.EventHandler(this.unitEditbutton_Click);
             // 
-            // label56
-            // 
-            this.label56.AutoSize = true;
-            this.label56.Location = new System.Drawing.Point(4, 17);
-            this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(39, 15);
-            this.label56.TabIndex = 19;
-            this.label56.Text = "Level:";
-            // 
-            // levelTextBox
-            // 
-            this.levelTextBox.Location = new System.Drawing.Point(54, 14);
-            this.levelTextBox.Name = "levelTextBox";
-            this.levelTextBox.ReadOnly = true;
-            this.levelTextBox.Size = new System.Drawing.Size(42, 21);
-            this.levelTextBox.TabIndex = 18;
-            // 
             // loadUnitButton
             // 
             this.loadUnitButton.Location = new System.Drawing.Point(277, 534);
@@ -3006,64 +3105,6 @@
             this.loadUnitButton.Text = "Load Unit";
             this.loadUnitButton.UseVisualStyleBackColor = true;
             this.loadUnitButton.Click += new System.EventHandler(this.loadUnitButton_Click);
-            // 
-            // moderationTemplateButton
-            // 
-            this.moderationTemplateButton.Enabled = false;
-            this.moderationTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.moderationTemplateButton.Location = new System.Drawing.Point(471, 67);
-            this.moderationTemplateButton.Name = "moderationTemplateButton";
-            this.moderationTemplateButton.Size = new System.Drawing.Size(31, 23);
-            this.moderationTemplateButton.TabIndex = 16;
-            this.moderationTemplateButton.Text = "...";
-            this.moderationTemplateButton.UseVisualStyleBackColor = true;
-            this.moderationTemplateButton.Click += new System.EventHandler(this.moderationTemplateButton_Click);
-            // 
-            // peerTemplateButton
-            // 
-            this.peerTemplateButton.Enabled = false;
-            this.peerTemplateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.peerTemplateButton.Location = new System.Drawing.Point(471, 39);
-            this.peerTemplateButton.Name = "peerTemplateButton";
-            this.peerTemplateButton.Size = new System.Drawing.Size(31, 23);
-            this.peerTemplateButton.TabIndex = 15;
-            this.peerTemplateButton.Text = "...";
-            this.peerTemplateButton.UseVisualStyleBackColor = true;
-            this.peerTemplateButton.Click += new System.EventHandler(this.peerTemplateButton_Click);
-            // 
-            // label55
-            // 
-            this.label55.AutoSize = true;
-            this.label55.Location = new System.Drawing.Point(9, 68);
-            this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(168, 15);
-            this.label55.TabIndex = 14;
-            this.label55.Text = "Unit moderation template file:";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(8, 43);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(168, 15);
-            this.label54.TabIndex = 13;
-            this.label54.Text = "Unit peer review template file:";
-            // 
-            // modfileTextBox
-            // 
-            this.modfileTextBox.Location = new System.Drawing.Point(181, 68);
-            this.modfileTextBox.Name = "modfileTextBox";
-            this.modfileTextBox.ReadOnly = true;
-            this.modfileTextBox.Size = new System.Drawing.Size(281, 21);
-            this.modfileTextBox.TabIndex = 12;
-            // 
-            // peerfileTextBox
-            // 
-            this.peerfileTextBox.Location = new System.Drawing.Point(181, 41);
-            this.peerfileTextBox.Name = "peerfileTextBox";
-            this.peerfileTextBox.ReadOnly = true;
-            this.peerfileTextBox.Size = new System.Drawing.Size(281, 21);
-            this.peerfileTextBox.TabIndex = 11;
             // 
             // unitCancelButton
             // 
@@ -3234,6 +3275,18 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Outcomes";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            // 
+            // LO_title_Label
+            // 
+            this.LO_title_Label.AutoSize = true;
+            this.LO_title_Label.BackColor = System.Drawing.Color.LemonChiffon;
+            this.LO_title_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LO_title_Label.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.LO_title_Label.Location = new System.Drawing.Point(439, 43);
+            this.LO_title_Label.Name = "LO_title_Label";
+            this.LO_title_Label.Size = new System.Drawing.Size(124, 16);
+            this.LO_title_Label.TabIndex = 13;
+            this.LO_title_Label.Text = "Learning Outcomes";
             // 
             // label106
             // 
@@ -3500,7 +3553,6 @@
             this.sessionCombo.Name = "sessionCombo";
             this.sessionCombo.Size = new System.Drawing.Size(72, 23);
             this.sessionCombo.TabIndex = 8;
-           
             // 
             // label10
             // 
@@ -3571,10 +3623,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5076,59 +5128,6 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // LO_title_Label
-            // 
-            this.LO_title_Label.AutoSize = true;
-            this.LO_title_Label.BackColor = System.Drawing.Color.LemonChiffon;
-            this.LO_title_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LO_title_Label.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.LO_title_Label.Location = new System.Drawing.Point(439, 43);
-            this.LO_title_Label.Name = "LO_title_Label";
-            this.LO_title_Label.Size = new System.Drawing.Size(124, 16);
-            this.LO_title_Label.TabIndex = 13;
-            this.LO_title_Label.Text = "Learning Outcomes";
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.StuFilelabel);
-            this.groupBox4.Controls.Add(this.StudentFiletextBox);
-            this.groupBox4.Controls.Add(this.label92);
-            this.groupBox4.Controls.Add(this.peerfileTextBox);
-            this.groupBox4.Controls.Add(this.label54);
-            this.groupBox4.Controls.Add(this.modfileTextBox);
-            this.groupBox4.Controls.Add(this.label55);
-            this.groupBox4.Controls.Add(this.moderationTemplateButton);
-            this.groupBox4.Controls.Add(this.peerTemplateButton);
-            this.groupBox4.Location = new System.Drawing.Point(123, 353);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(719, 99);
-            this.groupBox4.TabIndex = 47;
-            this.groupBox4.TabStop = false;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label56);
-            this.groupBox5.Controls.Add(this.levelTextBox);
-            this.groupBox5.Controls.Add(this.passMarktextBox);
-            this.groupBox5.Controls.Add(this.label75);
-            this.groupBox5.Controls.Add(this.tutorsTextBox);
-            this.groupBox5.Controls.Add(this.label93);
-            this.groupBox5.Location = new System.Drawing.Point(439, 162);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(506, 90);
-            this.groupBox5.TabIndex = 48;
-            this.groupBox5.TabStop = false;
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label94.Location = new System.Drawing.Point(335, 30);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(148, 16);
-            this.label94.TabIndex = 32;
-            this.label94.Text = "Grades for Assessment";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5161,6 +5160,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.menuStrip5.ResumeLayout(false);
             this.menuStrip5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
@@ -5191,10 +5194,6 @@
             this.contextMenuStrip9.ResumeLayout(false);
             this.contextMenuStrip10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
 
         }
