@@ -428,7 +428,7 @@ namespace UltraMarker
             Set_Weights();
 
             Build_Session_Weight();
-            if (!industrial) { LoadLOCombo(); }
+            LoadLOCombo(); 
             setGradeTree();
             Change_Session_Selection();
             loading = false;
@@ -485,14 +485,24 @@ namespace UltraMarker
 
         void LoadLOCombo()
         {
-            LOcomboBox.Items.Add("Miscellaneous");
-            LOcomboBox.Items.Add("Cognitive Skills");
-            LOcomboBox.Items.Add("Practical & Professional Skills");
-            LOcomboBox.Items.Add("Knowledge and Understanding");
-            LOcomboBox.Items.Add("Employabaility Skills");
-            LOcomboBox.Items.Add("Transferable and Key Skills");
-            LOcomboBox.Items.Add("Employability Skills");
-            LOcomboBox.Items.Add("Soft Skills");
+            if (!industrial)
+            {
+                LOcomboBox.Items.Add("Miscellaneous");
+                LOcomboBox.Items.Add("Cognitive Skills");
+                LOcomboBox.Items.Add("Practical & Professional Skills");
+                LOcomboBox.Items.Add("Knowledge and Understanding");
+                LOcomboBox.Items.Add("Employabaility Skills");
+                LOcomboBox.Items.Add("Transferable and Key Skills");
+                LOcomboBox.Items.Add("Employability Skills");
+                LOcomboBox.Items.Add("Soft Skills");
+            }
+            else
+            {
+                LOcomboBox.Items.Add("General");
+                LOcomboBox.Items.Add("Miscellaneous");
+                LOcomboBox.Items.Add("Security");
+                LOcomboBox.Items.Add("Network");
+            }
             
         }
 
