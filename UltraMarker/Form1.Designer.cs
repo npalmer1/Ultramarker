@@ -660,7 +660,7 @@
             // 
             this.repLOStripMenuItem.Name = "repLOStripMenuItem";
             this.repLOStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.repLOStripMenuItem.Text = "Replicate LO";
+            this.repLOStripMenuItem.Text = "Replicate Outcome";
             // 
             // openFileDialog2
             // 

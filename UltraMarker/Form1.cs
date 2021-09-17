@@ -7763,7 +7763,7 @@ namespace UltraMarker
         {
             string str;
             //remove the LO node 
-            DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove LO", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove Ooutcome", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
 
@@ -7777,7 +7777,7 @@ namespace UltraMarker
                 }
                 else
                 {
-                    MessageBox.Show("Select an LO to delete");
+                    MessageBox.Show("Select an outcome to delete");
                 }
 
             }
@@ -7941,7 +7941,7 @@ namespace UltraMarker
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //clear all current LOs to start a new series of LOs
-            DialogResult dialogResult = MessageBox.Show("Clear all current Outcomes Yes/No?", "Clear LO", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Clear all current Outcomes Yes/No?", "Clear Outcomes", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 listBox2.Items.Clear();
@@ -8022,7 +8022,7 @@ namespace UltraMarker
         {
             string str = "";
             string nl = System.Environment.NewLine;
-            DialogResult dialogResult = MessageBox.Show("Use these Outcomes in the current Assessment Yes/No?", "Use LOs", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Use these Outcomes in the current Assessment Yes/No?", "Use Outcomes", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 DialogResult dialogResult2 = MessageBox.Show("Overwrite currently selected outcomes Yes/No?", "Overwrite outcomes", MessageBoxButtons.YesNo);
