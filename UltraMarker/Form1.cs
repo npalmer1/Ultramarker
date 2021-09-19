@@ -4318,7 +4318,7 @@ namespace UltraMarker
                     str = str + "Iteration: " + Sitting + nl;
                     if (feedOptions.ShowMarker)
                     {
-                        str = str + "Marker: " + MarkertextBox.Text.Trim() + nl;
+                        str = str + "Assessor: " + MarkertextBox.Text.Trim() + nl;
                     }
 
 
@@ -4326,7 +4326,7 @@ namespace UltraMarker
                     //rep1.RTB.Rtf = richTextBox1.Rtf;
                     // str = "{\\rtf1\\ansi \\b " + selstr + " \\b0 ";
 
-                    str = str + "Assessment weight for unit: " + assess.Weight + nl;
+                    if (!industrial) { str = str + "Assessment weight for unit: " + assess.Weight + nl; }
                     str = str + "-----------------" + nl;
                     if (feedOptions.full)
                     {

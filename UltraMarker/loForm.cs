@@ -427,7 +427,7 @@ namespace UltraMarker
                    
                     for (int i = 0; i < listBox1.Items.Count; i++)
                     {
-                        sw.WriteLine("Learning Outcome: ");
+                        sw.WriteLine("Outcome: ");
                         sw.Write(LOTitle[i] + "||");
                         sw.WriteLine(LODesc[i]);
                         sw.WriteLine("EndLO:");                       
@@ -463,6 +463,10 @@ namespace UltraMarker
                         str = sw.ReadLine();
                         if (str.StartsWith("Learning Outcome: "))
                         {
+                        }
+                        else if (str.StartsWith("Outcome: "))
+                        {
+
                         }
                         else if (str.StartsWith("EndLO:"))
                         {   
@@ -568,7 +572,7 @@ namespace UltraMarker
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //clear all current LOs to start a new series of LOs
-             DialogResult dialogResult = MessageBox.Show("Clear all current Learning Outcomes Yes/No?", "Clear LO", MessageBoxButtons.YesNo);
+             DialogResult dialogResult = MessageBox.Show("Clear all current Outcomes Yes/No?", "Clear LO", MessageBoxButtons.YesNo);
              if (dialogResult == DialogResult.Yes)
              {
                  listBox1.Items.Clear();

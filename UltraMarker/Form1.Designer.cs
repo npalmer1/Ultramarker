@@ -3419,21 +3419,21 @@
             // 
             this.editStripMenuItem.Name = "editStripMenuItem";
             this.editStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.editStripMenuItem.Text = "Edit LO";
+            this.editStripMenuItem.Text = "Edit Outcome";
             this.editStripMenuItem.Click += new System.EventHandler(this.editStripMenuItem_Click);
             // 
             // insertStripMenuItem
             // 
             this.insertStripMenuItem.Name = "insertStripMenuItem";
             this.insertStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.insertStripMenuItem.Text = "Insert LO";
+            this.insertStripMenuItem.Text = "Insert Outcome";
             this.insertStripMenuItem.Click += new System.EventHandler(this.insertStripMenuItem_Click);
             // 
             // removeLOtripMenuItem
             // 
             this.removeLOtripMenuItem.Name = "removeLOtripMenuItem";
             this.removeLOtripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.removeLOtripMenuItem.Text = "Remove LO";
+            this.removeLOtripMenuItem.Text = "Remove Outcome";
             this.removeLOtripMenuItem.Click += new System.EventHandler(this.removeLOtripMenuItem_Click);
             // 
             // menuStrip4
@@ -5014,14 +5014,14 @@
             // saveFileDialog5
             // 
             this.saveFileDialog5.DefaultExt = "lo";
-            this.saveFileDialog5.Filter = "Learning Outcome files (*.lo)|*.lo";
+            this.saveFileDialog5.Filter = "Outcome files (*.lo)|*.lo";
             this.saveFileDialog5.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog5_FileOk);
             // 
             // openFileDialog4
             // 
             this.openFileDialog4.DefaultExt = "lo";
             this.openFileDialog4.FileName = "openFileDialog4";
-            this.openFileDialog4.Filter = "Learning Outcome files (*.lo)|*.lo";
+            this.openFileDialog4.Filter = "Outcome files (*.lo)|*.lo";
             this.openFileDialog4.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog4_FileOk);
             // 
             // UnitsaveFileDialog

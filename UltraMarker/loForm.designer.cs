@@ -185,13 +185,13 @@
             // saveFileDialog1
             // 
             this.saveFileDialog1.DefaultExt = "lo";
-            this.saveFileDialog1.Filter = "Learning Outcome files (*.lo)|*.lo";
+            this.saveFileDialog1.Filter = "Outcome files (*.lo)|*.lo";
             this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.DefaultExt = "lo";
-            this.openFileDialog1.Filter = "Learning Outcome files (*.lo)|*.lo";
+            this.openFileDialog1.Filter = "Outcome files (*.lo)|*.lo";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // textBox2
