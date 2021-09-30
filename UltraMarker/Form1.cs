@@ -1594,7 +1594,7 @@ namespace UltraMarker
             catch (System.Exception excep)
             {
                 StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                // MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
 
