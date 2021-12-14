@@ -467,13 +467,17 @@ namespace UltraMarker
 
         private string findSurname(string name)
         {
-            string surname = "";
+            //string surname = "";
             
             string[] str = new string[4];
 
             str = name.Split(' ');
                  try
                  {
+                    if (str.Count() == 6)
+                    {
+                        return str[5];
+                    }
                     if (str.Count() == 5)
                     {
                         return str[4];
@@ -493,20 +497,9 @@ namespace UltraMarker
                  }
                  catch
                  {
-                return name;
+                    return name;
                  }
-
-                 try
-                 {
-                     if (name[0] != null)
-                     {
-                           surname = name;
-                     }
-                 }
-                 catch
-                 {
-                 }
-                                           
+                                                           
             return name;
         }
         private void GenerateSummaryFile(string filename) //not used anymore
