@@ -28,8 +28,9 @@ namespace UltraMarker
 
         struct st_struct
         {
-            public string firstname;
-            public string surname;
+            //public string firstname;
+            //public string surname;
+            public string name;
             public string percent;
             public string grade;
             public string mod;
@@ -248,13 +249,14 @@ namespace UltraMarker
             string str3 = "";
             
             st_struct sts;
-            sts.firstname = "";
-            sts.surname = "";
+            //sts.firstname = "";
+            //sts.surname = "";
+            sts.name = "";
             sts.percent = "";
             sts.grade = "";
             sts.mod = "";
             float group_total = 0;
-            string[] name = new string[3];
+            //string[] name = new string[3];
             list1.Clear();
             summaryFilename = filename;
             try
@@ -269,7 +271,7 @@ namespace UltraMarker
                     string gr = "";
                     if (checkBox1.Checked) pc = "%";
                     if (checkBox2.Checked) gr = "Grade";
-                    sw2.WriteLine("Student".PadRight(30) + "\t\t "+ pc + " \t "+ gr);
+                    sw2.WriteLine("Name".PadRight(30) + "\t\t "+ pc + " \t "+ gr);
                     sw2.WriteLine();
                     string[] files = Directory.GetFiles(marksCodeDir);
                     if (files.Count() <1)
@@ -280,8 +282,9 @@ namespace UltraMarker
                     }
                     foreach (string file in files)
                     {
-                        sts.firstname = "";
-                        sts.surname = "";
+                        //sts.firstname = "";
+                        //sts.surname = "";
+                        sts.name = "";
                         sts.percent = "";
                         sts.grade = "";
                         sts.mod = "";
@@ -305,8 +308,10 @@ namespace UltraMarker
                                         {
                                             str3 = str;
                                         }
-                                        if (str.Contains("Student:"))
+                                        if (str.Contains("Name:") || str.Contains("Student"))
                                         {
+                                            sts.name = str3;
+                                            /*
                                             name = str3.Split(' ');
                                             try
                                             {
@@ -337,6 +342,7 @@ namespace UltraMarker
                                             catch
                                             {
                                             }
+                                            */
                                            
                                         }
                                         else if (str.Contains("Overall mark:") && checkBox1.Checked)
@@ -378,14 +384,16 @@ namespace UltraMarker
                      foreach (st_struct st in list1)
                      {
                          if (sort_type == 1)
-                         {                        
-                                sw2.Write((st.surname + " " + st.firstname).PadRight(35,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
-                                sw2.WriteLine();
+                         {
+                            //sw2.Write((st.surname + " " + st.firstname).PadRight(35,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
+                            sw2.Write((st.name).PadRight(35, '-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
+                            sw2.WriteLine();
                          }
                          else 
                          {
-                             sw2.Write((st.firstname + " " + st.surname).PadRight(39,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
-                             sw2.WriteLine();
+                            //sw2.Write((st.firstname + " " + st.surname).PadRight(39,'-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
+                            sw2.Write((st.name).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + " \t" + st.mod);
+                            sw2.WriteLine();
                          }
                            
                      }
@@ -411,22 +419,27 @@ namespace UltraMarker
             }
         }
 
+        
         private void SortList()
         {
+
             try
             {
                 if (sort_type == 0)
                 {
                     list1.Sort(delegate(st_struct x, st_struct y)
                     {
-                        return x.firstname.CompareTo(y.firstname);
+                        return x.name.CompareTo(y.name);
                     });
                 }
                 else if (sort_type == 1)
                 {
                     list1.Sort(delegate(st_struct x, st_struct y)
                     {
-                        return x.surname.CompareTo(y.surname);
+                        string st1 = findSurname(x.name);
+                        string st2 = findSurname(y.name);
+
+                        return st1.CompareTo(st2);
                     });
                 }
                 else if (sort_type == 2)
@@ -452,6 +465,50 @@ namespace UltraMarker
            
         }
 
+        private string findSurname(string name)
+        {
+            string surname = "";
+            
+            string[] str = new string[4];
+
+            str = name.Split(' ');
+                 try
+                 {
+                    if (str.Count() == 5)
+                    {
+                        return str[4];
+                    }
+                    if (str.Count() == 4)
+                    {
+                        return str[3];
+                    }
+                    else if (str.Count() == 3)
+                    {
+                        return str[2];
+                    }
+                    else if (str.Count() == 2)
+                    {
+                        return str[1];
+                    }
+                 }
+                 catch
+                 {
+                return name;
+                 }
+
+                 try
+                 {
+                     if (name[0] != null)
+                     {
+                           surname = name;
+                     }
+                 }
+                 catch
+                 {
+                 }
+                                           
+            return name;
+        }
         private void GenerateSummaryFile(string filename) //not used anymore
         {
             string str = "";
@@ -490,7 +547,7 @@ namespace UltraMarker
                                         {
                                             str3 = str;
                                         }
-                                        if (str.Contains("Student:"))
+                                        if (str.Contains("Student:") || str.Contains("Name:"))
                                         {
                                             sw2.Write(str3 + "\t");
                                         }
