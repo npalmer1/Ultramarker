@@ -113,10 +113,18 @@ namespace UltraMarker
         private void button1_Click(object sender, EventArgs e)
         {
             button3.Visible = false;
-            openFileDialog1.FileName = Path.GetDirectoryName(assessmentFilePath);
-            openFileDialog1.InitialDirectory = assessmentFilePath; //assessnent criteria dir
-            openFileDialog1.Filter = "Criteria file (*.cri)| *.cri";
-            openFileDialog1.ShowDialog();
+            try
+            {
+                //openFileDialog1.FileName = Path.GetDirectoryName(assessmentFilePath);
+                openFileDialog1.FileName = assessmentFilePath;
+                openFileDialog1.InitialDirectory = assessmentFilePath; //assessnent criteria dir
+                openFileDialog1.Filter = "Criteria file (*.cri)| *.cri";
+                openFileDialog1.ShowDialog();
+            }
+            catch
+            {
+                MessageBox.Show("Invalid summary filename or path");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)

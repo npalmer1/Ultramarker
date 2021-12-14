@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -489,6 +489,7 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.markcheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -1985,10 +1986,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode3.Name = "CriteriaNode";
+            treeNode3.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2604,11 +2605,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2724,6 +2725,7 @@
             // tabPage5
             // 
             this.tabPage5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage5.Controls.Add(this.markcheckBox);
             this.tabPage5.Controls.Add(this.groupBox5);
             this.tabPage5.Controls.Add(this.groupBox4);
             this.tabPage5.Controls.Add(this.configdirlabel);
@@ -2984,6 +2986,7 @@
             // 
             this.ULSigBox.Location = new System.Drawing.Point(304, 258);
             this.ULSigBox.Name = "ULSigBox";
+            this.ULSigBox.ReadOnly = true;
             this.ULSigBox.Size = new System.Drawing.Size(335, 21);
             this.ULSigBox.TabIndex = 41;
             // 
@@ -3001,19 +3004,20 @@
             // 
             this.marksFolderbutton.Enabled = false;
             this.marksFolderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.marksFolderbutton.Location = new System.Drawing.Point(595, 326);
+            this.marksFolderbutton.Location = new System.Drawing.Point(698, 326);
             this.marksFolderbutton.Name = "marksFolderbutton";
             this.marksFolderbutton.Size = new System.Drawing.Size(31, 23);
             this.marksFolderbutton.TabIndex = 30;
             this.marksFolderbutton.Text = "...";
             this.marksFolderbutton.UseVisualStyleBackColor = true;
+            this.marksFolderbutton.Visible = false;
             this.marksFolderbutton.Click += new System.EventHandler(this.marksFolderbutton_Click);
             // 
             // unitFolderbutton
             // 
             this.unitFolderbutton.Enabled = false;
             this.unitFolderbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.unitFolderbutton.Location = new System.Drawing.Point(595, 293);
+            this.unitFolderbutton.Location = new System.Drawing.Point(645, 295);
             this.unitFolderbutton.Name = "unitFolderbutton";
             this.unitFolderbutton.Size = new System.Drawing.Size(30, 23);
             this.unitFolderbutton.TabIndex = 29;
@@ -3026,7 +3030,7 @@
             this.marksFoldertextBox.Location = new System.Drawing.Point(305, 327);
             this.marksFoldertextBox.Name = "marksFoldertextBox";
             this.marksFoldertextBox.ReadOnly = true;
-            this.marksFoldertextBox.Size = new System.Drawing.Size(280, 21);
+            this.marksFoldertextBox.Size = new System.Drawing.Size(387, 21);
             this.marksFoldertextBox.TabIndex = 28;
             this.marksFoldertextBox.TextChanged += new System.EventHandler(this.marksFoldertextBox_TextChanged);
             // 
@@ -3053,7 +3057,7 @@
             this.unitFoldertextBox.Location = new System.Drawing.Point(305, 295);
             this.unitFoldertextBox.Name = "unitFoldertextBox";
             this.unitFoldertextBox.ReadOnly = true;
-            this.unitFoldertextBox.Size = new System.Drawing.Size(281, 21);
+            this.unitFoldertextBox.Size = new System.Drawing.Size(334, 21);
             this.unitFoldertextBox.TabIndex = 25;
             this.unitFoldertextBox.TextChanged += new System.EventHandler(this.unitFoldertextBox_TextChanged);
             // 
@@ -3413,26 +3417,26 @@
             this.insertStripMenuItem,
             this.removeLOtripMenuItem});
             this.contextMenuStrip8.Name = "contextMenuStrip8";
-            this.contextMenuStrip8.Size = new System.Drawing.Size(136, 70);
+            this.contextMenuStrip8.Size = new System.Drawing.Size(171, 70);
             // 
             // editStripMenuItem
             // 
             this.editStripMenuItem.Name = "editStripMenuItem";
-            this.editStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.editStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.editStripMenuItem.Text = "Edit Outcome";
             this.editStripMenuItem.Click += new System.EventHandler(this.editStripMenuItem_Click);
             // 
             // insertStripMenuItem
             // 
             this.insertStripMenuItem.Name = "insertStripMenuItem";
-            this.insertStripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.insertStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.insertStripMenuItem.Text = "Insert Outcome";
             this.insertStripMenuItem.Click += new System.EventHandler(this.insertStripMenuItem_Click);
             // 
             // removeLOtripMenuItem
             // 
             this.removeLOtripMenuItem.Name = "removeLOtripMenuItem";
-            this.removeLOtripMenuItem.Size = new System.Drawing.Size(135, 22);
+            this.removeLOtripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.removeLOtripMenuItem.Text = "Remove Outcome";
             this.removeLOtripMenuItem.Click += new System.EventHandler(this.removeLOtripMenuItem_Click);
             // 
@@ -3623,10 +3627,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5128,6 +5132,18 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // markcheckBox
+            // 
+            this.markcheckBox.AutoSize = true;
+            this.markcheckBox.Location = new System.Drawing.Point(735, 330);
+            this.markcheckBox.Name = "markcheckBox";
+            this.markcheckBox.Size = new System.Drawing.Size(183, 19);
+            this.markcheckBox.TabIndex = 49;
+            this.markcheckBox.Text = "Allow change of marks folder";
+            this.markcheckBox.UseVisualStyleBackColor = true;
+            this.markcheckBox.Visible = false;
+            this.markcheckBox.CheckedChanged += new System.EventHandler(this.markcheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5656,6 +5672,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label94;
+        private System.Windows.Forms.CheckBox markcheckBox;
     }
 }
 

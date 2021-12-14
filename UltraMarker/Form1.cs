@@ -8647,15 +8647,18 @@ namespace UltraMarker
 
         private void unitButtons(bool b)
         {
+            markcheckBox.Visible = b;
+            markcheckBox.Checked = false;
             unitEditbutton.Visible = !b;
             unitSaveButton.Visible = b;
             loadUnitButton.Visible = !b;
             unitCancelButton.Visible = b;
             newUnitbutton.Visible = !b;
 
+            marksFolderbutton.Enabled = b;
             ULSigButton.Enabled = b;
             unitFolderbutton.Enabled = b;
-            marksFolderbutton.Enabled = b;
+            //marksFolderbutton.Enabled = b;
             peerTemplateButton.Enabled = b;
             moderationTemplateButton.Enabled = b;
             extTemplatebutton.Enabled = b;
@@ -8664,6 +8667,7 @@ namespace UltraMarker
             UnitTitletextBox.ReadOnly = !b;
             unitCodeTextBox.ReadOnly = !b;
             levelTextBox.ReadOnly = !b;
+            ULSigBox.ReadOnly = !b;
             ULTextBox.ReadOnly = !b;
             tutorsTextBox.ReadOnly = !b;
             passMarktextBox.ReadOnly = !b;
@@ -9158,23 +9162,43 @@ namespace UltraMarker
         private void unitFolderbutton_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.SelectedPath = UnitFilePath;//default unit dir
-            folderBrowserDialog1.ShowDialog();
-            unitFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
+            DialogResult dr;
 
-            UnitFilePath = unitFoldertextBox.Text;
-            try
+            dr = folderBrowserDialog1.ShowDialog();
+            if (dr == DialogResult.Cancel)
             {
-                if (!Directory.Exists(UnitFilePath))
+                return;
+            }
+            else if (dr == DialogResult.OK)
+            {
+                unitFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
+
+                UnitFilePath = unitFoldertextBox.Text;
+                try
                 {
-                    Directory.CreateDirectory(UnitFilePath);
+                    if (!Directory.Exists(UnitFilePath))
+                    {
+                        Directory.CreateDirectory(UnitFilePath);
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Unable to create directory");
+                }
+                marksDirectory = UnitFilePath + "\\Marks";
+                try
+                {
+                    if (!Directory.Exists(marksDirectory))
+                    {
+                        Directory.CreateDirectory(marksDirectory);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to create directory");
+                }
+                marksFoldertextBox.Text = marksDirectory;
             }
-            catch
-            {
-                MessageBox.Show("Unable to create directory");
-            }
-            marksDirectory = UnitFilePath + "\\Marks";
-            marksFoldertextBox.Text = marksDirectory;
 
         }
 
@@ -9185,20 +9209,30 @@ namespace UltraMarker
                 marksDirectory = UnitFilePath;
             }
             folderBrowserDialog1.SelectedPath = marksDirectory;//default unit dir
-            folderBrowserDialog1.ShowDialog();
-            marksFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
-
-            marksDirectory = marksFoldertextBox.Text;
-            try
+            DialogResult dr;
+            dr = folderBrowserDialog1.ShowDialog();
+            if (dr == DialogResult.Cancel)
             {
-                if (!Directory.Exists(marksDirectory))
-                {
-                    Directory.CreateDirectory(marksDirectory);
-                }
+                return;
             }
-            catch
+            else if (dr == DialogResult.OK)
             {
-                MessageBox.Show("Unable to create directory");
+
+                marksFoldertextBox.Text = folderBrowserDialog1.SelectedPath;
+
+
+                marksDirectory = marksFoldertextBox.Text;
+                try
+                {
+                    if (!Directory.Exists(marksDirectory))
+                    {
+                        Directory.CreateDirectory(marksDirectory);
+                    }
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to create directory");
+                }
             }
 
         }
@@ -9211,7 +9245,7 @@ namespace UltraMarker
                 DialogResult dialogResult2 = MessageBox.Show("Are you sure - Yes/No?", "New Unit", MessageBoxButtons.YesNo);
                 if (dialogResult2 == DialogResult.Yes)
                 {
-
+                    markcheckBox.Visible = true;
                     UnitTitletextBox.Text = "";
                     unitCodeTextBox.Text = "";
                     levelTextBox.Text = "";
@@ -9463,17 +9497,25 @@ namespace UltraMarker
 
         private void defaultDirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            editDefaultDir("Default directory: " + DefaultDir);  //set the default directory for ultramarker work, eg. C:\Ultramarker   
-            defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
+            if (editDefaultDir("Default directory: " + DefaultDir))  //set the default directory for ultramarker work, eg. C:\Ultramarker   
+            {
+                defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
+            }
         }
        
-        private void editDefaultDir(string message)
+        private bool editDefaultDir(string message)
         {
             string sl = "";
+            DialogResult dr;
             DialogResult reply;
             folderBrowserDialog2.SelectedPath = DefaultDir;
             folderBrowserDialog2.Description = message;
-            folderBrowserDialog2.ShowDialog();
+            dr = folderBrowserDialog2.ShowDialog();
+            if (dr == DialogResult.Cancel)
+            {
+                return false;
+            }
+           
             string str = folderBrowserDialog2.SelectedPath;
             if (Directory.Exists(str) == false)
             {
@@ -9489,6 +9531,7 @@ namespace UltraMarker
                     catch
                     {
                         MessageBox.Show("Invalid path");
+                        return false;
                     }
                 }
             }
@@ -9517,6 +9560,11 @@ namespace UltraMarker
                 CommentFile = "";
                 CommentFilePath = str + sl;
                 MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
@@ -10887,6 +10935,11 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
             {
                 startImport();
             }
+        }
+
+        private void markcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+           marksFolderbutton.Visible = markcheckBox.Checked; 
         }
     }
     }
