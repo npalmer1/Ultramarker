@@ -8704,6 +8704,7 @@ namespace UltraMarker
                     sw.WriteLine("Unit Leader: " + ULTextBox.Text);
                     sw.WriteLine("Unit Tutors: " + tutorsTextBox.Text);
                     sw.WriteLine("Pass mark: " + passMarktextBox.Text);
+                    sw.WriteLine("Unit folder: " + UnitFilePath);
                     sw.WriteLine("Marks folder: " + marksDirectory);
                     sw.WriteLine("Names file: " + StudentImportFile);
                     sw.WriteLine("Unit peer template file: " + peerfileTextBox.Text);
@@ -8789,11 +8790,27 @@ namespace UltraMarker
                             StudentImportTextBox.Text = str;
                             StudentFiletextBox.Text = str;
                         }
+                        else if (str.StartsWith("Unit folder: "))
+                        {
+                            i = str.IndexOf("Unit folder: ");
+                            k = "Unit folder: ".Length;
+                            str = str.Substring(i + k, str.Length - k);
+                            if (!str.Contains(DefaultDir))
+                            {
+                                MessageBox.Show("Note: unit file path is in different path to default directory");
+                            }
+                            marksFoldertextBox.Text = str;
+                            marksDirectory = str;
+                        }
                         else if (str.StartsWith("Marks folder: "))
                         {
                             i = str.IndexOf("Marks folder: ");
                             k = "Marks folder: ".Length;
-                            str = str.Substring(i + k, str.Length - k);
+                            str = str.Substring(i + k, str.Length - k);   
+                            if (!str.Contains(UnitFilePath))
+                            {
+                                MessageBox.Show("Note: Marks folder is in different path to unit folder");
+                            }
                             marksFoldertextBox.Text = str;
                             marksDirectory = str;
                         }
