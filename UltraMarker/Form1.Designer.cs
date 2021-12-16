@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -236,6 +236,7 @@
             this.loadGroupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.markcheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label56 = new System.Windows.Forms.Label();
             this.levelTextBox = new System.Windows.Forms.TextBox();
@@ -489,7 +490,6 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.markcheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -1114,7 +1114,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(787, 56);
+            this.templatetextBox.Location = new System.Drawing.Point(787, 66);
             this.templatetextBox.Margin = new System.Windows.Forms.Padding(2);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(266, 23);
@@ -1986,10 +1986,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode3.Name = "CriteriaNode";
-            treeNode3.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2605,11 +2605,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2764,6 +2764,18 @@
             this.tabPage5.Size = new System.Drawing.Size(1328, 720);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
+            // 
+            // markcheckBox
+            // 
+            this.markcheckBox.AutoSize = true;
+            this.markcheckBox.Location = new System.Drawing.Point(735, 330);
+            this.markcheckBox.Name = "markcheckBox";
+            this.markcheckBox.Size = new System.Drawing.Size(183, 19);
+            this.markcheckBox.TabIndex = 49;
+            this.markcheckBox.Text = "Allow change of marks folder";
+            this.markcheckBox.UseVisualStyleBackColor = true;
+            this.markcheckBox.Visible = false;
+            this.markcheckBox.CheckedChanged += new System.EventHandler(this.markcheckBox_CheckedChanged);
             // 
             // groupBox5
             // 
@@ -3238,21 +3250,21 @@
             // institutionToolStripMenuItem
             // 
             this.institutionToolStripMenuItem.Name = "institutionToolStripMenuItem";
-            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.institutionToolStripMenuItem.Text = "Institution";
             this.institutionToolStripMenuItem.Click += new System.EventHandler(this.institutionToolStripMenuItem_Click);
             // 
             // defaultDirToolStripMenuItem
             // 
             this.defaultDirToolStripMenuItem.Name = "defaultDirToolStripMenuItem";
-            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.defaultDirToolStripMenuItem.Text = "Default Dir";
             this.defaultDirToolStripMenuItem.Click += new System.EventHandler(this.defaultDirToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Visible = false;
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
@@ -3627,10 +3639,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5131,18 +5143,6 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
-            // 
-            // markcheckBox
-            // 
-            this.markcheckBox.AutoSize = true;
-            this.markcheckBox.Location = new System.Drawing.Point(735, 330);
-            this.markcheckBox.Name = "markcheckBox";
-            this.markcheckBox.Size = new System.Drawing.Size(183, 19);
-            this.markcheckBox.TabIndex = 49;
-            this.markcheckBox.Text = "Allow change of marks folder";
-            this.markcheckBox.UseVisualStyleBackColor = true;
-            this.markcheckBox.Visible = false;
-            this.markcheckBox.CheckedChanged += new System.EventHandler(this.markcheckBox_CheckedChanged);
             // 
             // Form1
             // 

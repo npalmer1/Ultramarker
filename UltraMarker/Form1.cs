@@ -3291,35 +3291,43 @@ namespace UltraMarker
                 marksDirectory = UnitFilePath;
             }
             string str = marksDirectory + "\\" + assess.Code;
-            if (!Directory.Exists(marksDirectory))
+            try
             {
-                Directory.CreateDirectory(marksDirectory);
-            }
-            if (!Directory.Exists(str))
-            {
-                Directory.CreateDirectory(str);
-            }
-            if (!Directory.Exists(str))
-            {   //check if you've lost connection to online resource nad if so save locally instead temporarily
-                MessageBox.Show("Unable to save - check path or connection to: " + str);
-                DialogResult ret = MessageBox.Show("Save marks temporarily in: " + ConfigDir + " Yes/No?", "Save marks", MessageBoxButtons.YesNo);
-                if (ret == DialogResult.Yes)
+                if (!Directory.Exists(marksDirectory))
                 {
-                    if (unitCodeTextBox.Text.Trim() == "" || unitCodeTextBox.Text == null)
+                    Directory.CreateDirectory(marksDirectory);
+                }
+                if (!Directory.Exists(str))
+                {
+                    Directory.CreateDirectory(str);
+                }
+                if (!Directory.Exists(str))
+                {   //check if you've lost connection to online resource nad if so save locally instead temporarily
+                    MessageBox.Show("Unable to save - check path or connection to: " + str);
+                    DialogResult ret = MessageBox.Show("Save marks temporarily in: " + ConfigDir + " Yes/No?", "Save marks", MessageBoxButtons.YesNo);
+                    if (ret == DialogResult.Yes)
                     {
-                        marksDirectory = ConfigDir + "Temp" + "\\" + assess.Code;
+                        if (unitCodeTextBox.Text.Trim() == "" || unitCodeTextBox.Text == null)
+                        {
+                            marksDirectory = ConfigDir + "Temp" + "\\" + assess.Code;
+                        }
+                        else
+                        {
+                            marksDirectory = ConfigDir + unitCodeTextBox.Text + "\\" + assess.Code;
+                        }
+                        str = marksDirectory;
                     }
                     else
                     {
-                        marksDirectory = ConfigDir + unitCodeTextBox.Text + "\\" + assess.Code;
+                        return;
                     }
-                    str = marksDirectory;
                 }
-                else
-                {
-                    return;
-                }                
-            }                       
+            }
+            catch
+            {
+                MessageBox.Show("Invalid path or marks folder error");
+                return;
+            }
             
             saveFileDialog3.InitialDirectory = str;
             if (!Directory.Exists(str))
@@ -9576,7 +9584,7 @@ namespace UltraMarker
                 CriteriaFile = "";
                 CommentFile = "";
                 CommentFilePath = str + sl;
-                MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
+                MessageBox.Show("Resetting default path for Ultramarker - note: you will need to copy all files into there!");
                 return true;
             }
             else
