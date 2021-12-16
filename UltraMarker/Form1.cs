@@ -8616,10 +8616,13 @@ namespace UltraMarker
                 }
                 else
                 {
-                    MessageBox.Show("Select a directory for new unit");
+                    MessageBox.Show("Need to select a directory for new unit");
                     folderBrowserDialog1.SelectedPath = DefaultDir;
                     folderBrowserDialog1.ShowDialog();
                     UnitFilePath = folderBrowserDialog1.SelectedPath;
+                    unitFoldertextBox.Text = UnitFilePath;
+                    marksDirectory = UnitFilePath + "\\Marks";
+                    marksFoldertextBox.Text = marksDirectory;
                 }
                 UnitsaveFileDialog.InitialDirectory = UnitFilePath;
                 UnitsaveFileDialog.FileName = UnitTitletextBox.Text.Trim() + ".uni";
@@ -9282,7 +9285,8 @@ namespace UltraMarker
                     marksDirectory = "";
                     SessionPath = "";
                     CriteriaPath = "";
-                    UnitFilePath = DefaultDir;
+                    //UnitFilePath = DefaultDir;
+                    UnitFilePath = "";
                     unitButtons(true);
                     Copy_Form_Data();
                 }
