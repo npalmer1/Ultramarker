@@ -1114,7 +1114,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(787, 66);
+            this.templatetextBox.Location = new System.Drawing.Point(781, 59);
             this.templatetextBox.Margin = new System.Windows.Forms.Padding(2);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(266, 23);
@@ -3250,21 +3250,21 @@
             // institutionToolStripMenuItem
             // 
             this.institutionToolStripMenuItem.Name = "institutionToolStripMenuItem";
-            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.institutionToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.institutionToolStripMenuItem.Text = "Institution";
             this.institutionToolStripMenuItem.Click += new System.EventHandler(this.institutionToolStripMenuItem_Click);
             // 
             // defaultDirToolStripMenuItem
             // 
             this.defaultDirToolStripMenuItem.Name = "defaultDirToolStripMenuItem";
-            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.defaultDirToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.defaultDirToolStripMenuItem.Text = "Default Dir";
             this.defaultDirToolStripMenuItem.Click += new System.EventHandler(this.defaultDirToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Visible = false;
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
