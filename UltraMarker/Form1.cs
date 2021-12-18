@@ -9290,6 +9290,7 @@ namespace UltraMarker
                     marksFoldertextBox.Text = "";
                     StudentFiletextBox.Text = "";
                     StudentImportTextBox.Text = "";
+                    tutorsTextBox.Text = "";
                     marksDirectory = "";
                     SessionPath = "";
                     CriteriaPath = "";
