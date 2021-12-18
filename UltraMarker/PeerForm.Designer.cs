@@ -44,7 +44,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(945, 605);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
-           
             // 
             // Printbutton
             // 
@@ -106,6 +105,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1007, 701);
             this.Controls.Add(this.Closebutton);
             this.Controls.Add(this.Cancelbutton);

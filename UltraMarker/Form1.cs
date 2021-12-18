@@ -5252,18 +5252,26 @@ namespace UltraMarker
                     {
                         for (int i = 0; i < MaxGrades - 1; i++)
                         {
-                            if (singleGrades)
+                            try
                             {
-                                b = gradelist[i].grtitle.Trim();
-                            }
-                            else
-                            {
-                                b = gradelist[i].gralias.Trim();
-                            }
+                                if (singleGrades)
+                                {
+                                    b = gradelist[i].grtitle.Trim();
+                                }
+                                else
+                                {
+                                    b = gradelist[i].gralias.Trim();
+                                }
+                            
 
-                            if (str.Trim() == b)
+                                if (str.Trim() == b)
+                                {
+                                    s = Convert.ToString(gradelist[i].grpercent).Trim();
+                                }
+                            }
+                            catch
                             {
-                                s = Convert.ToString(gradelist[i].grpercent).Trim();
+
                             }
                             if (s.Length > 0) { break; }
                         }

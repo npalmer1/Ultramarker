@@ -70,11 +70,10 @@
             this.listBox1.ContextMenuStrip = this.contextMenuStrip1;
             this.listBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 18;
-            this.listBox1.Location = new System.Drawing.Point(11, 63);
-            this.listBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(8, 51);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(188, 526);
+            this.listBox1.Size = new System.Drawing.Size(142, 424);
             this.listBox1.TabIndex = 0;
             this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -87,36 +86,35 @@
             this.deleteStripMenuItem1,
             this.addCommentStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(187, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(159, 70);
             this.contextMenuStrip1.Click += new System.EventHandler(this.contextMenuStrip1_Click);
             // 
             // editStripMenuItem1
             // 
             this.editStripMenuItem1.Name = "editStripMenuItem1";
-            this.editStripMenuItem1.Size = new System.Drawing.Size(186, 24);
+            this.editStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.editStripMenuItem1.Text = "Edit Category";
             // 
             // deleteStripMenuItem1
             // 
             this.deleteStripMenuItem1.Name = "deleteStripMenuItem1";
-            this.deleteStripMenuItem1.Size = new System.Drawing.Size(186, 24);
+            this.deleteStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.deleteStripMenuItem1.Text = "Delete Category";
             // 
             // addCommentStripMenuItem
             // 
             this.addCommentStripMenuItem.Name = "addCommentStripMenuItem";
-            this.addCommentStripMenuItem.Size = new System.Drawing.Size(186, 24);
+            this.addCommentStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.addCommentStripMenuItem.Text = "Add Comment";
             // 
             // listBox2
             // 
             this.listBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.ItemHeight = 20;
-            this.listBox2.Location = new System.Drawing.Point(221, 63);
-            this.listBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.listBox2.ItemHeight = 17;
+            this.listBox2.Location = new System.Drawing.Point(166, 51);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(1089, 404);
+            this.listBox2.Size = new System.Drawing.Size(818, 327);
             this.listBox2.TabIndex = 1;
             this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             this.listBox2.DoubleClick += new System.EventHandler(this.listBox2_DoubleClick);
@@ -129,8 +127,7 @@
             this.headingsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1323, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(992, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -142,27 +139,27 @@
             this.newCommentsToolStripMenuItem});
             this.fileToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // saveCommentsToolStripMenuItem
             // 
             this.saveCommentsToolStripMenuItem.Name = "saveCommentsToolStripMenuItem";
-            this.saveCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.saveCommentsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.saveCommentsToolStripMenuItem.Text = "Save Comments";
             this.saveCommentsToolStripMenuItem.Click += new System.EventHandler(this.saveCommentsToolStripMenuItem_Click);
             // 
             // loadCommentsToolStripMenuItem
             // 
             this.loadCommentsToolStripMenuItem.Name = "loadCommentsToolStripMenuItem";
-            this.loadCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.loadCommentsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.loadCommentsToolStripMenuItem.Text = "Load Comments";
             this.loadCommentsToolStripMenuItem.Click += new System.EventHandler(this.loadCommentsToolStripMenuItem_Click);
             // 
             // newCommentsToolStripMenuItem
             // 
             this.newCommentsToolStripMenuItem.Name = "newCommentsToolStripMenuItem";
-            this.newCommentsToolStripMenuItem.Size = new System.Drawing.Size(192, 26);
+            this.newCommentsToolStripMenuItem.Size = new System.Drawing.Size(162, 22);
             this.newCommentsToolStripMenuItem.Text = "New Comments";
             this.newCommentsToolStripMenuItem.Click += new System.EventHandler(this.newCommentsToolStripMenuItem_Click);
             // 
@@ -171,13 +168,13 @@
             this.headingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.addHeadingToolStripMenuItem});
             this.headingsToolStripMenuItem.Name = "headingsToolStripMenuItem";
-            this.headingsToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
+            this.headingsToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.headingsToolStripMenuItem.Text = "Category";
             // 
             // addHeadingToolStripMenuItem
             // 
             this.addHeadingToolStripMenuItem.Name = "addHeadingToolStripMenuItem";
-            this.addHeadingToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
+            this.addHeadingToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
             this.addHeadingToolStripMenuItem.Text = "Add Category";
             this.addHeadingToolStripMenuItem.Click += new System.EventHandler(this.addHeadingToolStripMenuItem_Click);
             // 
@@ -185,10 +182,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(218, 43);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(164, 35);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 18);
+            this.label1.Size = new System.Drawing.Size(70, 15);
             this.label1.TabIndex = 4;
             this.label1.Text = "Comments:";
             // 
@@ -196,20 +192,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(8, 43);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(6, 35);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 18);
+            this.label2.Size = new System.Drawing.Size(58, 15);
             this.label2.TabIndex = 5;
             this.label2.Text = "Category:";
             // 
             // savebutton
             // 
             this.savebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.savebutton.Location = new System.Drawing.Point(344, 643);
-            this.savebutton.Margin = new System.Windows.Forms.Padding(4);
+            this.savebutton.Location = new System.Drawing.Point(258, 522);
             this.savebutton.Name = "savebutton";
-            this.savebutton.Size = new System.Drawing.Size(100, 28);
+            this.savebutton.Size = new System.Drawing.Size(75, 23);
             this.savebutton.TabIndex = 6;
             this.savebutton.Text = "Save";
             this.savebutton.UseVisualStyleBackColor = true;
@@ -219,10 +213,9 @@
             // cancelbutton
             // 
             this.cancelbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cancelbutton.Location = new System.Drawing.Point(549, 641);
-            this.cancelbutton.Margin = new System.Windows.Forms.Padding(4);
+            this.cancelbutton.Location = new System.Drawing.Point(412, 521);
             this.cancelbutton.Name = "cancelbutton";
-            this.cancelbutton.Size = new System.Drawing.Size(100, 28);
+            this.cancelbutton.Size = new System.Drawing.Size(75, 23);
             this.cancelbutton.TabIndex = 7;
             this.cancelbutton.Text = "Cancel";
             this.cancelbutton.UseVisualStyleBackColor = true;
@@ -232,32 +225,29 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(221, 531);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Location = new System.Drawing.Point(166, 431);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(253, 24);
+            this.textBox1.Size = new System.Drawing.Size(191, 21);
             this.textBox1.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(227, 509);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(170, 414);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 18);
+            this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 10;
             this.label3.Text = "Category:";
             // 
             // textBox2
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(11, 601);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Location = new System.Drawing.Point(8, 488);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(1299, 24);
+            this.textBox2.Size = new System.Drawing.Size(975, 21);
             this.textBox2.TabIndex = 11;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -265,10 +255,9 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(226, 579);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(170, 470);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 18);
+            this.label4.Size = new System.Drawing.Size(64, 15);
             this.label4.TabIndex = 12;
             this.label4.Text = "Comment:";
             // 
@@ -279,29 +268,28 @@
             this.editCommentMenuItem,
             this.deleteCommentMenuItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(192, 52);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(165, 48);
             this.contextMenuStrip2.Click += new System.EventHandler(this.contextMenuStrip2_Click);
             // 
             // editCommentMenuItem
             // 
             this.editCommentMenuItem.Name = "editCommentMenuItem";
-            this.editCommentMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.editCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.editCommentMenuItem.Text = "Edit Comment";
             // 
             // deleteCommentMenuItem
             // 
             this.deleteCommentMenuItem.Name = "deleteCommentMenuItem";
-            this.deleteCommentMenuItem.Size = new System.Drawing.Size(191, 24);
+            this.deleteCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.deleteCommentMenuItem.Text = "Delete Comment";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(511, 483);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(383, 392);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(391, 18);
+            this.label5.Size = new System.Drawing.Size(321, 15);
             this.label5.TabIndex = 13;
             this.label5.Text = "Select category and double click on a comment to select it";
             // 
@@ -309,10 +297,9 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(644, 30);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(483, 24);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(117, 18);
+            this.label6.Size = new System.Drawing.Size(96, 15);
             this.label6.TabIndex = 14;
             this.label6.Text = "Comment Editor";
             // 
@@ -331,10 +318,9 @@
             // Closebutton
             // 
             this.Closebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Closebutton.Location = new System.Drawing.Point(998, 641);
-            this.Closebutton.Margin = new System.Windows.Forms.Padding(4);
+            this.Closebutton.Location = new System.Drawing.Point(748, 521);
             this.Closebutton.Name = "Closebutton";
-            this.Closebutton.Size = new System.Drawing.Size(100, 28);
+            this.Closebutton.Size = new System.Drawing.Size(75, 23);
             this.Closebutton.TabIndex = 15;
             this.Closebutton.Text = "Close";
             this.Closebutton.UseVisualStyleBackColor = true;
@@ -343,9 +329,10 @@
             // Movebutton
             // 
             this.Movebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Movebutton.Location = new System.Drawing.Point(11, 635);
+            this.Movebutton.Location = new System.Drawing.Point(8, 516);
+            this.Movebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Movebutton.Name = "Movebutton";
-            this.Movebutton.Size = new System.Drawing.Size(149, 36);
+            this.Movebutton.Size = new System.Drawing.Size(112, 29);
             this.Movebutton.TabIndex = 16;
             this.Movebutton.Text = "Move Comments";
             this.Movebutton.UseVisualStyleBackColor = true;
@@ -353,9 +340,10 @@
             // 
             // cancelMovebutton
             // 
-            this.cancelMovebutton.Location = new System.Drawing.Point(198, 639);
+            this.cancelMovebutton.Location = new System.Drawing.Point(148, 519);
+            this.cancelMovebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cancelMovebutton.Name = "cancelMovebutton";
-            this.cancelMovebutton.Size = new System.Drawing.Size(100, 29);
+            this.cancelMovebutton.Size = new System.Drawing.Size(75, 24);
             this.cancelMovebutton.TabIndex = 17;
             this.cancelMovebutton.Text = "Cancel";
             this.cancelMovebutton.UseVisualStyleBackColor = true;
@@ -364,9 +352,11 @@
             // 
             // CommentForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1323, 710);
+            this.AutoScroll = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(992, 577);
             this.Controls.Add(this.cancelMovebutton);
             this.Controls.Add(this.Movebutton);
             this.Controls.Add(this.Closebutton);
@@ -384,7 +374,6 @@
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CommentForm";
             this.Text = "Comments";
             this.Load += new System.EventHandler(this.CommentForm_Load);
