@@ -575,11 +575,11 @@ namespace UltraMarker
             {
                 if (selectComment)
                 {
-                    MessageBox.Show("No comments file specified");
+                    MessageBox.Show("No comments file specified - select or create one from the File menu");
                 }
                 else
                 {
-                    MessageBox.Show("Note: need to create a new comments file");
+                    MessageBox.Show("Note: need to create a new comments file from File menu");
                 }
                 return;
             }
@@ -644,16 +644,18 @@ namespace UltraMarker
             {
                 if (unsaved)
                 {
-                    dialogResult = MessageBox.Show("Exit without saving comments?", "Exit", MessageBoxButtons.YesNo);
+                    dialogResult = MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo);                   
                 }
                 else
                 {
                     dialogResult = MessageBox.Show("Exit comment editor?", "Exit", MessageBoxButtons.YesNo);
                 }
-                if (dialogResult == DialogResult.No)
+                if (dialogResult == DialogResult.Yes)
                 {
                     Passvalue = "";
-                    MessageBox.Show("Save comments from File menu");
+                    //MessageBox.Show("Save comments from File menu");
+                    saveFileDialog1.InitialDirectory = CPath;
+                    saveFileDialog1.ShowDialog();
                     return;
                 }
                 else
@@ -674,9 +676,11 @@ namespace UltraMarker
             Category = false;
             if (unsaved)
             {
-                if (MessageBox.Show("Exit without saving comments?", "Exit", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    MessageBox.Show("Save comments from File menu");
+                    //MessageBox.Show("Save comments from File menu");
+                    saveFileDialog1.InitialDirectory = CPath;
+                    saveFileDialog1.ShowDialog();
                     return;
                 }                
             }

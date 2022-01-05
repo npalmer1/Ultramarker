@@ -27,8 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <MinimumRequiredVersion>0.5.0.9</MinimumRequiredVersion>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>18</ApplicationRevision>
-    <ApplicationVersion>0.9.4.18</ApplicationVersion>
+    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationVersion>0.9.4.19</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>

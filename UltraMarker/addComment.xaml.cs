@@ -62,7 +62,17 @@ namespace UltraMarker
                 else
                 {
 
-                    MessageBox.Show("No comments file selected - you need to select or create one from Comments menu");
+                    //MessageBox.Show("No comments file selected - you need to select or create one from File menu");
+                    CForm.selectComment = true; //loads form anyway
+                    //CForm.CFile = ComFile;
+                    CForm.ShowDialog();
+                    CommentStr = CForm.Passvalue;
+                    if (CommentStr != null && CommentStr != "")
+                    {
+                        TextBox1.Text = TextBox1.Text.Insert(TextBox1.SelectionStart + TextBox1.SelectionLength, CommentStr);
+
+                    }
+                    ComFile = CForm.CFile;
                 }
 
             }
