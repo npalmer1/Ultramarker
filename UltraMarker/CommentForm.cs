@@ -101,6 +101,8 @@ namespace UltraMarker
             {
                 listBox1.SelectedIndex = 0;
             }
+            fileToolStripMenuItem.ForeColor = Color.Black;
+            fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Regular);
         }
 
         private void savebutton_Click(object sender, EventArgs e)
@@ -115,6 +117,8 @@ namespace UltraMarker
                 saveComment();
             }
             MessageBox.Show("Now save these comments from the File menu");
+            fileToolStripMenuItem.ForeColor = Color.Red;
+            fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
             makingChanges = false;
         }
         private void saveCategory()
@@ -225,8 +229,12 @@ namespace UltraMarker
                         
                             listBox1.Items.RemoveAt(s);
                         }
+                        MessageBox.Show("Now save this change from the File menu");
+                        fileToolStripMenuItem.ForeColor = Color.Red;
+                        fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
                     }
                     textBox1.Text = "";
+                   
                 }
             }
             catch (System.Exception excep)
@@ -390,7 +398,7 @@ namespace UltraMarker
             CommentIndex = FindCommentIndex(textBox1.Text, textBox2.Text); //find the index of the comment
             try
             {
-                DialogResult dialogResult = MessageBox.Show("Delete commentsYes/No?", "Delete comment", MessageBoxButtons.YesNo);
+                DialogResult dialogResult = MessageBox.Show("Delete comments Yes/No?", "Delete comment", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
                     if (listBox2.Items.Count > 0)
@@ -406,6 +414,8 @@ namespace UltraMarker
                             listBox2.Items.RemoveAt(listBox2.SelectedIndex);
                             listBox2.SelectedIndex = listBox2.Items.Count - 1;
                             MessageBox.Show("Now save these comments from the File menu");
+                            fileToolStripMenuItem.ForeColor = Color.Red;
+                            fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
                         }
                     }
                    // textBox2.Text = "";
@@ -525,6 +535,8 @@ namespace UltraMarker
                     //unsaved = false;
                  }
                 this.CFile = file;
+                fileToolStripMenuItem.ForeColor = Color.Black;
+                fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Regular);
             }
             catch (System.Exception excep)
             {
@@ -681,8 +693,10 @@ namespace UltraMarker
                     //MessageBox.Show("Save comments from File menu");
                     saveFileDialog1.InitialDirectory = CPath;
                     saveFileDialog1.ShowDialog();
+                    unsaved = false;
                     return;
-                }                
+                }
+                unsaved = false;
             }
             StopMove();
             this.Hide();
