@@ -3502,6 +3502,11 @@ namespace UltraMarker
             string D = "";
             try
             {
+                if (OverrideGradelabel.Text.Trim() == "" && overridecheckBox.Checked)
+                {
+                    MessageBox.Show("Overall grade is blank - you need to select a grade if you wish to override the overall grade");
+                    return;
+                }
                 button4.ForeColor = Color.Black; //change save button back to normal
                 button4.Font = new Font(button4.Font, FontStyle.Regular);
                 if (listBox1.Items.Count > 0)
@@ -9980,14 +9985,26 @@ namespace UltraMarker
                 else
                 {
                     overridecheckBox.Checked = false;
+                    return;
                 }
             }
             else
             {
-                //treeView2.Enabled = true;
-                Overriedlabel.Visible = false;
-                OverrideGradelabel.Visible = false;
+                if (MessageBox.Show("Remove grade override Y/N?", "Override", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    //treeView2.Enabled = true;
+                    Overriedlabel.Visible = false;
+                    OverrideGradelabel.Visible = false;
+                    label22.Text = "  "; //clear overal %
+                }
+                else
+                {
+                    overridecheckBox.Checked = true;
+                    return;
+                }
             }
+            button4.ForeColor = Color.Red;
+            button4.Font = new Font(this.Font, FontStyle.Bold);
         }
        
         private void generateButton_Click(object sender, EventArgs e)
