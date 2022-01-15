@@ -100,6 +100,7 @@ namespace UltraMarker
         bool loading = true;
         bool change1 = false;
 
+      
         struct aliases
         {
             public string alias;
@@ -4089,7 +4090,11 @@ namespace UltraMarker
                         {
                             if (str3 != null && str3.Length > 0)
                             {
+                               
+                                overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
                                 overridecheckBox.Checked = true;
+                                overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+                            
                                 OverrideGradelabel.Visible = true;
                                 OverrideGradelabel.Text = str3;
                                 Overriedlabel.Visible = true;
@@ -5426,9 +5431,10 @@ namespace UltraMarker
                     Markerlabel.Visible = false;
                     MarkertextBox.Visible = false;
                     Clear_Form_Data(false);
-                    overridecheckBox.Checked = false; //stop overriding student grade
+                   
                     OverrideGradelabel.Visible = false;
                     Overriedlabel.Visible = false;
+                    OverrideGradelabel.Text = "  ";
                        
                     if (CriteriaSelectionType > 1)
                     {
@@ -5450,6 +5456,9 @@ namespace UltraMarker
                     importGroupBox.Visible = false;
                     importCalcLabel.Visible = false;
                     Clicklabel1.Visible = false;
+                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+                    overridecheckBox.Checked = false; //stop overriding student grade
+                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
                 }
             }
             else
@@ -9969,7 +9978,7 @@ namespace UltraMarker
         }
 
         private void overridecheckBox_CheckedChanged(object sender, EventArgs e)
-        {
+        {           
             if (overridecheckBox.Checked && EditStudent)
             {
                 if (MessageBox.Show("Normally Ultramarker will calculate the overall mark based on your grade for each criterion. If this doesn't match your overall expectations you are recommended to re-assess the grade that you awarded for each criterion rather than override the overall grade. \nDo you still wish to override the overall grade or mark Y/N?", "Override Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
