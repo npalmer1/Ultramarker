@@ -9984,7 +9984,9 @@ namespace UltraMarker
                 }
                 else
                 {
-                    overridecheckBox.Checked = false;
+                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+                    overridecheckBox.Checked = false;                   
+                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;                    
                     return;
                 }
             }
@@ -9999,7 +10001,9 @@ namespace UltraMarker
                 }
                 else
                 {
+                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
                     overridecheckBox.Checked = true;
+                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
                     return;
                 }
             }
@@ -11020,6 +11024,8 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
            marksFolderbutton.Visible = markcheckBox.Checked; 
         }
+
+       
     }
     }
 
