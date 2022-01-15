@@ -60,7 +60,7 @@ namespace UltraMarker
         string PeerSigFilePath = "";
 
         string marksDirectory = "";
-      
+
 
         string Feedback = "";
         int CriteriaType = 0;
@@ -100,7 +100,7 @@ namespace UltraMarker
         bool loading = true;
         bool change1 = false;
 
-      
+
         struct aliases
         {
             public string alias;
@@ -176,14 +176,14 @@ namespace UltraMarker
         }
         GradesStruct[] gradelist = new GradesStruct[MaxGrades];
 
-       struct GradeGroupStruct
+        struct GradeGroupStruct
         {
             public int GroupNo;
             public string GroupText;
         }
         GradeGroupStruct[] gradegrouplist = new GradeGroupStruct[MaxGradeGroups];
 
-        string[, ,] Marks = new string[MaxCriteria, MaxSub + 1, MaxSessions];
+        string[,,] Marks = new string[MaxCriteria, MaxSub + 1, MaxSessions];
         float[,] Percents = new float[MaxCriteria, MaxSub + 1];
 
 
@@ -197,15 +197,15 @@ namespace UltraMarker
         float[,,] crweight = new float[MaxCriteria, MaxSub + 1, MaxSessions];
         bool[,] crsub = new bool[MaxCriteria, MaxSub + 1];
         //int[,] crpos = new int[MaxCriteria,2];
-        string[, ,] grcrtitle = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade title
-        string[, ,] grcr = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria description (maxsub for criteria, and anything less = sub-criteria)
-        string[, ,] grcrfb = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria feedback
+        string[,,] grcrtitle = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade title
+        string[,,] grcr = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria description (maxsub for criteria, and anything less = sub-criteria)
+        string[,,] grcrfb = new string[MaxCriteria, MaxSub + 1, MaxGrades]; //grade criteria feedback
 
-        string[, ,] crComment = new string[MaxCriteria, MaxSub + 1, MaxSessions]; //comments for each criteria
-        bool[, ,] crSelected = new bool[MaxCriteria, MaxSub + 1, MaxSessions];  //selects which criteria is used for each session
-        bool[, ,] treeSelected = new bool[MaxCriteria, MaxSub + 1, MaxSessions];  //selects which criteria is used for each session in treeview2
+        string[,,] crComment = new string[MaxCriteria, MaxSub + 1, MaxSessions]; //comments for each criteria
+        bool[,,] crSelected = new bool[MaxCriteria, MaxSub + 1, MaxSessions];  //selects which criteria is used for each session
+        bool[,,] treeSelected = new bool[MaxCriteria, MaxSub + 1, MaxSessions];  //selects which criteria is used for each session in treeview2
 
-        bool[, ,] nodeChecked = new bool[MaxCriteria, MaxSub + 1, MaxSessions];
+        bool[,,] nodeChecked = new bool[MaxCriteria, MaxSub + 1, MaxSessions];
         bool NChecked = false;
         bool Aggregation = false;
 
@@ -253,7 +253,7 @@ namespace UltraMarker
             public bool ShowSubWeight;
         }
         feedbackoptionstruct feedOptions;
-       
+
 
         struct Student
         {
@@ -294,7 +294,7 @@ namespace UltraMarker
         bool platformlinux = false;
 
         bool readyToSave = false;
-        
+
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
 
@@ -324,7 +324,7 @@ namespace UltraMarker
 
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {
             string str = "";
             feedOptions.includeheader = true;
             ConfigDir = "C:\\Ultramarker" + slash;
@@ -338,12 +338,12 @@ namespace UltraMarker
                 {
                     ConfigDir = "C:\\Ultramarker" + slash;
                     DefaultDir = ConfigDir;
-                    editDefaultDir("Initial directory: "+ DefaultDir);
+                    editDefaultDir("Initial directory: " + DefaultDir);
                     if (DefaultDir == "" || DefaultDir == null)
                     {
                         MessageBox.Show("Default directory will be set to C:\\Ultramarker as you did not make a selection");
                         DefaultDir = "C:\\Ultramarker";
-                    }                    
+                    }
                 }
                 else if (!File.Exists(startPath + slash + "UltraMarker.dir"))
                 {
@@ -376,10 +376,10 @@ namespace UltraMarker
                     }
                     catch { }
                 }
-                if (!(DefaultDir.LastIndexOf("\\") == DefaultDir.Length -1 ))
+                if (!(DefaultDir.LastIndexOf("\\") == DefaultDir.Length - 1))
                 {
                     DefaultDir = DefaultDir + slash; //add a slash to end of directory name if it doesn't have one!
-                }                
+                }
                 if (!Directory.Exists(DefaultDir))
                 {
                     MessageBox.Show("Problem creating default directory");
@@ -396,7 +396,7 @@ namespace UltraMarker
             }
             defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             configdirlabel.Text = "Configuration path/file : " + ConfigDir + "Ultramarker.dir";
-            
+
             label23.Text = "";
             LOtextBox.Text = "";
             button7.Text = "Start marking   ";
@@ -416,9 +416,9 @@ namespace UltraMarker
             Reset_Selected(true);
 
             //GroupscheckBox.Checked = true;
-           // GroupscheckBox.Checked = false;
+            // GroupscheckBox.Checked = false;
             LoadSettings();
-           
+
             if ((StudentImportFile.Length > 0) && (!industrial))
             {
                 StudentImportTextBox.Text = StudentImportFile;
@@ -429,7 +429,7 @@ namespace UltraMarker
             Set_Weights();
 
             Build_Session_Weight();
-            LoadLOCombo(); 
+            LoadLOCombo();
             setGradeTree();
             Change_Session_Selection();
             loading = false;
@@ -443,7 +443,7 @@ namespace UltraMarker
             {
                 this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "               GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
-           
+
             if (industrial)
             {
                 tabControl1.TabPages.Remove(tabPage9); //if industrial assessment don't need to show student import
@@ -473,7 +473,7 @@ namespace UltraMarker
         {
             switch (Environment.OSVersion.Platform)
             {
-                case PlatformID.Unix:                   
+                case PlatformID.Unix:
                     return Platform.Linux;
 
                 case PlatformID.MacOSX:
@@ -504,7 +504,7 @@ namespace UltraMarker
                 LOcomboBox.Items.Add("Security");
                 LOcomboBox.Items.Add("Network");
             }
-            
+
         }
 
         private void setGradeTree()
@@ -513,7 +513,7 @@ namespace UltraMarker
             if (singleGrades)
             {
                 graderadioButton1.Checked = true;
-                graderadioButton2.Checked = false;                
+                graderadioButton2.Checked = false;
             }
             else
             {
@@ -623,7 +623,7 @@ namespace UltraMarker
                                 ChildNode.ContextMenuStrip = contextMenuStrip2;
                             }
                         }
-                        
+
                         gradelist[X].grtitle = str;
                         X++;
                         //Now populate listbox on next tab:
@@ -632,7 +632,7 @@ namespace UltraMarker
                             listBox1.Items.Add(str);
                         }
                         textBox1.Text = str;
-                        
+
                         //X = X + 1;
 
                     }
@@ -957,11 +957,11 @@ namespace UltraMarker
                             sw.WriteLine("");
                         }
                     }
-                    for (int i=0; i< MaxGradeGroups; i++)   //save grade groups in sequence starting from 1
-                    {                      
+                    for (int i = 0; i < MaxGradeGroups; i++)   //save grade groups in sequence starting from 1
+                    {
                         sw.WriteLine("Group title: " + gradegrouplist[i].GroupText);
                     }
-                   
+
                     sw.Close();
                     GradeFile = filename;
                     GradePath = Path.GetDirectoryName(filename);
@@ -988,7 +988,7 @@ namespace UltraMarker
                 treeView1.Nodes[0].Remove();
                 treeView1.Nodes.Add("Grades");
             }
-            for (int i =0; i < MaxGradeGroups; i++)
+            for (int i = 0; i < MaxGradeGroups; i++)
             {
                 gradegrouplist[i].GroupText = "Group i+1";
                 //GrouplistBox.Items.Clear();
@@ -1133,7 +1133,7 @@ namespace UltraMarker
                             gradegrouplist[g].GroupText = substr;
                             gradegrouplist[g].GroupNo = g + 1;
                             g++;
-                            
+
                         }
 
 
@@ -1220,7 +1220,7 @@ namespace UltraMarker
             Marks[SCriteria, sub, Session] = s;
         }
 
-      
+
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -1237,10 +1237,10 @@ namespace UltraMarker
             //prepare to save criteria
 
             //saveFileDialogda2.InitialDirectory = CriteriaPath;
-            
-                CriteriaPath = UnitFilePath;
-                saveFileDialog2.InitialDirectory = CriteriaPath;
-                saveFileDialog2.ShowDialog();
+
+            CriteriaPath = UnitFilePath;
+            saveFileDialog2.InitialDirectory = CriteriaPath;
+            saveFileDialog2.ShowDialog();
         }
 
         private void loadCriteriaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1642,7 +1642,7 @@ namespace UltraMarker
             DialogResult dialogResult = MessageBox.Show("Replicate criteria description or cancel replication?", "Replicate criteria description", MessageBoxButtons.YesNoCancel);
             if (dialogResult == DialogResult.Yes)
             {
-                crdesc[s, i] = textBox4.Text;                
+                crdesc[s, i] = textBox4.Text;
 
             }
             else if (dialogResult == DialogResult.Cancel)
@@ -1761,7 +1761,7 @@ namespace UltraMarker
                         RemoveCriteria(SCriteria);
                         treeView2.Nodes[0].Nodes[SCriteria].Remove();
                         setFileMenuColor(true);
-                        
+
 
                     }
                 }
@@ -1886,7 +1886,7 @@ namespace UltraMarker
 
                     if (num >= MaxSub)
                     {
-                        treeView2.Nodes[0].Nodes[SCriteria].LastNode.Remove();                       
+                        treeView2.Nodes[0].Nodes[SCriteria].LastNode.Remove();
                         MessageBox.Show("Cannot have more than " + Convert.ToString(MaxSub) + " sub-criteria");
                         return;
                     }
@@ -1923,7 +1923,7 @@ namespace UltraMarker
             double i = 100;
             double f = 1.0;
             comboBox3.Items.Clear();
-            if (fineWeight ==1)
+            if (fineWeight == 1)
             {
                 f = 1;
             }
@@ -1950,7 +1950,7 @@ namespace UltraMarker
             //Build_Criteria_List();
         }
 
-        private void saveButton2_Click(object sender, EventArgs e)  
+        private void saveButton2_Click(object sender, EventArgs e)
         {   //save criteria
             int i;
             DialogResult dialogResult = DialogResult.Yes;
@@ -1994,7 +1994,7 @@ namespace UltraMarker
             }
             Show_Label("Don't forget to save changes to the Assessment from File menu!", 2500);
             setFileMenuColor(true);
-          
+
         }
 
         private void setFileMenuColor(bool Red)
@@ -2070,7 +2070,7 @@ namespace UltraMarker
                     {
                         ct = "0";
                     }
-                    
+
                     sw.WriteLine("Criteria type: " + ct);
                     string grtype = "single";
                     if (!singleGrades) { grtype = "dual"; }
@@ -2265,7 +2265,7 @@ namespace UltraMarker
                         {
                             newversion = true;
                             MaxSub = 20;
-                        }  
+                        }
                         if (!newversion)
                         {
                             MaxSub = 20;
@@ -2323,7 +2323,7 @@ namespace UltraMarker
                                     singleGrades = false;
                                 }
                                 else
-                                {                                  
+                                {
                                     singleGrades = true;
                                 }
                             }
@@ -2396,7 +2396,7 @@ namespace UltraMarker
                                                 ChildNode.ContextMenuStrip = contextMenuStrip4;
                                             }
                                         }
-                                    }                                    
+                                    }
                                 }
                                 else if (str.StartsWith("crweight: "))
                                 {
@@ -2407,12 +2407,12 @@ namespace UltraMarker
                                         //try
                                         //{
                                         SessionS = SessionS++;
-                                        if (SessionS > 1) 
-                                        { 
+                                        if (SessionS > 1)
+                                        {
                                             SessionType = 1;
                                             Set_Session(true);
                                         }
-                                        else { 
+                                        else {
                                             SessionType = 0;
                                             Set_Session(false);
                                         }
@@ -2682,13 +2682,13 @@ namespace UltraMarker
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
-            defaultSelectAll();      
+            defaultSelectAll();
             ReadCriteriaFromFile(openFileDialog2.FileName, true);
             updatePeerForms();
         }
         private void defaultSelectAll()
         {
-            for (int i =0; i<MaxCriteria; i++)
+            for (int i = 0; i < MaxCriteria; i++)
             {
                 for (int s = 0; s < MaxSub; s++)
                 {
@@ -2868,70 +2868,70 @@ namespace UltraMarker
             DialogResult dialogResult;
             try
             {
-                    if (listBox1.Items.Count > 0)
+                if (listBox1.Items.Count > 0)
+                {
+
+                    if (TChanged)
                     {
-                        
-                        if (TChanged)
+                        if (promptsoff)
                         {
-                            if (promptsoff)
-                            {
-                                dialogResult = DialogResult.Yes;
-                            }
-                            else
-                            {
-                                dialogResult = MessageBox.Show("Save Feedback for grade Yes/No?", "Grade Feedback", MessageBoxButtons.YesNo);
-                            }
-                            if (dialogResult == DialogResult.Yes)
-                            {
-                                grcr[SCriteria, SSub, PrevIndex] = textBox7.Text; //textbox7 is text box containing "criteria to achieve grade"
-                                grcrfb[SCriteria, SSub, PrevIndex] = textBox8.Text;
-                                TChanged = false;
-                                setFileMenuColor(true);
-                            }
-                        }
-                        if (listBox1.SelectedIndex < 0)
-                        {
-                            listBox1.SelectedIndex = 0;
-                            CurrentlySelected = 0;
-                        }
-                        if (CriteriaSelected)
-                        {
-                            i = MaxSub;
+                            dialogResult = DialogResult.Yes;
                         }
                         else
                         {
-                            i = SSub;
+                            dialogResult = MessageBox.Show("Save Feedback for grade Yes/No?", "Grade Feedback", MessageBoxButtons.YesNo);
                         }
-                        TChanged = false;
-                        if (singleGrades)
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            textBox7.Text = grcr[SCriteria, i, listBox1.SelectedIndex];
-                            textBox8.Text = grcrfb[SCriteria, i, listBox1.SelectedIndex];
-
-                            gradelbl.Text = listBox1.GetItemText(listBox1.SelectedItem);
+                            grcr[SCriteria, SSub, PrevIndex] = textBox7.Text; //textbox7 is text box containing "criteria to achieve grade"
+                            grcrfb[SCriteria, SSub, PrevIndex] = textBox8.Text;
+                            TChanged = false;
+                            setFileMenuColor(true);
                         }
-                        else
-                        {
-                            textBox7.Text = grcr[SCriteria, i, aliaslist[listBox1.SelectedIndex].grindex];
-                            textBox8.Text = grcrfb[SCriteria, i, aliaslist[listBox1.SelectedIndex].grindex];
-                            gradelbl.Text = listBox1.GetItemText(aliaslist[listBox1.SelectedIndex].grindex);
-                        }
-                        fblbl.Text = gradelbl.Text;
-                        fbstring[listBox1.SelectedIndex] = fblbl.Text;
-
-
-                        //label18.Text = listBox1.SelectedItem.ToString();
-                        PrevIndex = listBox1.SelectedIndex;
-
+                    }
+                    if (listBox1.SelectedIndex < 0)
+                    {
+                        listBox1.SelectedIndex = 0;
+                        CurrentlySelected = 0;
+                    }
+                    if (CriteriaSelected)
+                    {
+                        i = MaxSub;
                     }
                     else
                     {
-                        MessageBox.Show("No Grades - load a grade file!");
+                        i = SSub;
                     }
-                    if (listBox1.SelectionMode == SelectionMode.MultiSimple)
+                    TChanged = false;
+                    if (singleGrades)
                     {
-                        //SaveListbox1Selected();
-                    }                                
+                        textBox7.Text = grcr[SCriteria, i, listBox1.SelectedIndex];
+                        textBox8.Text = grcrfb[SCriteria, i, listBox1.SelectedIndex];
+
+                        gradelbl.Text = listBox1.GetItemText(listBox1.SelectedItem);
+                    }
+                    else
+                    {
+                        textBox7.Text = grcr[SCriteria, i, aliaslist[listBox1.SelectedIndex].grindex];
+                        textBox8.Text = grcrfb[SCriteria, i, aliaslist[listBox1.SelectedIndex].grindex];
+                        gradelbl.Text = listBox1.GetItemText(aliaslist[listBox1.SelectedIndex].grindex);
+                    }
+                    fblbl.Text = gradelbl.Text;
+                    fbstring[listBox1.SelectedIndex] = fblbl.Text;
+
+
+                    //label18.Text = listBox1.SelectedItem.ToString();
+                    PrevIndex = listBox1.SelectedIndex;
+
+                }
+                else
+                {
+                    MessageBox.Show("No Grades - load a grade file!");
+                }
+                if (listBox1.SelectionMode == SelectionMode.MultiSimple)
+                {
+                    //SaveListbox1Selected();
+                }
             }
             catch (System.Exception excep)
             {
@@ -2958,55 +2958,55 @@ namespace UltraMarker
 
         }
 
-       /* private void button3_Click(object sender, EventArgs e)
-        {   //edit criteria or mark student
-            if (button3.Text.StartsWith("Edit"))
-            {
-                if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
-                {
-                    MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
-                    return;
-                }
-                selectLOs = false;
-                replicate_Criteria = false;
-                replicate_Feedback = false;
-                replicate_LO = false;
-                if (listBox1.Items.Count > 0)
-                {
-                    if (SessionType > 0)
-                    {
-                        if (SessionS < 1)
-                        {
-                            MessageBox.Show("You have selected Multiple Sessions, but you don't have any Sessions - see Session tab");
-                            return;
-                        }
-                        else if (SessionS == 1)
-                        {
-                            MessageBox.Show("Note: you have selected multiple sessions, but you only have one session!");
-                        }
-                    }
-                    button3.Text = "Marking Mode";
-                    MarkingMode(true);
-                    EditStudent = true;                 
-                }
-                else
-                {
-                    MessageBox.Show("You need some Grades to start marking!");
-                }
-            }
-            else
-            {
-                button3.Text = "Edit Criteria Mode";
-                MarkingMode(false);
-                EditStudent = false;                
-                //button1.Visible = false;  //show button
-                Show_Label("Don't forget to Save Marks!", 2000);
-            }
+        /* private void button3_Click(object sender, EventArgs e)
+         {   //edit criteria or mark student
+             if (button3.Text.StartsWith("Edit"))
+             {
+                 if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
+                 {
+                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
+                     return;
+                 }
+                 selectLOs = false;
+                 replicate_Criteria = false;
+                 replicate_Feedback = false;
+                 replicate_LO = false;
+                 if (listBox1.Items.Count > 0)
+                 {
+                     if (SessionType > 0)
+                     {
+                         if (SessionS < 1)
+                         {
+                             MessageBox.Show("You have selected Multiple Sessions, but you don't have any Sessions - see Session tab");
+                             return;
+                         }
+                         else if (SessionS == 1)
+                         {
+                             MessageBox.Show("Note: you have selected multiple sessions, but you only have one session!");
+                         }
+                     }
+                     button3.Text = "Marking Mode";
+                     MarkingMode(true);
+                     EditStudent = true;                 
+                 }
+                 else
+                 {
+                     MessageBox.Show("You need some Grades to start marking!");
+                 }
+             }
+             else
+             {
+                 button3.Text = "Edit Criteria Mode";
+                 MarkingMode(false);
+                 EditStudent = false;                
+                 //button1.Visible = false;  //show button
+                 Show_Label("Don't forget to Save Marks!", 2000);
+             }
 
-        }*/
+         }*/
 
         private void button3_Click(object sender, EventArgs e)
-        {   //edit criteria or mark student (or generate criteria)
+        {   //edit criteria or mark student (or generate criteria) button
             if (button3.Text.StartsWith("Gen") || (button3.Text.StartsWith("Edit") && !showGenAssessToolStripMenuItem.Checked))
             {
                 highlightButton.Visible = false;
@@ -3021,17 +3021,17 @@ namespace UltraMarker
                 {
                     listBox1.SelectedIndex = -1;
                 }
-                
+
                 if (treeView1.Nodes[0].Nodes.Count < 2 || treeView1.Nodes[0].Nodes.Count < listBox1.Items.Count)
                 {
                     MessageBox.Show("Grading schema doesn't match grades in criteria - check Grades tab");
-                    
+
 
                     DialogResult ret = MessageBox.Show("Do you want to copy grades from Grades tab - yes/no?", "Copy grades", MessageBoxButtons.YesNo);
                     if (ret == DialogResult.Yes)
                     {
                         Copy_GradestoAssess();
-                        Show_Label("Now don't forget to Save updated Assessment before continuing!", 2000);                                         
+                        Show_Label("Now don't forget to Save updated Assessment before continuing!", 2000);
                     }
                     //go back to save assessment:
                     button3.Text = "Edit Criteria Mode";
@@ -3067,7 +3067,7 @@ namespace UltraMarker
                 {
                     MessageBox.Show("You need some Grades to start marking!");
                 }
-                
+
             }
             else if (button3.Text.StartsWith("Marking"))
             {
@@ -3089,9 +3089,9 @@ namespace UltraMarker
                 EditStudent = false;
                 //button1.Visible = false;  //show button
                 Show_Label("Don't forget to Save Marks!", 2000);
-               
+
             }
-            else if (showGenAssessToolStripMenuItem.Checked ) //if editting and now switch to generating assessment mode
+            else if (showGenAssessToolStripMenuItem.Checked) //if editting and now switch to generating assessment mode
             {
                 highlightButton.Visible = true;
                 Ticklabel.Visible = true;
@@ -3109,7 +3109,7 @@ namespace UltraMarker
                 }
                 Show_GenTemplate(true);
                 EditStudent = false;
-               
+
             }
 
         }
@@ -3136,8 +3136,8 @@ namespace UltraMarker
             settingsToolStripMenuItem.Enabled = !b;
             LOtoolStripMenuItem2.Enabled = !b;
             promptsToolStripMenuItem.Enabled = !b;
-           
-            
+         
+
             //menuStrip2.Enabled = !b;
             if (startMark)
             {
@@ -3147,7 +3147,7 @@ namespace UltraMarker
                 addButton.Visible = b;
                 //textBox10.Enabled = true;
                 ImportcheckBox.Visible = true;
-               
+
             }
             else
             {
@@ -3157,10 +3157,10 @@ namespace UltraMarker
                 addButton.Visible = false;
                 //textBox10.Enabled = false;
                 ImportcheckBox.Visible = false;
-                
+
             }
             ImportcheckBox.Visible = b;
-        
+
             if (ImportcheckBox.Checked)
             {
                 importGroupBox.Visible = b;
@@ -3168,7 +3168,7 @@ namespace UltraMarker
             }
             textBox10.Visible = b;
             Clicklabel1.Visible = b;
-                        
+
             if (!industrial)
             {
                 markModeButton.Visible = b;
@@ -3179,17 +3179,30 @@ namespace UltraMarker
             }
 
             label20.Visible = b;
-            
+
             label85.Visible = b;
-            label21.Visible = false;
-            label22.Visible = false;
-            overallGradelabel.Visible = false;
-            overLabel.Visible = false;
+            //label21.Visible = false;
+            //label22.Visible = false;
+            //overallGradelabel.Visible = false;
+            //overLabel.Visible = false;
+            label21.Visible = b;
+            label22.Visible = b;
+           
+            if (overridecheckBox.Checked)
+            {
+                OverrideGradelabel.Visible = b;
+                Overriedlabel.Visible = b;
+            }
+            else
+            {
+                overallGradelabel.Visible = b;
+                overLabel.Visible = b;
+            }
             label16.Visible = b;
             label18.Visible = b;
             button7.Visible = b;
             assessTitleBox.ReadOnly = b;
-           
+
             label30.Visible = b;
             if (SessionType > 0 || Session > 1)
             {
@@ -3219,11 +3232,14 @@ namespace UltraMarker
                 overrideBox.Visible = false;
                 overrideButton.Visible = false;
             }
-            overridecheckBox.Visible = b; //override overall grade
-            if (b && overridecheckBox.Checked)
+            if (overrideOverallGradeToolStripMenuItem.Checked)
             {
-                Overriedlabel.Visible = true;
-                OverrideGradelabel.Visible = true;
+                overridecheckBox.Visible = b; //override overall grade
+                if (b && overridecheckBox.Checked)
+                {
+                    Overriedlabel.Visible = true;
+                    OverrideGradelabel.Visible = true;
+                }
             }
         }
 
@@ -3279,7 +3295,7 @@ namespace UltraMarker
                 catch
                 {
                 }
-                    
+
             }
         }
 
@@ -3290,7 +3306,7 @@ namespace UltraMarker
             {
                 addstr = "_" + assess.Code;
             }
-                                 
+
             if (marksDirectory.Length < 1)
             {
                 marksDirectory = UnitFilePath;
@@ -3333,7 +3349,7 @@ namespace UltraMarker
                 MessageBox.Show("Invalid path or marks folder error");
                 return;
             }
-            
+
             saveFileDialog3.InitialDirectory = str;
             if (!Directory.Exists(str))
             {
@@ -3344,7 +3360,7 @@ namespace UltraMarker
                 }
                 catch
                 {
-                    
+
                 }
             }
             DialogResult dialogResult3 = DialogResult.Yes;
@@ -3391,7 +3407,7 @@ namespace UltraMarker
                     {
                         saveFileDialog3.FileName = StudentcomboBox.Text + addstr + " " + sittingButton.Text;
                     }
-                    else 
+                    else
                     {
                         saveFileDialog3.FileName = StudentcomboBox.Text + addstr;
                     }
@@ -3408,7 +3424,7 @@ namespace UltraMarker
         private void Load_Marked(bool LoadFF)
         {
             //load marked files
-            
+
             DialogResult dialogResult = DialogResult.Yes;
             if (marksDirectory.Length < 1)
             {
@@ -3424,7 +3440,7 @@ namespace UltraMarker
 
             openFileDialog3.FileName = "";
             openFileDialog3.InitialDirectory = marksDirectory + "\\" + assess.Code;
-            if ((StudentcomboBox.Text.Trim().Length > 0 ) && LoadFF)
+            if ((StudentcomboBox.Text.Trim().Length > 0) && LoadFF)
             {
                 dialogResult = MessageBox.Show("Clear form data and load marks from file Yes/No?", "Load marks", MessageBoxButtons.YesNo);
 
@@ -3453,11 +3469,11 @@ namespace UltraMarker
             }
             LoadFromFile = true;
         }
-    
+
         private void button5_Click(object sender, EventArgs e)  //Load button
         {
             Load_Marked(false);
-            
+
         }
 
         private void openFileDialog3_FileOk(object sender, CancelEventArgs e)
@@ -3487,7 +3503,7 @@ namespace UltraMarker
                 Save_Sessions(saveFileDialog3.FileName);
             }
             savedStudent = true;
-           
+
         }
 
         private void Save_Marked_File(string filename)
@@ -3520,7 +3536,7 @@ namespace UltraMarker
                             Se = 1;
                         }
                         else
-                        { 
+                        {
                             Se = SessionS;
                         }
                         sw.WriteLine("Unit: " + UnitTitletextBox.Text);
@@ -3564,8 +3580,8 @@ namespace UltraMarker
                                 sw.WriteLine("Session: " + Convert.ToString(s + 1) + D);
                                 sw.WriteLine("Session title: " + SessionTitle[s]);
                                 sw.WriteLine("----------------------------------------");
-                               
-                                
+
+
                             }
                             else
                             {
@@ -3586,7 +3602,7 @@ namespace UltraMarker
                                     {
                                         sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
                                         sw.WriteLine("Criteria title: " + crtitle[i, j]);
-                                       
+
                                         bool Has;
                                         Has = Has_Subcriteria(i);
                                         if (!Has && Aggregation)
@@ -3643,8 +3659,8 @@ namespace UltraMarker
                                             sw.WriteLine(crComment[i, k, s]);
                                             sw.WriteLine("endComment:");
                                             PC = Find_Percent(Marks[i, k, s]);
-                                            sw.WriteLine("Percentage: " + PC);                                           
-                                            
+                                            sw.WriteLine("Percentage: " + PC);
+
                                         }
                                     }
                                     else
@@ -3667,8 +3683,8 @@ namespace UltraMarker
                             fl = Generate_Overall_Mark(s);
 
                             if ((SessionType > 0) && (!SessionsEqual)) //if multisession and sessions are weighted
-                            {                               
-                               float w = Convert.ToSingle(SessionWeight[s]);
+                            {
+                                float w = Convert.ToSingle(SessionWeight[s]);
                                 f = f + (fl * (w / 100));   //apply session weight
                             }
                         } //sessions s
@@ -3684,7 +3700,7 @@ namespace UltraMarker
                         }
                         if (overridecheckBox.Checked) //if allowed to override whole grade for assessment
                         {
-                            if (OverrideGradelabel.Text.Trim().LastIndexOf("%") == OverrideGradelabel.Text.Length -1)
+                            if (OverrideGradelabel.Text.Trim().LastIndexOf("%") == OverrideGradelabel.Text.Length - 1)
                             {
                                 PC = OverrideGradelabel.Text.TrimEnd('%');
                             }
@@ -3706,7 +3722,7 @@ namespace UltraMarker
                         string org = OverrideGradelabel.Text.Trim();
                         if (!overridecheckBox.Checked)
                         {
-                            org = "";                        
+                            org = "";
                             overallGradelabel.Visible = true;
                             overLabel.Visible = true;
                             overallGradelabel.Text = grstr;
@@ -3773,7 +3789,7 @@ namespace UltraMarker
                  * */
                 Clear_Form_Data(false);
                 Reset_Selected(false);
-               
+
                 using (StreamReader sw1 = new StreamReader(filename))
                 {    //find files first - just to make sure that marks are read in properley!
                     // ovecomes a bug if filenames are placed at end of file! slows it down but betetr to be safe than fast
@@ -3794,10 +3810,10 @@ namespace UltraMarker
                                 str3 = str;
                             }
                             if (str.StartsWith("Sitting:"))
-                            {                             
+                            {
                                 try
                                 {
-                                   Sitting = str3;
+                                    Sitting = str3;
                                     sittingButton.Text = str3;
                                 }
                                 catch
@@ -3907,21 +3923,21 @@ namespace UltraMarker
                                     if (str3.Contains("des"))
                                     {
                                         index = str3.IndexOf("des");
-                                        str3 = str3.Substring(0,index);
+                                        str3 = str3.Substring(0, index);
                                     }
-                                   
+
                                     s = Convert.ToInt32(str3);
                                     if (index > 0)
                                     {
-                                        DeselectSession[s-1] = true;
+                                        DeselectSession[s - 1] = true;
                                     }
                                     else
                                     {
-                                        DeselectSession[s-1] = false;
+                                        DeselectSession[s - 1] = false;
                                     }
                                     if (s == 1)
                                     {
-                                        DeselectSessioncheckBox.Checked = DeselectSession[s-1];
+                                        DeselectSessioncheckBox.Checked = DeselectSession[s - 1];
                                     }
                                 }
                                 catch
@@ -4090,14 +4106,43 @@ namespace UltraMarker
                         {
                             if (str3 != null && str3.Length > 0)
                             {
-                               
-                                overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
-                                overridecheckBox.Checked = true;
-                                overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
-                            
-                                OverrideGradelabel.Visible = true;
-                                OverrideGradelabel.Text = str3;
-                                Overriedlabel.Visible = true;
+                                if (!overrideOverallGradeToolStripMenuItem.Checked)
+                                {
+                                    if ((MessageBox.Show("Warning: overall grade has been overridden - allow this Y/N?", "Warning",  MessageBoxButtons.YesNo) == DialogResult.Yes))
+                                    {
+                                        overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+                                        overridecheckBox.Checked = true;
+                                        overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+
+                                        OverrideGradelabel.Visible = true;
+                                        OverrideGradelabel.Text = str3;
+                                        Overriedlabel.Visible = true;
+                                        overrideOverallGradeToolStripMenuItem.Checked = true;
+                                        overridecheckBox.Visible = true;
+                                        overallGradelabel.Visible = false;
+                                        overLabel.Visible = false;
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Now start marking and save updated grade");
+                                        button4.ForeColor = Color.Red;
+                                        button4.Font = new Font(button4.Font, FontStyle.Bold);
+                                    }
+                                }
+                                else 
+                                {
+                                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+                                    overridecheckBox.Checked = true;
+                                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+
+                                    OverrideGradelabel.Visible = true;
+                                    OverrideGradelabel.Text = str3;
+                                    Overriedlabel.Visible = true;
+                                    overrideOverallGradeToolStripMenuItem.Checked = true;
+                                    overridecheckBox.Visible = true;
+                                    overallGradelabel.Visible = false;
+                                    overLabel.Visible = false;
+                                }
                             }
                         }
 
@@ -4210,7 +4255,7 @@ namespace UltraMarker
                     ste = studentlist[StudentcomboBox.SelectedIndex].studentmail;
                 }
             }
-            
+
             if (listBox1.Items.Count > 0)
             {
                 try
@@ -4243,7 +4288,7 @@ namespace UltraMarker
                 catch (System.Exception excep)
                 {
                     StackTrace stackTrace = new StackTrace();
-                    MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);                   
+                    MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
                 }
                 //saveFileDialog4.FileName = StudentcomboBox.Text;
                 //saveFileDialog4.ShowDialog();
@@ -4457,7 +4502,7 @@ namespace UltraMarker
                             if (!Aggregation || (Aggregation && !Has_Subcriteria(i)))
                             {
                                 str = str + italS + nl + "Assessment of achievement for this criteria: " + italE + nl;
-                                
+
                                 if (Marks[i, j, s] != null)
                                 {
                                     if (!minusone)
@@ -4467,7 +4512,7 @@ namespace UltraMarker
                                     else
                                     {
                                         str = str + nl;
-                                    }                                  
+                                    }
                                 }
                                 m1 = Marks[i, j, s];
                                 if (m1 == null)
@@ -4493,7 +4538,7 @@ namespace UltraMarker
                                     }
                                     catch { }
                                 }
-                               
+
                                 str2 = Find_Grade_Comments(Marks[i, j, s]);
                                 if ((str2.Length > 1 && feedOptions.generic) && (!minusone))
                                 {
@@ -4608,8 +4653,8 @@ namespace UltraMarker
                                         str = str + italS + "Equivalent %: " + italE + " " + Find_Percent(m1).ToString() + nl;
                                     }
                                     catch { }
-                            }
-                            str2 = Find_Grade_Comments(Marks[i, k, s]);
+                                }
+                                str2 = Find_Grade_Comments(Marks[i, k, s]);
                                 if ((str.Length > 1 && feedOptions.generic) && (!minusone))
                                 {
                                     str = str + italS + "Generic description of this grade: " + italE + nl;
@@ -4650,7 +4695,7 @@ namespace UltraMarker
                         }
                     }
                     fl = Generate_Overall_Mark(s);
-                   
+
 
 
                     if (SessionType > 0)
@@ -4672,34 +4717,34 @@ namespace UltraMarker
                 str = str + "-------------------------------" + nl;
 
 
-               
-                    if (overridecheckBox.Checked)
-                    {
-                        string tmp = "";
-                        if (OverrideGradelabel.Text.Trim().IndexOf("%") == label18.Text.Length -1)
-                        {
-                            tmp = OverrideGradelabel.Text.TrimEnd('%');
-                        }
-                        else
-                        { 
-                            tmp = Find_Percent(OverrideGradelabel.Text.Trim());
-                        }
-                        f = Convert.ToSingle(tmp);
-                        if (feedOptions.percent) { str = str + boldS + "Overall Mark " + tmp + " %" + boldE + nl; }
-                    }
-                    else if (SessionType > 0)
-                    {
 
-                        f = f / SessionCount;
-                        if (feedOptions.percent) { str = str + boldS + "Overall mark for all sessions in %: " + Convert.ToString(f) + boldE + nl; }
+                if (overridecheckBox.Checked)
+                {
+                    string tmp = "";
+                    if (OverrideGradelabel.Text.Trim().IndexOf("%") == label18.Text.Length - 1)
+                    {
+                        tmp = OverrideGradelabel.Text.TrimEnd('%');
                     }
                     else
                     {
-                        f = fl;
-                        if (feedOptions.percent) { str = str + boldS + "Overall Mark " + Convert.ToString(f) + " %" + boldE + nl; }
+                        tmp = Find_Percent(OverrideGradelabel.Text.Trim());
                     }
-                
-                
+                    f = Convert.ToSingle(tmp);
+                    if (feedOptions.percent) { str = str + boldS + "Overall Mark " + tmp + " %" + boldE + nl; }
+                }
+                else if (SessionType > 0)
+                {
+
+                    f = f / SessionCount;
+                    if (feedOptions.percent) { str = str + boldS + "Overall mark for all sessions in %: " + Convert.ToString(f) + boldE + nl; }
+                }
+                else
+                {
+                    f = fl;
+                    if (feedOptions.percent) { str = str + boldS + "Overall Mark " + Convert.ToString(f) + " %" + boldE + nl; }
+                }
+
+
                 if (feedOptions.grade)
                 {
                     str = str + boldS + "Overall Grade: " + Convert_Percent_To_Grade(f) + boldE + nl;
@@ -4722,21 +4767,21 @@ namespace UltraMarker
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
                 return false;
             }
-            return true;          
+            return true;
         }
 
         private bool Generate_Grade_Group_RTF()
         {   //generate grade group form layout
             bool nullText = false;
             int x = 0;
-          
+
             string str = "";
             string str2 = "";
 
             float f = 0;
             float fl = 0;
             int ST;
-          
+
             bool minusone = false;
             string m1 = "";
 
@@ -4750,7 +4795,7 @@ namespace UltraMarker
                 MessageBox.Show("Cannot do this for more than one session");
             }
             ST = 1;
-            
+
             try
             {
 
@@ -4761,12 +4806,12 @@ namespace UltraMarker
 
                 for (int s = 0; s < ST; s++) //sessions - only allow one here
                 {
-                   
+
                     for (int i = 0; i < CritZ + 1; i++)  //criteria grade and feedback
                     {
 
                         int j = MaxSub; //for Criteria only (=maxsub - not sub-criteria)
-                       
+
                         try
                         {
                             if (Marks[i, j, s] != null) //i = criteria, j = maxsub, s = sessions (0)
@@ -4800,10 +4845,10 @@ namespace UltraMarker
                             ////////
                             GForm.CT[i] = crtitle[i, j];    //criteria title
 
-                           
+
                             if (!Aggregation || (Aggregation && !Has_Subcriteria(i)))
-                            {                               
-                               
+                            {
+
                                 m1 = Marks[i, j, s];
                                 if (m1 == null)
                                 {
@@ -4811,26 +4856,26 @@ namespace UltraMarker
                                 }
                                 if (m1.EndsWith("%"))
                                 {
-                                    m1 = m1.Substring(0, m1.Length - 1) + " %";                                  
+                                    m1 = m1.Substring(0, m1.Length - 1) + " %";
                                 }
                                 GForm.CM[i] = m1;   //grade mark for each criteria
 
                                 FindGradePositionV2(m1, i);
                                 str2 = "";
                                 //str2 = Find_Grade_Comments(Marks[i, j, s]);
-                                
+
                                 str2 = crComment[i, j, s];
                                 if ((str2 != null) && feedOptions.criteriaComment && (str2.Trim().Length > 0))
                                 {
                                     GForm.comment[i] = "Comments: " + str2 + System.Environment.NewLine; ;
-                                  
+
                                 }
 
-                              
+
                             }
-                           
+
                         }
-                       
+
                     }
                     fl = Generate_Overall_Mark(s);
 
@@ -4839,30 +4884,30 @@ namespace UltraMarker
                 if ((textBox10.Text.Trim().Length > 1))
                 {
                     GForm.overall = "General comments: " + textBox10.Text.Trim();
-                  
-                }            
-                    if (overridecheckBox.Checked)
+
+                }
+                if (overridecheckBox.Checked)
+                {
+                    string tmp = "";
+                    if (label18.Text.Trim().IndexOf("%") == label18.Text.Length - 1)
                     {
-                        string tmp = "";
-                        if (label18.Text.Trim().IndexOf("%") == label18.Text.Length - 1)
-                        {
-                            tmp = label18.Text.TrimEnd('%');
-                        }
-                        else
-                        {
-                            tmp = Find_Percent(label18.Text.Trim());
-                        }
-                        f = Convert.ToSingle(tmp);
-                        GForm.OP = tmp; //overall %
-                        
+                        tmp = label18.Text.TrimEnd('%');
                     }
-                 
                     else
                     {
-                        f = fl;
-                        GForm.OP =  Convert.ToString(f);
+                        tmp = Find_Percent(label18.Text.Trim());
                     }
-                
+                    f = Convert.ToSingle(tmp);
+                    GForm.OP = tmp; //overall %
+
+                }
+
+                else
+                {
+                    f = fl;
+                    GForm.OP = Convert.ToString(f);
+                }
+
                 GForm.OG = Convert_Percent_To_Grade(f);
 
 
@@ -4881,14 +4926,14 @@ namespace UltraMarker
             bool firstthru = true;
             int i = 0;
             int Gg = 0;
-            int prev = -1;           
+            int prev = -1;
             char tick = '\u2714';
 
             i = listBox1.FindString(m1);
             for (int a = 0; a < listBox1.Items.Count; a++)
             {
                 if (listBox1.GetSelected(a))
-                {                    
+                {
                     if (i < a || i == a)
                     {
                         if (i == a)
@@ -4897,7 +4942,7 @@ namespace UltraMarker
                         }
                         if (i < a)
                         { Gg = prev; }
-                        Gg = (Gg / 2) -1;
+                        Gg = (Gg / 2) - 1;
                         //GForm.GChecked[Cr, Gg] =  "=== " + tick + " ===";
                         GForm.GChecked[Cr, Gg] = true;
                         break;
@@ -4905,8 +4950,8 @@ namespace UltraMarker
                     //prev = a;
                     if (firstthru)  //every other count of grade groups
                     {
-                       prev = a;
-                       firstthru = false;
+                        prev = a;
+                        firstthru = false;
                     }
                     else
                     {
@@ -4917,7 +4962,7 @@ namespace UltraMarker
         }
         private void FindGradePositionV2(string m1, int Cr) //Cr = criteria
         {   //locate in which grade group (box) the current mark is located so that the box can be highlighted (with a cross)
-           
+
             int i = 0;
             int Gg = 0;
             int prev = -1;
@@ -4928,8 +4973,8 @@ namespace UltraMarker
             bool firstthru = true;
             for (int a = 0; a < listBox1.Items.Count; a++)
             {
-                if (listBox1.GetSelected(a) )
-                {    if (firstthru)
+                if (listBox1.GetSelected(a))
+                { if (firstthru)
                     {
                         firstthru = false;
                     }
@@ -4943,13 +4988,13 @@ namespace UltraMarker
                 if (!firstthru)
                 {
                     list[a] = pos;
-                }               
+                }
             }
 
-            i = listBox1.FindString(m1);          
+            i = listBox1.FindString(m1);
             Gg = list[i];
             GForm.GChecked[Cr, Gg] = true;
-                     
+
         }
 
         /*private void Generate_Feedback_Report(string filename)
@@ -5283,7 +5328,7 @@ namespace UltraMarker
                                 {
                                     b = gradelist[i].gralias.Trim();
                                 }
-                            
+
 
                                 if (str.Trim() == b)
                                 {
@@ -5350,7 +5395,7 @@ namespace UltraMarker
                 }
                 else
                 {
-                    if (crSelected[i,MaxSub,Se])
+                    if (crSelected[i, MaxSub, Se])
                     {
                         s = Find_Percent(Marks[i, MaxSub, Se]);
                     }
@@ -5421,7 +5466,7 @@ namespace UltraMarker
         private void button7_Click(object sender, EventArgs e)
         {
             //Clear the form or start marking button
-            if (startMark)                
+            if (startMark)
             {
                 DialogResult dialogResult = MessageBox.Show("This will delete form data (you should save your marks first) - do you wish to clear form Yes/No?", "Clear Form", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -5431,11 +5476,11 @@ namespace UltraMarker
                     Markerlabel.Visible = false;
                     MarkertextBox.Visible = false;
                     Clear_Form_Data(false);
-                   
+
                     OverrideGradelabel.Visible = false;
                     Overriedlabel.Visible = false;
                     OverrideGradelabel.Text = "  ";
-                       
+
                     if (CriteriaSelectionType > 1)
                     {
                         Reset_Selected(true);
@@ -5471,10 +5516,10 @@ namespace UltraMarker
                 }
                 else
                 {
-                    if (checkNameExists(StuN + "_" + assess.Code) && !LoadFromFile )
+                    if (checkNameExists(StuN + "_" + assess.Code) && !LoadFromFile)
                     {
                         DialogResult dialogResult = MessageBox.Show("File exists for " + StuN + " - load it?", "File exists", MessageBoxButtons.YesNo);
-                        if (dialogResult == DialogResult.Yes )
+                        if (dialogResult == DialogResult.Yes)
                         {
                             Load_Marked(LoadFromFile);
                         }
@@ -5505,8 +5550,8 @@ namespace UltraMarker
                 {
                     importGroupBox.Visible = true;
                     importCalcLabel.Visible = true;
-                }               
-                
+                }
+
             }
         }
         private bool checkNameExists(string Name)
@@ -5543,7 +5588,7 @@ namespace UltraMarker
                 gradelbl.Text = "    ";
                 fblbl.Text = "    ";
             }
-           
+
             for (int i = 0; i < MaxCriteria; i++)
             {
                 for (int j = 0; j <= MaxSub; j++)
@@ -5913,7 +5958,7 @@ namespace UltraMarker
                     if (!feedOptions.ShowMarker) { c[15] = '0'; }
                     if (!feedOptions.ShowWeight) { c[16] = '0'; }
                     if (!feedOptions.ShowSubWeight) { c[17] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] +c[14] + c[15] + c[16] + c[17]);
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14] + c[15] + c[16] + c[17]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -5947,7 +5992,7 @@ namespace UltraMarker
                 }
                 SaveGradeListbox();
             }
-           
+
             catch (System.Exception excep)
             {
                 StackTrace stackTrace = new StackTrace();
@@ -6026,7 +6071,7 @@ namespace UltraMarker
                 }
             }
             catch { }
-           
+
         }
 
         private void LoadSettings()
@@ -6051,20 +6096,20 @@ namespace UltraMarker
                         str = rw.ReadLine();
                         if (str.StartsWith("Default Dir:"))
                         {
-                            str3 = str.Substring(0,"Default Dir:".Length).Trim();
+                            str3 = str.Substring(0, "Default Dir:".Length).Trim();
                             str = str.Substring(str3.Length, str.Length - str3.Length).Trim();
                             if (Directory.Exists(str))
                             {
                                 DefaultDir = str;
                                 GradePath = str;
-                                defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;                                
-                            }                        
+                                defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
+                            }
                         }
                         rw.Close();
                     }
                 }
                 catch { }
-            }             
+            }
             if (File.Exists(DefaultDir + "Ultramarker.cfg"))
             {
                 try
@@ -6317,8 +6362,8 @@ namespace UltraMarker
                             {
                                 if (str.Contains("true"))
                                 {
-                                     CalculateImportbyLines= true;
-                                     importCalcLabel.Text = "Calculate by lines";
+                                    CalculateImportbyLines = true;
+                                    importCalcLabel.Text = "Calculate by lines";
                                 }
                                 else
                                 {
@@ -6346,7 +6391,7 @@ namespace UltraMarker
                             }
                             else if (str.StartsWith("Gen template:"))
                             {
-                                string tmp = str.Substring(str.IndexOf("Gen template:")+("Gen template:").Length);
+                                string tmp = str.Substring(str.IndexOf("Gen template:") + ("Gen template:").Length);
                                 templatetextBox.Text = tmp.Trim();
                             }
                             else if (str.StartsWith("Tick:"))
@@ -6357,7 +6402,7 @@ namespace UltraMarker
                             else if (str.StartsWith("Marker:"))
                             {
                                 string tmp = str.Substring(str.IndexOf("Marker:") + ("Marker:").Length);
-                               MarkertextBox.Text = tmp.Trim();
+                                MarkertextBox.Text = tmp.Trim();
                             }
                         }
                         if (SessionType == 0)
@@ -6466,7 +6511,7 @@ namespace UltraMarker
             sessionbutton2.Visible = a;
             sessionlabel5.Visible = a;
             DeselectSessioncheckBox.Visible = a;
-            
+
             sessionlabel3.Visible = a;
             sessionlabel4.Visible = a;
             sessionlabel4.Text = "";
@@ -6752,15 +6797,15 @@ namespace UltraMarker
         {
             //need to find which child node is selected in order to remove it ***
 
-           /* treeView3.SelectedNode = e.Node;
-            sessionTextBox.Text = SessionTitle[S];
-            sessionDescBox.Text = SessionDesc[S];
-            sessionCombo.Text = SessionWeight[S].ToString();*/
+            /* treeView3.SelectedNode = e.Node;
+             sessionTextBox.Text = SessionTitle[S];
+             sessionDescBox.Text = SessionDesc[S];
+             sessionCombo.Text = SessionWeight[S].ToString();*/
 
         }
 
         private void saveSessionbutton_Click(object sender, EventArgs e)
-        {            
+        {
             int SeS = 0;
             if (AddSession)
             {
@@ -6810,17 +6855,17 @@ namespace UltraMarker
                 //Match session session to criteria weighting :
                 try
                 {
-                        for (int s = 0; s < CritZ + 1; s++)
+                    for (int s = 0; s < CritZ + 1; s++)
+                    {
+                        for (int i = 0; i < MaxSub + 1; i++)
                         {
-                            for (int i = 0; i < MaxSub + 1; i++)
-                            {
-                                crweight[s, i, SeS] = crweight[s, i, 0];    //set weight to same as session1
-                            }
-                        }                    
+                            crweight[s, i, SeS] = crweight[s, i, 0];    //set weight to same as session1
+                        }
+                    }
                 }
                 catch { }
             }
-            treeView3.Enabled = true;            
+            treeView3.Enabled = true;
         }
 
         private void AddNewSession()
@@ -6889,7 +6934,7 @@ namespace UltraMarker
             SessionTitleChanged = true;
         }
 
-       
+
 
         private void tabPage3_Click(object sender, EventArgs e)
         {
@@ -7417,7 +7462,7 @@ namespace UltraMarker
 
         private void createSummaryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
 
         }
 
@@ -7440,10 +7485,10 @@ namespace UltraMarker
         {
             //if double clicked while selecting criteria in sessions do this:
             int s = 0;
-           /* if ((SessionType == 0) || (EditStudent))  //if single session or not editing criteria
-            {
-                return;
-            }*/
+            /* if ((SessionType == 0) || (EditStudent))  //if single session or not editing criteria
+             {
+                 return;
+             }*/
             //Allow single sessions to be selected too!
             /*if (EditStudent)  //if not editing criteria
             {
@@ -7453,20 +7498,20 @@ namespace UltraMarker
             {
                 return;
             }
-            
-                if (CriteriaSelected)//criteria or sub-criteria selected?
-                {
-                    s = MaxSub;
-                }
-                else
-                {
-                    s = SSub;
-                }
-           
+
+            if (CriteriaSelected)//criteria or sub-criteria selected?
+            {
+                s = MaxSub;
+            }
+            else
+            {
+                s = SSub;
+            }
+
             if (crSelected[SCriteria, s, Session])  //deselect criteria
             {
                 crSelected[SCriteria, s, Session] = false;
-                Marks[SCriteria, s, Session] = "n/a";             
+                Marks[SCriteria, s, Session] = "n/a";
                 label18.Text = "n/a";
             }
             else
@@ -7615,7 +7660,7 @@ namespace UltraMarker
                 listBox3.Enabled = true;
                 clearLObutton.Visible = true;
                 selectLOs = true;
-                Select_LO();              
+                Select_LO();
             }
         }
         private void Select_LO()
@@ -7762,13 +7807,13 @@ namespace UltraMarker
 
         }
 
-        private void editStripMenuItem_Click(object sender, EventArgs e) 
+        private void editStripMenuItem_Click(object sender, EventArgs e)
         {  //edit LO
             string str;
-         
+
             listBox2.BeginUpdate();
             if (listBox2.SelectedIndex >= 0)
-            {              
+            {
                 oldindex = listBox2.SelectedIndex;
                 //editingLO = true;
                 addLOmode = false;
@@ -7851,8 +7896,8 @@ namespace UltraMarker
         {
             //if (LOFilePath.Length < 1)
             //{
-                LOFilePath = UnitFilePath;
-                saveFileDialog5.InitialDirectory = LOFilePath;
+            LOFilePath = UnitFilePath;
+            saveFileDialog5.InitialDirectory = LOFilePath;
             //}
             saveFileDialog5.InitialDirectory = LOFilePath;
             saveFileDialog5.ShowDialog();
@@ -7860,9 +7905,9 @@ namespace UltraMarker
 
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {  //load LOs
-            //if (LOFilePath.Length < 1)
-            //{
-                LOFilePath = UnitFilePath;
+           //if (LOFilePath.Length < 1)
+           //{
+            LOFilePath = UnitFilePath;
             //}
             openFileDialog4.FileName = "";
             openFileDialog4.InitialDirectory = LOFilePath;
@@ -8125,9 +8170,9 @@ namespace UltraMarker
                         }
                         break;
                     case 4: //Sessiontab
-                        if (SessionType ==0)
+                        if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf";                         
+                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf";
                         }
                         else
                         {
@@ -8141,7 +8186,7 @@ namespace UltraMarker
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf"; 
+                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf";
                         }
                         break;
                     case 6:
@@ -8151,7 +8196,7 @@ namespace UltraMarker
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles\\ModHelp.rtf";                          
+                            helpForm.helpfile = DefaultDir + "helpfiles\\ModHelp.rtf";
                         }
                         break;
                     case 7:
@@ -8168,7 +8213,7 @@ namespace UltraMarker
                         if (SessionType == 1)
                         {
                             helpForm.helpfile = DefaultDir + "helpfiles\\StudentHelp.rtf";
-                        }                     
+                        }
                         break;
 
                 }
@@ -8287,7 +8332,7 @@ namespace UltraMarker
                         {
                             //if (SessionType == 0 || crSelected[s, i, se])
                             if (crSelected[s, i, se])
-                            { TotW = TotW + crweight[s, i, se]; }                                
+                            { TotW = TotW + crweight[s, i, se]; }
                         }
                     }
                     if (SessionType == 0) { sess = ""; }
@@ -8296,7 +8341,7 @@ namespace UltraMarker
                     {
                         float Swe = 0;
                         Swe = Convert.ToSingle(SessionWeight[se]);
-                        TotW = TotW * Swe/100;
+                        TotW = TotW * Swe / 100;
                     }
                     if (TotW != 100 && SessionType == 0)
                     {
@@ -8367,11 +8412,11 @@ namespace UltraMarker
                 SessionW = 0;
                 for (int se = 0; se < SessionS; se++)
                 {
-                        SessionW = SessionW + Convert.ToSingle(SessionWeight[se]);
+                    SessionW = SessionW + Convert.ToSingle(SessionWeight[se]);
                     //TotW = TotW + SessionWeight[se];
                     TempSessionNum = TempSessionNum + 1;
                 }
-                
+
 
                 if ((SessionW > 100) || (SessionW < 100))
                 {
@@ -8852,7 +8897,7 @@ namespace UltraMarker
                         {
                             i = str.IndexOf("Marks folder: ");
                             k = "Marks folder: ".Length;
-                            str = str.Substring(i + k, str.Length - k);   
+                            str = str.Substring(i + k, str.Length - k);
                             if (!str.Contains(UnitFilePath))
                             {
                                 MessageBox.Show("Note: Marks folder is in different path to unit folder");
@@ -8983,9 +9028,9 @@ namespace UltraMarker
             FontStyle fs = FontStyle.Italic | FontStyle.Bold;
             int grsel = treeView1.SelectedNode.Index;
             try
+            {
+                if (grsel > -1)
                 {
-            if (grsel > -1)
-            {               
                     if (gradelist[grsel].grselected)
                     {     //delselect grade from dual marks      
                         treeView1.SelectedNode.ForeColor = Color.Black;
@@ -9006,7 +9051,7 @@ namespace UltraMarker
                         gradelist[treeView1.SelectedNode.Index].grselected = true;
 
                     }
-                }                
+                }
                 RebuildAliasList();
             }
             catch { }
@@ -9038,7 +9083,7 @@ namespace UltraMarker
             {
                 foreach (TreeNode n in treeView1.Nodes[0].Nodes)
                 {
-                    listBox1.Items.Add(n.Text);                   
+                    listBox1.Items.Add(n.Text);
                 }
             }
             catch
@@ -9091,13 +9136,13 @@ namespace UltraMarker
         private void graderadioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (!loading && change1 && graderadioButton2.Checked)
-            {               
-                    listBox1.Items.Clear();
-                    singleGrades = false;
-                    AliastextBox.Visible = true;
-                    grAliaslabel.Visible = true;
-                    change1 = false;
-                    //Copy_Alias_To_ListBox();
+            {
+                listBox1.Items.Clear();
+                singleGrades = false;
+                AliastextBox.Visible = true;
+                grAliaslabel.Visible = true;
+                change1 = false;
+                //Copy_Alias_To_ListBox();
             }
 
         }
@@ -9353,7 +9398,7 @@ namespace UltraMarker
 
         private void configToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void institutionTextBox_TextChanged(object sender, EventArgs e)
@@ -9436,7 +9481,7 @@ namespace UltraMarker
 
         private void button8_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void ImportFileSelectbutton_Click(object sender, EventArgs e)
@@ -9457,10 +9502,10 @@ namespace UltraMarker
         private void Importbutton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Load new list - (this will overwrite current list) Y/N?", "Import Students", MessageBoxButtons.YesNo);
-             if (dialogResult == DialogResult.Yes)
-             {
-                 Import_Students();
-             }
+            if (dialogResult == DialogResult.Yes)
+            {
+                Import_Students();
+            }
         }
 
         private void Import_Students()
@@ -9530,11 +9575,11 @@ namespace UltraMarker
             StuEmailtextBox.Text = studentlist[listBox4.SelectedIndex].studentmail;
         }
 
-       
+
 
         private void StudentcomboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-           Student_Changed();
+            Student_Changed();
         }
 
 
@@ -9547,7 +9592,7 @@ namespace UltraMarker
             }
         }
 
-        
+
         private void institutionToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string str = "";
@@ -9567,7 +9612,7 @@ namespace UltraMarker
                 defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
             }
         }
-       
+
         private bool editDefaultDir(string message)
         {
             string sl = "";
@@ -9580,7 +9625,7 @@ namespace UltraMarker
             {
                 return false;
             }
-           
+
             string str = folderBrowserDialog2.SelectedPath;
             if (Directory.Exists(str) == false)
             {
@@ -9712,7 +9757,7 @@ namespace UltraMarker
                 MessageBox.Show("Resetting default path for Ultramarker - copy all files into there!");
             }
         }*/
-       
+
 
         private void loadConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -9728,7 +9773,7 @@ namespace UltraMarker
         {
             //override grade with %
             overridegrade();
-            
+
         }
         private void overridegrade()
         {   //override grade with percent
@@ -9745,40 +9790,40 @@ namespace UltraMarker
             {
                 try
                 {
-                    if (pc >= 0 && pc <= 100)                                    
-                    {                      
+                    if (pc >= 0 && pc <= 100)
+                    {
+                        if (EditStudent)
+                        {
+                            button7.Visible = true;
+                        }
+                        if (listBox1.SelectedIndex > -1)
+                        {
+
+                            if (CriteriaSelected)
+                            {
+                                sub = MaxSub;
+                            }
+                            else
+                            { sub = SSub; }
+                            Marks[SCriteria, sub, Session] = overrideBox.Text + "%";
                             if (EditStudent)
                             {
-                                button7.Visible = true;
-                            }
-                            if (listBox1.SelectedIndex > -1)
-                            {
-
-                                if (CriteriaSelected)
+                                if (crSelected[SCriteria, sub, Session])
                                 {
-                                    sub = MaxSub;
+                                    label18.Text = overrideBox.Text + "%";
                                 }
                                 else
-                                { sub = SSub; }
-                                Marks[SCriteria, sub, Session] = overrideBox.Text + "%";
-                                if (EditStudent)
                                 {
-                                    if (crSelected[SCriteria, sub, Session])
-                                    {
-                                        label18.Text = overrideBox.Text + "%";
-                                    }
-                                    else
-                                    {
-                                        label18.Text = "n/a";
-                                    }
-
+                                    label18.Text = "n/a";
                                 }
+
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("Invalid %");
-                        }                   
+                    }
+                    else
+                    {
+                        MessageBox.Show("Invalid %");
+                    }
 
                 }
                 catch
@@ -9793,10 +9838,11 @@ namespace UltraMarker
             DialogResult reply;
             if (allowoverride)
             {
-                reply = MessageBox.Show("DISABLE override of grade by %, yes/no?", "Disable grade override",MessageBoxButtons.YesNoCancel);
+                reply = MessageBox.Show("DISABLE override of grade by %, yes/no?", "Disable grade override", MessageBoxButtons.YesNoCancel);
                 if (reply == DialogResult.Yes)
                 {
                     allowoverride = false;
+                    overrideToolStripMenuItem.Checked = false;
                 }
             }
             else
@@ -9805,11 +9851,12 @@ namespace UltraMarker
                 if (reply == DialogResult.Yes)
                 {
                     allowoverride = true;
+                    overrideToolStripMenuItem.Checked = true;
                 }
-            }        
+            }
         }
 
-      
+
         private void overrideBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Return)
@@ -9827,7 +9874,7 @@ namespace UltraMarker
                 {
                     e.SuppressKeyPress = true;
                 }
-            }           
+            }
         }
 
         private void summaryToolStripMenuItem_Click(object sender, EventArgs e)
@@ -9871,12 +9918,12 @@ namespace UltraMarker
             if (sittingButton.Text == "Main")
             {
                 sittingButton.Text = "Ref/Def 1";
-                Sitting = "Referral/deferral 1";                
+                Sitting = "Referral/deferral 1";
             }
             else if (sittingButton.Text == "Ref/Def 1")
             {
                 sittingButton.Text = "Ref/Def 2";
-                Sitting = "Referral/Deferral 2";             
+                Sitting = "Referral/Deferral 2";
             }
             else if (sittingButton.Text == "Ref/Def 2")
             {
@@ -9913,11 +9960,11 @@ namespace UltraMarker
             CSForm.ShowDialog();
 
             t = CSForm.Passvalue;
-            if (t==3)   //clear all deselected criteria
+            if (t == 3)   //clear all deselected criteria
             {
                 t = 0; //now set to not allow deselection of criteria
                 try
-                {                                       
+                {
                     CriteriaSelectionType = t;
                     ReSelect_All_Criteria();
                     //Change_Session_Selection();
@@ -9927,18 +9974,18 @@ namespace UltraMarker
 
             }
             CriteriaSelectionType = t;
-            
+
         }
         private void ReSelect_All_Criteria()
-        {           
+        {
             Reset_Selected(true);   //reset all
             for (int n = 0; n < treeView2.Nodes[0].Nodes.Count; n++)
             {
-                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[n];        
+                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[n];
                 treeView2.SelectedNode.ForeColor = Color.Black;
-                treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Regular);              
+                treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Regular);
             }
-           
+
         }
 
 
@@ -9978,7 +10025,7 @@ namespace UltraMarker
         }
 
         private void overridecheckBox_CheckedChanged(object sender, EventArgs e)
-        {           
+        {
             if (overridecheckBox.Checked && EditStudent)
             {
                 if (MessageBox.Show("Normally Ultramarker will calculate the overall mark based on your grade for each criterion. If this doesn't match your overall expectations you are recommended to re-assess the grade that you awarded for each criterion rather than override the overall grade. \nDo you still wish to override the overall grade or mark Y/N?", "Override Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -9994,8 +10041,8 @@ namespace UltraMarker
                 else
                 {
                     overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
-                    overridecheckBox.Checked = false;                   
-                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;                    
+                    overridecheckBox.Checked = false;
+                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
                     return;
                 }
             }
@@ -10019,7 +10066,7 @@ namespace UltraMarker
             button4.ForeColor = Color.Red;
             button4.Font = new Font(this.Font, FontStyle.Bold);
         }
-       
+
         private void generateButton_Click(object sender, EventArgs e)
         {
             //genList();                
@@ -10058,30 +10105,30 @@ namespace UltraMarker
             int i;
             string str1 = "";
             string str2 = "";
-            
+
 
             if (!File.Exists(templatetextBox.Text))
             {
                 MessageBox.Show("No template file specified");
                 return false;
             }
-           
+
             //PForm.MarkDir = modDirectory;
 
-            GForm.TemplateFile = templatetextBox.Text;        
+            GForm.TemplateFile = templatetextBox.Text;
             GForm.Institution = instituteBox.Text;
 
             GForm.UnitTitle = UTitleBox.Text;
             GForm.UnitCode = UCodeBox.Text;
-          
+
             GForm.AssessNo = ACodeBox.Text;
             GForm.AssessTitle = assessTBox.Text;
             GForm.Marker = MarkertextBox.Text;
-            
+
             int grade = 0;
             int counter = 0;
             int Gg = 0; //grade group counter
-            bool firstthru = true;            
+            bool firstthru = true;
 
             try
             {
@@ -10096,9 +10143,9 @@ namespace UltraMarker
                         {
                             break;
                         }
-                    }                 
+                    }
 
-                
+
                     for (int c = 0; c < CritZ + 1; c++) //print criteria detail
                     {
                         str1 = crdesc[c, MaxSub];
@@ -10120,11 +10167,11 @@ namespace UltraMarker
                             else
                             {
                                 firstthru = true;
-                            }                          
+                            }
                         }
                     }
                 }
-                    
+
             }
             catch (System.Exception excep)
             {
@@ -10138,11 +10185,11 @@ namespace UltraMarker
         }
         private void PrimeListbox1()
         {
-                     
+
             for (int i = 0; i < listBox1.Items.Count; i++)
             {
-                Listboxlist[i] = 0;                            
-            }           
+                Listboxlist[i] = 0;
+            }
         }
         private void SaveListbox1Selected()
         {
@@ -10150,8 +10197,8 @@ namespace UltraMarker
             {
                 if (listBox1.GetSelected(i))
                 {
-                    Listboxlist[i] = 1;                   
-                }   
+                    Listboxlist[i] = 1;
+                }
                 else
                 {
                     Listboxlist[i] = 0;
@@ -10207,20 +10254,20 @@ namespace UltraMarker
                 {
                     GrouplistBox.Items.Add(s);
                 }
-                gradegrouplist[i].GroupNo = i+1;
+                gradegrouplist[i].GroupNo = i + 1;
                 gradegrouplist[i].GroupText = "";
             }
-         
+
         }
         private void SetGradeGroup()
         {
-            
+
             GrouplistBox.SelectedIndex = 0;
             GrouptextBox.Text = gradegrouplist[0].GroupText;
-            
+
         }
 
-       
+
 
         private void gbutton_Click(object sender, EventArgs e)
         {
@@ -10228,7 +10275,7 @@ namespace UltraMarker
             {
                 gbutton.Text = "Save Group";
                 GrouptextBox.Enabled = true;
-                
+
             }
             else
             {
@@ -10239,17 +10286,17 @@ namespace UltraMarker
             }
         }
 
-       
+
 
         private void GrouplistBox_SelectedValueChanged(object sender, EventArgs e)
         {
             string s = "";
             s = " ";
 
-           
+
         }
 
-      
+
 
         private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
         {
@@ -10258,7 +10305,7 @@ namespace UltraMarker
 
                 if (e.NewValue > e.OldValue)
                 {
-                    if (GrouplistBox.SelectedIndex < GrouplistBox.Items.Count -1)
+                    if (GrouplistBox.SelectedIndex < GrouplistBox.Items.Count - 1)
                     {
                         GrouplistBox.SelectedIndex++;
                     }
@@ -10274,11 +10321,11 @@ namespace UltraMarker
             }
         }
 
-     
+
         private void GrouplistBox_DoubleClick(object sender, EventArgs e)
         {
             GroupSel.Text = GrouplistBox.Text;
-           
+
         }
 
         private void GroupscheckBox_CheckedChanged(object sender, EventArgs e)
@@ -10343,7 +10390,7 @@ namespace UltraMarker
             bool ok = true;
             int cr = 0;
             int task = 0; //current task
-           
+
             const int maxlines = 500; //max lines in imported file
             int[] tasklinescorrect = new int[maxlines]; //counter for current no. correct lines for task
             int[] tasklinestotal = new int[maxlines];  //counter for current total lines for task
@@ -10418,9 +10465,9 @@ namespace UltraMarker
                                     found1 = true;
                                     //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr];
                                 }
-                                
-                                
-                                if (taskNo >prevTaskNo)   //have found criteria and tasks already
+
+
+                                if (taskNo > prevTaskNo)   //have found criteria and tasks already
                                 {
                                     //create totals for sub-criteria
                                     prevTaskNo = taskNo;
@@ -10432,31 +10479,31 @@ namespace UltraMarker
                                         Marks[cr - 1, t - 1, Session] = overrideBox.Text; //this is the previous criteria
                                         criteriaTasks = 0;
                                     }
-                                                                    
+
                                 }
-                                
+
 
                             }
                             else if (str.StartsWith("Task:"))
                             {
                                 try
                                 {
-                                    
+
                                     int dot = str.IndexOf(".");
                                     str2 = str.Substring(5, dot - 5).Trim();  //find the task number
                                     //prevtask = task;                                    
                                     task = Convert.ToInt32(str2);
-                                    
-                                    if (task >0)
+
+                                    if (task > 0)
                                     {
                                         if (task > taskNo)
                                         {
                                             taskNo++;  //total global number of tasks
-                                            
+
                                         }
                                         if (task > criteriaTasks)
                                         {
-                                            
+
                                             criteriaTasks++;
                                         }
                                         if (AllowImpComment)
@@ -10469,7 +10516,7 @@ namespace UltraMarker
                                             else
                                             {
                                                 //if a task put into sub-criteria
-                                                crComment[cr, task-1,0] = crComment[cr, task-1, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                                crComment[cr, task - 1, 0] = crComment[cr, task - 1, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
                                             }
                                         }
                                         if (str.Contains("Command:"))
@@ -10489,14 +10536,14 @@ namespace UltraMarker
                                         {
                                             crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
                                         }
-                                        
+
 
                                     }
-                                   
+
                                 }
                                 catch { }
                             }
-                            else if (str.Contains("Lines correct:") &&ok) //select criteria to import to
+                            else if (str.Contains("Lines correct:") && ok) //select criteria to import to
                             {
                                 str3 = str.Substring(str.IndexOf("Lines correct:") + "Lines correct:".Length).Trim();
                                 Lc = ExtractfromSlash(str3, true); //get lines correct
@@ -10559,13 +10606,13 @@ namespace UltraMarker
                             {
                                 if (AllowImpComment)
                                 {
-                                   //doesn't start with "task:" >0 so output
-                                   crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
-                                    
-                                   /* if (str.StartsWith("Marked file"))
-                                    {
-                                        mf++;                                                                               
-                                    }*/
+                                    //doesn't start with "task:" >0 so output
+                                    crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+
+                                    /* if (str.StartsWith("Marked file"))
+                                     {
+                                         mf++;                                                                               
+                                     }*/
                                 }
                             }
                         }
@@ -10595,20 +10642,20 @@ namespace UltraMarker
                                     PCent = Convert.ToInt32(pc);
                                 }
                                 treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
-                                if (treeView2.Nodes[0].Nodes[cr].GetNodeCount(false) >0)
+                                if (treeView2.Nodes[0].Nodes[cr].GetNodeCount(false) > 0)
                                 {
                                     //sub-criteria
-                                    for (int n = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); n >0; n--)
+                                    for (int n = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); n > 0; n--)
                                     {
-                                        treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr].Nodes[n-1];
-                                        overrideBox.Text = Marks[cr, n-1, Session];
+                                        treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr].Nodes[n - 1];
+                                        overrideBox.Text = Marks[cr, n - 1, Session];
                                         if (ImportasCheckBox.Checked)
                                         {
                                             overridegrade(); //overide the grade for this criteria
                                         }
                                         else
-                                        {                                            
-                                            showGrade(overrideBox.Text, n-1);
+                                        {
+                                            showGrade(overrideBox.Text, n - 1);
                                         }
                                     }
 
@@ -10641,9 +10688,9 @@ namespace UltraMarker
             }
         }
 
-        private int ExtractfromSlash(string str,  bool leftof)
+        private int ExtractfromSlash(string str, bool leftof)
         {
-            
+
             string[] str2 = new string[2];
             if (str.Contains('/'))
             {
@@ -10653,7 +10700,7 @@ namespace UltraMarker
                     if (str2.Count() > 0 && str2[0] != null)
                     {
                         return Convert.ToInt32(str2[0]);
-                    }                    
+                    }
                 }
                 else
                 {
@@ -10665,8 +10712,8 @@ namespace UltraMarker
                         return Convert.ToInt32(str2[1]);
                     }
                 }
-            }            
-                return -1;  //if all else fails                       
+            }
+            return -1;  //if all else fails                       
         }
         private void ImportcheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -10685,11 +10732,11 @@ namespace UltraMarker
                 importFilebutton.Visible = false;
             }
         }
-     
+
 
         private void ImpFilebutton_Click(object sender, EventArgs e)
         {
-            ImportFileDialog.InitialDirectory = ImportFilePath; 
+            ImportFileDialog.InitialDirectory = ImportFilePath;
             ImportFileDialog.FileName = "";
             //ImportFileDialog.DefaultExt = "rtf";
             //ImportFileDialog.Filter = "Rich text files (*.rtf) |*.rtf";
@@ -10724,7 +10771,7 @@ namespace UltraMarker
 
 
 
-private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Allow comments from imported files Yes/No?", "Imported Comments", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -10775,7 +10822,7 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
                 listBox1.SelectedIndex = 0;
             }
             catch {
-                MessageBox.Show("Error copying grades"); 
+                MessageBox.Show("Error copying grades");
             }
         }
 
@@ -10817,9 +10864,9 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
                 // Create a new WebClient instance.
                 WebClient myWebClient = new WebClient();
 
-               // fully qualified path of the file to be uploaded to the URI
+                // fully qualified path of the file to be uploaded to the URI
                 string fileName = textBox6.Text;
-               
+
                 // Upload the file to the URI.
                 // The 'UploadFile(uriString,fileName)' method implicitly uses HTTP POST method.
                 byte[] responseArray = myWebClient.UploadFile(uriString, fileName);
@@ -10863,7 +10910,7 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
 
         private void specificEditbutton_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void textBox2Comments_DoubleClick(object sender, EventArgs e)
@@ -10983,10 +11030,10 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         private void unitFoldertextBox_TextChanged(object sender, EventArgs e)
         {
             //DialogResult reply;
-            
+
             if (!unitFoldertextBox.ReadOnly)
             {
-                
+
                 try
                 {
                     if (!Directory.Exists(UnitFilePath))
@@ -11031,10 +11078,30 @@ private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
 
         private void markcheckBox_CheckedChanged(object sender, EventArgs e)
         {
-           marksFolderbutton.Visible = markcheckBox.Checked; 
+            marksFolderbutton.Visible = markcheckBox.Checked;
         }
 
-       
+        private void overrideOverallGradeToolStripMenuItem_Click(object sender, EventArgs e)
+        {           
+            if (MessageBox.Show("Allow override of overall grade Y/N?", "Allow Override of Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                //setOverrideOverall(true);
+                overrideOverallGradeToolStripMenuItem.Checked = true;
+            }
+            else
+            {
+                //setOverrideOverall(false);
+                overrideOverallGradeToolStripMenuItem.Checked = false;
+                overridecheckBox.Checked = false;
+            }
+        }
+        /*private void setOverrideOverall(bool O)
+        {
+            overrideOverallGradeToolStripMenuItem.Checked = O;
+            OverrideGradelabel.Visible = O;
+            Overriedlabel.Visible = O;
+            overridecheckBox.Visible = O;
+        }*/
     }
     }
 
