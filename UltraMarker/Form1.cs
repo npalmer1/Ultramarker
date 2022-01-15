@@ -436,11 +436,11 @@ namespace UltraMarker
             tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             if (!industrial)
             {
-                this.Text = "UltraMarker                   " + theVersion + "                    GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
+                this.Text = "UltraMarker                   " + theVersion + "                    GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
             else
             {
-                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "               GNU GPL v3 project managed by N. Palmer 2021                    (F1 for help)";
+                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "               GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
            
             if (industrial)
@@ -2869,7 +2869,7 @@ namespace UltraMarker
             {
                     if (listBox1.Items.Count > 0)
                     {
-                       
+                        
                         if (TChanged)
                         {
                             if (promptsoff)
@@ -3182,6 +3182,8 @@ namespace UltraMarker
             label85.Visible = b;
             label21.Visible = false;
             label22.Visible = false;
+            overallGradelabel.Visible = false;
+            overLabel.Visible = false;
             label16.Visible = b;
             label18.Visible = b;
             button7.Visible = b;
@@ -3238,7 +3240,9 @@ namespace UltraMarker
                 {
                     if (EditStudent)
                     {
-                        button7.Visible = true;
+                        button7.Visible = true; //clear form button
+                        button4.ForeColor = Color.Red; //save button
+                        button4.Font = new Font(button4.Font, FontStyle.Bold);
                     }
                     if (listBox1.SelectedIndex > -1)
                     {
@@ -3498,6 +3502,8 @@ namespace UltraMarker
             string D = "";
             try
             {
+                button4.ForeColor = Color.Black; //change save button back to normal
+                button4.Font = new Font(button4.Font, FontStyle.Regular);
                 if (listBox1.Items.Count > 0)
                 {
                     Calculate_Checks();
@@ -3688,11 +3694,16 @@ namespace UltraMarker
                         label22.Text = str;
                         label22.Visible = true;
                         label21.Visible = true;
-                        sw.WriteLine("Equivalent grade: " + Convert_Percent_To_Grade(f));
+                        string grstr = Convert_Percent_To_Grade(f);
+                        sw.WriteLine("Equivalent grade: " + grstr);
+
                         string org = OverrideGradelabel.Text.Trim();
                         if (!overridecheckBox.Checked)
                         {
-                            org = "";
+                            org = "";                        
+                            overallGradelabel.Visible = true;
+                            overLabel.Visible = true;
+                            overallGradelabel.Text = grstr;
                         }
                         sw.WriteLine("ORG: " + org);
                         sw.WriteLine();
@@ -5400,11 +5411,13 @@ namespace UltraMarker
         private void button7_Click(object sender, EventArgs e)
         {
             //Clear the form or start marking button
-            if (startMark)
+            if (startMark)                
             {
                 DialogResult dialogResult = MessageBox.Show("This will delete form data (you should save your marks first) - do you wish to clear form Yes/No?", "Clear Form", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
+                    button4.ForeColor = Color.Black; //save button
+                    button4.Font = new Font(button4.Font, FontStyle.Regular);
                     Markerlabel.Visible = false;
                     MarkertextBox.Visible = false;
                     Clear_Form_Data(false);
@@ -9954,9 +9967,20 @@ namespace UltraMarker
         {
             if (overridecheckBox.Checked && EditStudent)
             {
-                //treeView2.Enabled = false;
-                Overriedlabel.Visible = true;
-                OverrideGradelabel.Visible = true;
+                if (MessageBox.Show("Normally Ultramarker will calculate the overall mark based on your grade for each criterion. If this doesn't match your overall expectations you are recommended to re-assess the grade that you awarded for each criterion rather than override the overall grade. \nDo you still wish to override the overall grade or mark Y/N?", "Override Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    //treeView2.En = false;
+                    Overriedlabel.Visible = true;
+                    OverrideGradelabel.Visible = true;
+                    overLabel.Visible = false;
+                    overallGradelabel.Visible = false;
+                    label22.Text = "";
+                    MessageBox.Show("Now select the overall grade");
+                }
+                else
+                {
+                    overridecheckBox.Checked = false;
+                }
             }
             else
             {

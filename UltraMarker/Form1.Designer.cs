@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -490,6 +490,8 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.overallGradelabel = new System.Windows.Forms.Label();
+            this.overLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -746,6 +748,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage2.Controls.Add(this.overLabel);
+            this.tabPage2.Controls.Add(this.overallGradelabel);
             this.tabPage2.Controls.Add(this.ImportasCheckBox);
             this.tabPage2.Controls.Add(this.repCancelbutton4);
             this.tabPage2.Controls.Add(this.MarkertextBox);
@@ -866,7 +870,7 @@
             // 
             // repCancelbutton4
             // 
-            this.repCancelbutton4.Location = new System.Drawing.Point(1088, 147);
+            this.repCancelbutton4.Location = new System.Drawing.Point(1088, 158);
             this.repCancelbutton4.Name = "repCancelbutton4";
             this.repCancelbutton4.Size = new System.Drawing.Size(197, 23);
             this.repCancelbutton4.TabIndex = 105;
@@ -955,7 +959,7 @@
             this.OverrideGradelabel.AutoSize = true;
             this.OverrideGradelabel.BackColor = System.Drawing.Color.Plum;
             this.OverrideGradelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OverrideGradelabel.Location = new System.Drawing.Point(778, 106);
+            this.OverrideGradelabel.Location = new System.Drawing.Point(735, 140);
             this.OverrideGradelabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.OverrideGradelabel.Name = "OverrideGradelabel";
             this.OverrideGradelabel.Size = new System.Drawing.Size(48, 17);
@@ -966,7 +970,7 @@
             // Overriedlabel
             // 
             this.Overriedlabel.AutoSize = true;
-            this.Overriedlabel.Location = new System.Drawing.Point(638, 107);
+            this.Overriedlabel.Location = new System.Drawing.Point(602, 141);
             this.Overriedlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Overriedlabel.Name = "Overriedlabel";
             this.Overriedlabel.Size = new System.Drawing.Size(134, 15);
@@ -1114,7 +1118,7 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.templatetextBox.Location = new System.Drawing.Point(781, 59);
+            this.templatetextBox.Location = new System.Drawing.Point(787, 56);
             this.templatetextBox.Margin = new System.Windows.Forms.Padding(2);
             this.templatetextBox.Name = "templatetextBox";
             this.templatetextBox.Size = new System.Drawing.Size(266, 23);
@@ -1317,7 +1321,7 @@
             // modSelect
             // 
             this.modSelect.AutoSize = true;
-            this.modSelect.Location = new System.Drawing.Point(956, 83);
+            this.modSelect.Location = new System.Drawing.Point(993, 86);
             this.modSelect.Name = "modSelect";
             this.modSelect.Size = new System.Drawing.Size(89, 34);
             this.modSelect.TabIndex = 66;
@@ -1350,7 +1354,7 @@
             // copyWeightbutton
             // 
             this.copyWeightbutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.copyWeightbutton.Location = new System.Drawing.Point(1151, 89);
+            this.copyWeightbutton.Location = new System.Drawing.Point(1168, 89);
             this.copyWeightbutton.Name = "copyWeightbutton";
             this.copyWeightbutton.Size = new System.Drawing.Size(152, 23);
             this.copyWeightbutton.TabIndex = 63;
@@ -1361,7 +1365,7 @@
             // 
             // checkWbutton
             // 
-            this.checkWbutton.Location = new System.Drawing.Point(1201, 118);
+            this.checkWbutton.Location = new System.Drawing.Point(1222, 116);
             this.checkWbutton.Name = "checkWbutton";
             this.checkWbutton.Size = new System.Drawing.Size(98, 23);
             this.checkWbutton.TabIndex = 61;
@@ -1636,7 +1640,7 @@
             // button7
             // 
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(1050, 88);
+            this.button7.Location = new System.Drawing.Point(1088, 88);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(164, 23);
             this.button7.TabIndex = 33;
@@ -1649,7 +1653,7 @@
             // 
             this.label22.BackColor = System.Drawing.Color.GreenYellow;
             this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(912, 120);
+            this.label22.Location = new System.Drawing.Point(927, 111);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(41, 21);
             this.label22.TabIndex = 32;
@@ -1660,7 +1664,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(764, 123);
+            this.label21.Location = new System.Drawing.Point(771, 112);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(153, 16);
             this.label21.TabIndex = 31;
@@ -1731,13 +1735,13 @@
             // 
             this.textBox4.BackColor = System.Drawing.Color.Snow;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(369, 144);
+            this.textBox4.Location = new System.Drawing.Point(369, 159);
             this.textBox4.Margin = new System.Windows.Forms.Padding(1);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(930, 123);
+            this.textBox4.Size = new System.Drawing.Size(930, 108);
             this.textBox4.TabIndex = 3;
             // 
             // criteriaTitleBox
@@ -1820,13 +1824,14 @@
             // 
             // button4
             // 
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.Location = new System.Drawing.Point(977, 57);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(55, 23);
             this.button4.TabIndex = 22;
             this.button4.Text = "Save Marks";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
@@ -1942,7 +1947,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(953, 123);
+            this.label7.Location = new System.Drawing.Point(991, 120);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(164, 16);
             this.label7.TabIndex = 7;
@@ -1952,11 +1957,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(361, 125);
+            this.label6.Location = new System.Drawing.Point(361, 142);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(260, 16);
+            this.label6.Size = new System.Drawing.Size(217, 16);
             this.label6.TabIndex = 6;
-            this.label6.Text = "Full description of the criteria requirements:";
+            this.label6.Text = "Description of criteria requirements:";
             // 
             // label5
             // 
@@ -1973,9 +1978,9 @@
             this.comboBox3.Enabled = false;
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(1132, 120);
+            this.comboBox3.Location = new System.Drawing.Point(1160, 120);
             this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(59, 21);
+            this.comboBox3.Size = new System.Drawing.Size(54, 21);
             this.comboBox3.TabIndex = 4;
             this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -1986,10 +1991,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode2.Name = "CriteriaNode";
-            treeNode2.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2605,11 +2610,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3640,10 +3645,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5145,6 +5150,28 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // overallGradelabel
+            // 
+            this.overallGradelabel.AutoSize = true;
+            this.overallGradelabel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.overallGradelabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overallGradelabel.Location = new System.Drawing.Point(927, 142);
+            this.overallGradelabel.Name = "overallGradelabel";
+            this.overallGradelabel.Size = new System.Drawing.Size(48, 16);
+            this.overallGradelabel.TabIndex = 107;
+            this.overallGradelabel.Text = "          ";
+            this.overallGradelabel.Visible = false;
+            // 
+            // overLabel
+            // 
+            this.overLabel.AutoSize = true;
+            this.overLabel.Location = new System.Drawing.Point(840, 141);
+            this.overLabel.Name = "overLabel";
+            this.overLabel.Size = new System.Drawing.Size(83, 15);
+            this.overLabel.TabIndex = 108;
+            this.overLabel.Text = "Overall grade:";
+            this.overLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5676,6 +5703,8 @@
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label94;
         private System.Windows.Forms.CheckBox markcheckBox;
+        private System.Windows.Forms.Label overLabel;
+        private System.Windows.Forms.Label overallGradelabel;
     }
 }
 
