@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -492,7 +492,6 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.overrideOverallGradeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -2014,10 +2013,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode3.Name = "CriteriaNode";
-            treeNode3.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2086,8 +2085,7 @@
             this.criteriaSelectionToolStripMenuItem,
             this.addAssessmentCodeToolStripMenuItem,
             this.importCommentsToolStripMenuItem,
-            this.showGenAssessToolStripMenuItem,
-            this.overrideOverallGradeToolStripMenuItem});
+            this.showGenAssessToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(66, 21);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -2095,14 +2093,14 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
@@ -2113,7 +2111,7 @@
             this.normal1ToolStripMenuItem,
             this.coarse5ToolStripMenuItem});
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
@@ -2141,14 +2139,12 @@
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
-            this.overrideToolStripMenuItem.Checked = true;
-            this.overrideToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
             this.overrideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.overrideToolStripMenuItem.Text = "% Override";
@@ -2157,14 +2153,14 @@
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -2174,7 +2170,7 @@
             this.commentsToolStripMenuItem1,
             this.calculateLinesToolStripMenuItem});
             this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
-            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.importCommentsToolStripMenuItem.Text = "Import Results";
             // 
             // commentsToolStripMenuItem1
@@ -2196,7 +2192,7 @@
             this.showGenAssessToolStripMenuItem.Checked = true;
             this.showGenAssessToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showGenAssessToolStripMenuItem.Name = "showGenAssessToolStripMenuItem";
-            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.showGenAssessToolStripMenuItem.Text = "Show Gen Assess";
             this.showGenAssessToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showGenAssessToolStripMenuItem_CheckedChanged);
             this.showGenAssessToolStripMenuItem.Click += new System.EventHandler(this.showGenAssessToolStripMenuItem_Click);
@@ -2636,11 +2632,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3671,10 +3667,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5176,15 +5172,6 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // overrideOverallGradeToolStripMenuItem
-            // 
-            this.overrideOverallGradeToolStripMenuItem.Checked = true;
-            this.overrideOverallGradeToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.overrideOverallGradeToolStripMenuItem.Name = "overrideOverallGradeToolStripMenuItem";
-            this.overrideOverallGradeToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
-            this.overrideOverallGradeToolStripMenuItem.Text = "Override Overall Grade";
-            this.overrideOverallGradeToolStripMenuItem.Click += new System.EventHandler(this.overrideOverallGradeToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5718,7 +5705,6 @@
         private System.Windows.Forms.CheckBox markcheckBox;
         private System.Windows.Forms.Label overLabel;
         private System.Windows.Forms.Label overallGradelabel;
-        private System.Windows.Forms.ToolStripMenuItem overrideOverallGradeToolStripMenuItem;
     }
 }
 

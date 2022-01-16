@@ -3226,21 +3226,22 @@ namespace UltraMarker
             {
                 overrideBox.Visible = b;
                 overrideButton.Visible = b;
+                overrideToolStripMenuItem.Checked = true;
             }
             else
             {
                 overrideBox.Visible = false;
                 overrideButton.Visible = false;
+                overrideToolStripMenuItem.Checked = false;
             }
-            if (overrideOverallGradeToolStripMenuItem.Checked)
-            {
+          
                 overridecheckBox.Visible = b; //override overall grade
                 if (b && overridecheckBox.Checked)
                 {
                     Overriedlabel.Visible = true;
                     OverrideGradelabel.Visible = true;
                 }
-            }
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -3775,6 +3776,7 @@ namespace UltraMarker
             bool foundcriteria = false;
             bool foundsession = false;
             modSelect.Checked = false; //uncheck moderation checkbox
+            string gradestr = "  ";
 
             loading = true;
             try
@@ -4102,47 +4104,32 @@ namespace UltraMarker
                             label22.Visible = true;
                             label21.Visible = true;
                         }
+                        else if (str.StartsWith("Equivalent grade:"))
+                        {
+                            gradestr = str3;
+                        }
                         else if (str.StartsWith("ORG"))
                         {
                             if (str3 != null && str3.Length > 0)
+                            {                                
+                                overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+                                overridecheckBox.Checked = true;
+                                overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+
+                                OverrideGradelabel.Visible = true;
+                                OverrideGradelabel.Text = str3;
+                                Overriedlabel.Visible = true;
+
+                                overridecheckBox.Visible = true;
+                                overallGradelabel.Visible = false;
+                                overLabel.Visible = false;
+                                MessageBox.Show("Note: it was saved in 'Override Overall Grade' state");
+                            }
+                            else
                             {
-                                if (!overrideOverallGradeToolStripMenuItem.Checked)
-                                {
-                                    if ((MessageBox.Show("Warning: overall grade has been overridden - allow this Y/N?", "Warning",  MessageBoxButtons.YesNo) == DialogResult.Yes))
-                                    {
-                                        overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
-                                        overridecheckBox.Checked = true;
-                                        overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
-
-                                        OverrideGradelabel.Visible = true;
-                                        OverrideGradelabel.Text = str3;
-                                        Overriedlabel.Visible = true;
-                                        overrideOverallGradeToolStripMenuItem.Checked = true;
-                                        overridecheckBox.Visible = true;
-                                        overallGradelabel.Visible = false;
-                                        overLabel.Visible = false;
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Now start marking and save updated grade");
-                                        button4.ForeColor = Color.Red;
-                                        button4.Font = new Font(button4.Font, FontStyle.Bold);
-                                    }
-                                }
-                                else 
-                                {
-                                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
-                                    overridecheckBox.Checked = true;
-                                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
-
-                                    OverrideGradelabel.Visible = true;
-                                    OverrideGradelabel.Text = str3;
-                                    Overriedlabel.Visible = true;
-                                    overrideOverallGradeToolStripMenuItem.Checked = true;
-                                    overridecheckBox.Visible = true;
-                                    overallGradelabel.Visible = false;
-                                    overLabel.Visible = false;
-                                }
+                                overallGradelabel.Text = gradestr;
+                                overallGradelabel.Visible = true;
+                                overLabel.Visible = true;
                             }
                         }
 
@@ -6192,10 +6179,12 @@ namespace UltraMarker
                             else if (str.StartsWith("Allow grade override: true"))
                             {
                                 allowoverride = true;
+                                overrideToolStripMenuItem.Checked = true;
                             }
                             else if (str.StartsWith("Allow grade override: false"))
                             {
                                 allowoverride = false;
+                                overrideToolStripMenuItem.Checked = false;
                             }
 
                             else if (str.StartsWith("LO path:"))
@@ -11081,27 +11070,7 @@ namespace UltraMarker
             marksFolderbutton.Visible = markcheckBox.Checked;
         }
 
-        private void overrideOverallGradeToolStripMenuItem_Click(object sender, EventArgs e)
-        {           
-            if (MessageBox.Show("Allow override of overall grade Y/N?", "Allow Override of Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                //setOverrideOverall(true);
-                overrideOverallGradeToolStripMenuItem.Checked = true;
-            }
-            else
-            {
-                //setOverrideOverall(false);
-                overrideOverallGradeToolStripMenuItem.Checked = false;
-                overridecheckBox.Checked = false;
-            }
-        }
-        /*private void setOverrideOverall(bool O)
-        {
-            overrideOverallGradeToolStripMenuItem.Checked = O;
-            OverrideGradelabel.Visible = O;
-            Overriedlabel.Visible = O;
-            overridecheckBox.Visible = O;
-        }*/
+        
     }
     }
 
