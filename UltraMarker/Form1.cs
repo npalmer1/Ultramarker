@@ -1256,6 +1256,23 @@ namespace UltraMarker
             {
                 CriteriaPath = UnitFilePath;
             }*/
+            if (StudentcomboBox.Text.Trim().Length > 1)
+            {
+                if (MessageBox.Show("Clear form and load new assessment criteria Y/N?", "Clear Form", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    Clear_All_Form();
+                    StudentcomboBox.Enabled = true;
+                    StudentcomboBox.Text = "";
+                    /*if (button7.Text.StartsWith("Clear form"))
+                    {
+                        button7.Text = "Start Marking   ";
+                    }*/
+                }
+            }
             openFileDialog2.FileName = "";
             openFileDialog2.InitialDirectory = CriteriaPath;
             openFileDialog2.ShowDialog();
@@ -5450,6 +5467,43 @@ namespace UltraMarker
             //Feedback = textBox10.Text;
         }
 
+        private void Clear_All_Form() //see below
+        {
+            button4.ForeColor = Color.Black; //save button
+            button4.Font = new Font(button4.Font, FontStyle.Regular);
+            Markerlabel.Visible = false;
+            MarkertextBox.Visible = false;
+            Clear_Form_Data(false);
+
+            OverrideGradelabel.Visible = false;
+            Overriedlabel.Visible = false;
+            OverrideGradelabel.Text = "  ";
+
+            if (CriteriaSelectionType > 1)
+            {
+                Reset_Selected(true);
+                Change_Session_Selection();
+            }
+            //button1.Visible = false;
+            savedStudent = false;
+            button7.Text = "Start marking   ";
+            startMark = false;
+            button4.Visible = false;
+            button5.Visible = true;
+            button6.Visible = false;
+            //textBox10.Enabled = false;
+            addButton.Visible = false;
+            StudentcomboBox.Enabled = true;
+            overrideBox.Enabled = false;
+            ImportcheckBox.Visible = false;
+            importGroupBox.Visible = false;
+            importCalcLabel.Visible = false;
+            Clicklabel1.Visible = false;
+            overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
+            overridecheckBox.Checked = false; //stop overriding student grade
+            overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+        }
+
         private void button7_Click(object sender, EventArgs e)
         {
             //Clear the form or start marking button
@@ -5458,39 +5512,7 @@ namespace UltraMarker
                 DialogResult dialogResult = MessageBox.Show("This will delete form data (you should save your marks first) - do you wish to clear form Yes/No?", "Clear Form", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    button4.ForeColor = Color.Black; //save button
-                    button4.Font = new Font(button4.Font, FontStyle.Regular);
-                    Markerlabel.Visible = false;
-                    MarkertextBox.Visible = false;
-                    Clear_Form_Data(false);
-
-                    OverrideGradelabel.Visible = false;
-                    Overriedlabel.Visible = false;
-                    OverrideGradelabel.Text = "  ";
-
-                    if (CriteriaSelectionType > 1)
-                    {
-                        Reset_Selected(true);
-                        Change_Session_Selection();
-                    }
-                    //button1.Visible = false;
-                    savedStudent = false;
-                    button7.Text = "Start marking   ";
-                    startMark = false;
-                    button4.Visible = false;
-                    button5.Visible = true;
-                    button6.Visible = false;
-                    //textBox10.Enabled = false;
-                    addButton.Visible = false;
-                    StudentcomboBox.Enabled = true;
-                    overrideBox.Enabled = false;
-                    ImportcheckBox.Visible = false;
-                    importGroupBox.Visible = false;
-                    importCalcLabel.Visible = false;
-                    Clicklabel1.Visible = false;
-                    overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
-                    overridecheckBox.Checked = false; //stop overriding student grade
-                    overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+                    Clear_All_Form();
                 }
             }
             else
@@ -5569,7 +5591,9 @@ namespace UltraMarker
                 //assess.Code = "";
                 //assess.Weight = "";
 
-                label22.Text = "";
+                label22.Text = " ";
+                overallGradelabel.Text = "   ";
+                OverrideGradelabel.Text = "   ";
                 //Feedback = "";
                 label18.Text = "  ";
                 gradelbl.Text = "    ";
@@ -7181,7 +7205,7 @@ namespace UltraMarker
             if (dialogResult == DialogResult.Yes)
             {
                 Clear_All_Criteria(true);
-                Clear_Form_Data(false);
+                Clear_All_Form();
                 MaxSub = 20;
                 Reset_Selected(true); //clear selected criteria
 
