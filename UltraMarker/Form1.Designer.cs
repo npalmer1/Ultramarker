@@ -1300,11 +1300,11 @@
             // 
             // overrideButton
             // 
-            this.overrideButton.Location = new System.Drawing.Point(286, 561);
+            this.overrideButton.Location = new System.Drawing.Point(133, 563);
             this.overrideButton.Name = "overrideButton";
-            this.overrideButton.Size = new System.Drawing.Size(75, 23);
+            this.overrideButton.Size = new System.Drawing.Size(229, 23);
             this.overrideButton.TabIndex = 70;
-            this.overrideButton.Text = "Override%:";
+            this.overrideButton.Text = "Override grade for this criterion with%:";
             this.overrideButton.UseVisualStyleBackColor = true;
             this.overrideButton.Visible = false;
             this.overrideButton.Click += new System.EventHandler(this.overrideButton_Click);
@@ -1408,10 +1408,11 @@
             // label30
             // 
             this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label30.Location = new System.Drawing.Point(403, 580);
+            this.label30.Location = new System.Drawing.Point(404, 558);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(157, 15);
+            this.label30.Size = new System.Drawing.Size(174, 16);
             this.label30.TabIndex = 59;
             this.label30.Text = "Double click to select grade";
             this.label30.Visible = false;
@@ -2093,14 +2094,14 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
@@ -2111,7 +2112,7 @@
             this.normal1ToolStripMenuItem,
             this.coarse5ToolStripMenuItem});
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
@@ -2139,28 +2140,28 @@
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
-            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.overrideToolStripMenuItem.Text = "% Override";
             this.overrideToolStripMenuItem.Click += new System.EventHandler(this.overrideToolStripMenuItem_Click);
             // 
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -2170,7 +2171,7 @@
             this.commentsToolStripMenuItem1,
             this.calculateLinesToolStripMenuItem});
             this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
-            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.importCommentsToolStripMenuItem.Text = "Import Results";
             // 
             // commentsToolStripMenuItem1
@@ -2192,7 +2193,7 @@
             this.showGenAssessToolStripMenuItem.Checked = true;
             this.showGenAssessToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showGenAssessToolStripMenuItem.Name = "showGenAssessToolStripMenuItem";
-            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.showGenAssessToolStripMenuItem.Text = "Show Gen Assess";
             this.showGenAssessToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showGenAssessToolStripMenuItem_CheckedChanged);
             this.showGenAssessToolStripMenuItem.Click += new System.EventHandler(this.showGenAssessToolStripMenuItem_Click);
