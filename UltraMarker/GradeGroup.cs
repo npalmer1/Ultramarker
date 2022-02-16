@@ -119,41 +119,62 @@ namespace UltraMarker
         }
         private void ReplaceString(string str, string str2)
         {
-           
+            int i = 0;
+            
             try
             {
+                if (str == null || str.Trim().Length < 1)
+                { 
+                    return;
+                }
                 Clipboard.Clear();
                 //Clipboard clip;
                 if (str2 == null)
                 {
-                    str2 = "";
+                    str2 = " ";
                 }
-                int i = richTextBox1.Find(str);
+                 
+                str2 = str2.PadRight(str.Length);
+
+                //i = richTextBox1.Find(str,0,richTextBox1.Text.Length, RichTextBoxFinds.None);
+                //i = richTextBox1.Text.IndexOf(str);
+               
+                //i = richTextBox1.Rtf.IndexOf(str);
+                i = richTextBox1.Find(str, 0, RichTextBoxFinds.None);
                 if (i > -1)
                 {
-                    richTextBox1.Select(i, str.Length);
-
-                    //richTextBox1.Cut();
+                    richTextBox1.Select(i, str.Length);                                        
+                                                           
                     Clipboard.Clear();
                     if (str2.Length > 0)
                     {
                         Clipboard.SetText(str2);
                     }
-                    else { Clipboard.SetText(" "); }
-                    richTextBox1.Paste();                    
+                    else 
+                    { 
+                        Clipboard.SetText(" "); 
+                    }
+                  
+                    richTextBox1.Paste();
+                    richTextBox1.Modified = true;
                 }
             }
-            catch
+            catch (System.Exception excep)
             {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
         private void ModifyGeneratedForm()
         {
+            string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
+            richTextBox1.AppendText(padstring);
            
             richTextBox1.ReadOnly = false;
             //richTextBox1.Text = @"{\rtf1\ansi \paperw15840\paperh12240\margl1440\margr1440\margt1440\margb1440\gutter0\ltrsect " + richTextBox1.Text + "}";
 
             ReplaceString("%Institution%", Institution);
+            
             ReplaceString("%UnitTitle%", UnitTitle);
             ReplaceString("%UnitCode%", UnitCode);
             ReplaceString("%Level%", Level);
@@ -167,6 +188,7 @@ namespace UltraMarker
             catch { }
 
             ReplaceString("%Student%", student);
+            
             ReplaceString("%G1%", G[0]);    //grade
             ReplaceString("%G2%", G[1]);
             ReplaceString("%G3%", G[2]);
@@ -189,8 +211,10 @@ namespace UltraMarker
             ReplaceString("%Criteria6%", C[5]);
             ReplaceString("%Criteria7%", C[6]);
             ReplaceString("%Criteria8%", C[7]);
-            ReplaceString("%Criteria7%", C[8]);
-            ReplaceString("%Criteria8%", C[9]);
+            ReplaceString("%Criteria9%", C[8]);
+            ReplaceString("%Criteria10%", C[9]);
+            //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
+
 
             if (highlight || bold && !onlyTick)
             {
@@ -264,7 +288,7 @@ namespace UltraMarker
             ReplaceString("%CG32%", CG[1, 11]);
             ReplaceString("%CG33%", CG[1, 12]);
             ReplaceString("%CG34%", CG[1, 13]);
-           
+            
 
             ReplaceString("%CG41%", CG[2, 0]);
             ReplaceString("%CG42%", CG[2, 1]);
@@ -355,7 +379,7 @@ namespace UltraMarker
             ReplaceString("%CG152%", CG[7, 11]);
             ReplaceString("%CG153%", CG[7, 12]);
             ReplaceString("%CG154%", CG[7, 13]);
-
+            
             ReplaceString("%CrTitle1%", CT[0]);
             ReplaceString("%CrTitle2%", CT[1]);
             ReplaceString("%CrTitle3%", CT[2]);
@@ -390,6 +414,7 @@ namespace UltraMarker
             ReplaceString("%CrMark8%", CM[9]);
             ReplaceString("%CrComment1%", comment[0]);
             ReplaceString("%CrComment2%", comment[1]);
+            //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
             ReplaceString("%CrComment3%", comment[2]);
             ReplaceString("%CrComment4%", comment[3]);
             ReplaceString("%CrComment5%", comment[4]);
