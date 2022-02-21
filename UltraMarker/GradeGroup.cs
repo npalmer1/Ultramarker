@@ -167,9 +167,10 @@ namespace UltraMarker
         }
         private void ModifyGeneratedForm()
         {
+            //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
             string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
             richTextBox1.AppendText(padstring);
-           
+            
             richTextBox1.ReadOnly = false;
             //richTextBox1.Text = @"{\rtf1\ansi \paperw15840\paperh12240\margl1440\margr1440\margt1440\margb1440\gutter0\ltrsect " + richTextBox1.Text + "}";
 

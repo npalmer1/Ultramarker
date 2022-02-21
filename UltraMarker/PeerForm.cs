@@ -213,6 +213,8 @@ namespace UltraMarker
 
         private void ModifyPeerForm()
         {
+            string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
+            richTextBox1.AppendText(padstring);
             ReplaceString("%Institution%", Institution);
             ReplaceString("%UnitTitle%", UnitTitle);
             ReplaceString("%UnitCode%", UnitCode);
