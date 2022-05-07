@@ -65,9 +65,9 @@
             this.saveFileDialog3 = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog4 = new System.Windows.Forms.SaveFileDialog();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.overLabel = new System.Windows.Forms.Label();
             this.overallGradelabel = new System.Windows.Forms.Label();
-            this.ImportasCheckBox = new System.Windows.Forms.CheckBox();
             this.repCancelbutton4 = new System.Windows.Forms.Button();
             this.MarkertextBox = new System.Windows.Forms.TextBox();
             this.Markerlabel = new System.Windows.Forms.Label();
@@ -77,7 +77,6 @@
             this.Clicklabel1 = new System.Windows.Forms.Label();
             this.OverrideGradelabel = new System.Windows.Forms.Label();
             this.Overriedlabel = new System.Windows.Forms.Label();
-            this.importCalcLabel = new System.Windows.Forms.Label();
             this.importGroupBox = new System.Windows.Forms.GroupBox();
             this.ImpFilebutton = new System.Windows.Forms.Button();
             this.importFileBox = new System.Windows.Forms.TextBox();
@@ -748,9 +747,9 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage2.Controls.Add(this.checkedListBox1);
             this.tabPage2.Controls.Add(this.overLabel);
             this.tabPage2.Controls.Add(this.overallGradelabel);
-            this.tabPage2.Controls.Add(this.ImportasCheckBox);
             this.tabPage2.Controls.Add(this.repCancelbutton4);
             this.tabPage2.Controls.Add(this.MarkertextBox);
             this.tabPage2.Controls.Add(this.Markerlabel);
@@ -760,7 +759,6 @@
             this.tabPage2.Controls.Add(this.Clicklabel1);
             this.tabPage2.Controls.Add(this.OverrideGradelabel);
             this.tabPage2.Controls.Add(this.Overriedlabel);
-            this.tabPage2.Controls.Add(this.importCalcLabel);
             this.tabPage2.Controls.Add(this.importGroupBox);
             this.tabPage2.Controls.Add(this.ImportcheckBox);
             this.tabPage2.Controls.Add(this.gradeDirectioncheckBox);
@@ -856,6 +854,20 @@
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.CheckOnClick = true;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Items.AddRange(new object[] {
+            "Import sub-criteria weights",
+            "Import criteria weights"});
+            this.checkedListBox1.Location = new System.Drawing.Point(965, 263);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(225, 36);
+            this.checkedListBox1.TabIndex = 109;
+            this.checkedListBox1.Visible = false;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            // 
             // overLabel
             // 
             this.overLabel.AutoSize = true;
@@ -877,18 +889,6 @@
             this.overallGradelabel.TabIndex = 107;
             this.overallGradelabel.Text = "          ";
             this.overallGradelabel.Visible = false;
-            // 
-            // ImportasCheckBox
-            // 
-            this.ImportasCheckBox.AutoSize = true;
-            this.ImportasCheckBox.ForeColor = System.Drawing.Color.MediumBlue;
-            this.ImportasCheckBox.Location = new System.Drawing.Point(956, 271);
-            this.ImportasCheckBox.Name = "ImportasCheckBox";
-            this.ImportasCheckBox.Size = new System.Drawing.Size(91, 19);
-            this.ImportasCheckBox.TabIndex = 106;
-            this.ImportasCheckBox.Text = "Import as %";
-            this.ImportasCheckBox.UseVisualStyleBackColor = true;
-            this.ImportasCheckBox.Visible = false;
             // 
             // repCancelbutton4
             // 
@@ -999,17 +999,6 @@
             this.Overriedlabel.TabIndex = 97;
             this.Overriedlabel.Text = "Overrride overall grade:";
             this.Overriedlabel.Visible = false;
-            // 
-            // importCalcLabel
-            // 
-            this.importCalcLabel.AutoSize = true;
-            this.importCalcLabel.Location = new System.Drawing.Point(1098, 271);
-            this.importCalcLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.importCalcLabel.Name = "importCalcLabel";
-            this.importCalcLabel.Size = new System.Drawing.Size(102, 15);
-            this.importCalcLabel.TabIndex = 96;
-            this.importCalcLabel.Text = "Calculate by lines";
-            this.importCalcLabel.Visible = false;
             // 
             // importGroupBox
             // 
@@ -5181,7 +5170,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1151, 613);
+            this.ClientSize = new System.Drawing.Size(1168, 630);
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -5668,7 +5657,6 @@
         private System.Windows.Forms.ToolStripMenuItem importCommentsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commentsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem calculateLinesToolStripMenuItem;
-        internal System.Windows.Forms.Label importCalcLabel;
         private System.Windows.Forms.Button CopyGradesbutton;
         private System.Windows.Forms.ToolStripMenuItem showGenAssessToolStripMenuItem;
         private System.Windows.Forms.Label OverrideGradelabel;
@@ -5693,7 +5681,6 @@
         private System.Windows.Forms.Button repCancelbutton4;
         private System.Windows.Forms.ToolStripMenuItem replicateDescriptionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem replicateDescriptionToolStripMenuItem1;
-        private System.Windows.Forms.CheckBox ImportasCheckBox;
         private System.Windows.Forms.Button clearStudentlistbutton;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog2;
         private System.Windows.Forms.Label label105;
@@ -5706,6 +5693,7 @@
         private System.Windows.Forms.CheckBox markcheckBox;
         private System.Windows.Forms.Label overLabel;
         private System.Windows.Forms.Label overallGradelabel;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 

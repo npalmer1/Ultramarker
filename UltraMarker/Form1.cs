@@ -193,7 +193,7 @@ namespace UltraMarker
         string[,] crdesc = new string[MaxCriteria, MaxSub + 1];
         string[,] crLO = new string[MaxCriteria, MaxSub + 1];  //learning outcome
 
-        //int[, ,] crweight = new int[MaxCriteria, MaxSub + 1, MaxSessions];
+       
         float[,,] crweight = new float[MaxCriteria, MaxSub + 1, MaxSessions];
         bool[,] crsub = new bool[MaxCriteria, MaxSub + 1];
         //int[,] crpos = new int[MaxCriteria,2];
@@ -294,6 +294,9 @@ namespace UltraMarker
         bool platformlinux = false;
 
         bool readyToSave = false;
+
+        bool allowSubWeights = false;
+        bool allowCriteriaWeights = false;
 
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -3188,7 +3191,7 @@ namespace UltraMarker
             if (ImportcheckBox.Checked)
             {
                 importGroupBox.Visible = b;
-                importCalcLabel.Visible = b;
+                //importCalcLabel.Visible = b;
             }
             textBox10.Visible = b;
             Clicklabel1.Visible = b;
@@ -5504,7 +5507,7 @@ namespace UltraMarker
             overrideBox.Enabled = false;
             ImportcheckBox.Visible = false;
             importGroupBox.Visible = false;
-            importCalcLabel.Visible = false;
+            //importCalcLabel.Visible = false;
             Clicklabel1.Visible = false;
             overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
             overridecheckBox.Checked = false; //stop overriding student grade
@@ -5561,11 +5564,11 @@ namespace UltraMarker
                 StudentcomboBox.Enabled = false;
                 overrideBox.Enabled = true;
                 ImportcheckBox.Visible = true;
-                importCalcLabel.Visible = true;
+                //importCalcLabel.Visible = true;
                 if (ImportcheckBox.Checked)
                 {
                     importGroupBox.Visible = true;
-                    importCalcLabel.Visible = true;
+                    //importCalcLabel.Visible = true;
                 }
 
             }
@@ -6006,6 +6009,9 @@ namespace UltraMarker
                     sw.WriteLine("Gen template: " + templatetextBox.Text);
                     sw.WriteLine("Tick: " + highlightButton.Text);
                     sw.WriteLine("Marker: " + MarkertextBox.Text);
+
+                    sw.WriteLine("Import weights: " + GetImportWeightCheck());
+                    
                     sw.Close();
                 }
                 SaveGradeListbox();
@@ -6016,6 +6022,28 @@ namespace UltraMarker
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
+        }
+
+        private string GetImportWeightCheck()
+        {
+            string str = "";
+            if (allowSubWeights && allowCriteriaWeights)
+            {
+                str = "both";               
+            }
+            if (allowCriteriaWeights)
+            {
+                str = "criteria";
+            }
+            else if (allowSubWeights)
+            {
+                str = "sub";
+            }
+            else
+            {
+                str = "none";
+            }
+            return str;
         }
 
         private void SaveGradeListbox()
@@ -6383,12 +6411,12 @@ namespace UltraMarker
                                 if (str.Contains("true"))
                                 {
                                     CalculateImportbyLines = true;
-                                    importCalcLabel.Text = "Calculate by lines";
+                                    //importCalcLabel.Text = "Calculate by lines";
                                 }
                                 else
                                 {
                                     CalculateImportbyLines = false;
-                                    importCalcLabel.Text = "Calculate by %ages";
+                                    //importCalcLabel.Text = "Calculate by %ages";
                                 }
                             }
                             else if (str.StartsWith("Import comm"))
@@ -6423,6 +6451,10 @@ namespace UltraMarker
                             {
                                 string tmp = str.Substring(str.IndexOf("Marker:") + ("Marker:").Length);
                                 MarkertextBox.Text = tmp.Trim();
+                            }                            
+                            else if (str.StartsWith("Import weights: "))
+                            {
+                                ImportWeightCheck(str);
                             }
                         }
                         if (SessionType == 0)
@@ -6479,6 +6511,32 @@ namespace UltraMarker
 
 
 
+        }
+
+        private void ImportWeightCheck(string str)
+        {
+            if (str.Contains("both"))
+            {
+                allowSubWeights = true;
+                allowCriteriaWeights = true;               
+            }
+            else if (str.Contains("criteria"))
+            {
+                allowSubWeights = false;
+                allowCriteriaWeights = true;
+            }
+            else if (str.Contains("sub"))
+            {
+                allowSubWeights = true;
+                allowCriteriaWeights = false;               
+            }
+            else
+            {
+                allowSubWeights = false;
+                allowCriteriaWeights = false;               
+            }
+            checkedListBox1.SetItemChecked(0, allowSubWeights);
+            checkedListBox1.SetItemChecked(1, allowCriteriaWeights);
         }
 
         private void treeView2_BeforeSelect(object sender, TreeViewCancelEventArgs e)
@@ -10387,367 +10445,7 @@ namespace UltraMarker
             templatetextBox.Text = GenFileDialog.FileName;
         }
 
-        /*private void importFilebutton_Click(object sender, EventArgs e)
-        {
-            if (EditStudent && startMark)
-            {
-                Clear_Form_Data(true); //just clear commetns and marks
-                importFromFile(importFileBox.Text);
-            }
-            else
-            {
-                MessageBox.Show("Need to start marking first");
-            }
-        }
-        */
-        private void importFromFile(string filename)    //import reults from an external file
-        { //starts with marked file: and ends with contains percent:
-            string str = "";
-            string str3 = "";
-            string str2 = "";
-            double PCent = 0.0;
-            double pc = 0.0;
-            bool ok = true;
-            int cr = 0;
-            int task = 0; //current task
-
-            const int maxlines = 500; //max lines in imported file
-            int[] tasklinescorrect = new int[maxlines]; //counter for current no. correct lines for task
-            int[] tasklinestotal = new int[maxlines];  //counter for current total lines for task
-            double subtotal = 0; //current no.sub-crietria (for tasks)
-            int taskNo = 0; //number of tasks overall
-            int prevTaskNo = 0; //previous task number
-            int prevCriteria = 0;
-            int mf = 0;
-            int Lc = 0;
-            int Lf = 0;
-            bool found1 = false;
-            bool found2 = false;
-            bool found3 = false;
-            const int maximportableCriteria = 10;
-            int[] criterias = new int[maximportableCriteria];
-            double[] sumpc = new double[maximportableCriteria];
-            int[] numpc = new int[maximportableCriteria];
-            int[] linesC = new int[maximportableCriteria];
-            int[] linesT = new int[maximportableCriteria];
-            int totallines = 0;
-            int crnum = 0;
-            int criteriaTasks = 0; //number of tasks for each criterion (reset each criterion)
-            for (int a = 0; a < maximportableCriteria; a++)    //null the criteria counter array
-            {
-                sumpc[a] = 0.0;
-                numpc[a] = 0;
-                criterias[a] = 0;
-                linesC[a] = 0;
-                linesT[a] = 0;
-            }
-            if (File.Exists(filename))
-            {
-                try
-                {
-                    using (StreamReader rw = new StreamReader(filename))
-                    {
-                        while (!rw.EndOfStream)
-                        {
-                            str = rw.ReadLine();
-                            if (str.StartsWith("Overall lines:"))
-                            {
-                                str3 = str.Substring(0, "Overall lines:".Length).Trim();
-                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
-                                totallines = ExtractfromSlash(str2, false); //find total (X/totallines)
-                            }
-                        }
-                        rw.Close();
-                    }
-                }
-                catch { MessageBox.Show("Problem reading total lines"); }
-                try
-                {
-                    using (StreamReader rw = new StreamReader(filename))
-                    {
-                        while (!rw.EndOfStream)
-                        {
-
-                            str = rw.ReadLine();
-                            if (str.StartsWith("Criteria:")) //select criteria to import to (starts from 1)
-                            {
-                                str3 = str.Substring(0, "Criteria:".Length).Trim();
-                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
-                                cr = Convert.ToInt32(str2);
-                                cr--; //zeroise it
-                                if (cr < 0 || cr > CritZ+1) //if criteria read from file exceeds number of criteria in Ultramarker
-                                {
-                                    MessageBox.Show("Criteria value does not match criteria in Ultramarker");
-                                    ok = false;
-                                }
-                                else
-                                {
-                                    ok = true;
-                                    found1 = true;
-                                    //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr];
-                                }
-                                
-
-                                
-                                //if (taskNo > prevTaskNo)   //have found criteria and tasks already
-                                if (cr > prevCriteria)  //have found previous criteria and taskjs already
-                                {
-                                    //create totals for sub-criteria
-                                    prevTaskNo = taskNo;
-                                    subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
-                                    int temp = Convert.ToInt32(subtotal * 100);
-                                    overrideBox.Text = temp.ToString();
-                                    for (int t = 0; t== criteriaTasks; t++)
-                                    {
-                                        Marks[cr, t, Session] = overrideBox.Text; //this is the previous criteria                                        
-                                    }
-                                    criteriaTasks = 0;
-                                    prevCriteria = cr;
-                                    criterias[cr] = cr;
-                                }
-                                
-
-
-                            }
-                            else if (str.StartsWith("Task:"))
-                            {
-                                try
-                                {
-
-                                    int dot = str.IndexOf(".");
-                                    str2 = str.Substring(5, dot - 5).Trim();  //find the task number
-                                    //prevtask = task;                                    
-                                    task = Convert.ToInt32(str2);
-
-                                    if (task > -1)  //tasks must start from ZERO
-                                    {
-                                        if (task > criteriaTasks)
-                                        {
-
-                                            criteriaTasks++;
-                                        }
-                                        if (task > taskNo)
-                                        {                                           
-                                            
-                                                //create totals for sub-criteria - update total fgor pervious task
-                                            
-                                            taskNo++;  //total global number of tasks
-
-
-                                        }
-                                        
-                                        if (AllowImpComment)
-                                        {
-
-                                            if (criteriaTasks == MaxSub)
-                                            {
-                                                MessageBox.Show("Warning: more tasks than maximum allowable sub-criteria");
-                                            }
-                                            else
-                                            {
-                                                //if a task put into sub-criteria
-                                                //crComment[cr, task - 1, 0] = crComment[cr, task - 1, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
-                                                crComment[cr, task, 0] = crComment[cr, task, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
-                                            }
-                                        }
-                                        if (str.Contains("Command:"))
-                                        {
-                                            tasklinescorrect[task]++;
-                                            tasklinestotal[task]++;
-                                        }
-                                        else if (str.Contains("NOT Found:"))
-                                        {
-                                            tasklinestotal[task]++;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        //task is 0 so just show comments
-                                        if (AllowImpComment)
-                                        {
-                                            crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
-                                        }
-
-
-                                    }
-
-                                }
-                                catch { }
-                            }
-                            else if (str.Contains("Lines correct:") && ok) //select criteria to import to
-                            {
-                                str3 = str.Substring(str.IndexOf("Lines correct:") + "Lines correct:".Length).Trim();
-                                Lc = ExtractfromSlash(str3, true); //get lines correct
-                                Lf = ExtractfromSlash(str3, false); //get lines total from this file
-                                found2 = true;
-                            }
-                            else if (str.Contains("Percentage:") && ok) //select criteria to import to
-                            {
-                                try
-                                {
-                                    str3 = str.Substring(str.IndexOf("Percentage:") + "Percentage:".Length).Trim();
-                                    pc = Convert.ToDouble(str3);
-                                    //PCent = Convert.ToInt32(pc);
-                                    for (int a = 0; a < maximportableCriteria; a++)
-                                    {
-                                        found3 = true;
-
-                                        if (criterias[a] == cr)
-                                        {
-                                            sumpc[a] = sumpc[a] + pc; //sum of percents for this criteria
-                                            linesC[a] = linesC[a] + Lc; //total lines correct this criteria
-                                            linesT[a] = linesT[a] + Lf; //out of total lines in files for this criteria
-                                            numpc[a]++; //number of percents this criteria
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            if (numpc[a] == 0)
-                                            {
-                                                criterias[a] = cr;
-                                                sumpc[a] = pc;
-                                                linesC[a] = Lc;
-                                                linesT[a] = Lf;
-                                                numpc[a]++;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                    //overrideBox.Text = PCent;
-                                    //overridegrade(); // put percentage reult in the override box and update mark
-                                }
-                                catch
-                                {
-                                    MessageBox.Show("Percentage value error");
-                                }
-                            }
-                            else if (str.StartsWith("Overall lines".Trim()))
-                            {
-                                //don't save o/a lines here
-                            }
-                            
-                            else if (str.StartsWith("Overall Result".Trim()))
-                            {
-                                //ignore this line
-                                //if last criteria of more than one:
-                                if (cr > prevCriteria || cr == 0)  //have found previous criteria and tasks already
-                                {
-                                    //create totals for sub-criteria
-                                    prevTaskNo = taskNo;
-                                    subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
-                                    int temp = Convert.ToInt32(subtotal * 100);
-                                    overrideBox.Text = temp.ToString();
-                                    for (int t = 0; t == criteriaTasks; t++)
-                                    {
-                                        Marks[cr, t, Session] = overrideBox.Text; //this is the previous criteria                                        
-                                    }
-                                    criteriaTasks = 0;
-                                    prevCriteria = 0;
-
-                                }
-                            }
-                            else
-                            {
-                                if (AllowImpComment)
-                                {
-                                    //doesn't start with "task:" >0 so output
-                                    crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
-
-                                    /* if (str.StartsWith("Marked file"))
-                                     {
-                                         mf++;                                                                               
-                                     }*/
-                                }
-                            }
-                        }
-                        rw.Close();
-                    }
-                    if (!found1 || !found2 || !found3)
-                    {
-                        MessageBox.Show("Input file not in correct format - see help");
-                        return;
-                    }
-                    ok = false;
-                    /*
-                    if (task == taskNo)
-                    {
-                        //if only one (0) task:
-                        subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
-                        int temp = Convert.ToInt32(subtotal * 100);
-                        overrideBox.Text = temp.ToString();
-                        for (int t = criteriaTasks; t > 0; t--)
-                        {
-                            Marks[cr - 1, t - 1, Session] = overrideBox.Text; //this is the previous criteria                            
-                        }                        
-                    }
-                    */
-                    for (int a = 0; a < cr+1; a++)
-                    {
-                        cr = criterias[a];
-                        if (cr > -1 && cr < maximportableCriteria)
-                        {
-                            try
-                            {
-                                if (CalculateImportbyLines) //weight according to lines in files for this criteria - this is the default!
-                                { //eg. if file 1 has 10 lines and file 2 has 20 and file 1 scores 5/10 and file 2 15/20 then overall score is 20/30 = 67%
-                                    pc = (Convert.ToDouble(linesC[a]) / Convert.ToDouble(linesT[a])) * 100;
-                                    PCent = Convert.ToInt32(pc);
-                                }
-                                else //weight evenly between percentages for each file, eg. if file 1 has 30% and file 2 60% then 90/2 = 45% overall
-                                {
-                                    pc = Convert.ToDouble(sumpc[a]) / Convert.ToDouble(numpc[a]); //calculate overall percent
-                                    PCent = Convert.ToInt32(pc);
-                                }
-                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
-                                int ncount = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false);
-                                if (ncount > 0)
-                                {
-                                    //sub-criteria
-                                    for (int n = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); n > 0; n--)
-                                    {
-                                        treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr].Nodes[n - 1];
-                                        overrideBox.Text = Marks[cr, n - 1, Session];
-                                        if (ImportasCheckBox.Checked)
-                                        {
-                                            overridegrade(); //overide the grade for this criteria - not used!!
-                                        }
-                                        else
-                                        {
-                                            showGrade(overrideBox.Text, n - 1);
-                                        }
-                                    }
-
-                                }
-                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
-                                overrideBox.Text = PCent.ToString(); //put new percentage in override box
-                                if (ImportasCheckBox.Checked)
-                                {
-                                    overridegrade(); //overide the grade for this criteria
-                                }
-                                else
-                                {
-                                    showGrade(overrideBox.Text, MaxSub);
-                                }
-                                //crComment[cr, MaxSub, 0]
-                            }
-                            catch {
-                                MessageBox.Show("Error in import");
-                            }
-                        }
-                    }
-                    MessageBox.Show("Import appears succesful");
-                }
-                catch
-                {
-                    MessageBox.Show("Error occurred");
-                    
-                }
-            }
-            else
-            {
-                MessageBox.Show("File does not exist");
-            }
-        }
+        
 
         private void importFromFileNew(string filename)    //import reults from an external file - new version
         { //starts with marked file: and ends with contains percent:
@@ -10767,32 +10465,31 @@ namespace UltraMarker
             int taskNo = 0; //number of tasks overall
             int prevTaskNo = 0; //previous task number
             int prevCriteria = 0;
-            
+
+            double criteriaTaskTotal = 0;                       
            
             const int maximportableCriteria = 10;
+            double[] perCriteriatasktotal = new double[maximportableCriteria];
             int[] criterias = new int[maximportableCriteria];
+
             double[] sumpc = new double[maximportableCriteria];
             int[] numpc = new int[maximportableCriteria];
             int[] linesC = new int[maximportableCriteria];
             int[] linesT = new int[maximportableCriteria];
+
+            int[] tasksperCriteria = new int[maximportableCriteria];
            
             int nodecount = 0;
             bool first1 = true;
 
-            bool allowsubs = false;
-            int[] tasksperCriteria = new int[maximportableCriteria];
+            
+            double Criteriatasklinestotal = 0;
+
 
             int criteriaTasks = 0; //number of tasks for each criterion (reset each criterion)
             
             nodecount = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); //find number of sub-criteria
-            if (nodecount > 0)
-            {
-                allowsubs = true;
-            }
-            else
-            {
-                allowsubs = false;
-            }
+           
             if (File.Exists(filename))
             {
                 label22.Text = "  ";
@@ -10827,8 +10524,17 @@ namespace UltraMarker
 
                                 if (cr > prevCriteria)  //have found previous criteria and taskjs already
                                 {
+                                    for (int t = 0; t < criteriaTasks+1; t++)
+                                    {
+                                        Criteriatasklinestotal = Criteriatasklinestotal + tasklinestotal[t];
+                                    }
+                                    perCriteriatasktotal[prevCriteria] = Criteriatasklinestotal;    //record total lines per criteria
+                                    //criteriaTaskTotal = criteriaTaskTotal + perCriteriatasktotal[cr];
+
                                     for (int crtask = 0; crtask < criteriaTasks+1; crtask++)
                                     {
+                                        
+                                        
                                         double tot = Convert.ToDouble(tasklinescorrect[crtask]) / Convert.ToDouble(tasklinestotal[crtask]);
                                         string totS = Convert.ToString(tot*100);
                                         string s = findGrade(totS);
@@ -10836,6 +10542,13 @@ namespace UltraMarker
                                         if (nodecount == 0)
                                         {
                                             crtask = MaxSub;
+                                        }
+                                        else
+                                        {
+                                            if (allowSubWeights)
+                                            {
+                                                adjustsubWeights(prevCriteria, crtask, tasklinestotal[crtask], Criteriatasklinestotal);
+                                            }
                                         }
                                         Marks[prevCriteria, crtask, Session] = s; //this is the previous criteria
                                         tasklinescorrect[crtask] = 0;
@@ -10847,6 +10560,7 @@ namespace UltraMarker
                                     prevTaskNo = taskNo;
 
                                     criteriaTasks = 0; //number of tasks in criteria
+                                    Criteriatasklinestotal = 0; //total task lines in criteria
                                     prevCriteria = cr;
 
 
@@ -10902,11 +10616,14 @@ namespace UltraMarker
                                         {
                                             tasklinescorrect[task] = tasklinescorrect[task] + M;
                                             tasklinestotal[task] = tasklinestotal[task] + M;
+                                            
                                         }
                                         else if (str.Contains("NOT found"))
-                                        {                                            
+                                        {
                                             tasklinestotal[task] = tasklinestotal[task] + M;
+                                            
                                         }
+                                        
 
 
                                         if (task > criteriaTasks)
@@ -10935,8 +10652,19 @@ namespace UltraMarker
                             }
                             else if (str.StartsWith("Overall Result"))
                             {
+                                for (int t = 0; t < criteriaTasks+1; t++)
+                                {
+                                    Criteriatasklinestotal = Criteriatasklinestotal + tasklinestotal[t];
+                                }
+                                perCriteriatasktotal[cr] = Criteriatasklinestotal;    //record total lines per criteria
+                                for (int c = 0; c < cr + 1; c++)
+                                {
+                                    criteriaTaskTotal = criteriaTaskTotal + perCriteriatasktotal[c];
+                                }
+
                                 for (int crtask = 0; crtask < criteriaTasks+1; crtask++)
                                 {
+                                    
                                     double tot = Convert.ToDouble(tasklinescorrect[crtask]) / Convert.ToDouble(tasklinestotal[crtask]);
                                     string totS = Convert.ToString(tot *100);
                                     string s = findGrade(totS);
@@ -10945,8 +10673,24 @@ namespace UltraMarker
                                     {
                                         crtask = MaxSub; //no sub-criteria
                                     }
+                                    else
+                                    {
+                                        if (allowSubWeights)
+                                        {
+                                            adjustsubWeights(cr, crtask, tasklinestotal[crtask], Criteriatasklinestotal);
+                                        }
+                                    }
                                     Marks[cr, crtask, Session] = s; //this is the final criteria
                                 }
+                                if (allowCriteriaWeights)
+                                {
+                                    for (int ct = 0; ct < cr + 1; ct++)
+                                    {
+                                        adjustCriteriaWeights(ct, perCriteriatasktotal[ct], criteriaTaskTotal);
+                                    }
+                                }
+                                
+                                Criteriatasklinestotal = 0;
                                 tasksperCriteria[cr] = criteriaTasks;
                             }
                         }
@@ -10997,6 +10741,19 @@ namespace UltraMarker
                 MessageBox.Show("File does not exist");
             }
         }
+        private void adjustsubWeights(int crit, int crtask, int tasklines, double criteriaTT)
+        {
+            int s = Session;        //adjust weights to task lines
+            crweight[crit, crtask, s] = ((float)tasklines / (float)criteriaTT) * 100;
+            comboBox3.Text = Convert.ToString(crweight[crit, crtask, s]);
+
+        }
+        private void adjustCriteriaWeights(int Criteria, double critot, double crf)
+        {
+            double crTot = (critot / crf) * 100;
+            crweight[Criteria, MaxSub, Session] = (float)crTot;
+        }
+
         private int ExtractfromSlash(string str, bool leftof)
         {
 
@@ -11029,16 +10786,18 @@ namespace UltraMarker
             if (ImportcheckBox.Checked && ImportcheckBox.Visible)
             {
                 importGroupBox.Visible = true;
-                importCalcLabel.Visible = true;
+                //importCalcLabel.Visible = true;
                 //ImportasCheckBox.Visible = true;
+                checkedListBox1.Visible = true;
 
             }
             else
             {
                 importGroupBox.Visible = false;
-                importCalcLabel.Visible = false;
-                ImportasCheckBox.Visible = false;
+                //importCalcLabel.Visible = false;
+                //ImportasCheckBox.Visible = false;
                 importFilebutton.Visible = false;
+                checkedListBox1.Visible = false;
             }
         }
 
@@ -11100,12 +10859,12 @@ namespace UltraMarker
             if (dialogResult == DialogResult.Yes)
             {
                 CalculateImportbyLines = true;
-                importCalcLabel.Text = "Calculate by lines";
+                //importCalcLabel.Text = "Calculate by lines";
             }
             else
             {
                 CalculateImportbyLines = false;
-                importCalcLabel.Text = "Calculate by %ages";
+                //importCalcLabel.Text = "Calculate by %ages";
             }
         }
 
@@ -11391,7 +11150,22 @@ namespace UltraMarker
             marksFolderbutton.Visible = markcheckBox.Checked;
         }
 
-        
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            allowSubWeights = false;
+            allowCriteriaWeights = false;
+            foreach (int indexChecked in checkedListBox1.CheckedIndices)
+            {
+                if (indexChecked == 0)
+                {
+                    allowSubWeights = true;
+                }
+                if (indexChecked == 1)
+                {
+                    allowCriteriaWeights = true;
+                }
+            }
+        }
     }
     }
 
