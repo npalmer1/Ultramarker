@@ -6031,11 +6031,11 @@ namespace UltraMarker
             {
                 str = "both";               
             }
-            if (allowCriteriaWeights)
+            else if (allowCriteriaWeights && !allowSubWeights)
             {
                 str = "criteria";
             }
-            else if (allowSubWeights)
+            else if (allowSubWeights && !allowCriteriaWeights)
             {
                 str = "sub";
             }
@@ -6530,7 +6530,7 @@ namespace UltraMarker
                 allowSubWeights = true;
                 allowCriteriaWeights = false;               
             }
-            else
+            else  //none
             {
                 allowSubWeights = false;
                 allowCriteriaWeights = false;               
@@ -10452,8 +10452,7 @@ namespace UltraMarker
             string str = "";
             string str3 = "";
             string str2 = "";
-            double PCent = 0.0;
-            double pc = 0.0;
+           
             bool ok = true;
             int cr = 0;
             int task = 0; //current task
@@ -10726,9 +10725,22 @@ namespace UltraMarker
                     catch
                     {
                         MessageBox.Show("Error in import");
-                    }                                        
-                    
-                    MessageBox.Show("Import appears succesful");
+                    }
+                    if (allowCriteriaWeights || allowSubWeights)
+                    {
+                        DialogResult res = MessageBox.Show("Import file and weights success - stop importing weights (y/n)?", "Import success", MessageBoxButtons.YesNo);
+                        if (res == DialogResult.Yes)
+                        {
+                            allowCriteriaWeights = false;
+                            allowSubWeights = false;
+                            checkedListBox1.SetItemChecked(0, allowSubWeights);
+                            checkedListBox1.SetItemChecked(1, allowCriteriaWeights);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Import appears succesful","Import");
+                    }
                 }
                 catch
                 {
