@@ -10480,7 +10480,8 @@ namespace UltraMarker
            
             int nodecount = 0;
             bool first1 = true;
-
+            int umcount = 0;
+            bool umfound = false;
             
             double Criteriatasklinestotal = 0;
 
@@ -10502,6 +10503,16 @@ namespace UltraMarker
                         {
 
                             str = rw.ReadLine();
+                            umcount++;
+                            if (str.Contains("Ultramarker Export") )
+                            {
+                                umfound = true;                                
+                            }
+                            if (umcount >4 && !umfound)
+                            {
+                                MessageBox.Show("Appears to be Invalid Ultramarker import file format");
+                                return;
+                            }
                             if (str.StartsWith("Criteria:")) //select criteria to import to (starts from 1)
                             {
                                 first1 = true; //check message about need for sub-criteria
