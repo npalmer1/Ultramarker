@@ -10458,8 +10458,8 @@ namespace UltraMarker
             int task = 0; //current task
 
             const int maxlines = 500; //max lines in imported file
-            int[] tasklinescorrect = new int[maxlines]; //counter for current no. correct lines for task
-            int[] tasklinestotal = new int[maxlines];  //counter for current total lines for task
+            double[] tasklinescorrect = new double[maxlines]; //counter for current no. correct lines for task
+            double[] tasklinestotal = new double[maxlines];  //counter for current total lines for task
             
             int taskNo = 0; //number of tasks overall
             int prevTaskNo = 0; //previous task number
@@ -10591,7 +10591,7 @@ namespace UltraMarker
                             {
                                 try
                                 {
-                                    int M = 1;
+                                    double M = 1;
                                    
                                     if (str.Contains("■"))
                                     {
@@ -10634,9 +10634,16 @@ namespace UltraMarker
 
                                         if (str.Contains("Command:"))
                                         {
-                                            tasklinescorrect[task] = tasklinescorrect[task] + M;
+                                            if (str.Contains("partially correct:"))
+                                            {
+                                                tasklinescorrect[task] = tasklinescorrect[task] + M/2;                                               
+                                            }
+                                            else
+                                            {
+                                                tasklinescorrect[task] = tasklinescorrect[task] + M;                                                
+                                            }
                                             tasklinestotal[task] = tasklinestotal[task] + M;
-                                            
+
                                         }
                                         else if (str.Contains("NOT found"))
                                         {
@@ -10782,7 +10789,7 @@ namespace UltraMarker
                 MessageBox.Show("File does not exist");
             }
         }
-        private void adjustsubWeights(int crit, int crtask, int tasklines, double criteriaTT)
+        private void adjustsubWeights(int crit, int crtask, double tasklines, double criteriaTT)
         {
             int s = Session;        //adjust weights to task lines
             crweight[crit, crtask, s] = ((float)tasklines / (float)criteriaTT) * 100;
