@@ -10484,6 +10484,7 @@ namespace UltraMarker
             bool umfound = false;
             
             double Criteriatasklinestotal = 0;
+            double Criteriatasklinescorrect = 0;
 
 
             int criteriaTasks = 0; //number of tasks for each criterion (reset each criterion)
@@ -10537,11 +10538,18 @@ namespace UltraMarker
                                     for (int t = 0; t < criteriaTasks+1; t++)
                                     {
                                         Criteriatasklinestotal = Criteriatasklinestotal + tasklinestotal[t];
+                                        Criteriatasklinescorrect = Criteriatasklinescorrect + tasklinescorrect[t];
                                     }
+                                    string CrTotalStr = "Criteria " + prevCriteria + " Total: " + Criteriatasklinescorrect.ToString() + "/" + Criteriatasklinestotal.ToString();
+                                    if (AllowImpComment)
+                                    {
+                                        crComment[prevCriteria, MaxSub, Session] = CrTotalStr;
+                                    }
+
                                     perCriteriatasktotal[prevCriteria] = Criteriatasklinestotal;    //record total lines per criteria
                                     //criteriaTaskTotal = criteriaTaskTotal + perCriteriatasktotal[cr];
 
-                                    for (int crtask = 0; crtask < criteriaTasks+1; crtask++)
+                                    for (int crtask = 0; crtask < criteriaTasks+1; crtask++)    //calculate marks for4 each task
                                     {
                                         
                                         
@@ -10571,6 +10579,7 @@ namespace UltraMarker
 
                                     criteriaTasks = 0; //number of tasks in criteria
                                     Criteriatasklinestotal = 0; //total task lines in criteria
+                                    Criteriatasklinescorrect = 0;
                                     prevCriteria = cr;
 
 
@@ -10668,6 +10677,12 @@ namespace UltraMarker
                                 for (int t = 0; t < criteriaTasks+1; t++)
                                 {
                                     Criteriatasklinestotal = Criteriatasklinestotal + tasklinestotal[t];
+                                    Criteriatasklinescorrect = Criteriatasklinescorrect + tasklinescorrect[t];
+                                }
+                                string CrTotalStr = "Criteria " + prevCriteria + " Total: " + Criteriatasklinescorrect.ToString() + "/" + Criteriatasklinestotal.ToString();
+                                if (AllowImpComment)
+                                {
+                                    crComment[prevCriteria, MaxSub, Session] = CrTotalStr;
                                 }
                                 perCriteriatasktotal[cr] = Criteriatasklinestotal;    //record total lines per criteria
                                 for (int c = 0; c < cr + 1; c++)
@@ -10841,7 +10856,8 @@ namespace UltraMarker
         private void ImportFileDialog_FileOk(object sender, CancelEventArgs e)
         {
             importFileBox.Text = ImportFileDialog.FileName;
-            ImportFilePath = importFileBox.Text;
+            
+            ImportFilePath = Path.GetDirectoryName(importFileBox.Text);
             importFilebutton.Visible = true;
             startImport();
 
