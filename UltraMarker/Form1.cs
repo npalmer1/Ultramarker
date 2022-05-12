@@ -10583,11 +10583,12 @@ namespace UltraMarker
                                 try
                                 {
                                     int M = 1;
+                                   
                                     if (str.Contains("■"))
                                     {
                                         try
-                                        {
-                                            string Mstr = str.Substring(str.IndexOf("■")+1);
+                                        {                                           
+                                            string Mstr = str.Substring(str.IndexOf("■") + 1);
                                             Mstr = Mstr.Trim(); //any marks weight for this line?
                                             if (Mstr.StartsWith("M"))
                                             {
@@ -10651,7 +10652,9 @@ namespace UltraMarker
                                             }
                                             else
                                             {
-                                                crComment[cr, task, 0] = crComment[cr, task, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                                string[] CStr = new string[5];
+                                                CStr = str.Split('■');                                                
+                                                crComment[cr, task, 0] = crComment[cr, task, 0] + CStr[0] + Environment.NewLine; //comment for criteria, and subcriteria and one session only allowed
                                             }
                                         }
 
