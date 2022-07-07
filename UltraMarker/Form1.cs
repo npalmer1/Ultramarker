@@ -3191,6 +3191,7 @@ namespace UltraMarker
             if (ImportcheckBox.Checked)
             {
                 importGroupBox.Visible = b;
+                checkedListBox1.Visible = b;
                 //importCalcLabel.Visible = b;
             }
             textBox10.Visible = b;
@@ -10557,6 +10558,7 @@ namespace UltraMarker
                                         string totS = Convert.ToString(tot*100);
                                         string s = findGrade(totS);
                                         nodecount = treeView2.Nodes[0].Nodes[prevCriteria].GetNodeCount(false); //find number of sub-criteria
+                                        int ttask = crtask;
                                         if (nodecount == 0)
                                         {
                                             crtask = MaxSub;
@@ -10569,8 +10571,8 @@ namespace UltraMarker
                                             }
                                         }
                                         Marks[prevCriteria, crtask, Session] = s; //this is the previous criteria
-                                        tasklinescorrect[crtask] = 0;
-                                        tasklinestotal[crtask] = 0;
+                                        tasklinescorrect[ttask] = 0; //zeroise task totals (lines and lines correct)
+                                        tasklinestotal[ttask] = 0;
                                     }
                                     //zero tasks for sub-crietria criteria - new criteria for4 ewach device or host
                                     tasksperCriteria[cr] = criteriaTasks;
@@ -11207,7 +11209,15 @@ namespace UltraMarker
             {
                 if (indexChecked == 0)
                 {
-                    allowSubWeights = true;
+                    
+                    if (treeView2.Nodes[0].Nodes.Count > 0)
+                    {
+                        allowSubWeights = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No sub-criteria to import to");
+                    }
                 }
                 if (indexChecked == 1)
                 {
