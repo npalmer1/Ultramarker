@@ -392,7 +392,7 @@ namespace UltraMarker
 
             if (emailaddress.Length > 0)
             {
-                //CreateMailItem(); //no longer supported
+                CreateMailItem();
             }
             else
             {
@@ -400,7 +400,6 @@ namespace UltraMarker
             }
         }
 
-        /* //no longer supported due to .NET compatibility support:
         private void CreateMailItem()
         {
             string nl = System.Environment.NewLine;
@@ -409,7 +408,7 @@ namespace UltraMarker
                 //Outlook.MailItem mailItem = (Outlook.MailItem)
                 // this.Application.CreateItem(Outlook.OlItemType.olMailItem);
                 Microsoft.Office.Interop.Outlook.Application app = new Microsoft.Office.Interop.Outlook.Application();
-                Microsoft.Office.Interop.Outlook.MailItem mailItem = (Microsoft.Office.Interop.Outlook.MailItem)app.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
+                Microsoft.Office.Interop.Outlook.MailItem mailItem = app.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem);
                 mailItem.Attachments.Add(attachfile);
                 mailItem.Subject = "Feedback report for " + unitTitle + "," + assessTitle;
                 mailItem.To = emailaddress;
@@ -425,7 +424,6 @@ namespace UltraMarker
                 MessageBox.Show(ex.Message);
             }
         }
-        */
 
         private void reportForm_FormClosed(object sender, FormClosedEventArgs e)
         {

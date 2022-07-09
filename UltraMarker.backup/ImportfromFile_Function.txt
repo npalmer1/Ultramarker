@@ -1,0 +1,348 @@
+ private void importFromFile(string filename)    //import reults from an external file
+        { //starts with marked file: and ends with contains percent:
+            string str = "";
+            string str3 = "";
+            string str2 = "";
+            double PCent = 0.0;
+            double pc = 0.0;
+            bool ok = true;
+            int cr = 0;
+            int task = 0; //current task
+
+            const int maxlines = 500; //max lines in imported file
+            int[] tasklinescorrect = new int[maxlines]; //counter for current no. correct lines for task
+            int[] tasklinestotal = new int[maxlines];  //counter for current total lines for task
+            double subtotal = 0; //current no.sub-crietria (for tasks)
+            int taskNo = 0; //number of tasks overall
+            int prevTaskNo = 0; //previous task number
+            int prevCriteria = 0;
+            int mf = 0;
+            int Lc = 0;
+            int Lf = 0;
+            bool found1 = false;
+            bool found2 = false;
+            bool found3 = false;
+            const int maximportableCriteria = 10;
+            int[] criterias = new int[maximportableCriteria];
+            double[] sumpc = new double[maximportableCriteria];
+            int[] numpc = new int[maximportableCriteria];
+            int[] linesC = new int[maximportableCriteria];
+            int[] linesT = new int[maximportableCriteria];
+            int totallines = 0;
+            int crnum = 0;
+            int criteriaTasks = 0; //number of tasks for each criterion (reset each criterion)
+            for (int a = 0; a < maximportableCriteria; a++)    //null the criteria counter array
+            {
+                sumpc[a] = 0.0;
+                numpc[a] = 0;
+                criterias[a] = 0;
+                linesC[a] = 0;
+                linesT[a] = 0;
+            }
+            if (File.Exists(filename))
+            {
+                try
+                {
+                    using (StreamReader rw = new StreamReader(filename))
+                    {
+                        while (!rw.EndOfStream)
+                        {
+                            str = rw.ReadLine();
+                            if (str.StartsWith("Overall lines:"))
+                            {
+                                str3 = str.Substring(0, "Overall lines:".Length).Trim();
+                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
+                                totallines = ExtractfromSlash(str2, false); //find total (X/totallines)
+                            }
+                        }
+                        rw.Close();
+                    }
+                }
+                catch { MessageBox.Show("Problem reading total lines"); }
+                try
+                {
+                    using (StreamReader rw = new StreamReader(filename))
+                    {
+                        while (!rw.EndOfStream)
+                        {
+
+                            str = rw.ReadLine();
+                            if (str.StartsWith("Criteria:")) //select criteria to import to
+                            {
+                                str3 = str.Substring(0, "Criteria:".Length).Trim();
+                                str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
+                                cr = Convert.ToInt32(str2);
+                                cr--; //zeroise it
+                                if (cr < 0 || cr > CritZ+1) //if criteria read from file exceeds number of criteria in Ultramarker
+                                {
+                                    MessageBox.Show("Criteria value does not match criteria in Ultramarker");
+                                    ok = false;
+                                }
+                                else
+                                {
+                                    ok = true;
+                                    found1 = true;
+                                    //treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr];
+                                }
+                                
+
+                                
+                                //if (taskNo > prevTaskNo)   //have found criteria and tasks already
+                                if (cr > prevCriteria)  //have found previous criteria and taskjs already
+                                {
+                                    //create totals for sub-criteria
+                                    prevTaskNo = taskNo;
+                                    subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
+                                    int temp = Convert.ToInt32(subtotal * 100);
+                                    overrideBox.Text = temp.ToString();
+                                    for (int t = 0; t== criteriaTasks; t++)
+                                    {
+                                        Marks[cr, t, Session] = overrideBox.Text; //this is the previous criteria                                        
+                                    }
+                                    criteriaTasks = 0;
+                                    prevCriteria = cr;
+                                    criterias[cr] = cr;
+                                }
+                                
+
+
+                            }
+                            else if (str.StartsWith("Task:"))
+                            {
+                                try
+                                {
+
+                                    int dot = str.IndexOf(".");
+                                    str2 = str.Substring(5, dot - 5).Trim();  //find the task number
+                                    //prevtask = task;                                    
+                                    task = Convert.ToInt32(str2);
+
+                                    if (task > -1)  //tasks must start from ZERO
+                                    {
+                                        if (task > criteriaTasks)
+                                        {
+
+                                            criteriaTasks++;
+                                        }
+                                        if (task > taskNo)
+                                        {                                           
+                                            
+                                                //create totals for sub-criteria - update total fgor pervious task
+                                            
+                                            taskNo++;  //total global number of tasks
+
+
+                                        }
+                                        
+                                        if (AllowImpComment)
+                                        {
+
+                                            if (criteriaTasks == MaxSub)
+                                            {
+                                                MessageBox.Show("Warning: more tasks than maximum allowable sub-criteria");
+                                            }
+                                            else
+                                            {
+                                                //if a task put into sub-criteria
+                                                //crComment[cr, task - 1, 0] = crComment[cr, task - 1, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                                crComment[cr, task, 0] = crComment[cr, task, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                            }
+                                        }
+                                        if (str.Contains("Command:"))
+                                        {
+                                            tasklinescorrect[task]++;
+                                            tasklinestotal[task]++;
+                                        }
+                                        else if (str.Contains("NOT Found:"))
+                                        {
+                                            tasklinestotal[task]++;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //task is 0 so just show comments
+                                        if (AllowImpComment)
+                                        {
+                                            crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+                                        }
+
+
+                                    }
+
+                                }
+                                catch { }
+                            }
+                            else if (str.Contains("Lines correct:") && ok) //select criteria to import to
+                            {
+                                str3 = str.Substring(str.IndexOf("Lines correct:") + "Lines correct:".Length).Trim();
+                                Lc = ExtractfromSlash(str3, true); //get lines correct
+                                Lf = ExtractfromSlash(str3, false); //get lines total from this file
+                                found2 = true;
+                            }
+                            else if (str.Contains("Percentage:") && ok) //select criteria to import to
+                            {
+                                try
+                                {
+                                    str3 = str.Substring(str.IndexOf("Percentage:") + "Percentage:".Length).Trim();
+                                    pc = Convert.ToDouble(str3);
+                                    //PCent = Convert.ToInt32(pc);
+                                    for (int a = 0; a < maximportableCriteria; a++)
+                                    {
+                                        found3 = true;
+
+                                        if (criterias[a] == cr)
+                                        {
+                                            sumpc[a] = sumpc[a] + pc; //sum of percents for this criteria
+                                            linesC[a] = linesC[a] + Lc; //total lines correct this criteria
+                                            linesT[a] = linesT[a] + Lf; //out of total lines in files for this criteria
+                                            numpc[a]++; //number of percents this criteria
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            if (numpc[a] == 0)
+                                            {
+                                                criterias[a] = cr;
+                                                sumpc[a] = pc;
+                                                linesC[a] = Lc;
+                                                linesT[a] = Lf;
+                                                numpc[a]++;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    //overrideBox.Text = PCent;
+                                    //overridegrade(); // put percentage reult in the override box and update mark
+                                }
+                                catch
+                                {
+                                    MessageBox.Show("Percentage value error");
+                                }
+                            }
+                            else if (str.StartsWith("Overall lines".Trim()))
+                            {
+                                //don't save o/a lines here
+                            }
+                            
+                            else if (str.StartsWith("Overall Result".Trim()))
+                            {
+                                //ignore this line
+                                //if last criteria of more than one:
+                                if (cr > prevCriteria || cr == 0)  //have found previous criteria and tasks already
+                                {
+                                    //create totals for sub-criteria
+                                    prevTaskNo = taskNo;
+                                    subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
+                                    int temp = Convert.ToInt32(subtotal * 100);
+                                    overrideBox.Text = temp.ToString();
+                                    for (int t = 0; t == criteriaTasks; t++)
+                                    {
+                                        Marks[cr, t, Session] = overrideBox.Text; //this is the previous criteria                                        
+                                    }
+                                    criteriaTasks = 0;
+                                    prevCriteria = 0;
+
+                                }
+                            }
+                            else
+                            {
+                                if (AllowImpComment)
+                                {
+                                    //doesn't start with "task:" >0 so output
+                                    crComment[cr, MaxSub, 0] = crComment[cr, MaxSub, 0] + str + Environment.NewLine; //comment for criteria, no subcriteria and one session only allowed
+
+                                    /* if (str.StartsWith("Marked file"))
+                                     {
+                                         mf++;                                                                               
+                                     }*/
+                                }
+                            }
+                        }
+                        rw.Close();
+                    }
+                    if (!found1 || !found2 || !found3)
+                    {
+                        MessageBox.Show("Input file not in correct format - see help");
+                        return;
+                    }
+                    ok = false;
+                    /*
+                    if (task == taskNo)
+                    {
+                        //if only one (0) task:
+                        subtotal = Convert.ToDouble(tasklinescorrect[task]) / Convert.ToDouble(tasklinestotal[task]);   //total of lines correct from previous task
+                        int temp = Convert.ToInt32(subtotal * 100);
+                        overrideBox.Text = temp.ToString();
+                        for (int t = criteriaTasks; t > 0; t--)
+                        {
+                            Marks[cr - 1, t - 1, Session] = overrideBox.Text; //this is the previous criteria                            
+                        }                        
+                    }
+                    */
+                    for (int a = 0; a < cr+1; a++)
+                    {
+                        cr = criterias[a];
+                        if (cr > -1 && cr < maximportableCriteria)
+                        {
+                            try
+                            {
+                                if (CalculateImportbyLines) //weight according to lines in files for this criteria - this is the default!
+                                { //eg. if file 1 has 10 lines and file 2 has 20 and file 1 scores 5/10 and file 2 15/20 then overall score is 20/30 = 67%
+                                    pc = (Convert.ToDouble(linesC[a]) / Convert.ToDouble(linesT[a])) * 100;
+                                    PCent = Convert.ToInt32(pc);
+                                }
+                                else //weight evenly between percentages for each file, eg. if file 1 has 30% and file 2 60% then 90/2 = 45% overall
+                                {
+                                    pc = Convert.ToDouble(sumpc[a]) / Convert.ToDouble(numpc[a]); //calculate overall percent
+                                    PCent = Convert.ToInt32(pc);
+                                }
+                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
+                                int ncount = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false);
+                                if (ncount > 0)
+                                {
+                                    //sub-criteria
+                                    for (int n = treeView2.Nodes[0].Nodes[cr].GetNodeCount(false); n > 0; n--)
+                                    {
+                                        treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr].Nodes[n - 1];
+                                        overrideBox.Text = Marks[cr, n - 1, Session];
+                                        if (ImportasCheckBox.Checked)
+                                        {
+                                            overridegrade(); //overide the grade for this criteria
+                                        }
+                                        else
+                                        {
+                                            showGrade(overrideBox.Text, n - 1);
+                                        }
+                                    }
+
+                                }
+                                treeView2.SelectedNode = treeView2.Nodes[0].Nodes[cr]; //select the node for this criteria
+                                overrideBox.Text = PCent.ToString(); //put new percentage in override box
+                                if (ImportasCheckBox.Checked)
+                                {
+                                    overridegrade(); //overide the grade for this criteria
+                                }
+                                else
+                                {
+                                    showGrade(overrideBox.Text, MaxSub);
+                                }
+                                //crComment[cr, MaxSub, 0]
+                            }
+                            catch {
+                                MessageBox.Show("Error in import");
+                            }
+                        }
+                    }
+                    MessageBox.Show("Import appears succesful");
+                }
+                catch
+                {
+                    MessageBox.Show("Error occurred");
+                    
+                }
+            }
+            else
+            {
+                MessageBox.Show("File does not exist");
+            }
+        }

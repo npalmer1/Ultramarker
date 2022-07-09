@@ -11,11 +11,10 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
 
-
 //using Microsoft.Office.Core;
-//using PowerPoint = Microsoft.Office.Interop.PowerPoint;
-//using Graph = Microsoft.Office.Interop.Graph;
-//using System.Runtime.InteropServices;
+using PowerPoint = Microsoft.Office.Interop.PowerPoint;
+using Graph = Microsoft.Office.Interop.Graph;
+using System.Runtime.InteropServices;
 
 namespace UltraMarker
 {
@@ -441,11 +440,11 @@ namespace UltraMarker
             tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             if (!industrial)
             {
-                this.Text = "UltraMarker                   " + theVersion + "  for .NET5              GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
+                this.Text = "UltraMarker                   " + theVersion + "                    GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
             else
             {
-                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "  for .NET5            GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
+                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "               GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
 
             if (industrial)
@@ -1019,8 +1018,8 @@ namespace UltraMarker
                 {
                     while (!sw.EndOfStream)
                     {
-                        str= sw.ReadLine();
-                        str = str.Trim();
+                        str = sw.ReadLine();
+                        str.Trim();
                         if (str.StartsWith("grtitle: "))
                         {
                             B++; //increments B at start of each grade
@@ -2288,7 +2287,7 @@ namespace UltraMarker
                     while (!sw.EndOfStream)
                     {
                         str = sw.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         if (str.StartsWith("File Version: 2"))
                         {
                             newversion = true;
@@ -2361,13 +2360,13 @@ namespace UltraMarker
                             }
 
                         }
-                        else if (str.StartsWith("assessdesc:"))
+                        else if (str.StartsWith("assessdesc: "))
                         {
                             fl = true;
                             while (!str.StartsWith("endassessdesc:"))
                             {
-                                str = sw.ReadLine().Trim();
-                                
+                                str = sw.ReadLine();
+
                                 if (!str.StartsWith("endassessdesc:"))
                                 {
                                     if (!fl)
@@ -2378,13 +2377,13 @@ namespace UltraMarker
                                 }
                             }
                         }
-                        else if (str.StartsWith("assessLO:"))
+                        else if (str.StartsWith("assessLO: "))
                         {
                             fl = true;
                             while (!str.StartsWith("endassessLO:"))
                             {
-                                str = sw.ReadLine().Trim();
-                               
+                                str = sw.ReadLine();
+
                                 if (!str.StartsWith("endassessLO:"))
                                 {
                                     if (!fl)
@@ -2400,15 +2399,15 @@ namespace UltraMarker
                                 }
                             }
                         }
-                        else if (str.StartsWith("Criteria:"))
+                        else if (str.StartsWith("Criteria: "))
                         {
                             C++;
                             S = MaxSub;
-                            while (!str.StartsWith("endCriteria:"))
+                            while (!str.StartsWith("endCriteria: "))
                             {
-                                str = sw.ReadLine().Trim();
-                                
-                                if (str.StartsWith("crtitle:"))
+                                str = sw.ReadLine();
+                                str.Trim();
+                                if (str.StartsWith("crtitle: "))
                                 {
                                     //add criteria
                                     CriteriaExists[C, S] = true;
@@ -2426,7 +2425,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("crweight:"))
+                                else if (str.StartsWith("crweight: "))
                                 {
                                     substr = str.Substring("crweight: ".Length, str.Length - "crweight: ".Length);
                                     crs = substr.Split(',');
@@ -2456,13 +2455,13 @@ namespace UltraMarker
                                     }
 
                                 }
-                                else if (str.StartsWith("endCriteria:"))
+                                else if (str.StartsWith("endCriteria: "))
                                 {
                                     L = 0;
                                     first = false;
                                     S = -1;
                                 }
-                                else if (str.StartsWith("crdesc:"))
+                                else if (str.StartsWith("crdesc: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("enddesc:"))
@@ -2494,7 +2493,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("grade:"))
+                                else if (str.StartsWith("grade: "))
                                 {
                                     substr = str.Substring("grade: ".Length, str.Length - "grade: ".Length);
                                     grcrtitle[C, S, L] = substr.Trim();
@@ -2504,7 +2503,7 @@ namespace UltraMarker
                                     }
                                     L++;
                                 }
-                                else if (str.StartsWith("grcr:"))
+                                else if (str.StartsWith("grcr: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("endgrcr:"))
@@ -2520,7 +2519,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("gradefb:"))
+                                else if (str.StartsWith("gradefb: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("endgrcrfb:"))
@@ -2545,13 +2544,13 @@ namespace UltraMarker
                             }
                         }
 
-                        else if (str.StartsWith("Sub_criteria:"))
+                        else if (str.StartsWith("Sub_criteria: "))
                         {
-                            while (!str.StartsWith("endSub:"))
+                            while (!str.StartsWith("endSub: "))
                             {
-                                str = sw.ReadLine().Trim();
-                                
-                                if (str.StartsWith("crtitle:"))
+                                str = sw.ReadLine();
+                                str.Trim();
+                                if (str.StartsWith("crtitle: "))
                                 {
                                     //add sub criteria                              
                                     S++;
@@ -2572,7 +2571,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("crweight:"))
+                                else if (str.StartsWith("crweight: "))
                                 {
                                     substr = str.Substring("crweight: ".Length, str.Length - "crweight: ".Length);
                                     crs = substr.Split(',');
@@ -2590,7 +2589,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("endSub:"))
+                                else if (str.StartsWith("endSub: "))
                                 {
 
                                     L = 0;
@@ -2600,7 +2599,7 @@ namespace UltraMarker
                                     }
                                     first = false;
                                 }
-                                else if (str.StartsWith("crdesc:"))
+                                else if (str.StartsWith("crdesc: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("enddesc:"))
@@ -2617,7 +2616,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("grade:"))
+                                else if (str.StartsWith("grade: "))
                                 {
                                     substr = str.Substring("grade: ".Length, str.Length - "grade: ".Length);
                                     grcrtitle[C, S, L] = substr.Trim();
@@ -2627,7 +2626,7 @@ namespace UltraMarker
                                     }
                                     L++;
                                 }
-                                else if (str.StartsWith("grcr:"))
+                                else if (str.StartsWith("grcr: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("endgrcr:"))
@@ -2643,7 +2642,7 @@ namespace UltraMarker
                                         }
                                     }
                                 }
-                                else if (str.StartsWith("gradefb:"))
+                                else if (str.StartsWith("gradefb: "))
                                 {
                                     fl = true;
                                     while (!str.StartsWith("endgrcrfb:"))
@@ -3829,7 +3828,7 @@ namespace UltraMarker
                     {
 
                         str = sw1.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         if (str.Length > 0)
                         {
                             if (str.Contains(":"))
@@ -3924,7 +3923,7 @@ namespace UltraMarker
                     while (!sw.EndOfStream)
                     {
                         str = sw.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         if (str.Length > 0)
                         {
                             if (str.Contains(":"))
@@ -6177,7 +6176,7 @@ namespace UltraMarker
                         while (!sw.EndOfStream)
                         {
                             str = sw.ReadLine();
-                           str = str.Trim();
+                            str.Trim();
                             if (str.Length > 0)
                             {
                                 if (str.Contains(":"))
@@ -7142,7 +7141,7 @@ namespace UltraMarker
                     while (!sw.EndOfStream)
                     {
                         str = sw.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         if (str.StartsWith("Session file"))
                         {
                         }
@@ -9521,7 +9520,7 @@ namespace UltraMarker
                     try
                     {
                         str = sw.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         str2 = str.Split(',');
                         if (str.Trim().Length > 0)
                         {
@@ -9624,7 +9623,7 @@ namespace UltraMarker
                         st.studentname = "";
                         st.studentmail = "";
                         str = sw.ReadLine();
-                        str = str.Trim();
+                        str.Trim();
                         str2 = str.Split(',');
                         if (str.Trim().Length > 0)
                         {
@@ -11243,11 +11242,6 @@ namespace UltraMarker
                     allowCriteriaWeights = true;
                 }
             }
-        }
-
-        private void tabPage5_Click(object sender, EventArgs e)
-        {
-
         }
     }
     }

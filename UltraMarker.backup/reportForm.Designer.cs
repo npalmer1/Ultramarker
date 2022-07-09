@@ -43,10 +43,9 @@
             // 
             // closeButton
             // 
-            this.closeButton.Location = new System.Drawing.Point(890, 750);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.closeButton.Location = new System.Drawing.Point(763, 650);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(88, 27);
+            this.closeButton.Size = new System.Drawing.Size(75, 23);
             this.closeButton.TabIndex = 1;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -54,20 +53,18 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(14, 45);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.richTextBox1.Location = new System.Drawing.Point(12, 39);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(1083, 697);
+            this.richTextBox1.Size = new System.Drawing.Size(929, 605);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
             // editButton
             // 
-            this.editButton.Location = new System.Drawing.Point(425, 750);
-            this.editButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.editButton.Location = new System.Drawing.Point(364, 650);
             this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(88, 27);
+            this.editButton.Size = new System.Drawing.Size(75, 23);
             this.editButton.TabIndex = 3;
             this.editButton.Text = "Edit";
             this.editButton.UseVisualStyleBackColor = true;
@@ -75,10 +72,9 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(616, 750);
-            this.cancelButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.cancelButton.Location = new System.Drawing.Point(528, 650);
             this.cancelButton.Name = "cancelButton";
-            this.cancelButton.Size = new System.Drawing.Size(88, 27);
+            this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 4;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
@@ -92,10 +88,9 @@
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(253, 750);
-            this.saveButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.saveButton.Location = new System.Drawing.Point(217, 650);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(88, 27);
+            this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 5;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
@@ -103,29 +98,26 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(178, 15);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.textBox1.Location = new System.Drawing.Point(153, 13);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(401, 23);
+            this.textBox1.Size = new System.Drawing.Size(344, 20);
             this.textBox1.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(114, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(98, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(42, 15);
+            this.label1.Size = new System.Drawing.Size(38, 13);
             this.label1.TabIndex = 7;
             this.label1.Text = "Name:";
             // 
             // printButton
             // 
-            this.printButton.Location = new System.Drawing.Point(57, 750);
-            this.printButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.printButton.Location = new System.Drawing.Point(49, 650);
             this.printButton.Name = "printButton";
-            this.printButton.Size = new System.Drawing.Size(88, 27);
+            this.printButton.Size = new System.Drawing.Size(75, 23);
             this.printButton.TabIndex = 9;
             this.printButton.Text = "Print";
             this.printButton.UseVisualStyleBackColor = true;
@@ -133,10 +125,9 @@
             // 
             // Emailbutton
             // 
-            this.Emailbutton.Location = new System.Drawing.Point(764, 750);
-            this.Emailbutton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.Emailbutton.Location = new System.Drawing.Point(655, 650);
             this.Emailbutton.Name = "Emailbutton";
-            this.Emailbutton.Size = new System.Drawing.Size(88, 27);
+            this.Emailbutton.Size = new System.Drawing.Size(75, 23);
             this.Emailbutton.TabIndex = 10;
             this.Emailbutton.Text = "Email";
             this.Emailbutton.UseVisualStyleBackColor = true;
@@ -147,20 +138,19 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label2.Location = new System.Drawing.Point(253, 798);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(217, 692);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(169, 15);
+            this.label2.Size = new System.Drawing.Size(151, 13);
             this.label2.TabIndex = 11;
             this.label2.Text = "Don\'t forget to save the report!";
             // 
             // reportForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1112, 819);
+            this.ClientSize = new System.Drawing.Size(953, 710);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Emailbutton);
             this.Controls.Add(this.printButton);
@@ -171,7 +161,6 @@
             this.Controls.Add(this.editButton);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.closeButton);
-            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "reportForm";
             this.Text = "Feedback Report";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.reportForm_FormClosed);
