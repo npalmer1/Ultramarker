@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32616.157
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1340
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UltraMarker", "UltraMarker.csproj", "{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}"
 EndProject
@@ -13,8 +13,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Debug|x86.Build.0 = Debug|Any CPU
-		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Release|x86.ActiveCfg = Release|x86
-		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Release|x86.Build.0 = Release|x86
+		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA5F7B63-404E-4E1F-A1DA-1DBB34883B49}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

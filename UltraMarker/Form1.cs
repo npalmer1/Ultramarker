@@ -441,7 +441,7 @@ namespace UltraMarker
             tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             if (!industrial)
             {
-                this.Text = "UltraMarker                   " + theVersion + "  for .NET5              GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
+                this.Text = "UltraMarker                   " + theVersion + "  for .NET4              GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
             else
             {

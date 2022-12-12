@@ -656,22 +656,27 @@ namespace UltraMarker
             {
                 if (unsaved)
                 {
-                    dialogResult = MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo);                   
+                    dialogResult = MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Passvalue = "";
+                        //MessageBox.Show("Save comments from File menu");
+                        saveFileDialog1.InitialDirectory = CPath;
+                        saveFileDialog1.ShowDialog();
+                        return;
+                    }
+                    else
+                    { Passvalue = CFile; }//filename
                 }
                 else
                 {
                     dialogResult = MessageBox.Show("Exit comment editor?", "Exit", MessageBoxButtons.YesNo);
-                }
-                if (dialogResult == DialogResult.Yes)
-                {
-                    Passvalue = "";
-                    //MessageBox.Show("Save comments from File menu");
-                    saveFileDialog1.InitialDirectory = CPath;
-                    saveFileDialog1.ShowDialog();
-                    return;
-                }
-                else
-                { Passvalue = CFile; }//filename
+                    if (dialogResult == DialogResult.No)
+                    {
+                        return;
+                    }
+                    Passvalue = CFile; //filename
+            }
 
             }
             else
