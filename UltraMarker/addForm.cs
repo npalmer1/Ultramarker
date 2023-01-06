@@ -20,6 +20,7 @@ namespace UltraMarker
         //public CommentForm CForm = new CommentForm();
         CommentForm CForm = new CommentForm();
         public string ComFile;
+        public bool isLinux;
 
         public string[] Passvalue
         {
@@ -69,7 +70,11 @@ namespace UltraMarker
         private void textBox1_DoubleClick(object sender, EventArgs e)
         {
             string CommentStr;
-            
+            if (isLinux)
+            {
+                MessageBox.Show("Feature currently under test in Linux");
+                return;
+            }
             try
             {
                 if (File.Exists(ComFile))

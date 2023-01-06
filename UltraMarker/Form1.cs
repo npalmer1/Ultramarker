@@ -145,9 +145,9 @@ namespace UltraMarker
 
         CommentForm CommentsForm = new CommentForm();
         addForm addcommentForm = new addForm();
-        //addForm2 addcommentForm2 = new addForm2();
+        addForm2 addcommentForm2 = new addForm2();
 
-        //addComment addcommentX = new addComment();
+        addComment addcommentX = new addComment();
 
         WeightReport weightForm = new WeightReport();
 
@@ -7502,8 +7502,8 @@ namespace UltraMarker
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            //addCommentsX();
-            addComments();
+            addCommentsX();
+            //addComments();
         }
         private void addComments()
         {
@@ -7521,6 +7521,7 @@ namespace UltraMarker
             addcommentForm.Passvalue[1] = crComment[SCriteria, s, Session];
             //addcommentForm.CForm = CommentsForm;
             addcommentForm.ComFile = CommentFile;
+            addcommentForm.isLinux = Linux;
             addcommentForm.ShowDialog();
 
             crComment[SCriteria, s, Session] = addcommentForm.Passvalue[1];
@@ -7529,7 +7530,7 @@ namespace UltraMarker
                 CommentFile = addcommentForm.ComFile;
             }
         }
-        /*private void addCommentsX() //open XML add comments form - experimental version - not working
+        private void addCommentsX() //open XML add comments form - experimental version - not working
         {
             int s = 0;
             if (CriteriaSelected)//criteria or sub-criteria selected?
@@ -7552,7 +7553,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm2.ComFile;
             }
-        }*/
+        }
 
 
 
@@ -9319,6 +9320,11 @@ namespace UltraMarker
 
         private void commentsToolStripMenuItem_Click(object sender, EventArgs e) //comments menu
         {
+            if (Linux)
+            {
+                MessageBox.Show("Feature currently under test in Linux");
+                return;
+            }
             //CommentForm CommentsForm = new CommentForm();
             CommentsForm.selectComment = false;
             CommentsForm.CFile = CommentFile;
