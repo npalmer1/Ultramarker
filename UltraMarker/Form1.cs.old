@@ -43,8 +43,8 @@ namespace UltraMarker
         int Found = 0;
 
         string UnitFile = "";
-        string UnitFilePath = "";
-        string ImportFilePath = "";
+        string UnitFilePath = "C:";
+        string ImportFilePath = "C:";
         string GradeFile = "";
         string GradePath = "";
         string CriteriaFile = "";
@@ -145,9 +145,9 @@ namespace UltraMarker
 
         CommentForm CommentsForm = new CommentForm();
         addForm addcommentForm = new addForm();
-        //addForm2 addcommentForm2 = new addForm2();
+        addForm2 addcommentForm2 = new addForm2();
 
-        //addComment addcommentX = new addComment();
+        addComment addcommentX = new addComment();
 
         WeightReport weightForm = new WeightReport();
 
@@ -298,8 +298,6 @@ namespace UltraMarker
 
         bool allowSubWeights = false;
         bool allowCriteriaWeights = false;
-        bool Linux = false;
-
 
 
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
@@ -337,7 +335,6 @@ namespace UltraMarker
 
             if (RunningPlatform() == Platform.Windows)
             {
-                Linux = false;
                 slash = "\\";
                 string startPath = Environment.GetEnvironmentVariable("HOMEDRIVE");
                 startPath = startPath + Environment.GetEnvironmentVariable("HOMEPATH") + "\\Ultramarker";
@@ -383,7 +380,7 @@ namespace UltraMarker
                     }
                     catch { }
                 }
-                if (!(DefaultDir.LastIndexOf(slash) == DefaultDir.Length - 1))
+                if (!(DefaultDir.LastIndexOf("\\") == DefaultDir.Length - 1))
                 {
                     DefaultDir = DefaultDir + slash; //add a slash to end of directory name if it doesn't have one!
                 }
@@ -394,7 +391,6 @@ namespace UltraMarker
             }
             else if (RunningPlatform() == Platform.Linux || platformlinux)
             {
-                Linux = true;
                 slash = "/";
                 var homePath = Environment.GetEnvironmentVariable("HOME");
                 DefaultDir = Path.Combine(homePath, "Ultramarker");
@@ -442,19 +438,14 @@ namespace UltraMarker
             Change_Session_Selection();
             loading = false;
             tabControl1.TabPages.Remove(tabPage3); //don't show sessions tab initially
-            tabControl1.TabPages.Remove(tabPage10); //don't show web connection page as it's a prototype 
-            string platformStr = "Windows";
-            if (Linux)
-            {
-                platformStr = "Linux";
-            }
+            tabControl1.TabPages.Remove(tabPage10); //don't who web connection page as it's a prototype test
             if (!industrial)
             {
-                this.Text = "UltraMarker                   " + theVersion + "  " + platformStr + " for .NET4              GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
+                this.Text = "UltraMarker                   " + theVersion + "  for .NET4              GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
             else
             {
-                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "  " + platformStr + " for .NET4            GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
+                this.Text = "UltraMarker Security Compliance Assessor   " + theVersion + "  for .NET5            GNU GPL v3 project managed by N. Palmer " + DateTime.Today.Year + "                    (F1 for help)";
             }
 
             if (industrial)
@@ -3341,8 +3332,7 @@ namespace UltraMarker
         private void button4_Click(object sender, EventArgs e)      //SAVE button
         {   //save student mark
             string addstr = "";
-
-
+            
             if (addCode)
             {
                 addstr = "_" + assess.Code;
@@ -3352,8 +3342,7 @@ namespace UltraMarker
             {
                 marksDirectory = UnitFilePath;
             }
-            string str = marksDirectory + slash + assess.Code;
-           
+            string str = marksDirectory + "\\" + assess.Code;
             try
             {
                 if (!Directory.Exists(marksDirectory))
@@ -3372,11 +3361,11 @@ namespace UltraMarker
                     {
                         if (unitCodeTextBox.Text.Trim() == "" || unitCodeTextBox.Text == null)
                         {
-                            marksDirectory = ConfigDir + "Temp" + slash + assess.Code;
+                            marksDirectory = ConfigDir + "Temp" + "\\" + assess.Code;
                         }
                         else
                         {
-                            marksDirectory = ConfigDir + unitCodeTextBox.Text + slash + assess.Code;
+                            marksDirectory = ConfigDir + unitCodeTextBox.Text + "\\" + assess.Code;
                         }
                         str = marksDirectory;
                     }
@@ -3481,7 +3470,7 @@ namespace UltraMarker
             }
 
             openFileDialog3.FileName = "";
-            openFileDialog3.InitialDirectory = marksDirectory + slash + assess.Code;
+            openFileDialog3.InitialDirectory = marksDirectory + "\\" + assess.Code;
             if ((StudentcomboBox.Text.Trim().Length > 0) && LoadFF)
             {
                 dialogResult = MessageBox.Show("Clear form data and load marks from file Yes/No?", "Load marks", MessageBoxButtons.YesNo);
@@ -5598,7 +5587,7 @@ namespace UltraMarker
         }
         private bool checkNameExists(string Name)
         {
-            string NPath = marksDirectory + slash + assess.Code + slash + Name;
+            string NPath = marksDirectory + "\\" + assess.Code + "\\" + Name;
             if (File.Exists(NPath + ".mrk") || File.Exists(NPath + ".mrm") || File.Exists(NPath + ".2nd") || File.Exists(NPath + "3rd"))
             {
                 return true;
@@ -7502,8 +7491,7 @@ namespace UltraMarker
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            //addCommentsX();
-            addComments();
+            addCommentsX();
         }
         private void addComments()
         {
@@ -7529,7 +7517,7 @@ namespace UltraMarker
                 CommentFile = addcommentForm.ComFile;
             }
         }
-        /*private void addCommentsX() //open XML add comments form - experimental version - not working
+        private void addCommentsX() //open XML add comments form - experimental version - not working
         {
             int s = 0;
             if (CriteriaSelected)//criteria or sub-criteria selected?
@@ -7552,7 +7540,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm2.ComFile;
             }
-        }*/
+        }
 
 
 
@@ -8253,68 +8241,68 @@ namespace UltraMarker
                 switch (sel)
                 {
                     case 0: //Unit tab
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash+ "UnitHelp.rtf";
+                        helpForm.helpfile = DefaultDir + "helpfiles\\UnitHelp.rtf";
                         break;
                     case 1: //Grades tab  
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash + "GradesHelp.rtf";
+                        helpForm.helpfile = DefaultDir + "helpfiles\\GradesHelp.rtf";
                         break;
                     case 2: //LO tab
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash + "LOHelp.rtf";
+                        helpForm.helpfile = DefaultDir + "helpfiles\\LOHelp.rtf";
                         break;
                     case 3: //Assess tab  
                         if (!EditStudent)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "AssessHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\AssessHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "MarkingHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\MarkingHelp.rtf";
                         }
                         break;
                     case 4: //Sessiontab
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "PeerHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "SessionHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\SessionHelp.rtf";
                         }
                         break;
                     case 5: //Unit tab
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ModHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\ModHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "PeerHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\PeerHelp.rtf";
                         }
                         break;
                     case 6:
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ExtHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\ExtHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + ".rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\ModHelp.rtf";
                         }
                         break;
                     case 7:
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "StudentHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\StudentHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ExtHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\ExtHelp.rtf";
                         }
                         break;
                     case 8:
                         if (SessionType == 1)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "StudentHelp.rtf";
+                            helpForm.helpfile = DefaultDir + "helpfiles\\StudentHelp.rtf";
                         }
                         break;
 
@@ -8803,7 +8791,7 @@ namespace UltraMarker
                     folderBrowserDialog1.ShowDialog();
                     UnitFilePath = folderBrowserDialog1.SelectedPath;
                     unitFoldertextBox.Text = UnitFilePath;
-                    marksDirectory = UnitFilePath + slash + "Marks";
+                    marksDirectory = UnitFilePath + "\\Marks";
                     marksFoldertextBox.Text = marksDirectory;
                 }
                 UnitsaveFileDialog.InitialDirectory = UnitFilePath;
@@ -9395,7 +9383,7 @@ namespace UltraMarker
                 {
                     MessageBox.Show("Unable to create directory");
                 }
-                marksDirectory = UnitFilePath + slash + "Marks";
+                marksDirectory = UnitFilePath + "\\Marks";
                 try
                 {
                     if (!Directory.Exists(marksDirectory))
@@ -9757,7 +9745,7 @@ namespace UltraMarker
             }
             if (reply == DialogResult.Yes)
             {
-                if (str.LastIndexOf(slash) == str.Length - 1) //is last charcater a slash?
+                if (str.LastIndexOf("\\") == str.Length - 1) //is last charcater a slash?
                 { sl = ""; }
                 else { sl = slash; }
                 DefaultDir = str + sl;
@@ -9997,7 +9985,6 @@ namespace UltraMarker
             sForm.assessmentFilePath = CriteriaFile;
             sForm.assessmentTitle = assess.Title;
             sForm.assessmentCode = assess.Code;
-            sForm.isLinux = Linux;
             sForm.industrial = industrial;
             if (UnitFilePath.Trim() == "")
             {
@@ -10176,7 +10163,7 @@ namespace UltraMarker
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())
             {
-                string str = marksDirectory + slash + assess.Code;
+                string str = marksDirectory + "\\" + assess.Code;
                 GForm.OutFilePath = str;
                 if (Sitting.Contains("Main"))
                 {
@@ -11046,16 +11033,16 @@ namespace UltraMarker
                 s = SSub;
             }
 
-            addcommentForm.Passvalue[0] = "General Comments";
-            addcommentForm.Passvalue[1] = box.Text;
+            addcommentForm2.Passvalue[0] = "General Comments";
+            addcommentForm2.Passvalue[1] = box.Text;
             //addcommentForm.CForm = CommentsForm;
-            addcommentForm.ComFile = CommentFile;
-            addcommentForm.ShowDialog();
+            addcommentForm2.ComFile = CommentFile;
+            addcommentForm2.ShowDialog();
 
-            box.Text = addcommentForm.Passvalue[1];
-            if (addcommentForm.ComFile != CommentFile && addcommentForm.ComFile != null)
+            box.Text = addcommentForm2.Passvalue[1];
+            if (addcommentForm2.ComFile != CommentFile && addcommentForm2.ComFile != null)
             {
-                CommentFile = addcommentForm.ComFile;
+                CommentFile = addcommentForm2.ComFile;
             }
             return box;
         }

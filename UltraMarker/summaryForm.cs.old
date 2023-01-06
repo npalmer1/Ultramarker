@@ -24,7 +24,6 @@ namespace UltraMarker
         public string assessmentCode = "";
         public string UnitPath;
         public string moduleName;
-        public bool isLinux = false;
         string marksCodeDir = "";
 
         struct st_struct
@@ -46,7 +45,6 @@ namespace UltraMarker
             set { Nm = value; }
         }
         string summaryFilename = "";
-        string slash = "\\";
 
         public summaryForm()
         {
@@ -55,10 +53,8 @@ namespace UltraMarker
 
         private void summaryForm_Load(object sender, EventArgs e)
         {
-           
-            if (isLinux) { slash = "/";  }
             radioButton2.Checked = true;
-            marksCodeDir = marksDirectory + slash + assessmentCode;
+            marksCodeDir = marksDirectory + "\\" + assessmentCode;
             ModuletextBox.Text = moduleName;
             textBox1.Text = assessmentFilePath;
             
@@ -194,7 +190,7 @@ namespace UltraMarker
                       
                     }
                     sw.Close();
-                    marksCodeDir = marksDirectory + slash + assessmentCode;
+                    marksCodeDir = marksDirectory + "\\" + assessmentCode;
                     textBox3.Text = marksCodeDir;
                 }
               
