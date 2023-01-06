@@ -48,8 +48,9 @@ namespace UltraMarker
                    
                 //}
             }
-           
-            this.Hide();
+
+            //this.Hide();
+            this.Close();
         }
 
         private void assessForm_Load(object sender, EventArgs e)
@@ -82,16 +83,18 @@ namespace UltraMarker
         private void button2_Click(object sender, EventArgs e)
         {   //cancel
             if (EditMode)
-            {   
+            {
                 //DialogResult dialogResult = MessageBox.Show("Exit without saving assessment info. Yes/No?", "Assessment Information", MessageBoxButtons.YesNo);
                 //if (dialogResult == DialogResult.Yes)
                 //{
-                    this.Hide();
+                //this.Hide();
+                this.Close();
                 //}
             }
             else
             {
-                this.Hide();
+                //this.Hide();
+                this.Close();
             }
         }
 

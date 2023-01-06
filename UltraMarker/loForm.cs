@@ -368,7 +368,8 @@ namespace UltraMarker
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
-            this.Hide();
+            //this.Hide();
+            this.Close();
                 
         }
 
@@ -536,7 +537,8 @@ namespace UltraMarker
                     str = listBox1.Items[index].ToString ();                   
                     LOList = LOList + str + Environment.NewLine;
                 }
-                this.Hide();
+                //this.Hide();
+                this.Close();
             }
             catch
             {

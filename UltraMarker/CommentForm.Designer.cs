@@ -80,6 +80,7 @@
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.Enabled = false;
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editStripMenuItem1,
@@ -91,18 +92,21 @@
             // 
             // editStripMenuItem1
             // 
+            this.editStripMenuItem1.Enabled = false;
             this.editStripMenuItem1.Name = "editStripMenuItem1";
             this.editStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.editStripMenuItem1.Text = "Edit Category";
             // 
             // deleteStripMenuItem1
             // 
+            this.deleteStripMenuItem1.Enabled = false;
             this.deleteStripMenuItem1.Name = "deleteStripMenuItem1";
             this.deleteStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.deleteStripMenuItem1.Text = "Delete Category";
             // 
             // addCommentStripMenuItem
             // 
+            this.addCommentStripMenuItem.Enabled = false;
             this.addCommentStripMenuItem.Name = "addCommentStripMenuItem";
             this.addCommentStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.addCommentStripMenuItem.Text = "Add Comment";
@@ -263,6 +267,7 @@
             // 
             // contextMenuStrip2
             // 
+            this.contextMenuStrip2.Enabled = false;
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editCommentMenuItem,
@@ -273,12 +278,14 @@
             // 
             // editCommentMenuItem
             // 
+            this.editCommentMenuItem.Enabled = false;
             this.editCommentMenuItem.Name = "editCommentMenuItem";
             this.editCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.editCommentMenuItem.Text = "Edit Comment";
             // 
             // deleteCommentMenuItem
             // 
+            this.deleteCommentMenuItem.Enabled = false;
             this.deleteCommentMenuItem.Name = "deleteCommentMenuItem";
             this.deleteCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.deleteCommentMenuItem.Text = "Delete Comment";
@@ -330,7 +337,7 @@
             // 
             this.Movebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Movebutton.Location = new System.Drawing.Point(8, 516);
-            this.Movebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Movebutton.Margin = new System.Windows.Forms.Padding(2);
             this.Movebutton.Name = "Movebutton";
             this.Movebutton.Size = new System.Drawing.Size(112, 29);
             this.Movebutton.TabIndex = 16;
@@ -341,7 +348,7 @@
             // cancelMovebutton
             // 
             this.cancelMovebutton.Location = new System.Drawing.Point(148, 519);
-            this.cancelMovebutton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cancelMovebutton.Margin = new System.Windows.Forms.Padding(2);
             this.cancelMovebutton.Name = "cancelMovebutton";
             this.cancelMovebutton.Size = new System.Drawing.Size(75, 24);
             this.cancelMovebutton.TabIndex = 17;

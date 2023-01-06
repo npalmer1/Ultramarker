@@ -456,7 +456,8 @@ namespace UltraMarker
                 if (dialogResult == DialogResult.Yes)
                 {
                     StopMove();
-                    this.Hide();
+                    //this.Hide();
+                    this.Close();
                 }
                 else
                 {
@@ -466,7 +467,8 @@ namespace UltraMarker
             else
             {
                 StopMove();
-                this.Hide();
+                //this.Hide();
+                this.Close();
             }
                 
             
@@ -704,7 +706,8 @@ namespace UltraMarker
                 unsaved = false;
             }
             StopMove();
-            this.Hide();
+            //this.Hide();
+            this.Close();
         }
 
         private void newCommentsToolStripMenuItem_Click(object sender, EventArgs e)
