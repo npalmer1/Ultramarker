@@ -9322,11 +9322,12 @@ namespace UltraMarker
         {
             if (Linux)
             {
-                MessageBox.Show("Feature currently under test in Linux");
-                return;
+                //MessageBox.Show("Feature currently under test in Linux");
+                //return;
             }
             //CommentForm CommentsForm = new CommentForm();
-            CommentsForm.selectComment = false;
+            //CommentsForm.selectComment = false;
+            CommentsForm.selectComment = true;
             CommentsForm.CFile = CommentFile;
             CommentsForm.CPath = CommentFilePath;
             CommentsForm.ShowDialog();
