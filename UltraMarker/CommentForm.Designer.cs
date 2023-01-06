@@ -80,7 +80,6 @@
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.Enabled = false;
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editStripMenuItem1,
@@ -92,21 +91,18 @@
             // 
             // editStripMenuItem1
             // 
-            this.editStripMenuItem1.Enabled = false;
             this.editStripMenuItem1.Name = "editStripMenuItem1";
             this.editStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.editStripMenuItem1.Text = "Edit Category";
             // 
             // deleteStripMenuItem1
             // 
-            this.deleteStripMenuItem1.Enabled = false;
             this.deleteStripMenuItem1.Name = "deleteStripMenuItem1";
             this.deleteStripMenuItem1.Size = new System.Drawing.Size(158, 22);
             this.deleteStripMenuItem1.Text = "Delete Category";
             // 
             // addCommentStripMenuItem
             // 
-            this.addCommentStripMenuItem.Enabled = false;
             this.addCommentStripMenuItem.Name = "addCommentStripMenuItem";
             this.addCommentStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.addCommentStripMenuItem.Text = "Add Comment";
@@ -267,7 +263,6 @@
             // 
             // contextMenuStrip2
             // 
-            this.contextMenuStrip2.Enabled = false;
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editCommentMenuItem,
@@ -278,14 +273,12 @@
             // 
             // editCommentMenuItem
             // 
-            this.editCommentMenuItem.Enabled = false;
             this.editCommentMenuItem.Name = "editCommentMenuItem";
             this.editCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.editCommentMenuItem.Text = "Edit Comment";
             // 
             // deleteCommentMenuItem
             // 
-            this.deleteCommentMenuItem.Enabled = false;
             this.deleteCommentMenuItem.Name = "deleteCommentMenuItem";
             this.deleteCommentMenuItem.Size = new System.Drawing.Size(164, 22);
             this.deleteCommentMenuItem.Text = "Delete Comment";

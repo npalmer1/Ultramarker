@@ -76,14 +76,18 @@ namespace UltraMarker
 
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
+            contextMenuStrip1.Visible = b;
+            contextMenuStrip2.Visible = b;
             menuStrip1.Enabled = !b;
         }
 
         private void setMenus(bool b)
         {
             //menuStrip1.Visible = !b;
-            contextMenuStrip1.Visible = !b;
-            contextMenuStrip2.Visible = !b;
+            contextMenuStrip1.Visible = b;
+            contextMenuStrip2.Visible = b;
+            contextMenuStrip1.Enabled = b;
+            contextMenuStrip2.Enabled = b;
             label5.Visible = b;
             label6.Visible = !b;
         }
@@ -116,6 +120,8 @@ namespace UltraMarker
             {
                 saveComment();
             }
+            showCategory(false);
+            showComment(false);
             MessageBox.Show("Now save these comments from the File menu");
             fileToolStripMenuItem.ForeColor = Color.Red;
             fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
@@ -299,6 +305,8 @@ namespace UltraMarker
             textBox2.ReadOnly = !b;
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
+            contextMenuStrip2.Visible = b;
+            contextMenuStrip1.Visible = b;
             menuStrip1.Enabled = !b;
             Movebutton.Visible = !b;
         }
@@ -707,6 +715,8 @@ namespace UltraMarker
             }
             StopMove();
             //this.Hide();
+            contextMenuStrip1.Visible = false;
+            contextMenuStrip2.Visible = false;
             this.Close();
         }
 
