@@ -784,18 +784,21 @@ namespace UltraMarker
                 moveItems = false;
                 listBox2.SelectionMode = SelectionMode.One;
                 cancelMovebutton.Visible = false;
+                Closebutton.Visible = true;
             }
             else
             {
                 listBox2.SelectionMode = SelectionMode.MultiSimple;
                 oldCategory = listBox1.SelectedItem.ToString();
+                cancelMovebutton.Visible = true;
+                Closebutton.Visible = false;
                 MessageBox.Show("Select Comments to move then select new category and hit Move");
                 Movebutton.Text = "Move";
                 moveItems = true; //prevent category listbox from being updated whilest moving
                 moveStarted = true;
-                cancelMovebutton.Visible = true;
+                
             }
-            Closebutton.Visible = true;
+            //Closebutton.Visible = true;
         }
         private void MoveSelected()
         {
@@ -830,6 +833,10 @@ namespace UltraMarker
             updateCategoryListBox();
             listBox2.SelectedIndex = listBox2.Items.Count - 1;
             MessageBox.Show("Now save these comments from the File menu");
+            fileToolStripMenuItem.ForeColor = Color.Red;
+            fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
+            makingChanges = false;
+            unsaved = true;
         }
         private void deleteMovedComment(string str, int i)
         {
