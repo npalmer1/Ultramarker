@@ -455,6 +455,10 @@ namespace UltraMarker
                         return;
                     }
                 }
+                else
+                {
+                    return;
+                }
             }
             catch {
                 
