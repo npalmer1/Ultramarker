@@ -62,6 +62,7 @@ namespace UltraMarker
             textBox2.Text = ""; //clear current comment
             unsaved = true;
             showCategory(true);
+            Closebutton.Visible = false;
 
         }
 
@@ -74,18 +75,35 @@ namespace UltraMarker
             textBox1.ReadOnly = !b;
             Movebutton.Visible = !b;
 
+            //contextMenuStrip2.Enabled = !b;
+            //contextMenuStrip1.Enabled = !b;
+            //contextMenuStrip1.Visible = b;
+            //contextMenuStrip2.Visible = b;
+            menuStrip1.Enabled = !b;
+        }
+        private void showComment(bool b)
+        {
+            savebutton.Visible = b;
+            cancelbutton.Visible = b;
+            //label3.Visible = b;
+            //textBox1.Visible = b;
+            textBox1.ReadOnly = true;
+            //textBox2.Visible = b;
+            //label4.Visible = b;
+            textBox2.ReadOnly = !b;
             contextMenuStrip2.Enabled = !b;
             contextMenuStrip1.Enabled = !b;
-            contextMenuStrip1.Visible = b;
-            contextMenuStrip2.Visible = b;
+            //contextMenuStrip2.Visible = b;
+            //contextMenuStrip1.Visible = b;
             menuStrip1.Enabled = !b;
+            Movebutton.Visible = !b;
         }
 
         private void setMenus(bool b)
         {
             //menuStrip1.Visible = !b;
-            contextMenuStrip1.Visible = b;
-            contextMenuStrip2.Visible = b;
+            //contextMenuStrip1.Visible = b;
+            //contextMenuStrip2.Visible = b;
             contextMenuStrip1.Enabled = b;
             contextMenuStrip2.Enabled = b;
             label5.Visible = b;
@@ -121,12 +139,13 @@ namespace UltraMarker
             {
                 saveComment();
             }
-            showCategory(false);
-            showComment(false);
+            //showCategory(false);
+            //showComment(false);
             MessageBox.Show("Now save these comments from the File menu");
             fileToolStripMenuItem.ForeColor = Color.Red;
             fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
             makingChanges = false;
+            Closebutton.Visible = true;
         }
         private void saveCategory()
         {
@@ -183,6 +202,7 @@ namespace UltraMarker
                  Category = false;                
              }
              makingChanges = false;
+            Closebutton.Visible = true;
         }
 
         private void listBox1_Click(object sender, EventArgs e)
@@ -268,6 +288,7 @@ namespace UltraMarker
                     Category = true;
                     makingChanges = true;
                     showCategory(true);
+                    Closebutton.Visible = false;
                 }
                 else
                 {
@@ -288,29 +309,14 @@ namespace UltraMarker
                 Category = false;
                 editing = false;
                 showComment(true);
+                Closebutton.Visible = false;
                 makingChanges = true;
                 textBox2.Text = "";
             }
             unsaved = true;
         }
 
-        private void showComment(bool b)
-        {
-            savebutton.Visible = b;
-            cancelbutton.Visible = b;
-            //label3.Visible = b;
-            //textBox1.Visible = b;
-            textBox1.ReadOnly = true;
-            //textBox2.Visible = b;
-            //label4.Visible = b;
-            textBox2.ReadOnly = !b;
-            contextMenuStrip2.Enabled = !b;
-            contextMenuStrip1.Enabled = !b;
-            contextMenuStrip2.Visible = b;
-            contextMenuStrip1.Visible = b;
-            menuStrip1.Enabled = !b;
-            Movebutton.Visible = !b;
-        }
+       
 
         private void saveComment()
         {
@@ -344,6 +350,7 @@ namespace UltraMarker
             }
             showComment(false);
             makingChanges = false;
+            
         }
 
         private void contextMenuStrip2_Click(object sender, EventArgs e)
@@ -364,6 +371,7 @@ namespace UltraMarker
                     editing = true;
                     Category = false;
                     showComment(true);
+                    Closebutton.Visible = false;
                 }
                 else
                 {
@@ -372,6 +380,7 @@ namespace UltraMarker
             }
             else if (contextMenuStrip2.Items[1].Selected) //delete comment
             {
+                Closebutton.Visible = false;
                 deleteComment();
             }
             unsaved = true;
@@ -425,6 +434,7 @@ namespace UltraMarker
                             MessageBox.Show("Now save these comments from the File menu");
                             fileToolStripMenuItem.ForeColor = Color.Red;
                             fileToolStripMenuItem.Font = new Font(fileToolStripMenuItem.Font, FontStyle.Bold);
+                            Closebutton.Visible = true;
                         }
                     }
                    // textBox2.Text = "";
@@ -670,11 +680,13 @@ namespace UltraMarker
 
         private void Closebutton_Click(object sender, EventArgs e)
         {
+            bool done = false;
             DialogResult dialogResult;
             if (!selectComment || selectComment) //no longer needed - can selct comments or change comemtns file here
             {
                 if (unsaved)
                 {
+                    done = true;
                     dialogResult = MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo);
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -682,6 +694,7 @@ namespace UltraMarker
                         //MessageBox.Show("Save comments from File menu");
                         saveFileDialog1.InitialDirectory = CPath;
                         saveFileDialog1.ShowDialog();
+                        unsaved = false;
                         return;
                     }
                     else
@@ -716,7 +729,7 @@ namespace UltraMarker
             showCategory(false);
             showComment(false);
             Category = false;
-            if (unsaved)
+           /* if (unsaved)
             {
                 if (MessageBox.Show("Save comments y/n?", "Save", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -727,7 +740,8 @@ namespace UltraMarker
                     return;
                 }
                 unsaved = false;
-            }
+            }*/
+
             StopMove();
             //this.Hide();
             contextMenuStrip1.Visible = false;
@@ -780,6 +794,7 @@ namespace UltraMarker
                 moveStarted = true;
                 cancelMovebutton.Visible = true;
             }
+            Closebutton.Visible = true;
         }
         private void MoveSelected()
         {
@@ -849,6 +864,7 @@ namespace UltraMarker
         private void cancelMovebutton_Click(object sender, EventArgs e)
         {
             StopMove();
+            Closebutton.Visible = true;
         }
         private void StopMove()
         {
