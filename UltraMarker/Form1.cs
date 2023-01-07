@@ -7529,6 +7529,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm.ComFile;
             }
+            addcommentForm.Close();
         }
         private void addCommentsX() //open XML add comments form - experimental version - not working
         {
@@ -7553,6 +7554,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm2.ComFile;
             }
+            addcommentForm2.Close();
         }
 
 
@@ -9340,6 +9342,7 @@ namespace UltraMarker
             {
                 //commentfile may be null or empty
             }
+            //CommentsForm.Close();
         }
 
 

@@ -662,7 +662,7 @@ namespace UltraMarker
         private void Closebutton_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult;
-            if (!selectComment)
+            if (!selectComment || selectComment) //no longer needed - can selct comments or change comemtns file here
             {
                 if (unsaved)
                 {
@@ -691,7 +691,7 @@ namespace UltraMarker
             }
             else
             {
-                Passvalue = ""; //closing 
+                Passvalue = CFile; //closing 
             }
             cancelbutton.Visible = false;
             savebutton.Visible = false;
