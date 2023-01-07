@@ -199,10 +199,11 @@ namespace UltraMarker
                  editing = false;
                  showCategory(false);
                  showComment(false);
-                 Category = false;                
-             }
+                 Category = false;
+                Closebutton.Visible = true;
+            }
              makingChanges = false;
-            Closebutton.Visible = true;
+            
         }
 
         private void listBox1_Click(object sender, EventArgs e)
