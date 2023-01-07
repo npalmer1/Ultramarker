@@ -94,8 +94,9 @@ namespace UltraMarker
 
         private void CommentForm_Load(object sender, EventArgs e)
         {
-            LoadCommentsFromFile(CFile);    
-            setMenus(selectComment);
+            LoadCommentsFromFile(CFile);
+            //setMenus(selectComment);
+            setMenus(true);
             if (listBox2.Items.Count > 0)
             {
                 listBox2.ContextMenuStrip = contextMenuStrip2;
@@ -465,6 +466,8 @@ namespace UltraMarker
                 {
                     StopMove();
                     //this.Hide();
+                    contextMenuStrip1.Visible = false;
+                    contextMenuStrip2.Visible = false;
                     this.Close();
                 }
                 else
@@ -476,6 +479,8 @@ namespace UltraMarker
             {
                 StopMove();
                 //this.Hide();
+                contextMenuStrip1.Visible = false;
+                contextMenuStrip2.Visible = false;
                 this.Close();
             }
                 
@@ -676,17 +681,23 @@ namespace UltraMarker
                         return;
                     }
                     else
-                    { Passvalue = CFile; }//filename
+                    {
+                        
+                        Passvalue = "";
+                    }
                 }
                 else
                 {
-                    dialogResult = MessageBox.Show("Exit comment editor?", "Exit", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.No)
+                    if (!selectComment)
                     {
-                        return;
+                        dialogResult = MessageBox.Show("Exit comment editor?", "Exit", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.No)
+                        {
+                            return;
+                        }
                     }
-                    Passvalue = CFile; //filename
-            }
+                    //Passvalue = CFile; //filename
+                }
 
             }
             else

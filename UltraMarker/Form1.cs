@@ -7554,7 +7554,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm2.ComFile;
             }
-            addcommentForm2.Close();
+            //addcommentForm2.Close();
         }
 
 
@@ -9328,14 +9328,15 @@ namespace UltraMarker
                 //return;
             }
             //CommentForm CommentsForm = new CommentForm();
-            //CommentsForm.selectComment = false;
-            CommentsForm.selectComment = true;
+            CommentsForm.selectComment = false;
+            //CommentsForm.selectComment = true;
             CommentsForm.CFile = CommentFile;
             CommentsForm.CPath = CommentFilePath;
             CommentsForm.ShowDialog();
             try
             {
-                CommentFile = CommentsForm.Passvalue;
+                //CommentFile = CommentsForm.Passvalue;
+                CommentFile = CommentsForm.CFile;
                 CommentFilePath = Path.GetDirectoryName(CommentFile);
             }
             catch
