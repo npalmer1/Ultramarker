@@ -9350,7 +9350,7 @@ namespace UltraMarker
 
         private void textBox10_DoubleClick(object sender, EventArgs e)
         {
-            textBox10 = EditSpecific(textBox10); //edit comments text box if double click on it
+            textBox10 = EditSpecificX(textBox10); //edit comments text box if double click on it
 
             /*string CommentStr;
             try
@@ -11046,16 +11046,7 @@ namespace UltraMarker
         }
 
         private TextBox EditSpecific(TextBox box)
-        {
-            int s = 0;
-            if (CriteriaSelected)//criteria or sub-criteria selected?
-            {
-                s = MaxSub;
-            }
-            else
-            {
-                s = SSub;
-            }
+        {            
 
             addcommentForm.Passvalue[0] = "General Comments";
             addcommentForm.Passvalue[1] = box.Text;
@@ -11071,28 +11062,44 @@ namespace UltraMarker
             return box;
         }
 
-        private void specificEditbutton_Click(object sender, EventArgs e)
+        private TextBox EditSpecificX(TextBox box)
+        {
+            
+            addcommentForm2.Passvalue[0] = "General Comments";
+            addcommentForm2.Passvalue[1] = box.Text;
+            //addcommentForm.CForm = CommentsForm;
+            addcommentForm2.ComFile = CommentFile;
+            addcommentForm2.ShowDialog();
+
+            box.Text = addcommentForm2.Passvalue[1];
+            if (addcommentForm2.ComFile != CommentFile && addcommentForm2.ComFile != null)
+            {
+                CommentFile = addcommentForm2.ComFile;
+            }
+            return box;
+        }
+    private void specificEditbutton_Click(object sender, EventArgs e)
         {
 
         }
 
         private void textBox2Comments_DoubleClick(object sender, EventArgs e)
         {
-            textBox2Comments = EditSpecific(textBox2Comments); //edit comments text box if double click on it
+            textBox2Comments = EditSpecificX(textBox2Comments); //edit comments text box if double click on it
         }
 
         private void Clicklabel2_Click(object sender, EventArgs e)
         {
             if (startMark)
             {
-                textBox2Comments = EditSpecific(textBox2Comments); //edit comments text box if double click on it        }
+                textBox2Comments = EditSpecificX(textBox2Comments); //edit comments text box if double click on it        }
             }
         }
         private void Clicklabel1_Click(object sender, EventArgs e)
         {
             if (startMark)
             {
-                textBox10 = EditSpecific(textBox10); //edit comments text box if double click on it
+                textBox10 = EditSpecificX(textBox10); //edit comments text box if double click on it
             }
         }
 
