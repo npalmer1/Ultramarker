@@ -5893,15 +5893,31 @@ namespace UltraMarker
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Close application Yes/No? - select No if you have unsaved changes that you wish to keep!", "Close form Yes/No?", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.No)
+            if (startMark)
             {
-                e.Cancel = true;
-                MessageBox.Show("Don't forget to save your data if you need to!");
+                DialogResult dialogResult1 = MessageBox.Show("You are marking and have unsaved changes. Quit without saving Y/N?", "Unsaved Changes?", MessageBoxButtons.YesNo);
+                if (dialogResult1 == DialogResult.No)
+                {
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Quitting without saving");
+                    SaveSettings();
+                }
             }
             else
             {
-                SaveSettings();
+                DialogResult dialogResult = MessageBox.Show("Close application Yes/No? - select No if you have unsaved changes that you wish to keep!", "Close form Yes/No?", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                    MessageBox.Show("Don't forget to save your data if you need to!");
+                }
+                else
+                {
+                    SaveSettings();
+                }
             }
         }
 

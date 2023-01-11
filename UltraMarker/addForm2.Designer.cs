@@ -39,7 +39,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(77, 409);
+            this.button1.Location = new System.Drawing.Point(130, 486);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 29);
@@ -50,7 +50,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(233, 409);
+            this.button2.Location = new System.Drawing.Point(265, 486);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(62, 29);
@@ -61,7 +61,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(460, 409);
+            this.button3.Location = new System.Drawing.Point(567, 486);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(74, 29);
@@ -95,10 +95,10 @@
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(9, 24);
+            this.elementHost1.Location = new System.Drawing.Point(52, 13);
             this.elementHost1.Margin = new System.Windows.Forms.Padding(2);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(947, 347);
+            this.elementHost1.Size = new System.Drawing.Size(891, 454);
             this.elementHost1.TabIndex = 7;
             this.elementHost1.Text = "elementHost1";
             this.elementHost1.Child = this.addComment1;
@@ -108,9 +108,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(967, 462);
+            this.ClientSize = new System.Drawing.Size(967, 550);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button3);

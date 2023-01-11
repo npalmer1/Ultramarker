@@ -33,6 +33,9 @@ namespace UltraMarker
             label2.Text = Passvalue[0];
             addComment1.TextBox1.Text = Passvalue[1];
             addComment1.ComFile = ComFile;
+            addComment1.TextBox1.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Visible;
+            //addComment1.TextBox1.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Visible;
+            addComment1.TextBox1.TextWrapping = System.Windows.TextWrapping.Wrap;
         }
 
         private void button1_Click(object sender, EventArgs e)
