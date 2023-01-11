@@ -4476,9 +4476,9 @@
             this.agglistBox.Items.AddRange(new object[] {
             "Aggregated",
             "Must pass"});
-            this.agglistBox.Location = new System.Drawing.Point(620, 261);
+            this.agglistBox.Location = new System.Drawing.Point(619, 258);
             this.agglistBox.Name = "agglistBox";
-            this.agglistBox.Size = new System.Drawing.Size(114, 4);
+            this.agglistBox.Size = new System.Drawing.Size(114, 19);
             this.agglistBox.TabIndex = 55;
             // 
             // label66
