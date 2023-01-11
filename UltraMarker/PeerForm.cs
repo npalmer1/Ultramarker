@@ -355,7 +355,8 @@ namespace UltraMarker
             {
                 ReplaceString("%Third%", "N");
             }
-            BuildModerationList();
+            //BuildModerationList();
+            BuildModerationList_New();
         }
 
 
@@ -374,6 +375,162 @@ namespace UltraMarker
            
         }
 
+
+        private void BuildModerationList_New()
+        {
+            string str = "";
+            string str3 = "";
+
+            st_struct sts;
+            sts.firstname = "";
+            sts.surname = "";
+            sts.percent = "";
+            sts.grade = "";
+            float group_total = 0;
+            string[] name = new string[3];
+            bool Moderated = false;
+            if (!Directory.Exists(MarkDir))
+            {
+                MessageBox.Show("Folder with moderated work doesn't exist");
+                return;
+            }
+            try
+            {
+                string[] files = Directory.GetFiles(MarkDir, "*.mrk");
+                if (files.Count() < 1)
+                {
+                    MessageBox.Show("No moderated files (.mrm) in this folder");
+                    return;
+                }
+
+                foreach (string file in files)
+                {
+                    Moderated = false;
+                    sts.firstname = "";
+                    sts.surname = "";
+                    sts.percent = "";
+                    sts.grade = "";
+                    if (file.Contains(".mrk"))  //moderated marks
+                    {
+                        using (StreamReader sw = new StreamReader(file))
+                        {
+                            while (!sw.EndOfStream)
+                            {
+                                str = sw.ReadLine();
+                                str.Trim();
+                                if (str.Length > 0)
+                                {
+                                    if (str.Contains(":"))
+                                    {
+                                        int a = str.IndexOf(":");
+                                        str3 = str.Substring(a + 1).Trim();
+
+                                    }
+                                    else
+                                    {
+                                        str3 = str;
+                                    }
+                                    if (str.Contains("Moderated:") && str.Contains("Y"))
+                                    {
+                                        Moderated = true;
+                                    }
+                                    if (str.Contains("Name:"))
+                                    {
+                                        name = str.Split(':');
+                                        if (name[1] !=null)
+                                        {
+                                            sts.firstname = name[1];
+                                        }
+                                        /*name = str3.Split(' ');                                        
+                                        try
+                                        {
+                                            if (name[2] != null)
+                                            {
+                                                sts.surname = name[2];
+                                            }
+                                        }
+                                        catch
+                                        {
+                                        }
+                                        try
+                                        {
+                                            if (name[1] != null)
+                                            {
+                                                sts.surname = name[1];
+                                            }
+                                        }
+                                        catch
+                                        {
+                                        }
+                                        try
+                                        {
+                                            if (name[0] != null)
+                                            {
+                                                sts.firstname = name[0];
+                                            }
+                                        }
+                                        catch
+                                        {
+                                        }
+                                        */
+
+                                    }
+                                    else if (str.Contains("Overall mark:") && ((MarkType == 0) || (MarkType == 1)))
+                                    {
+                                        sts.percent = str3;
+                                        try
+                                        {
+                                            group_total = group_total + Convert.ToSingle(str3);
+                                        }
+                                        catch
+                                        {
+                                        }
+
+                                    }
+                                    else if (str.Contains("Equivalent grade:") && ((MarkType == 0) || (MarkType == 2)))
+                                    {
+                                        sts.grade = str3;
+                                    }
+
+                                }
+
+                            }
+                            if (Moderated)
+                            {
+                                ModList.Add(sts);
+                            }
+                            sw.Close();
+                        }
+
+                    }
+
+                } //for each
+
+                int i = richTextBox1.Find("%ModList%");
+                if (i > -1)
+                {
+                    richTextBox1.Select(i, "%ModLIst%".Length);
+
+                    Clipboard.Clear();
+                    string str4 = "";
+                    foreach (st_struct st in ModList)
+                    {
+                        str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                    }
+                    if (str4.Length > 0)
+                    {
+                        Clipboard.SetText(str4);
+                    }
+                    else { Clipboard.SetText(" "); }
+                    richTextBox1.Paste();
+                }
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
+        }
         private void Closebutton_Click(object sender, EventArgs e)
         {
             if (!changesSaved)
@@ -396,6 +553,7 @@ namespace UltraMarker
                 this.Close();
             }
         }
+
 
         private void BuildModerationList()
         {

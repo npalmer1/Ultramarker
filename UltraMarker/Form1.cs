@@ -587,7 +587,7 @@ namespace UltraMarker
                 for (int j = MaxSub; j > -1; j--)
                 {
                     for (int s = 0; s < MaxSessions; s++)
-                    {
+                    {                        
                         crSelected[i, j, s] = b;
                     }
                 }
@@ -5512,7 +5512,7 @@ namespace UltraMarker
             Overriedlabel.Visible = false;
             OverrideGradelabel.Text = "  ";
 
-            if (CriteriaSelectionType > 1)
+            if (CriteriaSelectionType == 0)
             {
                 Reset_Selected(true);
                 Change_Session_Selection();
@@ -5584,6 +5584,7 @@ namespace UltraMarker
                 //textBox10.Enabled = true;
                 addButton.Visible = true;
                 startMark = true;
+                savedStudent = false;
                 StudentcomboBox.Enabled = false;
                 overrideBox.Enabled = true;
                 ImportcheckBox.Visible = true;
@@ -5890,33 +5891,38 @@ namespace UltraMarker
         }
 
 
-
+        
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (startMark)
+
+            DialogResult dialogResult1;
+            DialogResult dialogResult2;
+            
+            if (startMark && !savedStudent)
             {
-                DialogResult dialogResult1 = MessageBox.Show("You are marking and have unsaved changes. Quit without saving Y/N?", "Unsaved Changes?", MessageBoxButtons.YesNo);
-                if (dialogResult1 == DialogResult.No)
-                {
-                    return;
-                }
-                else
+                                
+                dialogResult1 = MessageBox.Show("You are marking and have unsaved changes. Quit without saving Y/N?", "Unsaved Changes?", MessageBoxButtons.YesNo);
+                if (dialogResult1 == DialogResult.Yes)
                 {
                     MessageBox.Show("Quitting without saving");
                     SaveSettings();
                 }
+                else
+                {
+                    e.Cancel = true;
+                }
             }
             else
             {
-                DialogResult dialogResult = MessageBox.Show("Close application Yes/No? - select No if you have unsaved changes that you wish to keep!", "Close form Yes/No?", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.No)
+                dialogResult2 = MessageBox.Show("Close application Yes/No? - select No if you have unsaved changes that you wish to keep!", "Close form Yes/No?", MessageBoxButtons.YesNo);
+                if (dialogResult2 == DialogResult.Yes)
                 {
-                    e.Cancel = true;
-                    MessageBox.Show("Don't forget to save your data if you need to!");
+                    SaveSettings();                    
                 }
                 else
                 {
-                    SaveSettings();
+                    e.Cancel = true;
+                    MessageBox.Show("Don't forget to save your data if you need to!");                    
                 }
             }
         }
@@ -7615,7 +7621,7 @@ namespace UltraMarker
             {
                 return;
             }*/
-            if ((CriteriaSelectionType < 2) && EditStudent || CriteriaSelectionType == 0)
+            if ((CriteriaSelectionType < 1) && EditStudent || CriteriaSelectionType == 0)
             {
                 return;
             }
@@ -8770,22 +8776,22 @@ namespace UltraMarker
             {
                 markModeButton.Text = "3rd Mark";
                 MarkMode = 2;
-                modSelect.Visible = true;
+                modSelect.Visible = false;
                 show2ndMarker(false);
             }
             else if (markModeButton.Text == "3rd Mark")
             {
                 //markModeButton.Text = "1st Marker";
                 markModeButton.Text = "Agreed mark";
-                MarkMode = 0;
+                MarkMode = 3;
                 modSelect.Visible = false;
                 show2ndMarker(true);
             }
             else if (markModeButton.Text == "Agreed mark")
             {
                 markModeButton.Text = "1st Marker";
-                MarkMode = 3;
-                modSelect.Visible = false;
+                MarkMode = 0;
+                modSelect.Visible = true;
                 show2ndMarker(false);
             }
 
@@ -10090,9 +10096,9 @@ namespace UltraMarker
             CSForm.ShowDialog();
 
             t = CSForm.Passvalue;
-            if (t == 3)   //clear all deselected criteria
+            if (t == 0)   //clear all deselected criteria
             {
-                t = 0; //now set to not allow deselection of criteria
+                //t = 0; //now set to not allow deselection of criteria
                 try
                 {
                     CriteriaSelectionType = t;
@@ -10100,20 +10106,29 @@ namespace UltraMarker
                     //Change_Session_Selection();
                 }
                 catch { }
-                t = 0; //now set to not allow deselection of criteria
+                //t = 0; //now set to not allow deselection of criteria
 
             }
             CriteriaSelectionType = t;
+            //MessageBox.Show(Convert.ToString(t));
 
         }
         private void ReSelect_All_Criteria()
         {
             Reset_Selected(true);   //reset all
-            for (int n = 0; n < treeView2.Nodes[0].Nodes.Count; n++)
+            //for (int n = 0; n < treeView2.Nodes[0].Nodes.Count; n++)
+            for (int n = 0; n < treeView2.Nodes[0].GetNodeCount(false); n++)
             {
                 treeView2.SelectedNode = treeView2.Nodes[0].Nodes[n];
                 treeView2.SelectedNode.ForeColor = Color.Black;
                 treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Regular);
+                
+                for (int m = 0; m < treeView2.Nodes[0].Nodes[n].GetNodeCount(false); m++)
+                {
+                    treeView2.SelectedNode = treeView2.Nodes[0].Nodes[n].Nodes[m];
+                    treeView2.SelectedNode.ForeColor = Color.Black;
+                    treeView2.SelectedNode.NodeFont = new Font(TVFont, FontStyle.Regular);
+                }
             }
 
         }
@@ -11296,6 +11311,8 @@ namespace UltraMarker
         {
 
         }
+
+        
     }
     }
 

@@ -47,7 +47,7 @@ namespace UltraMarker
                 DialogResult dialogResult = MessageBox.Show("Clear all de-selected criteria Yes/No?", "Clear deslected criteria", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    Passvalue = 3;
+                    Passvalue = 0;
                 }
                 else
                 {
