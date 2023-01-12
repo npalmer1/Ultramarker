@@ -122,6 +122,9 @@ namespace UltraMarker
         bool replicate_Description = false;
         bool replicate_LO = false;
 
+        string peerAggregate = "Aggregated";
+        string modAggregate = "Aggregated";
+
         string slash = "\\";
         int MarkMode = 0;
 
@@ -331,9 +334,11 @@ namespace UltraMarker
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            string str = "";
+           
             feedOptions.includeheader = true;
             ConfigDir = "C:\\Ultramarker" + slash;
+            aggComboBox.SelectedIndex = 0;
+            aggregatedBox.SelectedIndex = 0;
 
             if (RunningPlatform() == Platform.Windows)
             {
@@ -409,7 +414,7 @@ namespace UltraMarker
             LOtextBox.Text = "";
             button7.Text = "Start marking   ";
             //treeView1.Font.Style = FontStyle.Regular;
-            aggregatedlist.SelectedIndex = 0;
+            
             dateTimePicker1.Value = DateTime.Today;
             dateTimePicker2.Value = DateTime.Today;
             dateTimePicker3.Value = DateTime.Today;
@@ -4812,7 +4817,7 @@ namespace UltraMarker
             bool nullText = false;
             int x = 0;
 
-            string str = "";
+            
             string str2 = "";
 
             float f = 0;
@@ -6339,7 +6344,9 @@ namespace UltraMarker
                             else if (str.StartsWith("Moderation Dir:"))
                             {
                                 modDirectory = str3;
+                                modDirTextBox.Text = str3;
                             }
+
 
                             else if (str.StartsWith("Criteria file:"))
                             {
@@ -6788,7 +6795,7 @@ namespace UltraMarker
 
         private void contextMenuStrip6_Click(object sender, EventArgs e)
         {   //add session
-            string str;
+           
             if (SessionS > MaxSessions - 1)
             {
                 MessageBox.Show("Can only have a maximum of " + Convert.ToString(MaxGrades) + " sessions");
@@ -8615,7 +8622,7 @@ namespace UltraMarker
 
         private void PeerFormPopulate()
         {
-            int i;
+           
             if (peerFile == "")
             {
                 MessageBox.Show("No template file specified");
@@ -8634,7 +8641,9 @@ namespace UltraMarker
             PForm.AssessNo = assessCBox.Text;
             PForm.AssessTitle = assessTBox.Text;
             PForm.ULSigFilePath = ULSigFilePath;
-            PForm.PeerSigFilePath = PeerSigFilePath;
+            PForm.PeerSigFilePath = PeerSigFilePath;            
+
+            PForm.AggregationStr = peerAggregate;
 
             try
             {
@@ -8649,9 +8658,7 @@ namespace UltraMarker
             }
             catch
             {
-            }
-
-            PForm.Aggregation = aggregatedlist.Items[aggregatedlist.SelectedIndex].ToString();
+            }            
 
             PForm.Sheet = checklist1.Checked;
             PForm.Comment1 = C1.Text;
@@ -8687,7 +8694,7 @@ namespace UltraMarker
 
         private void ModFormPopulate()
         {
-            int i;
+            
             if (modFile == "")
             {
                 MessageBox.Show("No template file specified");
@@ -8722,6 +8729,8 @@ namespace UltraMarker
             PForm.Moderator = moderatorBox.Text;
             PForm.AssessNo = ACodeBox.Text;
             PForm.AssessTitle = assessTBox.Text;
+            PForm.AggregationStr = modAggregate;
+            
 
             try
             {
@@ -8742,7 +8751,7 @@ namespace UltraMarker
             PForm.Comment3 = thirdBox.Text;
             PForm.Agreed = agreedcheck.Checked;
             PForm.Third = thirdcheck.Checked;
-            PForm.Aggregation = aggregatedlist.Items[aggregatedlist.SelectedIndex].ToString();
+            
 
             PForm.OutFilePath = UnitFilePath;
             PForm.ShowDialog();
@@ -11312,7 +11321,21 @@ namespace UltraMarker
 
         }
 
-        
+        private void aggregatedBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            peerAggregate = aggregatedBox.SelectedItem.ToString();
+
+            
+        }
+
+        private void aggComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           
+            modAggregate = aggComboBox.SelectedItem.ToString();
+
+           
+            
+        }
     }
     }
 

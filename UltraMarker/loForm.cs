@@ -52,7 +52,7 @@ namespace UltraMarker
 
         private void loForm_Load_1(object sender, EventArgs e)
         {
-            string str;           
+                     
             try
             {
                     saved = true;

@@ -332,6 +332,7 @@
             this.loadSessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newSessionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.aggregatedBox = new System.Windows.Forms.ComboBox();
             this.PeerSigBox = new System.Windows.Forms.TextBox();
             this.label96 = new System.Windows.Forms.Label();
             this.PeerSigButton = new System.Windows.Forms.Button();
@@ -356,7 +357,6 @@
             this.unitLeaderBox = new System.Windows.Forms.TextBox();
             this.unitCodeBox = new System.Windows.Forms.TextBox();
             this.unitTitleBox = new System.Windows.Forms.TextBox();
-            this.aggregatedlist = new System.Windows.Forms.ListBox();
             this.label41 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
@@ -384,6 +384,7 @@
             this.label31 = new System.Windows.Forms.Label();
             this.ShowPeerButton = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.aggComboBox = new System.Windows.Forms.ComboBox();
             this.modfileButton = new System.Windows.Forms.Button();
             this.label74 = new System.Windows.Forms.Label();
             this.modDirTextBox = new System.Windows.Forms.TextBox();
@@ -405,7 +406,6 @@
             this.label69 = new System.Windows.Forms.Label();
             this.APassBox = new System.Windows.Forms.TextBox();
             this.AWeightBox = new System.Windows.Forms.TextBox();
-            this.agglistBox = new System.Windows.Forms.ListBox();
             this.label66 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
@@ -3729,6 +3729,7 @@
             // tabPage6
             // 
             this.tabPage6.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage6.Controls.Add(this.aggregatedBox);
             this.tabPage6.Controls.Add(this.PeerSigBox);
             this.tabPage6.Controls.Add(this.label96);
             this.tabPage6.Controls.Add(this.PeerSigButton);
@@ -3753,7 +3754,6 @@
             this.tabPage6.Controls.Add(this.unitLeaderBox);
             this.tabPage6.Controls.Add(this.unitCodeBox);
             this.tabPage6.Controls.Add(this.unitTitleBox);
-            this.tabPage6.Controls.Add(this.aggregatedlist);
             this.tabPage6.Controls.Add(this.label41);
             this.tabPage6.Controls.Add(this.label40);
             this.tabPage6.Controls.Add(this.label39);
@@ -3773,6 +3773,19 @@
             this.tabPage6.Size = new System.Drawing.Size(1328, 720);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
+            // 
+            // aggregatedBox
+            // 
+            this.aggregatedBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aggregatedBox.FormattingEnabled = true;
+            this.aggregatedBox.Items.AddRange(new object[] {
+            "Aggregated",
+            "Must pass"});
+            this.aggregatedBox.Location = new System.Drawing.Point(558, 236);
+            this.aggregatedBox.Name = "aggregatedBox";
+            this.aggregatedBox.Size = new System.Drawing.Size(115, 23);
+            this.aggregatedBox.TabIndex = 38;
+            this.aggregatedBox.SelectedIndexChanged += new System.EventHandler(this.aggregatedBox_SelectedIndexChanged);
             // 
             // PeerSigBox
             // 
@@ -3966,18 +3979,6 @@
             this.unitTitleBox.Name = "unitTitleBox";
             this.unitTitleBox.Size = new System.Drawing.Size(451, 21);
             this.unitTitleBox.TabIndex = 14;
-            // 
-            // aggregatedlist
-            // 
-            this.aggregatedlist.FormattingEnabled = true;
-            this.aggregatedlist.ItemHeight = 15;
-            this.aggregatedlist.Items.AddRange(new object[] {
-            "Aggregated",
-            "Must pass"});
-            this.aggregatedlist.Location = new System.Drawing.Point(559, 244);
-            this.aggregatedlist.Name = "aggregatedlist";
-            this.aggregatedlist.Size = new System.Drawing.Size(114, 4);
-            this.aggregatedlist.TabIndex = 13;
             // 
             // label41
             // 
@@ -4230,6 +4231,7 @@
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage7.Controls.Add(this.aggComboBox);
             this.tabPage7.Controls.Add(this.modfileButton);
             this.tabPage7.Controls.Add(this.label74);
             this.tabPage7.Controls.Add(this.modDirTextBox);
@@ -4248,7 +4250,6 @@
             this.tabPage7.Controls.Add(this.label69);
             this.tabPage7.Controls.Add(this.APassBox);
             this.tabPage7.Controls.Add(this.AWeightBox);
-            this.tabPage7.Controls.Add(this.agglistBox);
             this.tabPage7.Controls.Add(this.label66);
             this.tabPage7.Controls.Add(this.label67);
             this.tabPage7.Controls.Add(this.label68);
@@ -4275,6 +4276,19 @@
             this.tabPage7.Size = new System.Drawing.Size(1328, 720);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
+            // 
+            // aggComboBox
+            // 
+            this.aggComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aggComboBox.FormattingEnabled = true;
+            this.aggComboBox.Items.AddRange(new object[] {
+            "Aggregated",
+            "Must pass"});
+            this.aggComboBox.Location = new System.Drawing.Point(619, 253);
+            this.aggComboBox.Name = "aggComboBox";
+            this.aggComboBox.Size = new System.Drawing.Size(115, 23);
+            this.aggComboBox.TabIndex = 74;
+            this.aggComboBox.SelectedIndexChanged += new System.EventHandler(this.aggComboBox_SelectedIndexChanged);
             // 
             // modfileButton
             // 
@@ -4468,18 +4482,6 @@
             this.AWeightBox.Name = "AWeightBox";
             this.AWeightBox.Size = new System.Drawing.Size(48, 21);
             this.AWeightBox.TabIndex = 56;
-            // 
-            // agglistBox
-            // 
-            this.agglistBox.FormattingEnabled = true;
-            this.agglistBox.ItemHeight = 15;
-            this.agglistBox.Items.AddRange(new object[] {
-            "Aggregated",
-            "Must pass"});
-            this.agglistBox.Location = new System.Drawing.Point(619, 258);
-            this.agglistBox.Name = "agglistBox";
-            this.agglistBox.Size = new System.Drawing.Size(114, 19);
-            this.agglistBox.TabIndex = 55;
             // 
             // label66
             // 
@@ -5420,7 +5422,6 @@
         private System.Windows.Forms.TextBox unitLeaderBox;
         private System.Windows.Forms.TextBox unitCodeBox;
         private System.Windows.Forms.TextBox unitTitleBox;
-        private System.Windows.Forms.ListBox aggregatedlist;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label39;
@@ -5502,7 +5503,6 @@
         private System.Windows.Forms.Label label69;
         private System.Windows.Forms.TextBox APassBox;
         private System.Windows.Forms.TextBox AWeightBox;
-        private System.Windows.Forms.ListBox agglistBox;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.Label label68;
@@ -5695,6 +5695,8 @@
         private System.Windows.Forms.Label overLabel;
         private System.Windows.Forms.Label overallGradelabel;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.ComboBox aggComboBox;
+        private System.Windows.Forms.ComboBox aggregatedBox;
     }
 }
 

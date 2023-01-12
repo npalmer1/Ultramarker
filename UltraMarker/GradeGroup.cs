@@ -104,8 +104,7 @@ namespace UltraMarker
         }
         private void LoadTemplate(string filename)
         {
-            string str2 = "";
-            string str = "";
+            
             try
             {
                 richTextBox1.LoadFile(filename, RichTextBoxStreamType.RichText);
@@ -437,7 +436,7 @@ namespace UltraMarker
        
         private void savebutton_Click(object sender, EventArgs e)
         {
-            string fname = "";
+            
             saveFileDialog1.InitialDirectory = OutFilePath;
 
             saveFileDialog1.FileName = student+ "_" + AssessNo + "T" + SittingType+ ".rtf"; //t for table

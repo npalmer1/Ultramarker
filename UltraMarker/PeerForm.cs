@@ -29,7 +29,7 @@ namespace UltraMarker
         public string AssessTitle;
         public int Weight;
         public int PassMark;
-        public string Aggregation;
+        public string AggregationStr = "";
         public bool Sheet;
         public string Comment1;
         public bool Strategy;
@@ -56,6 +56,8 @@ namespace UltraMarker
         public string OutFilePath;
         public string ULSigFilePath;
         public string PeerSigFilePath;
+
+        
         int ftype = 0;
         Image ULSigImg;
         Image PeerSigImg;
@@ -113,8 +115,7 @@ namespace UltraMarker
 
         private void LoadTemplate(string filename)
         {
-            string str2 = "";
-            string str = "";
+            
             try
             {
                 richTextBox1.LoadFile(filename, RichTextBoxStreamType.RichText);
@@ -233,7 +234,7 @@ namespace UltraMarker
                 ReplaceString("%PassMark%", PassMark.ToString());
             }
             catch { }
-            ReplaceString("Must Pass/Aggregated", Aggregation);
+            ReplaceString("Must Pass/Aggregated", AggregationStr);
             if (Sheet)
             {
                 ReplaceString("%Sheet%", "Y");
@@ -332,7 +333,7 @@ namespace UltraMarker
                 ReplaceString("%PassMark%", PassMark.ToString());
             }
             catch { }
-            ReplaceString("Must Pass/Aggregated", Aggregation);
+            ReplaceString("Must Pass/Aggregated", AggregationStr);
 
             ReplaceString("%Comment1%", Comment1);
             ReplaceString("%Comment2%", Comment2);
@@ -515,7 +516,8 @@ namespace UltraMarker
                     string str4 = "";
                     foreach (st_struct st in ModList)
                     {
-                        str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                        //str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                        str4 = str4 + (st.firstname).PadRight(60, ' ') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
                     }
                     if (str4.Length > 0)
                     {
