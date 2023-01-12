@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using System.Drawing.Printing;
+using System.Runtime.Caching.Hosting;
+using System.Linq.Expressions;
 
 namespace UltraMarker
 {
@@ -400,12 +402,13 @@ namespace UltraMarker
                 string[] files = Directory.GetFiles(MarkDir, "*.mrk");
                 if (files.Count() < 1)
                 {
-                    MessageBox.Show("No moderated files (.mrm) in this folder");
+                    MessageBox.Show("No marked files (.mrk) in this folder");
                     return;
                 }
-
+                int modCount = 0;
                 foreach (string file in files)
                 {
+                    Loop:
                     Moderated = false;
                     sts.firstname = "";
                     sts.surname = "";
@@ -431,9 +434,17 @@ namespace UltraMarker
                                     {
                                         str3 = str;
                                     }
-                                    if (str.Contains("Moderated:") && str.Contains("Y"))
+                                    if (str.Contains("Moderated:"))
                                     {
-                                        Moderated = true;
+                                        if (str.Contains("Y"))
+                                        {
+                                            Moderated = true;
+                                            modCount++;
+                                        }
+                                        else
+                                        {
+                                           
+                                        }
                                     }
                                     if (str.Contains("Name:"))
                                     {
@@ -504,8 +515,14 @@ namespace UltraMarker
                         }
 
                     }
+                   
 
                 } //for each
+                if (modCount == 0)
+                {
+                    MessageBox.Show("No moderated files in this folder");
+                    return;
+                }
 
                 int i = richTextBox1.Find("%ModList%");
                 if (i > -1)
@@ -876,7 +893,9 @@ namespace UltraMarker
             return str;
         }
 
-       
-
+        private void PeerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
     }
 }

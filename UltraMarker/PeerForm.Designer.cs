@@ -117,6 +117,7 @@
             this.Controls.Add(this.richTextBox1);
             this.Name = "PeerForm";
             this.Text = "Peer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PeerForm_FormClosing);
             this.Load += new System.EventHandler(this.Peer_Load);
             this.ResumeLayout(false);
 
