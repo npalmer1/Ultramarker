@@ -92,6 +92,7 @@ namespace UltraMarker
         private void Peer_Load(object sender, EventArgs e)
         {
             SetSig();
+            Clipboard.SetText(" "); //clear the clipboard to allow replacetext to work better
             changesSaved = false;
             LoadTemplate(TemplateFile);
             if (PeerReview ==0)
@@ -408,7 +409,6 @@ namespace UltraMarker
                 int modCount = 0;
                 foreach (string file in files)
                 {
-                    Loop:
                     Moderated = false;
                     sts.firstname = "";
                     sts.surname = "";

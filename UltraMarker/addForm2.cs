@@ -10,7 +10,7 @@ using System.IO;
 
 namespace UltraMarker
 {
-    public partial class addForm2 : Form
+    public partial class addForm2 : Form  //windows only
     {
         private string[] Nm = new string[2];
 

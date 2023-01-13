@@ -62,7 +62,7 @@ namespace UltraMarker
             
             //richTextBox1.Font = new Font("Calibri", 10, FontStyle.Regular);
             changesSaved = false;
-
+            
             Read_Feedback();
            
             if (textBox1.Text.Length < 1)

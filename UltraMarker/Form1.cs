@@ -147,10 +147,10 @@ namespace UltraMarker
         GradeGroup GForm = new GradeGroup(); //form for output to a template criteria form
 
         CommentForm CommentsForm = new CommentForm();
-        addForm addcommentForm = new addForm();
-        addForm2 addcommentForm2 = new addForm2();
+        addForm addcommentForm = new addForm(); //linux only
+        addForm2 addcommentForm2 = new addForm2();  //windows only
 
-        addComment addcommentX = new addComment();
+        addComment addcommentX = new addComment(); //windows only
 
         WeightReport weightForm = new WeightReport();
 
@@ -7534,7 +7534,7 @@ namespace UltraMarker
             addCommentsX();
             //addComments();
         }
-        private void addComments()
+        private void addComments()  //linux only
         {
             int s = 0;
             if (CriteriaSelected)//criteria or sub-criteria selected?
@@ -7560,7 +7560,7 @@ namespace UltraMarker
             }
             addcommentForm.Close();
         }
-        private void addCommentsX() //open XML add comments form - experimental version - not working
+        private void addCommentsX() //windows only
         {
             int s = 0;
             if (CriteriaSelected)//criteria or sub-criteria selected?
@@ -9382,6 +9382,7 @@ namespace UltraMarker
         private void textBox10_DoubleClick(object sender, EventArgs e)
         {
             textBox10 = EditSpecificX(textBox10); //edit comments text box if double click on it
+            //textBox10 = EditSpecific(textBox10); //linux
 
             /*string CommentStr;
             try
@@ -10223,7 +10224,8 @@ namespace UltraMarker
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            //genList();                
+            //genList();
+            Clipboard.SetText(" ");  //clear the clipboard - includes Win7
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())
             {
@@ -11085,7 +11087,7 @@ namespace UltraMarker
             }
         }
 
-        private TextBox EditSpecific(TextBox box)
+        private TextBox EditSpecific(TextBox box)  //linux only
         {            
 
             addcommentForm.Passvalue[0] = "General Comments";
@@ -11102,7 +11104,7 @@ namespace UltraMarker
             return box;
         }
 
-        private TextBox EditSpecificX(TextBox box)
+        private TextBox EditSpecificX(TextBox box)  //windows only
         {
             
             addcommentForm2.Passvalue[0] = "General Comments";
@@ -11126,6 +11128,7 @@ namespace UltraMarker
         private void textBox2Comments_DoubleClick(object sender, EventArgs e)
         {
             textBox2Comments = EditSpecificX(textBox2Comments); //edit comments text box if double click on it
+            //textBox2Comments = EditSpecific(textBox2Comments); //linux only
         }
 
         private void Clicklabel2_Click(object sender, EventArgs e)
@@ -11133,6 +11136,7 @@ namespace UltraMarker
             if (startMark)
             {
                 textBox2Comments = EditSpecificX(textBox2Comments); //edit comments text box if double click on it        }
+                //textBox2Comments = EditSpecificX(textBox2Comments); //linux
             }
         }
         private void Clicklabel1_Click(object sender, EventArgs e)
@@ -11140,6 +11144,7 @@ namespace UltraMarker
             if (startMark)
             {
                 textBox10 = EditSpecificX(textBox10); //edit comments text box if double click on it
+                //textBox10 = EditSpecific(textBox10); //linux
             }
         }
 
