@@ -292,25 +292,26 @@ namespace UltraMarker
                 ReplaceString("%Special%", " ");
             }
             ReplaceString("%Comment6%", Comment6);
-            //ReplaceString("%Peer%", Peer);
+            
+            ReplaceString("%Peer%", Peer);
             if (PeerSigImg != null)
             {
                 InsertSig(PeerSigImg, "%PeerSig%");
             }
             else
             {
-                ReplaceString("%PeerSig%", "");
+                ReplaceString("%PeerSig%", " ");
             }
             ReplaceString("%PeerDate%", PeerDate);
             ReplaceString("%Comment7%", Comment7);
-            //ReplaceString("%UnitLeader%", UnitLeader);
+            ReplaceString("%UnitLeader%", UnitLeader);
             if (ULSigImg != null)
             {
                 InsertSig(ULSigImg, "%ULSig%");
             }
             else
             {
-                ReplaceString("%ULSig%", "");
+                ReplaceString("%ULSig%", " ");
             }
             ReplaceString("%ULDate%", ULDate);
 
@@ -527,7 +528,7 @@ namespace UltraMarker
                 int i = richTextBox1.Find("%ModList%");
                 if (i > -1)
                 {
-                    richTextBox1.Select(i, "%ModLIst%".Length);
+                    richTextBox1.Select(i, "%ModList%".Length);
 
                     Clipboard.Clear();
                     string str4 = "";
