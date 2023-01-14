@@ -3053,6 +3053,7 @@ namespace UltraMarker
             {
                 highlightButton.Visible = false;
                 Ticklabel.Visible = false;
+
                 SaveListbox1Selected();
                 listBox1.SelectionMode = SelectionMode.One;
                 try
@@ -3187,6 +3188,7 @@ namespace UltraMarker
                 button5.Visible = b;
                 button6.Visible = b;
                 addButton.Visible = b;
+                Clicklabel1.Visible = b;
                 //textBox10.Enabled = true;
                 ImportcheckBox.Visible = true;
 
@@ -3196,8 +3198,9 @@ namespace UltraMarker
                 button4.Visible = false;
                 button5.Visible = b;
                 button6.Visible = false;
-                //addButton.Visible = false;
-                addButton.Visible = b; //allow to view comments
+               
+                addButton.Visible = false; //allow to view comments
+                Clicklabel1.Visible = false;
                 //textBox10.Enabled = false;
                 ImportcheckBox.Visible = false;
 
@@ -3211,7 +3214,7 @@ namespace UltraMarker
                 //importCalcLabel.Visible = b;
             }
             textBox10.Visible = b;
-            Clicklabel1.Visible = b;
+           
 
             if (!industrial)
             {
@@ -3537,6 +3540,8 @@ namespace UltraMarker
             {
                 Load_Sessions(openFileDialog3.FileName);
             }
+            addButton.Visible = true;
+            Clicklabel1.Visible = true;
         }
 
         private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)
@@ -5542,11 +5547,11 @@ namespace UltraMarker
             overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
             overridecheckBox.Checked = false; //stop overriding student grade
             overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
-            //addButton.Visible = false;
-            //Clicklabel1.Visible = false;
+            addButton.Visible = false;
+            Clicklabel1.Visible = false;
         }
 
-        private void button7_Click(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e) //start marking
         {
             //Clear the form or start marking button
             if (startMark)
@@ -5583,7 +5588,7 @@ namespace UltraMarker
                 LoadFromFile = false;
                 Markerlabel.Visible = true;
                 MarkertextBox.Visible = true;
-                Clicklabel1.Visible = true;
+               
                 button7.Text = "Clear form/mark another";
                 modSelect.Checked = false;
                 button4.Visible = true;
@@ -5591,7 +5596,10 @@ namespace UltraMarker
                 button6.Visible = true;
                 //textBox10.Visible = true;
                 //textBox10.Enabled = true;
-                addButton.Visible = true;
+
+                addButton.Visible = true; //commments
+                Clicklabel1.Visible = true; //comments
+
                 startMark = true;
                 savedStudent = false;
                 StudentcomboBox.Enabled = false;

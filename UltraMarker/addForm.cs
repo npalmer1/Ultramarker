@@ -43,6 +43,11 @@ namespace UltraMarker
             textBox1.Text = Passvalue[1];
             
         }
+        private void addForm_Closing(object sender, EventArgs e)
+        {
+            Close();
+        }
+
 
         private void button1_Click(object sender, EventArgs e)
         {
