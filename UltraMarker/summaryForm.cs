@@ -347,7 +347,7 @@ namespace UltraMarker
                                             {
                                             }
                                             */
-                                           
+
                                         }
                                         else if (str.Contains("Overall mark:") && checkBox1.Checked)
                                         {
@@ -365,13 +365,16 @@ namespace UltraMarker
                                         {
                                             sts.grade = str3;
                                         }
-                                        else if (str.Contains("Moderated:"))
+                                        else if (str.Contains("Moderated:") && modBox.Checked)
                                         {
-                                            if (str3.Contains("Y") && modBox.Checked)
+                                            if (str.Contains("Y"))
                                             {
                                                 sts.mod = "*";
                                             }
+                                            else { sts.mod = " "; }
                                         }
+                                        else
+                                        { }
 
                                     }
                                   
