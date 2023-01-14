@@ -7572,7 +7572,7 @@ namespace UltraMarker
             {
                 CommentFile = addcommentForm.ComFile;
             }
-            addcommentForm.Close();
+            //addcommentForm.Close();
         }
         private void addCommentsX() //windows only
         {

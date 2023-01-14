@@ -49,7 +49,7 @@ namespace UltraMarker
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)  //save
         {
             Passvalue[1] = textBox1.Text;
             this.Close();
@@ -57,7 +57,7 @@ namespace UltraMarker
            
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)  //clear form
         {
             DialogResult dialogResult = MessageBox.Show("Clear feedback comments for this criteria Yes/No?", "Clear comments", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -66,7 +66,7 @@ namespace UltraMarker
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)  //close form
         {
             this.Close();
             //this.Hide();
