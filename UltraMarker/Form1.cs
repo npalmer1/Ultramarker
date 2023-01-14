@@ -5560,6 +5560,7 @@ namespace UltraMarker
                 if (dialogResult == DialogResult.Yes)
                 {
                     Clear_All_Form();
+                    modSelect.Checked = false;
                 }
             }
             else
@@ -5590,7 +5591,7 @@ namespace UltraMarker
                 MarkertextBox.Visible = true;
                
                 button7.Text = "Clear form/mark another";
-                modSelect.Checked = false;
+                //modSelect.Checked = false;
                 button4.Visible = true;
                 button5.Visible = false;
                 button6.Visible = true;
