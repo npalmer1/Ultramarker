@@ -3185,7 +3185,7 @@ namespace UltraMarker
             if (startMark)
             {
                 button4.Visible = b;
-                button5.Visible = b;
+                button5.Visible = !b; //don't show load button
                 button6.Visible = b;
                 addButton.Visible = b;
                 Clicklabel1.Visible = b;
