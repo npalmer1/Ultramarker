@@ -21,6 +21,7 @@ namespace UltraMarker
         CommentForm CForm = new CommentForm();
         public string ComFile;
         public bool isLinux;
+        public bool viewonly = false;
 
         public string[] Passvalue
         {
@@ -34,6 +35,10 @@ namespace UltraMarker
 
         private void addForm_Load(object sender, EventArgs e)
         {
+            
+            button1.Visible = !viewonly;
+            button3.Visible = !viewonly;
+            
             label2.Text = Passvalue[0];
             textBox1.Text = Passvalue[1];
             
@@ -70,11 +75,11 @@ namespace UltraMarker
         private void textBox1_DoubleClick(object sender, EventArgs e)
         {
             string CommentStr;
-            if (isLinux)
+            if (viewonly)
             {
-                MessageBox.Show("Feature currently under test in Linux");
                 return;
             }
+           
             try
             {
                 if (File.Exists(ComFile))

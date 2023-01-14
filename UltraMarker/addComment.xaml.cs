@@ -27,7 +27,8 @@ namespace UltraMarker
         CommentForm CForm = new CommentForm();
         public string ComFile;
         public string BoxText;
-      
+        public bool View = false;
+
         public addComment()
         {
             InitializeComponent();
@@ -43,7 +44,10 @@ namespace UltraMarker
         private void TextBox1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             string CommentStr;
-
+            if (View)
+            {
+                return;
+            }
             try
             {
                 if (File.Exists(ComFile))

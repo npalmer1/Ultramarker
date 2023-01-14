@@ -3177,7 +3177,7 @@ namespace UltraMarker
             toolStripMenuItem1.Enabled = !b;
             settingsToolStripMenuItem.Enabled = !b;
             LOtoolStripMenuItem2.Enabled = !b;
-            promptsToolStripMenuItem.Enabled = !b;
+            promptsToolStripMenuItem.Enabled = !b;            
          
 
             //menuStrip2.Enabled = !b;
@@ -3196,7 +3196,8 @@ namespace UltraMarker
                 button4.Visible = false;
                 button5.Visible = b;
                 button6.Visible = false;
-                addButton.Visible = false;
+                //addButton.Visible = false;
+                addButton.Visible = b; //allow to view comments
                 //textBox10.Enabled = false;
                 ImportcheckBox.Visible = false;
 
@@ -3245,6 +3246,7 @@ namespace UltraMarker
             label18.Visible = b;
             button7.Visible = b;
             assessTitleBox.ReadOnly = b;
+            
 
             label30.Visible = b;
             if (SessionType > 0 || Session > 1)
@@ -5530,16 +5532,18 @@ namespace UltraMarker
             button5.Visible = true;
             button6.Visible = false;
             //textBox10.Enabled = false;
-            addButton.Visible = false;
+           
             StudentcomboBox.Enabled = true;
             overrideBox.Enabled = false;
             ImportcheckBox.Visible = false;
             importGroupBox.Visible = false;
             //importCalcLabel.Visible = false;
-            Clicklabel1.Visible = false;
+            
             overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
             overridecheckBox.Checked = false; //stop overriding student grade
             overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
+            //addButton.Visible = false;
+            //Clicklabel1.Visible = false;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -7551,6 +7555,8 @@ namespace UltraMarker
             //addcommentForm.CForm = CommentsForm;
             addcommentForm.ComFile = CommentFile;
             addcommentForm.isLinux = Linux;
+            addcommentForm.viewonly = !startMark;
+           
             addcommentForm.ShowDialog();
 
             crComment[SCriteria, s, Session] = addcommentForm.Passvalue[1];
@@ -7576,6 +7582,7 @@ namespace UltraMarker
             addcommentForm2.Passvalue[1] = crComment[SCriteria, s, Session];
             //addcommentForm.CForm = CommentsForm;
             addcommentForm2.ComFile = CommentFile;
+            addcommentForm2.viewonly = !startMark;
             addcommentForm2.ShowDialog();
 
             crComment[SCriteria, s, Session] = addcommentForm2.Passvalue[1];
@@ -11106,11 +11113,14 @@ namespace UltraMarker
 
         private TextBox EditSpecificX(TextBox box)  //windows only
         {
-            
+
             addcommentForm2.Passvalue[0] = "General Comments";
             addcommentForm2.Passvalue[1] = box.Text;
             //addcommentForm.CForm = CommentsForm;
             addcommentForm2.ComFile = CommentFile;
+            
+            addcommentForm2.viewonly = !startMark;
+          
             addcommentForm2.ShowDialog();
 
             box.Text = addcommentForm2.Passvalue[1];
@@ -11141,11 +11151,11 @@ namespace UltraMarker
         }
         private void Clicklabel1_Click(object sender, EventArgs e)
         {
-            if (startMark)
-            {
+            //if (startMark)
+            //{
                 textBox10 = EditSpecificX(textBox10); //edit comments text box if double click on it
                 //textBox10 = EditSpecific(textBox10); //linux
-            }
+            //}
         }
 
         private void templatelabel_Click(object sender, EventArgs e)

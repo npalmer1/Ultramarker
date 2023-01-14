@@ -13,11 +13,11 @@ namespace UltraMarker
     public partial class addForm2 : Form  //windows only
     {
         private string[] Nm = new string[2];
-
-        //public CommentForm CForm = new CommentForm();
+       
         CommentForm CForm = new CommentForm();
         public string ComFile;
         //Control[] control1;
+        public bool viewonly = false;
 
         public string[] Passvalue
         {
@@ -30,9 +30,14 @@ namespace UltraMarker
         }
         private void addForm2_Load(object sender, EventArgs e)
         {
+           
+            button1.Visible = !viewonly;
+            button3.Visible = !viewonly;
+            
             label2.Text = Passvalue[0];
             addComment1.TextBox1.Text = Passvalue[1];
             addComment1.ComFile = ComFile;
+            addComment1.View = viewonly;
             addComment1.TextBox1.VerticalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Visible;
             //addComment1.TextBox1.HorizontalScrollBarVisibility = System.Windows.Controls.ScrollBarVisibility.Visible;
             addComment1.TextBox1.TextWrapping = System.Windows.TextWrapping.Wrap;
