@@ -153,11 +153,14 @@ namespace UltraMarker
                     }
                     else { Clipboard.SetText(" "); }
                      richTextBox1.Paste();
+                    richTextBox1.Update();
                 }
             }
             catch{
                 }           
         }
+
+       
 
         private void SetSig()
         {
