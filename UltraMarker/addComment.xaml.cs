@@ -33,7 +33,8 @@ namespace UltraMarker
         {
             InitializeComponent();
             TextBox1.SpellCheck.IsEnabled = true;
-            TextBox1.Text = BoxText;          
+            TextBox1.Text = BoxText;   
+            
         }
 
         private void TextBox1_TextChanged_1(object sender, TextChangedEventArgs e)

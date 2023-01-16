@@ -33,7 +33,16 @@ namespace UltraMarker
            
             button1.Visible = !viewonly;
             button3.Visible = !viewonly;
-            
+            addComment1.TextBox1.IsEnabled = !viewonly;
+            if (viewonly)
+            {
+                label4.Text = "Viewing Mode";
+            }
+            else
+            {
+                label4.Text = "Editing Mode";
+            }
+
             label2.Text = Passvalue[0];
             addComment1.TextBox1.Text = Passvalue[1];
             addComment1.ComFile = ComFile;
