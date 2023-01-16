@@ -255,6 +255,7 @@ namespace UltraMarker
             public bool ShowMarker;
             public bool ShowWeight;
             public bool ShowSubWeight;
+            public bool Moderated;
         }
         feedbackoptionstruct feedOptions;
 
@@ -583,6 +584,7 @@ namespace UltraMarker
             feedOptions.ShowMarker = b;
             feedOptions.ShowWeight = b;
             feedOptions.ShowSubWeight = b;
+            feedOptions.Moderated = b;
         }
 
         private void Reset_Selected(bool b) //reset selected criteria and sub criteria
@@ -3221,6 +3223,7 @@ namespace UltraMarker
                 markModeButton.Visible = b;
                 markModelabel.Visible = b;
                 modSelect.Visible = b;
+                
                 sittingButton.Visible = b;
                 sittinglabel.Visible = b;
             }
@@ -3447,7 +3450,7 @@ namespace UltraMarker
                         else if (MarkMode == 1)
                         {
                             saveFileDialog3.Filter = "2nd Marked files (.2nd)|*.2nd";
-                            saveFileDialog3.DefaultExt = "2nd";
+                            saveFileDialog3.DefaultExt = "2nd";                           
                         }
                         else if (MarkMode == 2)
                         {
@@ -3600,8 +3603,8 @@ namespace UltraMarker
                         if (modSelect.Checked)
                         {
                             mstr = "Y";
-                        }
-                        sw.WriteLine("Moderated: " + mstr);
+                        }                        
+                        sw.WriteLine("Moderated: " + mstr);                                             
                         try
                         {
                             ctype = CriteriaType.ToString();
@@ -3829,6 +3832,8 @@ namespace UltraMarker
             bool foundcriteria = false;
             bool foundsession = false;
             modSelect.Checked = false; //uncheck moderation checkbox
+           
+
             string gradestr = "  ";
 
             loading = true;
@@ -4032,10 +4037,16 @@ namespace UltraMarker
                             if (str.Contains("Y"))
                             {
                                 modSelect.Checked = true;
+                                
                             }
-                            else modSelect.Checked = false;
+                            else
+                            {
+                                modSelect.Checked = false;
+                                
+                            }
 
                         }
+                        
                         if (str.StartsWith("Unit: "))
                         {
                             // do nothing at this stage
@@ -4442,6 +4453,10 @@ namespace UltraMarker
                     if (feedOptions.ShowMarker)
                     {
                         str = str + "Assessor: " + MarkertextBox.Text.Trim() + nl;
+                    }
+                    if ((MarkMode != 0 || modSelect.Checked) && feedOptions.Moderated)
+                    {
+                        str = str + "Moderated: Yes" + nl;
                     }
 
 
@@ -5561,6 +5576,7 @@ namespace UltraMarker
                 {
                     Clear_All_Form();
                     modSelect.Checked = false;
+                    
                 }
             }
             else
@@ -6042,7 +6058,9 @@ namespace UltraMarker
                     if (!feedOptions.ShowMarker) { c[15] = '0'; }
                     if (!feedOptions.ShowWeight) { c[16] = '0'; }
                     if (!feedOptions.ShowSubWeight) { c[17] = '0'; }
-                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14] + c[15] + c[16] + c[17]);
+                    if (!feedOptions.Moderated) { c[18] = '0'; }
+
+                    sw.WriteLine("Feedback options: " + c[0] + c[1] + c[2] + c[3] + c[4] + c[5] + c[6] + c[7] + c[8] + c[9] + c[10] + c[11] + c[12] + c[13] + c[14] + c[15] + c[16] + c[17]+ c[18]);
                     try
                     {
                         sw.WriteLine("Summary sort type: " + Convert.ToString(Summary_Sort_Type));
@@ -6436,6 +6454,7 @@ namespace UltraMarker
                                     c[15] = str3[15];
                                     c[16] = str3[16];
                                     c[17] = str3[17];
+                                    c[18] = str3[18];
                                 }
                                 catch
                                 {
@@ -6532,24 +6551,30 @@ namespace UltraMarker
                         }
 
                         sw.Close();
-                        if (c[0] == '0') { feedOptions.generic = false; }
-                        if (c[1] == '0') { feedOptions.description = false; }
-                        if (c[2] == '0') { feedOptions.suggested = false; }
-                        if (c[3] == '0') { feedOptions.additional = false; }
-                        if (c[4] == '0') { feedOptions.criteriaComment = false; }
-                        if (c[5] == '0') { feedOptions.percent = false; }
-                        if (c[6] == '0') { feedOptions.grade = false; }
-                        if (c[7] == '0') { feedOptions.LO = false; }
-                        if (c[8] == '0') { feedOptions.full = false; }
-                        if (c[9] == '0') { feedOptions.fullLO = false; }
-                        if (c[10] == '0') { feedOptions.SubLO = false; }
-                        if (c[11] == '0') { feedOptions.CriteriaGrade = false; }
-                        if (c[12] == '0') { feedOptions.subdescription = false; }
-                        if (c[13] == '0') { feedOptions.includeheader = false; }
-                        if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
-                        if (c[15] == '0') { feedOptions.ShowMarker = false; }
-                        if (c[16] == '0') { feedOptions.ShowWeight = false; }
-                        if (c[17] == '0') { feedOptions.ShowSubWeight = false; }
+                        try
+                        {
+                            if (c[0] == '0') { feedOptions.generic = false; }
+                            if (c[1] == '0') { feedOptions.description = false; }
+                            if (c[2] == '0') { feedOptions.suggested = false; }
+                            if (c[3] == '0') { feedOptions.additional = false; }
+                            if (c[4] == '0') { feedOptions.criteriaComment = false; }
+                            if (c[5] == '0') { feedOptions.percent = false; }
+                            if (c[6] == '0') { feedOptions.grade = false; }
+                            if (c[7] == '0') { feedOptions.LO = false; }
+                            if (c[8] == '0') { feedOptions.full = false; }
+                            if (c[9] == '0') { feedOptions.fullLO = false; }
+                            if (c[10] == '0') { feedOptions.SubLO = false; }
+                            if (c[11] == '0') { feedOptions.CriteriaGrade = false; }
+                            if (c[12] == '0') { feedOptions.subdescription = false; }
+                            if (c[13] == '0') { feedOptions.includeheader = false; }
+                            if (c[14] == '0') { feedOptions.CriteriaPercent = false; }
+                            if (c[15] == '0') { feedOptions.ShowMarker = false; }
+                            if (c[16] == '0') { feedOptions.ShowWeight = false; }
+                            if (c[17] == '0') { feedOptions.ShowSubWeight = false; }
+                            if (c[18] == '0') { feedOptions.Moderated = false; }
+                        }
+                        catch { }
+
 
                     } //using
                     LoadGradeListbox();
@@ -7520,6 +7545,7 @@ namespace UltraMarker
             FeedForm.Passvalue[15] = feedOptions.ShowMarker;
             FeedForm.Passvalue[16] = feedOptions.ShowWeight;
             FeedForm.Passvalue[17] = feedOptions.ShowSubWeight;
+            FeedForm.Passvalue[18] = feedOptions.Moderated;
 
             FeedForm.ShowDialog();
             feedOptions.generic = FeedForm.Passvalue[0];
@@ -7540,6 +7566,7 @@ namespace UltraMarker
             feedOptions.ShowMarker = FeedForm.Passvalue[15];
             feedOptions.ShowWeight = FeedForm.Passvalue[16];
             feedOptions.ShowSubWeight = FeedForm.Passvalue[17];
+            feedOptions.Moderated = FeedForm.Passvalue[18];
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -8795,6 +8822,7 @@ namespace UltraMarker
                 markModeButton.Text = "2nd Mark";
                 MarkMode = 1;
                 modSelect.Visible = false;
+                
                 show2ndMarker(false);
             }
             else if (markModeButton.Text == "2nd Mark")
@@ -8802,6 +8830,7 @@ namespace UltraMarker
                 markModeButton.Text = "3rd Mark";
                 MarkMode = 2;
                 modSelect.Visible = false;
+                
                 show2ndMarker(false);
             }
             else if (markModeButton.Text == "3rd Mark")
@@ -8810,6 +8839,7 @@ namespace UltraMarker
                 markModeButton.Text = "Agreed mark";
                 MarkMode = 3;
                 modSelect.Visible = false;
+                
                 show2ndMarker(true);
             }
             else if (markModeButton.Text == "Agreed mark")
@@ -8826,7 +8856,7 @@ namespace UltraMarker
         {
             if (MarkMode != 0)
             {
-                modSelect.Checked = false;
+                modSelect.Checked = false;               
             }
         }
 

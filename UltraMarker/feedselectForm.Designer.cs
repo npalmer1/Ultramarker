@@ -49,6 +49,7 @@
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.checkBox17 = new System.Windows.Forms.CheckBox();
             this.checkBox18 = new System.Windows.Forms.CheckBox();
+            this.checkBox19 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -83,7 +84,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(77, 476);
+            this.button1.Location = new System.Drawing.Point(68, 483);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 3;
@@ -93,7 +94,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(176, 476);
+            this.button2.Location = new System.Drawing.Point(176, 483);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 4;
@@ -263,11 +264,22 @@
             this.checkBox18.Text = "Show sub-criteria weight";
             this.checkBox18.UseVisualStyleBackColor = true;
             // 
+            // checkBox19
+            // 
+            this.checkBox19.AutoSize = true;
+            this.checkBox19.Location = new System.Drawing.Point(68, 451);
+            this.checkBox19.Name = "checkBox19";
+            this.checkBox19.Size = new System.Drawing.Size(158, 17);
+            this.checkBox19.TabIndex = 21;
+            this.checkBox19.Text = "Indicate whether moderated";
+            this.checkBox19.UseVisualStyleBackColor = true;
+            // 
             // feedselectForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 511);
+            this.ClientSize = new System.Drawing.Size(371, 518);
+            this.Controls.Add(this.checkBox19);
             this.Controls.Add(this.checkBox18);
             this.Controls.Add(this.checkBox17);
             this.Controls.Add(this.checkBox16);
@@ -320,5 +332,6 @@
         private System.Windows.Forms.CheckBox checkBox16;
         private System.Windows.Forms.CheckBox checkBox17;
         private System.Windows.Forms.CheckBox checkBox18;
+        private System.Windows.Forms.CheckBox checkBox19;
     }
 }
