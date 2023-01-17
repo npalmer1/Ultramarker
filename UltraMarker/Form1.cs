@@ -3538,14 +3538,15 @@ namespace UltraMarker
             {
                 Load_Marked_File(openFileDialog3.FileName);
                 assessHeaderlabel.Text = "Marks in: " + Path.GetDirectoryName(openFileDialog3.FileName);
+                addButton.Visible = true;
+                Clicklabel1.Visible = true;
+                button6.Visible = true;  //show the report button so that report can be geenrated without start marking
             }
             else
             {
                 Load_Sessions(openFileDialog3.FileName);
             }
-            addButton.Visible = true;
-            Clicklabel1.Visible = true;
-            button6.Visible = true;  //show the report button so that report can be geenrated without start marking
+            
         }
 
         private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)

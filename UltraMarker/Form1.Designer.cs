@@ -861,7 +861,7 @@
             this.checkedListBox1.Items.AddRange(new object[] {
             "Import sub-criteria weights",
             "Import criteria weights"});
-            this.checkedListBox1.Location = new System.Drawing.Point(965, 263);
+            this.checkedListBox1.Location = new System.Drawing.Point(965, 270);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(225, 20);
             this.checkedListBox1.TabIndex = 109;
@@ -1377,7 +1377,7 @@
             // 
             // checkWbutton
             // 
-            this.checkWbutton.Location = new System.Drawing.Point(1222, 116);
+            this.checkWbutton.Location = new System.Drawing.Point(1222, 121);
             this.checkWbutton.Name = "checkWbutton";
             this.checkWbutton.Size = new System.Drawing.Size(98, 23);
             this.checkWbutton.TabIndex = 61;
@@ -1960,7 +1960,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label7.Location = new System.Drawing.Point(991, 120);
+            this.label7.Location = new System.Drawing.Point(980, 125);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(163, 16);
             this.label7.TabIndex = 7;
@@ -1991,7 +1991,7 @@
             this.comboBox3.Enabled = false;
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(1160, 120);
+            this.comboBox3.Location = new System.Drawing.Point(1160, 124);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(54, 21);
             this.comboBox3.TabIndex = 4;
