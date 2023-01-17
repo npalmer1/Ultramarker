@@ -3528,6 +3528,7 @@ namespace UltraMarker
         private void button5_Click(object sender, EventArgs e)  //Load button
         {
             Load_Marked(false);
+            button6.Visible = true; //show report button so that report can be generated without start marking
 
         }
 
@@ -11389,6 +11390,11 @@ namespace UltraMarker
 
            
             
+        }
+
+        private void StudentcomboBox_TextChanged(object sender, EventArgs e)
+        {
+            button6.Visible = false; //hide report button to prevent invalid report being generated
         }
     }
     }

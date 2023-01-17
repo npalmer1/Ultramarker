@@ -430,7 +430,7 @@ namespace UltraMarker
             ReplaceString("%marker%", Marker);
             ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy"));
 
-
+            richTextBox1.Update();
             richTextBox1.ReadOnly = true;
         }
        
