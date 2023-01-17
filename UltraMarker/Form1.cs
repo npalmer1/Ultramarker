@@ -3527,8 +3527,7 @@ namespace UltraMarker
 
         private void button5_Click(object sender, EventArgs e)  //Load button
         {
-            Load_Marked(false);
-            button6.Visible = true; //show report button so that report can be generated without start marking
+            Load_Marked(false);            
 
         }
 
@@ -3546,6 +3545,7 @@ namespace UltraMarker
             }
             addButton.Visible = true;
             Clicklabel1.Visible = true;
+            button6.Visible = true;  //show the report button so that report can be geenrated without start marking
         }
 
         private void saveFileDialog3_FileOk(object sender, CancelEventArgs e)
