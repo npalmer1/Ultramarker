@@ -323,7 +323,7 @@ namespace UltraMarker
             {
                 ReplaceString("%ULSig%", " ");
             }
-            ReplaceString("%ULDate%", ULDate);
+            ReplaceString("%ULDate%", ULModDate);
 
         }
 
