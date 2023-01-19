@@ -779,8 +779,8 @@ namespace UltraMarker
             {
                 fname = "_ext";
             }
-          
-            saveFileDialog1.FileName = AssessNo + fname + ".rtf";
+           
+            saveFileDialog1.FileName = UnitCode + "_" + AssessNo + fname + ".rtf";
             saveFileDialog1.DefaultExt = ".rtf";
             //saveFileDialog1.FileName = textBox1.Text.Trim();
             saveFileDialog1.ShowDialog();

@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -2013,10 +2013,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode3.Name = "CriteriaNode";
-            treeNode3.Text = "Criteria";
+            treeNode2.Name = "CriteriaNode";
+            treeNode2.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2632,11 +2632,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Grades";
+            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode3});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2789,7 +2789,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage5.Size = new System.Drawing.Size(1328, 682);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
@@ -3668,10 +3668,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Sessions";
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3936,7 +3936,7 @@
             // 
             // levelBox
             // 
-            this.levelBox.Location = new System.Drawing.Point(376, 62);
+            this.levelBox.Location = new System.Drawing.Point(378, 64);
             this.levelBox.Name = "levelBox";
             this.levelBox.Size = new System.Drawing.Size(42, 21);
             this.levelBox.TabIndex = 21;
