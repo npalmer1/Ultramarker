@@ -26,6 +26,11 @@ namespace UltraMarker
         public string Level;
         public string UnitLeader;
         public string Peer;
+        public string Sem;
+        public string acYear;
+        public bool Appropriate;
+        public string ULModDate;
+        public string ModDate;
         
         public string AssessNo;
         public string AssessTitle;
@@ -58,8 +63,9 @@ namespace UltraMarker
         public string OutFilePath;
         public string ULSigFilePath;
         public string PeerSigFilePath;
+        int totalNum = 0;
+        int modCount = 0;
 
-        
         int ftype = 0;
         Image ULSigImg;
         Image PeerSigImg;
@@ -221,6 +227,7 @@ namespace UltraMarker
         private void ModifyPeerForm()
         {
             string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
+            SetSig();
             richTextBox1.AppendText(padstring);
             ReplaceString("%Institution%", Institution);
             ReplaceString("%UnitTitle%", UnitTitle);
@@ -329,6 +336,7 @@ namespace UltraMarker
             ReplaceString("%UnitLeader%", UnitLeader);
             ReplaceString("%Moderator%", Moderator);
             ReplaceString("%AssessNo%", AssessNo);
+            ReplaceString("%AssessNo%", AssessNo);
             ReplaceString("%AssessTitle%", AssessTitle);
             try
             {
@@ -341,13 +349,22 @@ namespace UltraMarker
             }
             catch { }
             ReplaceString("Must Pass/Aggregated", AggregationStr);
+            ReplaceString("%Year%", acYear);
+            ReplaceString("%Semester%", Sem);
 
             ReplaceString("%Comment1%", Comment1);
             ReplaceString("%Comment2%", Comment2);
             ReplaceString("%Comment3%", Comment3);
+            string str = "yes";
+            if (!Appropriate)
+            {
+                str = " ";
+            }
+            ReplaceString("%Appropriate%", str);
+                        
             if (Agreed)
             {
-                ReplaceString("%Agreed%", "Y");
+                ReplaceString("%Agreed%", "yes");
             }
             else
             {
@@ -355,6 +372,17 @@ namespace UltraMarker
             }
             ReplaceString("%Moderator%", Moderator);
             ReplaceString("%UnitLeader%", UnitLeader);
+            ReplaceString("%ModDate%", ModDate);
+            ReplaceString("%ULDate%", ULModDate);
+            if (ULSigImg != null)
+            {
+                InsertSig(ULSigImg, "%ULSig%");
+            }
+            else
+            {
+                ReplaceString("%ULSig%", " ");
+            }
+            
             if (Third)
             {
                 ReplaceString("%Third%", "Y");
@@ -365,6 +393,20 @@ namespace UltraMarker
             }
             //BuildModerationList();
             BuildModerationList_New();
+            string nstr = "0";
+            if (totalNum > 0)
+            {
+                nstr = totalNum.ToString();
+                
+            }
+            ReplaceString("%TotalNum%", nstr);
+            nstr = "0";
+            if (modCount > 0)
+            {
+                nstr = modCount.ToString();                
+            }
+            ReplaceString("%ModCount%", nstr);
+            
         }
 
 
@@ -387,7 +429,7 @@ namespace UltraMarker
         private void BuildModerationList_New()
         {
             string str = "";
-            string str3 = "";
+            string str3 = "";                   
 
             st_struct sts;
             sts.firstname = "";
@@ -410,9 +452,11 @@ namespace UltraMarker
                     MessageBox.Show("No marked files (.mrk) in this folder");
                     return;
                 }
-                int modCount = 0;
+                modCount = 0;
+                totalNum = 0;
                 foreach (string file in files)
                 {
+                    totalNum++;
                     Moderated = false;
                     sts.firstname = "";
                     sts.surname = "";
@@ -525,6 +569,7 @@ namespace UltraMarker
                 if (modCount == 0)
                 {
                     MessageBox.Show("No moderated files in this folder");
+                    ReplaceString("%ModList%"," ");
                     return;
                 }
 
@@ -538,7 +583,7 @@ namespace UltraMarker
                     foreach (st_struct st in ModList)
                     {
                         //str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
-                        str4 = str4 + (st.firstname).PadRight(60, ' ') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                        str4 = str4 + (st.firstname).PadRight(50, ' ') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
                     }
                     if (str4.Length > 0)
                     {

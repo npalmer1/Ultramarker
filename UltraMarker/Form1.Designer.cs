@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -491,6 +491,15 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.AcYearBox = new System.Windows.Forms.TextBox();
+            this.semBox = new System.Windows.Forms.TextBox();
+            this.label108 = new System.Windows.Forms.Label();
+            this.label109 = new System.Windows.Forms.Label();
+            this.appropriateBox = new System.Windows.Forms.CheckBox();
+            this.moddateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.ULdateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.label110 = new System.Windows.Forms.Label();
+            this.label111 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -2004,10 +2013,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode3.Name = "CriteriaNode";
+            treeNode3.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2623,11 +2632,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2736,7 +2745,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-1, 2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1336, 748);
+            this.tabControl1.Size = new System.Drawing.Size(1336, 710);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -3659,10 +3668,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3771,7 +3780,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 24);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage6.Size = new System.Drawing.Size(1328, 682);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
             // 
@@ -4232,6 +4241,15 @@
             // tabPage7
             // 
             this.tabPage7.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage7.Controls.Add(this.label111);
+            this.tabPage7.Controls.Add(this.label110);
+            this.tabPage7.Controls.Add(this.ULdateTimePicker);
+            this.tabPage7.Controls.Add(this.moddateTimePicker);
+            this.tabPage7.Controls.Add(this.appropriateBox);
+            this.tabPage7.Controls.Add(this.label109);
+            this.tabPage7.Controls.Add(this.label108);
+            this.tabPage7.Controls.Add(this.semBox);
+            this.tabPage7.Controls.Add(this.AcYearBox);
             this.tabPage7.Controls.Add(this.aggComboBox);
             this.tabPage7.Controls.Add(this.modfileButton);
             this.tabPage7.Controls.Add(this.label74);
@@ -4274,7 +4292,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 24);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage7.Size = new System.Drawing.Size(1328, 682);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
             // 
@@ -4285,7 +4303,7 @@
             this.aggComboBox.Items.AddRange(new object[] {
             "Aggregated",
             "Must pass"});
-            this.aggComboBox.Location = new System.Drawing.Point(619, 253);
+            this.aggComboBox.Location = new System.Drawing.Point(608, 250);
             this.aggComboBox.Name = "aggComboBox";
             this.aggComboBox.Size = new System.Drawing.Size(115, 23);
             this.aggComboBox.TabIndex = 74;
@@ -4294,7 +4312,7 @@
             // modfileButton
             // 
             this.modfileButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.modfileButton.Location = new System.Drawing.Point(666, 297);
+            this.modfileButton.Location = new System.Drawing.Point(666, 291);
             this.modfileButton.Name = "modfileButton";
             this.modfileButton.Size = new System.Drawing.Size(34, 23);
             this.modfileButton.TabIndex = 73;
@@ -4306,7 +4324,7 @@
             // 
             this.label74.AutoSize = true;
             this.label74.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
-            this.label74.Location = new System.Drawing.Point(46, 297);
+            this.label74.Location = new System.Drawing.Point(49, 291);
             this.label74.Name = "label74";
             this.label74.Size = new System.Drawing.Size(186, 15);
             this.label74.TabIndex = 72;
@@ -4314,7 +4332,7 @@
             // 
             // modDirTextBox
             // 
-            this.modDirTextBox.Location = new System.Drawing.Point(238, 297);
+            this.modDirTextBox.Location = new System.Drawing.Point(241, 291);
             this.modDirTextBox.Name = "modDirTextBox";
             this.modDirTextBox.Size = new System.Drawing.Size(422, 21);
             this.modDirTextBox.TabIndex = 71;
@@ -4366,7 +4384,7 @@
             // 
             // ModerationButton
             // 
-            this.ModerationButton.Location = new System.Drawing.Point(136, 659);
+            this.ModerationButton.Location = new System.Drawing.Point(153, 585);
             this.ModerationButton.Name = "ModerationButton";
             this.ModerationButton.Size = new System.Drawing.Size(130, 23);
             this.ModerationButton.TabIndex = 69;
@@ -4377,7 +4395,7 @@
             // thirdLabel
             // 
             this.thirdLabel.AutoSize = true;
-            this.thirdLabel.Location = new System.Drawing.Point(82, 565);
+            this.thirdLabel.Location = new System.Drawing.Point(82, 532);
             this.thirdLabel.Name = "thirdLabel";
             this.thirdLabel.Size = new System.Drawing.Size(180, 15);
             this.thirdLabel.TabIndex = 68;
@@ -4385,16 +4403,16 @@
             // 
             // thirdBox
             // 
-            this.thirdBox.Location = new System.Drawing.Point(85, 583);
+            this.thirdBox.Location = new System.Drawing.Point(85, 553);
             this.thirdBox.Multiline = true;
             this.thirdBox.Name = "thirdBox";
-            this.thirdBox.Size = new System.Drawing.Size(946, 58);
+            this.thirdBox.Size = new System.Drawing.Size(946, 26);
             this.thirdBox.TabIndex = 67;
             // 
             // label73
             // 
             this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(277, 516);
+            this.label73.Location = new System.Drawing.Point(262, 493);
             this.label73.Name = "label73";
             this.label73.Size = new System.Drawing.Size(157, 15);
             this.label73.TabIndex = 66;
@@ -4403,7 +4421,7 @@
             // thirdcheck
             // 
             this.thirdcheck.AutoSize = true;
-            this.thirdcheck.Location = new System.Drawing.Point(241, 529);
+            this.thirdcheck.Location = new System.Drawing.Point(241, 512);
             this.thirdcheck.Name = "thirdcheck";
             this.thirdcheck.Size = new System.Drawing.Size(15, 14);
             this.thirdcheck.TabIndex = 65;
@@ -4412,7 +4430,7 @@
             // label72
             // 
             this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(80, 528);
+            this.label72.Location = new System.Drawing.Point(80, 510);
             this.label72.Name = "label72";
             this.label72.Size = new System.Drawing.Size(155, 15);
             this.label72.TabIndex = 64;
@@ -4421,7 +4439,7 @@
             // agreedcheck
             // 
             this.agreedcheck.AutoSize = true;
-            this.agreedcheck.Location = new System.Drawing.Point(241, 501);
+            this.agreedcheck.Location = new System.Drawing.Point(241, 484);
             this.agreedcheck.Name = "agreedcheck";
             this.agreedcheck.Size = new System.Drawing.Size(15, 14);
             this.agreedcheck.TabIndex = 63;
@@ -4430,7 +4448,7 @@
             // label71
             // 
             this.label71.AutoSize = true;
-            this.label71.Location = new System.Drawing.Point(139, 500);
+            this.label71.Location = new System.Drawing.Point(139, 481);
             this.label71.Name = "label71";
             this.label71.Size = new System.Drawing.Size(96, 15);
             this.label71.TabIndex = 62;
@@ -4438,10 +4456,10 @@
             // 
             // ULresponseBox
             // 
-            this.ULresponseBox.Location = new System.Drawing.Point(83, 432);
+            this.ULresponseBox.Location = new System.Drawing.Point(85, 432);
             this.ULresponseBox.Multiline = true;
             this.ULresponseBox.Name = "ULresponseBox";
-            this.ULresponseBox.Size = new System.Drawing.Size(946, 63);
+            this.ULresponseBox.Size = new System.Drawing.Size(946, 46);
             this.ULresponseBox.TabIndex = 61;
             // 
             // label70
@@ -4449,37 +4467,37 @@
             this.label70.AutoSize = true;
             this.label70.Location = new System.Drawing.Point(82, 414);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(130, 15);
+            this.label70.Size = new System.Drawing.Size(144, 15);
             this.label70.TabIndex = 60;
-            this.label70.Text = "Unit leaders response:";
+            this.label70.Text = "Module leader response:";
             // 
             // actionBox
             // 
-            this.actionBox.Location = new System.Drawing.Point(85, 353);
+            this.actionBox.Location = new System.Drawing.Point(85, 368);
             this.actionBox.Multiline = true;
             this.actionBox.Name = "actionBox";
-            this.actionBox.Size = new System.Drawing.Size(946, 58);
+            this.actionBox.Size = new System.Drawing.Size(946, 43);
             this.actionBox.TabIndex = 59;
             // 
             // label69
             // 
             this.label69.AutoSize = true;
-            this.label69.Location = new System.Drawing.Point(82, 335);
+            this.label69.Location = new System.Drawing.Point(82, 350);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(329, 15);
+            this.label69.Size = new System.Drawing.Size(255, 15);
             this.label69.TabIndex = 58;
-            this.label69.Text = "Action points identified (on marks or feedback to students):  ";
+            this.label69.Text = "Additional comments for consideration/action:";
             // 
             // APassBox
             // 
-            this.APassBox.Location = new System.Drawing.Point(382, 256);
+            this.APassBox.Location = new System.Drawing.Point(381, 249);
             this.APassBox.Name = "APassBox";
             this.APassBox.Size = new System.Drawing.Size(48, 21);
             this.APassBox.TabIndex = 57;
             // 
             // AWeightBox
             // 
-            this.AWeightBox.Location = new System.Drawing.Point(217, 256);
+            this.AWeightBox.Location = new System.Drawing.Point(214, 252);
             this.AWeightBox.Name = "AWeightBox";
             this.AWeightBox.Size = new System.Drawing.Size(48, 21);
             this.AWeightBox.TabIndex = 56;
@@ -4487,7 +4505,7 @@
             // label66
             // 
             this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(467, 261);
+            this.label66.Location = new System.Drawing.Point(456, 255);
             this.label66.Name = "label66";
             this.label66.Size = new System.Drawing.Size(146, 15);
             this.label66.TabIndex = 54;
@@ -4496,7 +4514,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(303, 258);
+            this.label67.Location = new System.Drawing.Point(294, 253);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(82, 15);
             this.label67.TabIndex = 53;
@@ -4505,7 +4523,7 @@
             // label68
             // 
             this.label68.AutoSize = true;
-            this.label68.Location = new System.Drawing.Point(132, 258);
+            this.label68.Location = new System.Drawing.Point(132, 252);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(79, 15);
             this.label68.TabIndex = 52;
@@ -4514,7 +4532,7 @@
             // label57
             // 
             this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(367, 29);
+            this.label57.Location = new System.Drawing.Point(314, 29);
             this.label57.Name = "label57";
             this.label57.Size = new System.Drawing.Size(62, 15);
             this.label57.TabIndex = 51;
@@ -4522,14 +4540,14 @@
             // 
             // InstBox
             // 
-            this.InstBox.Location = new System.Drawing.Point(435, 29);
+            this.InstBox.Location = new System.Drawing.Point(381, 26);
             this.InstBox.Name = "InstBox";
             this.InstBox.Size = new System.Drawing.Size(316, 21);
             this.InstBox.TabIndex = 50;
             // 
             // ACodeBox
             // 
-            this.ACodeBox.Location = new System.Drawing.Point(212, 222);
+            this.ACodeBox.Location = new System.Drawing.Point(211, 219);
             this.ACodeBox.Name = "ACodeBox";
             this.ACodeBox.Size = new System.Drawing.Size(100, 21);
             this.ACodeBox.TabIndex = 49;
@@ -4579,7 +4597,7 @@
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(59, 225);
+            this.label58.Location = new System.Drawing.Point(59, 222);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(152, 15);
             this.label58.TabIndex = 42;
@@ -4588,11 +4606,11 @@
             // label59
             // 
             this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(106, 183);
+            this.label59.Location = new System.Drawing.Point(80, 183);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(98, 15);
+            this.label59.Size = new System.Drawing.Size(123, 15);
             this.label59.TabIndex = 41;
-            this.label59.Text = "Assessment title:";
+            this.label59.Text = "Assessment title/type:";
             // 
             // label60
             // 
@@ -4606,11 +4624,11 @@
             // label61
             // 
             this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(134, 121);
+            this.label61.Location = new System.Drawing.Point(110, 124);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(70, 15);
+            this.label61.Size = new System.Drawing.Size(94, 15);
             this.label61.TabIndex = 39;
-            this.label61.Text = "Unit leader:";
+            this.label61.Text = "Module Leader:";
             // 
             // label62
             // 
@@ -4624,20 +4642,20 @@
             // label63
             // 
             this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(142, 89);
+            this.label63.Location = new System.Drawing.Point(119, 92);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(62, 15);
+            this.label63.Size = new System.Drawing.Size(85, 15);
             this.label63.TabIndex = 37;
-            this.label63.Text = "Unit code:";
+            this.label63.Text = "Module  code:";
             // 
             // label64
             // 
             this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(150, 61);
+            this.label64.Location = new System.Drawing.Point(130, 64);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(54, 15);
+            this.label64.Size = new System.Drawing.Size(74, 15);
             this.label64.TabIndex = 36;
-            this.label64.Text = "Unit title:";
+            this.label64.Text = "Module title:";
             // 
             // label65
             // 
@@ -5165,6 +5183,80 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
+            // 
+            // AcYearBox
+            // 
+            this.AcYearBox.Location = new System.Drawing.Point(608, 87);
+            this.AcYearBox.Name = "AcYearBox";
+            this.AcYearBox.Size = new System.Drawing.Size(92, 21);
+            this.AcYearBox.TabIndex = 75;
+            // 
+            // semBox
+            // 
+            this.semBox.Location = new System.Drawing.Point(608, 121);
+            this.semBox.Name = "semBox";
+            this.semBox.Size = new System.Drawing.Size(49, 21);
+            this.semBox.TabIndex = 76;
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(512, 90);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(90, 15);
+            this.label108.TabIndex = 77;
+            this.label108.Text = "Academic year:";
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Location = new System.Drawing.Point(501, 124);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(101, 15);
+            this.label109.TabIndex = 78;
+            this.label109.Text = "Semester/period:";
+            // 
+            // appropriateBox
+            // 
+            this.appropriateBox.AutoSize = true;
+            this.appropriateBox.Location = new System.Drawing.Point(85, 328);
+            this.appropriateBox.Name = "appropriateBox";
+            this.appropriateBox.Size = new System.Drawing.Size(234, 19);
+            this.appropriateBox.TabIndex = 79;
+            this.appropriateBox.Text = "Are the grades & feedback appropriate?";
+            this.appropriateBox.UseVisualStyleBackColor = true;
+            // 
+            // moddateTimePicker
+            // 
+            this.moddateTimePicker.Location = new System.Drawing.Point(880, 493);
+            this.moddateTimePicker.Name = "moddateTimePicker";
+            this.moddateTimePicker.Size = new System.Drawing.Size(151, 21);
+            this.moddateTimePicker.TabIndex = 80;
+            // 
+            // ULdateTimePicker
+            // 
+            this.ULdateTimePicker.Location = new System.Drawing.Point(880, 526);
+            this.ULdateTimePicker.Name = "ULdateTimePicker";
+            this.ULdateTimePicker.Size = new System.Drawing.Size(151, 21);
+            this.ULdateTimePicker.TabIndex = 81;
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(738, 498);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(134, 15);
+            this.label110.TabIndex = 82;
+            this.label110.Text = "Moderator signed date:";
+            // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(715, 531);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(157, 15);
+            this.label111.TabIndex = 83;
+            this.label111.Text = "Module leader signed date:";
             // 
             // Form1
             // 
@@ -5696,6 +5788,15 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.ComboBox aggComboBox;
         private System.Windows.Forms.ComboBox aggregatedBox;
+        private System.Windows.Forms.Label label109;
+        private System.Windows.Forms.Label label108;
+        private System.Windows.Forms.TextBox semBox;
+        private System.Windows.Forms.TextBox AcYearBox;
+        private System.Windows.Forms.CheckBox appropriateBox;
+        private System.Windows.Forms.Label label111;
+        private System.Windows.Forms.Label label110;
+        private System.Windows.Forms.DateTimePicker ULdateTimePicker;
+        private System.Windows.Forms.DateTimePicker moddateTimePicker;
     }
 }
 

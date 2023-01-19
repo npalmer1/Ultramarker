@@ -419,6 +419,9 @@ namespace UltraMarker
             dateTimePicker1.Value = DateTime.Today;
             dateTimePicker2.Value = DateTime.Today;
             dateTimePicker3.Value = DateTime.Today;
+            moddateTimePicker.Value = DateTime.Today;
+            ULdateTimePicker.Value = DateTime.Today;
+
             markradio1.Checked = true;
             setFeedbackOptions(true);
             assesstitleBackcolor = assessTitleBox.BackColor;
@@ -8775,8 +8778,14 @@ namespace UltraMarker
             PForm.AssessNo = ACodeBox.Text;
             PForm.AssessTitle = assessTBox.Text;
             PForm.AggregationStr = modAggregate;
-            
+            PForm.Appropriate = appropriateBox.Checked;
+            PForm.ULSigFilePath = ULSigFilePath;
 
+            PForm.acYear = AcYearBox.Text;
+            PForm.Sem = semBox.Text;           
+            PForm.ULModDate = ULdateTimePicker.Value.ToString("dd/MM/yy");                      
+            PForm.ModDate = moddateTimePicker.Value.ToString("dd/MM/yy");
+           
             try
             {
                 PForm.Weight = Convert.ToInt32(AWeightBox.Text);
