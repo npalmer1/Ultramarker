@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -384,6 +384,15 @@
             this.label31 = new System.Windows.Forms.Label();
             this.ShowPeerButton = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.label111 = new System.Windows.Forms.Label();
+            this.label110 = new System.Windows.Forms.Label();
+            this.ULdateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.moddateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.appropriateBox = new System.Windows.Forms.CheckBox();
+            this.label109 = new System.Windows.Forms.Label();
+            this.label108 = new System.Windows.Forms.Label();
+            this.semBox = new System.Windows.Forms.TextBox();
+            this.AcYearBox = new System.Windows.Forms.TextBox();
             this.aggComboBox = new System.Windows.Forms.ComboBox();
             this.modfileButton = new System.Windows.Forms.Button();
             this.label74 = new System.Windows.Forms.Label();
@@ -491,15 +500,7 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.AcYearBox = new System.Windows.Forms.TextBox();
-            this.semBox = new System.Windows.Forms.TextBox();
-            this.label108 = new System.Windows.Forms.Label();
-            this.label109 = new System.Windows.Forms.Label();
-            this.appropriateBox = new System.Windows.Forms.CheckBox();
-            this.moddateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.ULdateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.label110 = new System.Windows.Forms.Label();
-            this.label111 = new System.Windows.Forms.Label();
+            this.insertItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -579,9 +580,10 @@
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editItem,
-            this.deleteItem});
+            this.deleteItem,
+            this.insertItem});
             this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(142, 48);
+            this.contextMenuStrip2.Size = new System.Drawing.Size(142, 70);
             this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip2_Opening);
             this.contextMenuStrip2.Click += new System.EventHandler(this.SubItemClick);
             // 
@@ -858,7 +860,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 24);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage2.Size = new System.Drawing.Size(1328, 682);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Assess";
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
@@ -2013,10 +2015,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode2.Name = "CriteriaNode";
-            treeNode2.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2277,7 +2279,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage1.Size = new System.Drawing.Size(1328, 682);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -2395,7 +2397,7 @@
             this.GrouplistBox.Location = new System.Drawing.Point(805, 82);
             this.GrouplistBox.Margin = new System.Windows.Forms.Padding(2);
             this.GrouplistBox.Name = "GrouplistBox";
-            this.GrouplistBox.Size = new System.Drawing.Size(42, 4);
+            this.GrouplistBox.Size = new System.Drawing.Size(42, 21);
             this.GrouplistBox.TabIndex = 20;
             this.GrouplistBox.Visible = false;
             this.GrouplistBox.SelectedValueChanged += new System.EventHandler(this.GrouplistBox_SelectedValueChanged);
@@ -2632,11 +2634,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode3.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3316,7 +3318,7 @@
             this.tabPage4.Controls.Add(this.menuStrip4);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage4.Size = new System.Drawing.Size(1328, 682);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Outcomes";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
@@ -3551,7 +3553,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage3.Size = new System.Drawing.Size(1328, 682);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sessions";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
@@ -3668,10 +3670,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4296,6 +4298,80 @@
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
             // 
+            // label111
+            // 
+            this.label111.AutoSize = true;
+            this.label111.Location = new System.Drawing.Point(715, 531);
+            this.label111.Name = "label111";
+            this.label111.Size = new System.Drawing.Size(157, 15);
+            this.label111.TabIndex = 83;
+            this.label111.Text = "Module leader signed date:";
+            // 
+            // label110
+            // 
+            this.label110.AutoSize = true;
+            this.label110.Location = new System.Drawing.Point(738, 498);
+            this.label110.Name = "label110";
+            this.label110.Size = new System.Drawing.Size(134, 15);
+            this.label110.TabIndex = 82;
+            this.label110.Text = "Moderator signed date:";
+            // 
+            // ULdateTimePicker
+            // 
+            this.ULdateTimePicker.Location = new System.Drawing.Point(880, 526);
+            this.ULdateTimePicker.Name = "ULdateTimePicker";
+            this.ULdateTimePicker.Size = new System.Drawing.Size(151, 21);
+            this.ULdateTimePicker.TabIndex = 81;
+            // 
+            // moddateTimePicker
+            // 
+            this.moddateTimePicker.Location = new System.Drawing.Point(880, 493);
+            this.moddateTimePicker.Name = "moddateTimePicker";
+            this.moddateTimePicker.Size = new System.Drawing.Size(151, 21);
+            this.moddateTimePicker.TabIndex = 80;
+            // 
+            // appropriateBox
+            // 
+            this.appropriateBox.AutoSize = true;
+            this.appropriateBox.Location = new System.Drawing.Point(85, 328);
+            this.appropriateBox.Name = "appropriateBox";
+            this.appropriateBox.Size = new System.Drawing.Size(234, 19);
+            this.appropriateBox.TabIndex = 79;
+            this.appropriateBox.Text = "Are the grades & feedback appropriate?";
+            this.appropriateBox.UseVisualStyleBackColor = true;
+            // 
+            // label109
+            // 
+            this.label109.AutoSize = true;
+            this.label109.Location = new System.Drawing.Point(501, 124);
+            this.label109.Name = "label109";
+            this.label109.Size = new System.Drawing.Size(101, 15);
+            this.label109.TabIndex = 78;
+            this.label109.Text = "Semester/period:";
+            // 
+            // label108
+            // 
+            this.label108.AutoSize = true;
+            this.label108.Location = new System.Drawing.Point(512, 90);
+            this.label108.Name = "label108";
+            this.label108.Size = new System.Drawing.Size(90, 15);
+            this.label108.TabIndex = 77;
+            this.label108.Text = "Academic year:";
+            // 
+            // semBox
+            // 
+            this.semBox.Location = new System.Drawing.Point(608, 121);
+            this.semBox.Name = "semBox";
+            this.semBox.Size = new System.Drawing.Size(49, 21);
+            this.semBox.TabIndex = 76;
+            // 
+            // AcYearBox
+            // 
+            this.AcYearBox.Location = new System.Drawing.Point(608, 87);
+            this.AcYearBox.Name = "AcYearBox";
+            this.AcYearBox.Size = new System.Drawing.Size(92, 21);
+            this.AcYearBox.TabIndex = 75;
+            // 
             // aggComboBox
             // 
             this.aggComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -4688,7 +4764,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 24);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage8.Size = new System.Drawing.Size(1328, 682);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "External";
             // 
@@ -4843,7 +4919,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 24);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage9.Size = new System.Drawing.Size(1328, 682);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
             // 
@@ -4952,7 +5028,7 @@
             this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage10.Size = new System.Drawing.Size(1328, 720);
+            this.tabPage10.Size = new System.Drawing.Size(1328, 682);
             this.tabPage10.TabIndex = 11;
             this.tabPage10.Text = "Web connection";
             // 
@@ -5184,79 +5260,11 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // AcYearBox
+            // insertItem
             // 
-            this.AcYearBox.Location = new System.Drawing.Point(608, 87);
-            this.AcYearBox.Name = "AcYearBox";
-            this.AcYearBox.Size = new System.Drawing.Size(92, 21);
-            this.AcYearBox.TabIndex = 75;
-            // 
-            // semBox
-            // 
-            this.semBox.Location = new System.Drawing.Point(608, 121);
-            this.semBox.Name = "semBox";
-            this.semBox.Size = new System.Drawing.Size(49, 21);
-            this.semBox.TabIndex = 76;
-            // 
-            // label108
-            // 
-            this.label108.AutoSize = true;
-            this.label108.Location = new System.Drawing.Point(512, 90);
-            this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(90, 15);
-            this.label108.TabIndex = 77;
-            this.label108.Text = "Academic year:";
-            // 
-            // label109
-            // 
-            this.label109.AutoSize = true;
-            this.label109.Location = new System.Drawing.Point(501, 124);
-            this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(101, 15);
-            this.label109.TabIndex = 78;
-            this.label109.Text = "Semester/period:";
-            // 
-            // appropriateBox
-            // 
-            this.appropriateBox.AutoSize = true;
-            this.appropriateBox.Location = new System.Drawing.Point(85, 328);
-            this.appropriateBox.Name = "appropriateBox";
-            this.appropriateBox.Size = new System.Drawing.Size(234, 19);
-            this.appropriateBox.TabIndex = 79;
-            this.appropriateBox.Text = "Are the grades & feedback appropriate?";
-            this.appropriateBox.UseVisualStyleBackColor = true;
-            // 
-            // moddateTimePicker
-            // 
-            this.moddateTimePicker.Location = new System.Drawing.Point(880, 493);
-            this.moddateTimePicker.Name = "moddateTimePicker";
-            this.moddateTimePicker.Size = new System.Drawing.Size(151, 21);
-            this.moddateTimePicker.TabIndex = 80;
-            // 
-            // ULdateTimePicker
-            // 
-            this.ULdateTimePicker.Location = new System.Drawing.Point(880, 526);
-            this.ULdateTimePicker.Name = "ULdateTimePicker";
-            this.ULdateTimePicker.Size = new System.Drawing.Size(151, 21);
-            this.ULdateTimePicker.TabIndex = 81;
-            // 
-            // label110
-            // 
-            this.label110.AutoSize = true;
-            this.label110.Location = new System.Drawing.Point(738, 498);
-            this.label110.Name = "label110";
-            this.label110.Size = new System.Drawing.Size(134, 15);
-            this.label110.TabIndex = 82;
-            this.label110.Text = "Moderator signed date:";
-            // 
-            // label111
-            // 
-            this.label111.AutoSize = true;
-            this.label111.Location = new System.Drawing.Point(715, 531);
-            this.label111.Name = "label111";
-            this.label111.Size = new System.Drawing.Size(157, 15);
-            this.label111.TabIndex = 83;
-            this.label111.Text = "Module leader signed date:";
+            this.insertItem.Name = "insertItem";
+            this.insertItem.Size = new System.Drawing.Size(141, 22);
+            this.insertItem.Text = "Insert Grade";
             // 
             // Form1
             // 
@@ -5797,6 +5805,7 @@
         private System.Windows.Forms.Label label110;
         private System.Windows.Forms.DateTimePicker ULdateTimePicker;
         private System.Windows.Forms.DateTimePicker moddateTimePicker;
+        private System.Windows.Forms.ToolStripMenuItem insertItem;
     }
 }
 

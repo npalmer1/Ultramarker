@@ -614,7 +614,7 @@ namespace UltraMarker
             firstcount = false;
         }
 
-        private void ContextMenuItemClick(object sender, EventArgs e)
+        private void ContextMenuItemClick(object sender, EventArgs e)  //ADD grade
         {
             string str;
             if (X > MaxGrades - 1)
@@ -661,6 +661,7 @@ namespace UltraMarker
                     }
 
                 }
+                
             }
             catch (System.Exception excep)
             {
@@ -668,6 +669,73 @@ namespace UltraMarker
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
+
+        private void InsertGrade()
+        {
+            string str;
+            InputForm input = new InputForm();
+            input.browser = false;
+            input.text = "";
+            input.Passvalue = "Enter a title for Grade:";
+            input.ShowDialog();
+            str = input.Passvalue;
+            int insI = treeView1.SelectedNode.Index;
+            if (str.Length > 0)
+            {
+              
+                treeView1.Nodes[0].Nodes.Insert(insI+1, str);
+                treeView1.SelectedNode = treeView1.Nodes[0].Nodes[insI+1];
+                textBox1.Text = str;                                   
+              
+                //gradelist[insI].grtitle = str;
+                X++;
+                //Now populate listbox on next tab:
+                if (singleGrades)
+                {
+                    listBox1.SelectedIndex = insI;
+                    listBox1.Items.Insert(insI+1, str);
+                }
+                textBox1.Text = str;
+                InsertMoveGrade(insI+1, str);
+                AGrades = insI + 1;
+                Change_Selected_Grade();
+                foreach (TreeNode RootNode in treeView1.Nodes)
+                {
+                    RootNode.ContextMenuStrip = contextMenuStrip1;
+                    foreach (TreeNode ChildNode in RootNode.Nodes)
+                    {
+                        ChildNode.ContextMenuStrip = contextMenuStrip2;
+                    }
+                }
+            }
+        }
+
+        private void InsertMoveGrade(int i, string str)
+        {
+            
+            for (int g = listBox1.Items.Count -1; g > i;  g--)
+             {
+                gradelist[g].grtitle = gradelist[g-1].grtitle;
+
+                gradelist[g].grtitle = gradelist[g-1].grtitle;
+                gradelist[g].grpercent = gradelist[g-1].grpercent;
+                gradelist[g].grfb = gradelist[g-1].grfb;
+                gradelist[g].grupper = gradelist[g-1].grupper;
+                gradelist[g].grlower = gradelist[g-1].grlower;
+                gradelist[g].grselected = gradelist[g-1].grselected;
+                //alias = gradelist[g+1].gralias;
+                gradelist[g].gralias = gradelist[g-1].gralias;                                
+            }
+            gradelist[i].grtitle = str;
+            gradelist[i].grpercent = 0;
+            gradelist[i].grfb = "";
+            gradelist[i].grupper = 0;
+            gradelist[i].grlower = 0;
+            gradelist[i].grselected = false;
+            gradelist[i].gralias = "";
+            
+        }
+
 
         private void SubItemClick(object sender, EventArgs e)
         {
@@ -745,6 +813,17 @@ namespace UltraMarker
                 {
                     StackTrace stackTrace = new StackTrace();
                     MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                }
+            }
+            else if (contextMenuStrip2.Items[2].Selected) //insert grade
+            {
+                try
+                {
+                    InsertGrade();
+                }
+                catch
+                {
+
                 }
             }
         }
@@ -1239,8 +1318,8 @@ namespace UltraMarker
             }
             else
             { sub = SSub; }*/
-            try
-            {
+                try
+                {
                 s = findGrade(pcent); //findgrade from percent
             }
             catch
@@ -1300,7 +1379,7 @@ namespace UltraMarker
                     /*if (button7.Text.StartsWith("Clear form"))
                     {
                         button7.Text = "Start Marking   ";
-                    }*/
+                    }*/                    
                 }
             }
             openFileDialog2.FileName = "";
@@ -2122,6 +2201,7 @@ namespace UltraMarker
                     string grtype = "single";
                     if (!singleGrades) { grtype = "dual"; }
                     sw.WriteLine("Criteria Selection Type: " + CriteriaSelectionType.ToString());
+                    sw.WriteLine("Grade file: " + GradeFile);
                     sw.WriteLine("Grade type: " + grtype);
                     for (int i = 0; i <= CritZ; i++)
                     {
@@ -2355,6 +2435,14 @@ namespace UltraMarker
 
                             }
 
+                        }
+                        else if (str.StartsWith("Grade file:"))
+                        {
+                            string gf = str.Substring("Grade file:".Length, str.Length - "Grade file:".Length);
+                            if (gf.Trim() != GradeFile.Trim())
+                            {
+                                MessageBox.Show("Note: loaded grades differ from the current grades in the Grades tab");
+                            }
                         }
                         else if (str.StartsWith("Grade type:"))
                         {
@@ -3891,10 +3979,14 @@ namespace UltraMarker
                                 try
                                 {
                                     foundgrade = true;
+                                    if (str3.Trim() != GradeFile.Trim())
+                                    {
+                                        MessageBox.Show("Note: grade file loaded with marked work differs from grades in Grades tab");
+                                    }
                                     if (listBox1.Items.Count < 1)
                                     {
                                         if (File.Exists(str3))
-                                        {
+                                        { 
                                             ReadGradesFromFile(str3);
                                         }
                                     }
