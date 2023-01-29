@@ -41,6 +41,7 @@
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.insertItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.contextMenuStrip4 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -500,7 +501,7 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.insertItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RefercheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -598,6 +599,12 @@
             this.deleteItem.Name = "deleteItem";
             this.deleteItem.Size = new System.Drawing.Size(141, 22);
             this.deleteItem.Text = "Delete Grade";
+            // 
+            // insertItem
+            // 
+            this.insertItem.Name = "insertItem";
+            this.insertItem.Size = new System.Drawing.Size(141, 22);
+            this.insertItem.Text = "Insert Grade";
             // 
             // saveFileDialog1
             // 
@@ -4084,6 +4091,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.RefercheckBox);
             this.groupBox1.Controls.Add(this.label47);
             this.groupBox1.Controls.Add(this.C6);
             this.groupBox1.Controls.Add(this.C5);
@@ -5260,11 +5268,16 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // insertItem
+            // RefercheckBox
             // 
-            this.insertItem.Name = "insertItem";
-            this.insertItem.Size = new System.Drawing.Size(141, 22);
-            this.insertItem.Text = "Insert Grade";
+            this.RefercheckBox.AutoSize = true;
+            this.RefercheckBox.Location = new System.Drawing.Point(736, -4);
+            this.RefercheckBox.Name = "RefercheckBox";
+            this.RefercheckBox.Size = new System.Drawing.Size(224, 19);
+            this.RefercheckBox.TabIndex = 34;
+            this.RefercheckBox.Text = "Include comment \"Including referral\"";
+            this.RefercheckBox.UseVisualStyleBackColor = true;
+            this.RefercheckBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Form1
             // 
@@ -5806,6 +5819,7 @@
         private System.Windows.Forms.DateTimePicker ULdateTimePicker;
         private System.Windows.Forms.DateTimePicker moddateTimePicker;
         private System.Windows.Forms.ToolStripMenuItem insertItem;
+        private System.Windows.Forms.CheckBox RefercheckBox;
     }
 }
 

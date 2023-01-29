@@ -8781,7 +8781,8 @@ namespace UltraMarker
             PForm.AssessNo = assessCBox.Text;
             PForm.AssessTitle = assessTBox.Text;
             PForm.ULSigFilePath = ULSigFilePath;
-            PForm.PeerSigFilePath = PeerSigFilePath;            
+            PForm.PeerSigFilePath = PeerSigFilePath;
+            PForm.Refer = RefercheckBox.Checked;
 
             PForm.AggregationStr = peerAggregate;
 
@@ -11497,6 +11498,11 @@ namespace UltraMarker
         private void StudentcomboBox_TextChanged(object sender, EventArgs e)
         {
             button6.Visible = false; //hide report button to prevent invalid report being generated
+        }
+
+        private void checkBox3_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
     }

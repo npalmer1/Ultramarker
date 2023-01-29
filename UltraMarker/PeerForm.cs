@@ -52,6 +52,7 @@ namespace UltraMarker
         public string PeerDate;
         public string Comment7;
         public string ULDate;
+        public bool Refer;
 
         public string Moderator;
         public bool Agreed;
@@ -146,7 +147,9 @@ namespace UltraMarker
                 {
                     str2 = "";
                 }
-                int i = richTextBox1.Find(str);
+                richTextBox1.DeselectAll();
+                
+                int i = richTextBox1.Find(str,1,-1,RichTextBoxFinds.None);
                 if (i > -1)
                 {
                     richTextBox1.Select(i, str.Length);
@@ -247,7 +250,8 @@ namespace UltraMarker
                 ReplaceString("%PassMark%", PassMark.ToString());
             }
             catch { }
-            ReplaceString("Must Pass/Aggregated", AggregationStr);
+            ReplaceString("Must Pass/Aggregated", AggregationStr);            
+           
             if (Sheet)
             {
                 ReplaceString("%Sheet%", "Y");
@@ -256,7 +260,12 @@ namespace UltraMarker
             {
                 ReplaceString("%Sheet%", " ");
             }
-            ReplaceString("%Comment1%", Comment1);
+            string newComment = "";
+            if (Refer)
+            {
+                newComment = "Including refer. ";
+            }
+            ReplaceString("%Comment1%", newComment + Comment1);
             if (Strategy)
             {
                 ReplaceString("%Strategy%", "Y");
@@ -265,7 +274,11 @@ namespace UltraMarker
             {
                 ReplaceString("%Strategy%", " ");
             }
-            ReplaceString("%Comment2%", Comment2);
+            if (Refer)
+            {
+                newComment = "\"\" ";
+            }
+            ReplaceString("%Comment2%", newComment + Comment2);
             if (Instructions)
             {
                 ReplaceString("%Instructions%", "Y");
@@ -274,7 +287,7 @@ namespace UltraMarker
             {
                 ReplaceString("%Instructions%", " ");
             }
-            ReplaceString("%Comment3%", Comment3);
+            ReplaceString("%Comment3%", newComment + Comment3);
             if (Criteria)
             {
                 ReplaceString("%Criteria%", "Y");
@@ -283,7 +296,7 @@ namespace UltraMarker
             {
                 ReplaceString("%Criteria%", " ");
             }
-            ReplaceString("%Comment4%", Comment4);
+            ReplaceString("%Comment4%", newComment + Comment4);
             if (Task)
             {
                 ReplaceString("%Task%", "Y");
@@ -292,7 +305,7 @@ namespace UltraMarker
             {
                 ReplaceString("%Task%", " ");
             }
-            ReplaceString("%Comment5%", Comment5);
+            ReplaceString("%Comment5%", newComment + Comment5);
             if (Special)
             {
                 ReplaceString("%Special%", "Y");
@@ -301,7 +314,7 @@ namespace UltraMarker
             {
                 ReplaceString("%Special%", " ");
             }
-            ReplaceString("%Comment6%", Comment6);
+            ReplaceString("%Comment6%", newComment + Comment6);
             
             ReplaceString("%Peer%", Peer);
             if (PeerSigImg != null)
@@ -323,7 +336,7 @@ namespace UltraMarker
             {
                 ReplaceString("%ULSig%", " ");
             }
-            ReplaceString("%ULDate%", ULModDate);
+            ReplaceString("%ULDate%", ULDate);
 
         }
 
@@ -373,6 +386,7 @@ namespace UltraMarker
             ReplaceString("%Moderator%", Moderator);
             ReplaceString("%UnitLeader%", UnitLeader);
             ReplaceString("%ModDate%", ModDate);
+            ReplaceString("%ULModDate%", ULModDate);
             ReplaceString("%ULDate%", ULModDate);
             if (ULSigImg != null)
             {
