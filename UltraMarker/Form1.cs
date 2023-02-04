@@ -2356,6 +2356,7 @@ namespace UltraMarker
         private void ReadCriteriaFromFile(string filename, bool cleartextboxes)
         {
             string str, nl, substr;
+            string tmp = "";
             int C = -1;
             int S = -1;
             int L = 0;
@@ -2399,16 +2400,36 @@ namespace UltraMarker
                         }
                         if (str.StartsWith("Assessment title:"))
                         {
-                            assessTitleBox.Text = str.Substring("Assessment title: ".Length, str.Length - "Assessment title: ".Length);
-                            assess.Title = assessTitleBox.Text;
+                            try
+                            {
+                                assessTitleBox.Text = str.Substring("Assessment title: ".Length, str.Length - "Assessment title: ".Length);
+                                assess.Title = assessTitleBox.Text;
+                            }
+                            catch { }
                         }
                         else if (str.StartsWith("Assessment weight:"))
                         {
-                            assess.Weight = str.Substring("Assessment weight: ".Length, str.Length - "Assessment weight: ".Length);
+                            try
+                            {
+                                tmp = str.Substring("Assessment weight: ".Length, str.Length - "Assessment weight: ".Length);
+                                if (tmp != null && tmp.Trim() != "")
+                                {
+                                    assess.Weight = tmp;
+                                }
+                            }
+                            catch { }
                         }
                         else if (str.StartsWith("Assessment code:"))
                         {
-                            assess.Code = str.Substring("Assessment code: ".Length, str.Length - "Assessment code: ".Length);
+                            try
+                            {
+                                tmp = str.Substring("Assessment code: ".Length, str.Length - "Assessment code: ".Length);
+                                if (tmp != null && tmp.Trim() != "")
+                                {
+                                    assess.Code = tmp;
+                                }
+                            }
+                            catch{ }
                         }
                         else if (str.StartsWith("Criteria type:"))
                         {
@@ -2438,11 +2459,15 @@ namespace UltraMarker
                         }
                         else if (str.StartsWith("Grade file:"))
                         {
-                            string gf = str.Substring("Grade file:".Length, str.Length - "Grade file:".Length);
-                            if (gf.Trim() != GradeFile.Trim())
+                            try
                             {
-                                MessageBox.Show("Note: loaded grades differ from the current grades in the Grades tab");
+                                string gf = str.Substring("Grade file:".Length, str.Length - "Grade file:".Length);
+                                if (gf.Trim() != GradeFile.Trim())
+                                {
+                                    MessageBox.Show("Note: loaded grades differ from the current grades in the Grades tab");
+                                }
                             }
+                            catch { }
                         }
                         else if (str.StartsWith("Grade type:"))
                         {
@@ -2799,6 +2824,7 @@ namespace UltraMarker
             {
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                //MessageBox.Show(str);
                 loading = false;
             }
         }//readfrom file
