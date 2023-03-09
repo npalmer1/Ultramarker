@@ -48,6 +48,7 @@ namespace UltraMarker
         string GradeFile = "";
         string GradePath = "";
         string CriteriaFile = "";
+        string currentCriteriaFile = "";
         string CriteriaPath = "";
         string LOFile = "";
         string LOFilePath = "";
@@ -1368,6 +1369,15 @@ namespace UltraMarker
             }*/
             if (StudentcomboBox.Text.Trim().Length > 1)
             {
+                if (startMark)
+                {
+                    DialogResult dialogResult = MessageBox.Show("You are currently marking a student - loading new criteria will clear all - proceed Y/N?", "Load Criteria", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.No)
+                    {
+                        MessageBox.Show("You can continue marking student by selecting Marking Mode");
+                        return;
+                    }
+                }
                 if (MessageBox.Show("Clear form and load new assessment criteria Y/N?", "Clear Form", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     return;
@@ -1380,7 +1390,7 @@ namespace UltraMarker
                     /*if (button7.Text.StartsWith("Clear form"))
                     {
                         button7.Text = "Start Marking   ";
-                    }*/                    
+                    }*/
                 }
             }
             openFileDialog2.FileName = "";
@@ -2371,7 +2381,7 @@ namespace UltraMarker
             assess.Description = "";
             loading = true;
             try
-            {
+            {                
 
                 listBox1.Items.Clear();
                 listBox3.Items.Clear();
@@ -2381,6 +2391,7 @@ namespace UltraMarker
                     listBox1.Items.Remove(s);
                 }
                 CriteriaFile = filename;
+                currentCriteriaFile = CriteriaFile;
                 Clear_All_Criteria(cleartextboxes);
 
                 // Create an instance of StreamWriter to read grades from file:
@@ -3482,6 +3493,8 @@ namespace UltraMarker
             string addstr = "";
 
 
+            //check to see if criteria file differs to stored one
+
             if (addCode)
             {
                 addstr = "_" + assess.Code;
@@ -3704,6 +3717,14 @@ namespace UltraMarker
             string D = "";
             try
             {
+                if (CriteriaFile != currentCriteriaFile && currentCriteriaFile != "")
+                {
+                    DialogResult dialogResult = MessageBox.Show("Current criteria file differs to that previoulsly saved with this student - save new criteria Y/N? ", "Criteria File", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        CriteriaFile = currentCriteriaFile;
+                    }
+                }
                 if (OverrideGradelabel.Text.Trim() == "" && overridecheckBox.Checked)
                 {
                     MessageBox.Show("Overall grade is blank - you need to select a grade if you wish to override the overall grade");
@@ -4039,7 +4060,8 @@ namespace UltraMarker
                                     foundcriteria = true;
                                     if (File.Exists(str3))
                                     {
-                                        ReadCriteriaFromFile(str3, true);
+                                        currentCriteriaFile = CriteriaFile;
+                                        ReadCriteriaFromFile(str3, true);                                        
                                     }
 
                                 }
