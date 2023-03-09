@@ -34,7 +34,7 @@ namespace UltraMarker
 
 
         //List<Label> myGradeList = new List<Label>();
-        int X = 0;
+        int Xgrades = 0;
         int AGrades = 0;
         int S = 0;
         //int B = 0;
@@ -617,7 +617,7 @@ namespace UltraMarker
         private void ContextMenuItemClick(object sender, EventArgs e)  //ADD grade
         {
             string str;
-            if (X > MaxGrades - 1)
+            if (Xgrades > MaxGrades - 1)
             {
                 MessageBox.Show("Can only have a maximum of " + Convert.ToString(MaxGrades) + " grades");
                 return;
@@ -638,6 +638,7 @@ namespace UltraMarker
                         treeView1.Nodes[0].Nodes.Add(str);
                         treeView1.Nodes[0].Expand();
                         treeView1.SelectedNode = treeView1.Nodes[0].LastNode;
+                        AGrades++;
                         foreach (TreeNode RootNode in treeView1.Nodes)
                         {
                             RootNode.ContextMenuStrip = contextMenuStrip1;
@@ -646,9 +647,9 @@ namespace UltraMarker
                                 ChildNode.ContextMenuStrip = contextMenuStrip2;
                             }
                         }
-
-                        gradelist[X].grtitle = str;
-                        X++;
+                        Xgrades++;
+                        gradelist[Xgrades].grtitle = str;
+                        //Xgrades++;
                         //Now populate listbox on next tab:
                         if (singleGrades)
                         {
@@ -688,7 +689,7 @@ namespace UltraMarker
                 textBox1.Text = str;                                   
               
                 //gradelist[insI].grtitle = str;
-                X++;
+                Xgrades++;
                 //Now populate listbox on next tab:
                 if (singleGrades)
                 {
@@ -1008,7 +1009,7 @@ namespace UltraMarker
             if (dialogResult == DialogResult.Yes)
             {
                 Remove_Grades();
-                X = 0;
+                Xgrades = 0;
             }
         }
 
@@ -1244,7 +1245,7 @@ namespace UltraMarker
                             break;
                         }
                     }
-                    X = B;
+                    Xgrades = B;
                     sw.Close();
                     SetGradeGroup();
                     GradeFile = filename;
@@ -2459,12 +2460,17 @@ namespace UltraMarker
                         }
                         else if (str.StartsWith("Grade file:"))
                         {
+                            string gf = "";
                             try
                             {
-                                string gf = str.Substring("Grade file:".Length, str.Length - "Grade file:".Length);
-                                if (gf.Trim() != GradeFile.Trim())
+                                gf = str.Substring("Grade file: ".Length, str.Length - "Grade file: ".Length);
+                                //if (String.Equals(gf, GradeFile))
+                                if (gf.Trim() == GradeFile.Trim())
+                                { }
+                                else
                                 {
-                                    MessageBox.Show("Note: loaded grades differ from the current grades in the Grades tab");
+                                    //Already done when loading criertia:
+                                    //MessageBox.Show("Note: loaded grades may differ from the current grades in the Grades tab - check");
                                 }
                             }
                             catch { }
@@ -3199,6 +3205,7 @@ namespace UltraMarker
                     button3.Text = "Edit Criteria Mode";
                     Show_GenTemplate(false);
                     MarkingMode(false);
+                    button5.Visible = false; //hide Load button
                     EditStudent = false;
                     return; //user needs to save the assessment now before continuing
                 }
@@ -3248,6 +3255,7 @@ namespace UltraMarker
                 button3.Text = "Edit Criteria Mode";
                 Show_GenTemplate(false);
                 MarkingMode(false);
+                button5.Visible = false; //hide Load button
                 EditStudent = false;
                 //button1.Visible = false;  //show button
                 Show_Label("Don't forget to Save Marks!", 2000);
@@ -3269,6 +3277,7 @@ namespace UltraMarker
                 {
                     listBox1.SelectedIndex = -1;
                 }
+                button5.Visible = false; //hide Load button
                 Show_GenTemplate(true);
                 EditStudent = false;
 
@@ -3281,7 +3290,7 @@ namespace UltraMarker
             templatelabel.Visible = b;
             templatetextBox.Visible = b;
             templatebutton.Visible = b;
-            Gradegrouphelplabel.Visible = b;
+            Gradegrouphelplabel.Visible = b;            
             //gradeDirectioncheckBox.Visible = b;
         }
         private void MarkingMode(bool b)
@@ -4007,7 +4016,7 @@ namespace UltraMarker
                                     foundgrade = true;
                                     if (str3.Trim() != GradeFile.Trim())
                                     {
-                                        MessageBox.Show("Note: grade file loaded with marked work differs from grades in Grades tab");
+                                        MessageBox.Show("Note: grade file loaded with marked work may differ from grades in Grades tab - check");
                                     }
                                     if (listBox1.Items.Count < 1)
                                     {

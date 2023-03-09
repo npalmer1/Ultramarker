@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -369,6 +369,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RefercheckBox = new System.Windows.Forms.CheckBox();
             this.label47 = new System.Windows.Forms.Label();
             this.C6 = new System.Windows.Forms.TextBox();
             this.C5 = new System.Windows.Forms.TextBox();
@@ -501,7 +502,6 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.RefercheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -1120,7 +1120,7 @@
             // templatebutton
             // 
             this.templatebutton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold);
-            this.templatebutton.Location = new System.Drawing.Point(1061, 56);
+            this.templatebutton.Location = new System.Drawing.Point(1038, 57);
             this.templatebutton.Margin = new System.Windows.Forms.Padding(2);
             this.templatebutton.Name = "templatebutton";
             this.templatebutton.Size = new System.Drawing.Size(32, 23);
@@ -1147,10 +1147,10 @@
             // templatetextBox
             // 
             this.templatetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.templatetextBox.Location = new System.Drawing.Point(780, 57);
+            this.templatetextBox.Location = new System.Drawing.Point(781, 57);
             this.templatetextBox.Margin = new System.Windows.Forms.Padding(2);
             this.templatetextBox.Name = "templatetextBox";
-            this.templatetextBox.Size = new System.Drawing.Size(266, 23);
+            this.templatetextBox.Size = new System.Drawing.Size(252, 23);
             this.templatetextBox.TabIndex = 87;
             this.templatetextBox.Visible = false;
             // 
@@ -2022,10 +2022,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode4.Name = "CriteriaNode";
+            treeNode4.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode4});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2641,11 +2641,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3677,10 +3677,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode2});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -4111,6 +4111,17 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Checklist for assessment brief and criteria:";
+            // 
+            // RefercheckBox
+            // 
+            this.RefercheckBox.AutoSize = true;
+            this.RefercheckBox.Location = new System.Drawing.Point(736, -4);
+            this.RefercheckBox.Name = "RefercheckBox";
+            this.RefercheckBox.Size = new System.Drawing.Size(224, 19);
+            this.RefercheckBox.TabIndex = 34;
+            this.RefercheckBox.Text = "Include comment \"Including referral\"";
+            this.RefercheckBox.UseVisualStyleBackColor = true;
+            this.RefercheckBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // label47
             // 
@@ -5267,17 +5278,6 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
-            // 
-            // RefercheckBox
-            // 
-            this.RefercheckBox.AutoSize = true;
-            this.RefercheckBox.Location = new System.Drawing.Point(736, -4);
-            this.RefercheckBox.Name = "RefercheckBox";
-            this.RefercheckBox.Size = new System.Drawing.Size(224, 19);
-            this.RefercheckBox.TabIndex = 34;
-            this.RefercheckBox.Text = "Include comment \"Including referral\"";
-            this.RefercheckBox.UseVisualStyleBackColor = true;
-            this.RefercheckBox.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // Form1
             // 
