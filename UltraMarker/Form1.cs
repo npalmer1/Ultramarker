@@ -2391,7 +2391,7 @@ namespace UltraMarker
                     listBox1.Items.Remove(s);
                 }
                 CriteriaFile = filename;
-                currentCriteriaFile = CriteriaFile;
+                //currentCriteriaFile = CriteriaFile;
                 Clear_All_Criteria(cleartextboxes);
 
                 // Create an instance of StreamWriter to read grades from file:
@@ -2860,6 +2860,7 @@ namespace UltraMarker
 
         private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
+            currentCriteriaFile = CriteriaFile; //save current criteria frile name to chjeck if modified
             defaultSelectAll();
             ReadCriteriaFromFile(openFileDialog2.FileName, true);
             updatePeerForms();
