@@ -2825,6 +2825,7 @@ namespace UltraMarker
                     sw.Close();
                     SetUpCriteriaType(CriteriaType);
                     CriteriaFile = filename;
+                    currentCriteriaFile = filename;
                     CriteriaPath = Path.GetDirectoryName(filename);
                 }
                 if (listBox1.Items.Count > 0)
