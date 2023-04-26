@@ -10828,7 +10828,7 @@ namespace UltraMarker
                                 }
 
 
-                                if (cr > prevCriteria)  //have found previous criteria and taskjs already
+                                if (cr > prevCriteria)  //have found previous criteria and tasks already
                                 {
                                     for (int t = 0; t < criteriaTasks+1; t++)
                                     {
@@ -10869,7 +10869,7 @@ namespace UltraMarker
                                         tasklinestotal[ttask] = 0;
                                     }
                                     //zero tasks for sub-crietria criteria - new criteria for4 ewach device or host
-                                    tasksperCriteria[cr] = criteriaTasks;
+                                    //tasksperCriteria[cr] = criteriaTasks;
                                     taskNo = 0;
                                     prevTaskNo = taskNo;
 
@@ -10932,7 +10932,7 @@ namespace UltraMarker
                                         {
                                             if (str.Contains("partially correct:"))
                                             {
-                                                tasklinescorrect[task] = tasklinescorrect[task] + M/2;                                               
+                                                tasklinescorrect[task] = tasklinescorrect[task] + Convert.ToDouble(M)/2;                                               
                                             }
                                             else
                                             {
@@ -11022,7 +11022,7 @@ namespace UltraMarker
                                 }
                                 
                                 Criteriatasklinestotal = 0;
-                                tasksperCriteria[cr] = criteriaTasks;
+                                //tasksperCriteria[cr] = criteriaTasks;
                             }
                         }
 
