@@ -166,6 +166,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button1);
             this.Name = "CTForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.CTForm_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

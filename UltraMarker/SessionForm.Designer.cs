@@ -88,7 +88,6 @@
             this.radioButton1.TabStop = true;
             this.radioButton1.Text = "No sessions (single session)";
             this.radioButton1.UseVisualStyleBackColor = true;
-            
             // 
             // SessionForm
             // 
@@ -99,6 +98,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Name = "SessionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "SessionForm";
             this.Load += new System.EventHandler(this.SessionForm_Load);
             this.groupBox1.ResumeLayout(false);

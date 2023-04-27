@@ -131,6 +131,8 @@ namespace UltraMarker
 
         string Sitting = "Main";
 
+        char ImportRound;
+
 
         TreeNode SelNode;
         TreeNode PreNode;
@@ -6183,6 +6185,7 @@ namespace UltraMarker
                     sw.WriteLine("Comments path: " + CommentFilePath);
                     sw.WriteLine("Moderation Dir: " + modDirectory);
                     sw.WriteLine("External import file: " + StudentImportFile);
+                    sw.WriteLine("Import mode: " + ImportRound);
 
                     if (SessionType == 0)
                     {
@@ -6562,6 +6565,10 @@ namespace UltraMarker
                             else if (str.StartsWith("External import file:"))
                             {
                                 StudentImportFile = str3; //used to open comments on comments form                              
+                            }
+                            else if (str.StartsWith("Import mode:"))
+                            {                                
+                                ImportRound = str3.Trim()[0];                                
                             }
                             else if (str.StartsWith("Sessions:"))
                             {
@@ -10849,7 +10856,17 @@ namespace UltraMarker
                                         
                                         
                                         double tot = Convert.ToDouble(tasklinescorrect[crtask]) / Convert.ToDouble(tasklinestotal[crtask]);
-                                        string totS = Convert.ToString(tot*100);
+                                        tot = tot * 100; //convert to percentage
+                                        if (ImportRound == '1') //round up/down
+                                        {
+                                            tot = Math.Round(tot);
+                                                                                          
+                                        }
+                                        else if (ImportRound == '2') //round up only
+                                        {
+                                            tot = Math.Ceiling(tot);
+                                        }                                        
+                                        string totS = Convert.ToString(tot);
                                         string s = findGrade(totS);
                                         nodecount = treeView2.Nodes[0].Nodes[prevCriteria].GetNodeCount(false); //find number of sub-criteria
                                         int ttask = crtask;
@@ -11562,6 +11579,15 @@ namespace UltraMarker
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void roundUpdownToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Import ImportForm = new Import();
+            ImportForm.RoundUpDown = ImportRound;
+            ImportForm.ShowDialog();
+            ImportRound = ImportForm.RoundUpDown;
+            
         }
     }
     }

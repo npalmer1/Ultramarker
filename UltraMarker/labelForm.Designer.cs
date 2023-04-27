@@ -54,6 +54,7 @@
             this.ClientSize = new System.Drawing.Size(486, 95);
             this.Controls.Add(this.label1);
             this.Name = "labelForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Notice";
             this.Load += new System.EventHandler(this.labelForm_Load);
             this.ResumeLayout(false);

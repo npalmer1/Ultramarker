@@ -375,6 +375,7 @@
             this.Controls.Add(this.listBox1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "CommentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Comments";
             this.Load += new System.EventHandler(this.CommentForm_Load);
             this.contextMenuStrip1.ResumeLayout(false);

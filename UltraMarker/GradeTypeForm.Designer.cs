@@ -98,6 +98,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "GradeTypeForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Grade Type";
             this.Load += new System.EventHandler(this.GradeTypeForm_Load);
             this.groupBox1.ResumeLayout(false);

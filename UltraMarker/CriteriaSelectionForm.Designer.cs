@@ -113,6 +113,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.groupBox1);
             this.Name = "CriteriaSelectionForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Criteria Selection";
             this.Load += new System.EventHandler(this.CriteriaSelectionForm_Load);
             this.groupBox1.ResumeLayout(false);

@@ -302,6 +302,7 @@
             this.Controls.Add(this.checkBox2);
             this.Controls.Add(this.checkBox1);
             this.Name = "feedselectForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Select Feedback for Report";
             this.Load += new System.EventHandler(this.feedselectForm_Load);
             this.ResumeLayout(false);
