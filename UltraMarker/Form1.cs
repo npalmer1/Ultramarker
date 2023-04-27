@@ -4701,7 +4701,13 @@ namespace UltraMarker
                         {
                             str = str + "-----------" + nl;
                             str = str + boldS + "Criteria: " + crtitle[i, j] + boldE;
-                            if (feedOptions.ShowWeight) { str = str + " - Weight%: " + crweight[i, j, Session] + nl; }
+                            if (feedOptions.ShowWeight) 
+                            {
+                                decimal w;
+                                w = Convert.ToDecimal(crweight[i, j, Session]);
+                                w = decimal.Round(w, 1, MidpointRounding.AwayFromZero);
+                                str = str + " - Weight%: " + w + nl; 
+                            }
                             else { str = str + nl; }
                             if (firstSession && feedOptions.description)
                             {
@@ -4820,7 +4826,13 @@ namespace UltraMarker
                             {
                                 str = str + "+++++++" + nl;
                                 str = str + boldS + " Sub-Criteria: " + crtitle[i, k] + boldE;
-                                if (feedOptions.ShowSubWeight) { str = str + " - Weight within criteria%: " + crweight[i, k, Session] + nl; }
+                                if (feedOptions.ShowSubWeight) 
+                                {
+                                    decimal w;
+                                    w = Convert.ToDecimal(crweight[i, k, Session]);
+                                    w = decimal.Round(w, 1, MidpointRounding.AwayFromZero);                                    
+                                    str = str + " - Weight within criteria%: " + w + nl; 
+                                }
                                 else { str = str + nl; }
                                 if (firstSession && feedOptions.subdescription)
                                 {

@@ -85,6 +85,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBox1);
             this.Name = "summaryShowForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Assessment Summary Report";
             this.Load += new System.EventHandler(this.summaryShowForm_Load);
             this.ResumeLayout(false);
