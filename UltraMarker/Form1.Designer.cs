@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -187,6 +187,7 @@
             this.importCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.roundUpdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showGenAssessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LOtoolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -502,7 +503,8 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.roundUpdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.allowImportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dontAllowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -2023,10 +2025,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode4.Name = "CriteriaNode";
-            treeNode4.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2186,9 +2188,12 @@
             // 
             // commentsToolStripMenuItem1
             // 
+            this.commentsToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allowImportsToolStripMenuItem,
+            this.dontAllowToolStripMenuItem});
             this.commentsToolStripMenuItem1.Name = "commentsToolStripMenuItem1";
-            this.commentsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.commentsToolStripMenuItem1.Text = "Comments";
+            this.commentsToolStripMenuItem1.Size = new System.Drawing.Size(181, 22);
+            this.commentsToolStripMenuItem1.Text = "Import Comments";
             this.commentsToolStripMenuItem1.Click += new System.EventHandler(this.commentsToolStripMenuItem1_Click);
             // 
             // calculateLinesToolStripMenuItem
@@ -2197,6 +2202,13 @@
             this.calculateLinesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.calculateLinesToolStripMenuItem.Text = "Calculate lines";
             this.calculateLinesToolStripMenuItem.Click += new System.EventHandler(this.calculateLinesToolStripMenuItem_Click);
+            // 
+            // roundUpdownToolStripMenuItem
+            // 
+            this.roundUpdownToolStripMenuItem.Name = "roundUpdownToolStripMenuItem";
+            this.roundUpdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roundUpdownToolStripMenuItem.Text = "Round up/down";
+            this.roundUpdownToolStripMenuItem.Click += new System.EventHandler(this.roundUpdownToolStripMenuItem_Click);
             // 
             // showGenAssessToolStripMenuItem
             // 
@@ -2643,11 +2655,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3679,10 +3691,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5281,12 +5293,21 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
-            // roundUpdownToolStripMenuItem
+            // allowImportsToolStripMenuItem
             // 
-            this.roundUpdownToolStripMenuItem.Name = "roundUpdownToolStripMenuItem";
-            this.roundUpdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.roundUpdownToolStripMenuItem.Text = "Round up/down";
-            this.roundUpdownToolStripMenuItem.Click += new System.EventHandler(this.roundUpdownToolStripMenuItem_Click);
+            this.allowImportsToolStripMenuItem.Name = "allowImportsToolStripMenuItem";
+            this.allowImportsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.allowImportsToolStripMenuItem.Text = "Allow import of comments";
+            this.allowImportsToolStripMenuItem.Click += new System.EventHandler(this.allowImportsToolStripMenuItem_Click);
+            // 
+            // dontAllowToolStripMenuItem
+            // 
+            this.dontAllowToolStripMenuItem.Checked = true;
+            this.dontAllowToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dontAllowToolStripMenuItem.Name = "dontAllowToolStripMenuItem";
+            this.dontAllowToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.dontAllowToolStripMenuItem.Text = "Don\'t allow import of comments";
+            this.dontAllowToolStripMenuItem.Click += new System.EventHandler(this.dontAllowToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -5830,6 +5851,8 @@
         private System.Windows.Forms.ToolStripMenuItem insertItem;
         private System.Windows.Forms.CheckBox RefercheckBox;
         private System.Windows.Forms.ToolStripMenuItem roundUpdownToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem allowImportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dontAllowToolStripMenuItem;
     }
 }
 

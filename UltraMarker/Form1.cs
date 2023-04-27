@@ -2827,7 +2827,7 @@ namespace UltraMarker
                     sw.Close();
                     SetUpCriteriaType(CriteriaType);
                     CriteriaFile = filename;
-                    currentCriteriaFile = filename;
+                    //currentCriteriaFile = filename;
                     CriteriaPath = Path.GetDirectoryName(filename);
                 }
                 if (listBox1.Items.Count > 0)
@@ -4064,8 +4064,19 @@ namespace UltraMarker
                                     foundcriteria = true;
                                     if (File.Exists(str3))
                                     {
-                                        currentCriteriaFile = CriteriaFile;
-                                        ReadCriteriaFromFile(str3, true);                                        
+
+                                        if (str3 != CriteriaFile && str3 != "")
+                                        {
+                                            DialogResult dialogResult = MessageBox.Show("Current criteria file differs to that previoulsly saved with this student - use the new criteria Y/N? ", "Criteria File", MessageBoxButtons.YesNo);
+                                            if (dialogResult == DialogResult.Yes)
+                                            {
+                                                currentCriteriaFile = CriteriaFile;
+                                                str3 = currentCriteriaFile;
+                                            }
+                                        }
+                                        //currentCriteriaFile = CriteriaFile;
+                                        ReadCriteriaFromFile(str3, true);
+                                        
                                     }
 
                                 }
@@ -6683,9 +6694,15 @@ namespace UltraMarker
                                 if (str.Contains("true"))
                                 {
                                     AllowImpComment = true;
+                                    dontAllowToolStripMenuItem.Checked = false;
+                                    allowImportsToolStripMenuItem.Checked = true;
                                 }
                                 else
-                                { AllowImpComment = false; }
+                                { 
+                                    AllowImpComment = false;
+                                    dontAllowToolStripMenuItem.Checked = true;
+                                    allowImportsToolStripMenuItem.Checked = false;
+                                }
                             }
                             else if (str.StartsWith("ShowGenAssess"))
                             {
@@ -11096,6 +11113,9 @@ namespace UltraMarker
                             allowSubWeights = false;
                             checkedListBox1.SetItemChecked(0, allowSubWeights);
                             checkedListBox1.SetItemChecked(1, allowCriteriaWeights);
+                            setFileMenuColor(true);  
+                            MessageBox.Show("Don't forget to save criteria in Edit Mode", "Save Criteria");
+                           
                         }
                     }
                     else
@@ -11196,7 +11216,7 @@ namespace UltraMarker
         }
         private void startImport()
         {
-            if (EditStudent && startMark && (importFileBox.Text.Trim() != ""))
+            if (EditStudent && (startMark || checkedListBox1.GetItemChecked(0) || checkedListBox1.GetItemChecked(1)) && (importFileBox.Text.Trim() != ""))
             {
                 DialogResult dialogResult = MessageBox.Show("Import results from this file?", "Import Results", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -11216,15 +11236,14 @@ namespace UltraMarker
 
         private void commentsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Allow comments from imported files Yes/No?", "Imported Comments", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
+            /*if (commentsToolStripMenuItem.Checked)
+            { 
                 AllowImpComment = true;
             }
             else
             {
                 AllowImpComment = false;
-            }
+            }*/
         }
 
         private void calculateLinesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -11600,6 +11619,20 @@ namespace UltraMarker
             ImportForm.ShowDialog();
             ImportRound = ImportForm.RoundUpDown;
             
+        }
+
+        private void dontAllowToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            allowImportsToolStripMenuItem.Checked = false;
+            dontAllowToolStripMenuItem.Checked = true;
+            AllowImpComment = false;
+        }
+
+        private void allowImportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            allowImportsToolStripMenuItem.Checked = true;
+            dontAllowToolStripMenuItem.Checked = false;
+            AllowImpComment = true;
         }
     }
     }
