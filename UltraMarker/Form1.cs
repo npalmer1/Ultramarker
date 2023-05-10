@@ -2867,6 +2867,7 @@ namespace UltraMarker
             defaultSelectAll();
             ReadCriteriaFromFile(openFileDialog2.FileName, true);
             updatePeerForms();
+            currentCriteriaFile = CriteriaFile;
         }
         private void defaultSelectAll()
         {
