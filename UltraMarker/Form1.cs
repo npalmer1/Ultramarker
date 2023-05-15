@@ -1347,6 +1347,7 @@ namespace UltraMarker
 
         private void saveCriteriaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+           
             //prepare to save criteria
 
             //saveFileDialogda2.InitialDirectory = CriteriaPath;
@@ -2891,7 +2892,32 @@ namespace UltraMarker
 
         private void saveFileDialog2_FileOk(object sender, CancelEventArgs e)
         {
+            string item = "student";
+            if (industrial)
+            {
+                item = "item";
+            }
+            if (startMark)
+            {
+                if (saveFileDialog2.FileName != CriteriaFile)
+                {
+                    DialogResult res = MessageBox.Show("Criteria being used to mark current " + item + " is different to this - save the new criteria (Y/N)?", "Save criteria", MessageBoxButtons.YesNo);
+                    if (res == DialogResult.No)
+                    {
+                        Show_Label("Old criteria will be used to mark " + item, 2000);
+                        return;
+                    }
+                    else
+                    {
+                        Show_Label("New criteria will be used to mark current " + item,2000);
+                    }
+                }
+            }
             SaveCriteriaToFile(saveFileDialog2.FileName);
+
+            CriteriaFile = saveFileDialog2.FileName;
+            currentCriteriaFile = CriteriaFile;
+            
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -3188,7 +3214,7 @@ namespace UltraMarker
 
          }*/
 
-        private void button3_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e) //MODE button
         {   //edit criteria or mark student (or generate criteria) button
             if (button3.Text.StartsWith("Gen") || (button3.Text.StartsWith("Edit") && !showGenAssessToolStripMenuItem.Checked))
             {
@@ -3256,6 +3282,16 @@ namespace UltraMarker
             }
             else if (button3.Text.StartsWith("Marking"))
             {
+                /*
+                if (startMark)
+                {
+                    DialogResult res = MessageBox.Show("Marking student - save mark (Y/N)?", "Save", MessageBoxButtons.YesNo);
+                    if (res == DialogResult.Yes)
+                    {
+
+                    }
+                }
+                */
                 highlightButton.Visible = false;
                 Ticklabel.Visible = false;
                 //SaveListbox1Selected();
