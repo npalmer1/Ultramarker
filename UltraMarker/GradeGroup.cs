@@ -107,6 +107,7 @@ namespace UltraMarker
             
             try
             {
+                richTextBox1.Clear();
                 richTextBox1.LoadFile(filename, RichTextBoxStreamType.RichText);
 
             }

@@ -5071,7 +5071,7 @@ namespace UltraMarker
             Font fontbold = new Font(family, 12.0f, FontStyle.Bold);
 
             GForm.ClearChecked();   //clear all checkboxes in template
-            Calculate_Checks();
+            Calculate_Checks(); //works out if boxes checked in treeview
             if (SessionType > 0)
             {
                 MessageBox.Show("Cannot do this for more than one session");
@@ -5203,6 +5203,7 @@ namespace UltraMarker
             return true;
         }
 
+        /*
         private void FindGradePosition(string m1, int Cr) //Cr = criteria
         {   //locate in which grade group (box) the current mark is located so that the box can be highlighted (with a cross)
             bool firstthru = true;
@@ -5242,6 +5243,7 @@ namespace UltraMarker
                 }
             }
         }
+        */
         private void FindGradePositionV2(string m1, int Cr) //Cr = criteria
         {   //locate in which grade group (box) the current mark is located so that the box can be highlighted (with a cross)
 
@@ -5275,7 +5277,14 @@ namespace UltraMarker
 
             i = listBox1.FindString(m1);
             Gg = list[i];
-            GForm.GChecked[Cr, Gg] = true;
+            if (m1 == "" || m1 == null)
+            {
+                GForm.GChecked[Cr, Gg] = false;
+            }
+            else
+            {
+                GForm.GChecked[Cr, Gg] = true;
+            }
 
         }
 
@@ -10797,7 +10806,7 @@ namespace UltraMarker
             gbutton.Visible = b;
         }
 
-        private void templatebutton_Click(object sender, EventArgs e)
+        private void templatebutton_Click(object sender, EventArgs e) //load rubric template
         {
 
             GenFileDialog.InitialDirectory = UnitFilePath;

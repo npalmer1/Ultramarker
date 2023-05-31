@@ -186,6 +186,8 @@
             this.addAssessmentCodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importCommentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commentsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.allowImportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dontAllowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateLinesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.roundUpdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showGenAssessToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -503,8 +505,6 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
-            this.allowImportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dontAllowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -1038,7 +1038,7 @@
             // 
             // ImpFilebutton
             // 
-            this.ImpFilebutton.Location = new System.Drawing.Point(390, 10);
+            this.ImpFilebutton.Location = new System.Drawing.Point(390, 11);
             this.ImpFilebutton.Margin = new System.Windows.Forms.Padding(1);
             this.ImpFilebutton.Name = "ImpFilebutton";
             this.ImpFilebutton.Size = new System.Drawing.Size(31, 24);
@@ -2105,14 +2105,14 @@
             // criteriaTypeToolStripMenuItem
             // 
             this.criteriaTypeToolStripMenuItem.Name = "criteriaTypeToolStripMenuItem";
-            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaTypeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaTypeToolStripMenuItem.Text = "Criteria Type";
             this.criteriaTypeToolStripMenuItem.Click += new System.EventHandler(this.criteriaTypeToolStripMenuItem_Click);
             // 
             // sessionsToolStripMenuItem
             // 
             this.sessionsToolStripMenuItem.Name = "sessionsToolStripMenuItem";
-            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sessionsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.sessionsToolStripMenuItem.Text = "Sessions";
             this.sessionsToolStripMenuItem.Click += new System.EventHandler(this.sessionsToolStripMenuItem_Click);
             // 
@@ -2123,7 +2123,7 @@
             this.normal1ToolStripMenuItem,
             this.coarse5ToolStripMenuItem});
             this.weightingToolStripMenuItem.Name = "weightingToolStripMenuItem";
-            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.weightingToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.weightingToolStripMenuItem.Text = "Weighting";
             this.weightingToolStripMenuItem.Click += new System.EventHandler(this.weightingToolStripMenuItem_Click);
             // 
@@ -2151,28 +2151,28 @@
             // feedbackToolStripMenuItem
             // 
             this.feedbackToolStripMenuItem.Name = "feedbackToolStripMenuItem";
-            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.feedbackToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.feedbackToolStripMenuItem.Text = "Feedback";
             this.feedbackToolStripMenuItem.Click += new System.EventHandler(this.feedbackToolStripMenuItem_Click);
             // 
             // overrideToolStripMenuItem
             // 
             this.overrideToolStripMenuItem.Name = "overrideToolStripMenuItem";
-            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.overrideToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.overrideToolStripMenuItem.Text = "% Override";
             this.overrideToolStripMenuItem.Click += new System.EventHandler(this.overrideToolStripMenuItem_Click);
             // 
             // criteriaSelectionToolStripMenuItem
             // 
             this.criteriaSelectionToolStripMenuItem.Name = "criteriaSelectionToolStripMenuItem";
-            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.criteriaSelectionToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.criteriaSelectionToolStripMenuItem.Text = "Criteria Selection";
             this.criteriaSelectionToolStripMenuItem.Click += new System.EventHandler(this.criteriaSelectionToolStripMenuItem_Click);
             // 
             // addAssessmentCodeToolStripMenuItem
             // 
             this.addAssessmentCodeToolStripMenuItem.Name = "addAssessmentCodeToolStripMenuItem";
-            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addAssessmentCodeToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.addAssessmentCodeToolStripMenuItem.Text = "Add code";
             this.addAssessmentCodeToolStripMenuItem.Click += new System.EventHandler(this.addAssessmentCodeToolStripMenuItem_Click);
             // 
@@ -2183,7 +2183,7 @@
             this.calculateLinesToolStripMenuItem,
             this.roundUpdownToolStripMenuItem});
             this.importCommentsToolStripMenuItem.Name = "importCommentsToolStripMenuItem";
-            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.importCommentsToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.importCommentsToolStripMenuItem.Text = "Import Results";
             // 
             // commentsToolStripMenuItem1
@@ -2196,17 +2196,33 @@
             this.commentsToolStripMenuItem1.Text = "Import Comments";
             this.commentsToolStripMenuItem1.Click += new System.EventHandler(this.commentsToolStripMenuItem1_Click);
             // 
+            // allowImportsToolStripMenuItem
+            // 
+            this.allowImportsToolStripMenuItem.Name = "allowImportsToolStripMenuItem";
+            this.allowImportsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.allowImportsToolStripMenuItem.Text = "Allow import of comments";
+            this.allowImportsToolStripMenuItem.Click += new System.EventHandler(this.allowImportsToolStripMenuItem_Click);
+            // 
+            // dontAllowToolStripMenuItem
+            // 
+            this.dontAllowToolStripMenuItem.Checked = true;
+            this.dontAllowToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.dontAllowToolStripMenuItem.Name = "dontAllowToolStripMenuItem";
+            this.dontAllowToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
+            this.dontAllowToolStripMenuItem.Text = "Don\'t allow import of comments";
+            this.dontAllowToolStripMenuItem.Click += new System.EventHandler(this.dontAllowToolStripMenuItem_Click);
+            // 
             // calculateLinesToolStripMenuItem
             // 
             this.calculateLinesToolStripMenuItem.Name = "calculateLinesToolStripMenuItem";
-            this.calculateLinesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.calculateLinesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.calculateLinesToolStripMenuItem.Text = "Calculate lines";
             this.calculateLinesToolStripMenuItem.Click += new System.EventHandler(this.calculateLinesToolStripMenuItem_Click);
             // 
             // roundUpdownToolStripMenuItem
             // 
             this.roundUpdownToolStripMenuItem.Name = "roundUpdownToolStripMenuItem";
-            this.roundUpdownToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.roundUpdownToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.roundUpdownToolStripMenuItem.Text = "Round up/down";
             this.roundUpdownToolStripMenuItem.Click += new System.EventHandler(this.roundUpdownToolStripMenuItem_Click);
             // 
@@ -2215,7 +2231,7 @@
             this.showGenAssessToolStripMenuItem.Checked = true;
             this.showGenAssessToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.showGenAssessToolStripMenuItem.Name = "showGenAssessToolStripMenuItem";
-            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.showGenAssessToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
             this.showGenAssessToolStripMenuItem.Text = "Show Gen Assess";
             this.showGenAssessToolStripMenuItem.CheckedChanged += new System.EventHandler(this.showGenAssessToolStripMenuItem_CheckedChanged);
             this.showGenAssessToolStripMenuItem.Click += new System.EventHandler(this.showGenAssessToolStripMenuItem_Click);
@@ -5292,22 +5308,6 @@
             // ImportFileDialog
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
-            // 
-            // allowImportsToolStripMenuItem
-            // 
-            this.allowImportsToolStripMenuItem.Name = "allowImportsToolStripMenuItem";
-            this.allowImportsToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.allowImportsToolStripMenuItem.Text = "Allow import of comments";
-            this.allowImportsToolStripMenuItem.Click += new System.EventHandler(this.allowImportsToolStripMenuItem_Click);
-            // 
-            // dontAllowToolStripMenuItem
-            // 
-            this.dontAllowToolStripMenuItem.Checked = true;
-            this.dontAllowToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.dontAllowToolStripMenuItem.Name = "dontAllowToolStripMenuItem";
-            this.dontAllowToolStripMenuItem.Size = new System.Drawing.Size(264, 22);
-            this.dontAllowToolStripMenuItem.Text = "Don\'t allow import of comments";
-            this.dontAllowToolStripMenuItem.Click += new System.EventHandler(this.dontAllowToolStripMenuItem_Click);
             // 
             // Form1
             // 
