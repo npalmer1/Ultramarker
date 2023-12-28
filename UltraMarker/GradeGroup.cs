@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Printing;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace UltraMarker
 {
@@ -118,14 +119,19 @@ namespace UltraMarker
             }
 
         }
-        private void ReplaceString(string str, string str2)
+                      
+        private async Task ReplaceString(string str1, string str2)
+        {           
+            await AsyncOp(str1, str2);            
+        }
+        private async Task AsyncOp(String str1, String str2)
         {
             int i = 0;
-            
+
             try
             {
-                if (str == null || str.Trim().Length < 1)
-                { 
+                if (str1 == null || str1.Trim().Length < 1)
+                {
                     return;
                 }
                 Clipboard.Clear();
@@ -134,28 +140,79 @@ namespace UltraMarker
                 {
                     str2 = " ";
                 }
-                 
-                str2 = str2.PadRight(str.Length);
+
+                str2 = str2.PadRight(str1.Length);
 
                 //i = richTextBox1.Find(str,0,richTextBox1.Text.Length, RichTextBoxFinds.None);
                 //i = richTextBox1.Text.IndexOf(str);
-               
+
                 //i = richTextBox1.Rtf.IndexOf(str);
-                i = richTextBox1.Find(str, 0, RichTextBoxFinds.None);
+                i = richTextBox1.Find(str1, 0, RichTextBoxFinds.None);
                 if (i > -1)
                 {
-                    richTextBox1.Select(i, str.Length);                                        
-                                                           
+                    richTextBox1.Select(i, str1.Length);
+
                     Clipboard.Clear();
                     if (str2.Length > 0)
                     {
                         Clipboard.SetText(str2);
                     }
-                    else 
-                    { 
-                        Clipboard.SetText(" "); 
+                    else
+                    {
+                        Clipboard.SetText(" ");
                     }
-                  
+
+                    richTextBox1.Paste();
+                    richTextBox1.Modified = true;
+                }
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
+            await Task.Delay(1);
+            
+        }
+        /*
+        private void ReplaceString(string str, string str2)
+        {
+            int i = 0;
+
+            try
+            {
+                if (str == null || str.Trim().Length < 1)
+                {
+                    return;
+                }
+                Clipboard.Clear();
+                //Clipboard clip;
+                if (str2 == null)
+                {
+                    str2 = " ";
+                }
+
+                str2 = str2.PadRight(str.Length);
+
+                //i = richTextBox1.Find(str,0,richTextBox1.Text.Length, RichTextBoxFinds.None);
+                //i = richTextBox1.Text.IndexOf(str);
+
+                //i = richTextBox1.Rtf.IndexOf(str);
+                i = richTextBox1.Find(str, 0, RichTextBoxFinds.None);
+                if (i > -1)
+                {
+                    richTextBox1.Select(i, str.Length);
+
+                    Clipboard.Clear();
+                    if (str2.Length > 0)
+                    {
+                        Clipboard.SetText(str2);
+                    }
+                    else
+                    {
+                        Clipboard.SetText(" ");
+                    }
+
                     richTextBox1.Paste();
                     richTextBox1.Modified = true;
                 }
@@ -166,8 +223,9 @@ namespace UltraMarker
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
-        private void ModifyGeneratedForm()
-        {
+        */
+        private async void ModifyGeneratedForm()
+        {            
             //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
             string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
             richTextBox1.AppendText(padstring);
@@ -175,46 +233,46 @@ namespace UltraMarker
             richTextBox1.ReadOnly = false;
             //richTextBox1.Text = @"{\rtf1\ansi \paperw15840\paperh12240\margl1440\margr1440\margt1440\margb1440\gutter0\ltrsect " + richTextBox1.Text + "}";
 
-            ReplaceString("%Institution%", Institution);
+            await ReplaceString("%Institution%", Institution);
             
-            ReplaceString("%UnitTitle%", UnitTitle);
-            ReplaceString("%UnitCode%", UnitCode);
-            ReplaceString("%Level%", Level);
+            await ReplaceString("%UnitTitle%", UnitTitle);
+            await ReplaceString("%UnitCode%", UnitCode);
+            await ReplaceString("%Level%", Level);
 
-            ReplaceString("%AssessNo%", AssessNo);
-            ReplaceString("%AssessTitle%", AssessTitle);
+            await ReplaceString("%AssessNo%", AssessNo);
+            await ReplaceString("%AssessTitle%", AssessTitle);
             try
             {
-                ReplaceString("%Weight%", Weight.ToString());
+                await ReplaceString("%Weight%", Weight.ToString());
             }
             catch { }
 
-            ReplaceString("%Student%", student);
+            await ReplaceString("%Student%", student);
             
-            ReplaceString("%G1%", G[0]);    //grade
-            ReplaceString("%G2%", G[1]);
-            ReplaceString("%G3%", G[2]);
-            ReplaceString("%G4%", G[3]);
-            ReplaceString("%G5%", G[4]);
-            ReplaceString("%G6%", G[5]);
-            ReplaceString("%G7%", G[6]);
-            ReplaceString("%G8%", G[7]);
-            ReplaceString("%G9%", G[8]);
-            ReplaceString("%G10%", G[9]);
-            ReplaceString("%G11%", G[10]);
-            ReplaceString("%G12%", G[11]);
-            ReplaceString("%G13%", G[12]);
-            ReplaceString("%G14%", G[13]);
-            ReplaceString("%Criteria1%", C[0]); //criteria
-            ReplaceString("%Criteria2%", C[1]);
-            ReplaceString("%Criteria3%", C[2]);
-            ReplaceString("%Criteria4%", C[3]);
-            ReplaceString("%Criteria5%", C[4]);
-            ReplaceString("%Criteria6%", C[5]);
-            ReplaceString("%Criteria7%", C[6]);
-            ReplaceString("%Criteria8%", C[7]);
-            ReplaceString("%Criteria9%", C[8]);
-            ReplaceString("%Criteria10%", C[9]);
+            await ReplaceString("%G1%", G[0]);    //grade
+            await ReplaceString("%G2%", G[1]);
+            await ReplaceString("%G3%", G[2]);
+            await ReplaceString("%G4%", G[3]);
+            await ReplaceString("%G5%", G[4]);
+            await ReplaceString("%G6%", G[5]);
+            await ReplaceString("%G7%", G[6]);
+            await ReplaceString("%G8%", G[7]);
+            await ReplaceString("%G9%", G[8]);
+            await ReplaceString("%G10%", G[9]);
+            await ReplaceString("%G11%", G[10]);
+            await ReplaceString("%G12%", G[11]);
+            await ReplaceString("%G13%", G[12]);
+            await ReplaceString("%G14%", G[13]);
+            await ReplaceString("%Criteria1%", C[0]); //criteria
+            await ReplaceString("%Criteria2%", C[1]);
+            await ReplaceString("%Criteria3%", C[2]);
+            await ReplaceString("%Criteria4%", C[3]);
+            await ReplaceString("%Criteria5%", C[4]);
+            await ReplaceString("%Criteria6%", C[5]);
+            await ReplaceString("%Criteria7%", C[6]);
+            await ReplaceString("%Criteria8%", C[7]);
+            await ReplaceString("%Criteria9%", C[8]);
+            await ReplaceString("%Criteria10%", C[9]);
             //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
 
 
@@ -261,175 +319,175 @@ namespace UltraMarker
             } 
             
 
-            ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
-            ReplaceString("%CG2%", CG[0, 1]);
-            ReplaceString("%CG3%", CG[0, 2]);
-            ReplaceString("%CG4%", CG[0, 3]);
-            ReplaceString("%CG5%", CG[0, 4]);
-            ReplaceString("%CG6%", CG[0, 5]);
-            ReplaceString("%CG7%", CG[0, 6]);
-            ReplaceString("%CG8%", CG[0, 7]);
-            ReplaceString("%CG9%", CG[0, 8]);
-            ReplaceString("%CG10%", CG[0, 9]);
-            ReplaceString("%CG11%", CG[0, 10]);
-            ReplaceString("%CG12%", CG[0, 11]);
-            ReplaceString("%CG13%", CG[0, 12]);
-            ReplaceString("%CG14%", CG[0, 13]);
+            await ReplaceString("%CG1%", CG[0, 0]);   //criteria and grade
+            await ReplaceString("%CG2%", CG[0, 1]);
+            await ReplaceString("%CG3%", CG[0, 2]);
+            await ReplaceString("%CG4%", CG[0, 3]);
+            await ReplaceString("%CG5%", CG[0, 4]);
+            await ReplaceString("%CG6%", CG[0, 5]);
+            await ReplaceString("%CG7%", CG[0, 6]);
+            await ReplaceString("%CG8%", CG[0, 7]);
+            await ReplaceString("%CG9%", CG[0, 8]);
+            await ReplaceString("%CG10%", CG[0, 9]);
+            await ReplaceString("%CG11%", CG[0, 10]);
+            await ReplaceString("%CG12%", CG[0, 11]);
+            await ReplaceString("%CG13%", CG[0, 12]);
+            await ReplaceString("%CG14%", CG[0, 13]);
 
-            ReplaceString("%CG21%", CG[1, 0]);
-            ReplaceString("%CG22%", CG[1, 1]);
-            ReplaceString("%CG23%", CG[1, 2]);
-            ReplaceString("%CG24%", CG[1, 3]);
-            ReplaceString("%CG25%", CG[1, 4]);
-            ReplaceString("%CG26%", CG[1, 5]);
-            ReplaceString("%CG27%", CG[1, 6]);
-            ReplaceString("%CG28%", CG[1, 7]);
-            ReplaceString("%CG29%", CG[1, 8]);
-            ReplaceString("%CG30%", CG[1, 9]);
-            ReplaceString("%CG31%", CG[1, 10]);
-            ReplaceString("%CG32%", CG[1, 11]);
-            ReplaceString("%CG33%", CG[1, 12]);
-            ReplaceString("%CG34%", CG[1, 13]);
+            await ReplaceString("%CG21%", CG[1, 0]);
+            await ReplaceString("%CG22%", CG[1, 1]);
+            await ReplaceString("%CG23%", CG[1, 2]);
+            await ReplaceString("%CG24%", CG[1, 3]);
+            await ReplaceString("%CG25%", CG[1, 4]);
+            await ReplaceString("%CG26%", CG[1, 5]);
+            await ReplaceString("%CG27%", CG[1, 6]);
+            await ReplaceString("%CG28%", CG[1, 7]);
+            await ReplaceString("%CG29%", CG[1, 8]);
+            await ReplaceString("%CG30%", CG[1, 9]);
+            await ReplaceString("%CG31%", CG[1, 10]);
+            await ReplaceString("%CG32%", CG[1, 11]);
+            await ReplaceString("%CG33%", CG[1, 12]);
+            await ReplaceString("%CG34%", CG[1, 13]);
             
 
-            ReplaceString("%CG41%", CG[2, 0]);
-            ReplaceString("%CG42%", CG[2, 1]);
-            ReplaceString("%CG43%", CG[2, 2]);
-            ReplaceString("%CG44%", CG[2, 3]);
-            ReplaceString("%CG45%", CG[2, 4]);
-            ReplaceString("%CG46%", CG[2, 5]);
-            ReplaceString("%CG47%", CG[2, 6]);
-            ReplaceString("%CG48%", CG[2, 7]);
-            ReplaceString("%CG49%", CG[2, 8]);
-            ReplaceString("%CG50%", CG[2, 9]);
-            ReplaceString("%CG51%", CG[2, 10]);
-            ReplaceString("%CG52%", CG[2, 11]);
-            ReplaceString("%CG53%", CG[2, 12]);
-            ReplaceString("%CG54%", CG[2, 13]);
+            await ReplaceString("%CG41%", CG[2, 0]);
+            await ReplaceString("%CG42%", CG[2, 1]);
+            await ReplaceString("%CG43%", CG[2, 2]);
+            await ReplaceString("%CG44%", CG[2, 3]);
+            await ReplaceString("%CG45%", CG[2, 4]);
+            await ReplaceString("%CG46%", CG[2, 5]);
+            await ReplaceString("%CG47%", CG[2, 6]);
+            await ReplaceString("%CG48%", CG[2, 7]);
+            await ReplaceString("%CG49%", CG[2, 8]);
+            await ReplaceString("%CG50%", CG[2, 9]);
+            await ReplaceString("%CG51%", CG[2, 10]);
+            await ReplaceString("%CG52%", CG[2, 11]);
+            await ReplaceString("%CG53%", CG[2, 12]);
+            await ReplaceString("%CG54%", CG[2, 13]);
 
-            ReplaceString("%CG61%", CG[3, 0]);
-            ReplaceString("%CG62%", CG[3, 1]);
-            ReplaceString("%CG63%", CG[3, 2]);
-            ReplaceString("%CG64%", CG[3, 3]);
-            ReplaceString("%CG65%", CG[3, 4]);
-            ReplaceString("%CG66%", CG[3, 5]);
-            ReplaceString("%CG67%", CG[3, 6]);
-            ReplaceString("%CG68%", CG[3, 7]);
-            ReplaceString("%CG69%", CG[3, 8]);
-            ReplaceString("%CG70%", CG[3, 9]);
-            ReplaceString("%CG71%", CG[3, 10]);
-            ReplaceString("%CG72%", CG[3, 11]);
-            ReplaceString("%CG73%", CG[3, 12]);
-            ReplaceString("%CG74%", CG[3, 13]);
+            await ReplaceString("%CG61%", CG[3, 0]);
+            await ReplaceString("%CG62%", CG[3, 1]);
+            await ReplaceString("%CG63%", CG[3, 2]);
+            await ReplaceString("%CG64%", CG[3, 3]);
+            await ReplaceString("%CG65%", CG[3, 4]);
+            await ReplaceString("%CG66%", CG[3, 5]);
+            await ReplaceString("%CG67%", CG[3, 6]);
+            await ReplaceString("%CG68%", CG[3, 7]);
+            await ReplaceString("%CG69%", CG[3, 8]);
+            await ReplaceString("%CG70%", CG[3, 9]);
+            await ReplaceString("%CG71%", CG[3, 10]);
+            await ReplaceString("%CG72%", CG[3, 11]);
+            await ReplaceString("%CG73%", CG[3, 12]);
+            await ReplaceString("%CG74%", CG[3, 13]);
 
-            ReplaceString("%CG81%", CG[4, 0]);
-            ReplaceString("%CG82%", CG[4, 1]);
-            ReplaceString("%CG83%", CG[4, 2]);
-            ReplaceString("%CG84%", CG[4, 3]);
-            ReplaceString("%CG85%", CG[4, 4]);
-            ReplaceString("%CG86%", CG[4, 5]);
-            ReplaceString("%CG87%", CG[4, 6]);
-            ReplaceString("%CG88%", CG[4, 7]);
-            ReplaceString("%CG89%", CG[4, 8]);
-            ReplaceString("%CG90%", CG[4, 9]);
-            ReplaceString("%CG91%", CG[4, 10]);
-            ReplaceString("%CG92%", CG[4, 11]);
-            ReplaceString("%CG93%", CG[4, 12]);
-            ReplaceString("%CG94%", CG[4, 13]);
+            await ReplaceString("%CG81%", CG[4, 0]);
+            await ReplaceString("%CG82%", CG[4, 1]);
+            await ReplaceString("%CG83%", CG[4, 2]);
+            await ReplaceString("%CG84%", CG[4, 3]);
+            await ReplaceString("%CG85%", CG[4, 4]);
+            await ReplaceString("%CG86%", CG[4, 5]);
+            await ReplaceString("%CG87%", CG[4, 6]);
+            await ReplaceString("%CG88%", CG[4, 7]);
+            await ReplaceString("%CG89%", CG[4, 8]);
+            await ReplaceString("%CG90%", CG[4, 9]);
+            await ReplaceString("%CG91%", CG[4, 10]);
+            await ReplaceString("%CG92%", CG[4, 11]);
+            await ReplaceString("%CG93%", CG[4, 12]);
+            await ReplaceString("%CG94%", CG[4, 13]);
 
-            ReplaceString("%CG101%", CG[5, 0]);
-            ReplaceString("%CG102%", CG[5, 1]);
-            ReplaceString("%CG103%", CG[5, 2]);
-            ReplaceString("%CG104%", CG[5, 3]);
-            ReplaceString("%CG105%", CG[5, 4]);
-            ReplaceString("%CG106%", CG[5, 5]);
-            ReplaceString("%CG107%", CG[5, 6]);
-            ReplaceString("%CG108%", CG[5, 7]);
-            ReplaceString("%CG109%", CG[5, 8]);
-            ReplaceString("%CG110%", CG[5, 9]);
-            ReplaceString("%CG111%", CG[5, 10]);
-            ReplaceString("%CG112%", CG[5, 11]);
-            ReplaceString("%CG113%", CG[5, 12]);
-            ReplaceString("%CG114%", CG[5, 13]);
+            await ReplaceString("%CG101%", CG[5, 0]);
+            await ReplaceString("%CG102%", CG[5, 1]);
+            await ReplaceString("%CG103%", CG[5, 2]);
+            await ReplaceString("%CG104%", CG[5, 3]);
+            await ReplaceString("%CG105%", CG[5, 4]);
+            await ReplaceString("%CG106%", CG[5, 5]);
+            await ReplaceString("%CG107%", CG[5, 6]);
+            await ReplaceString("%CG108%", CG[5, 7]);
+            await ReplaceString("%CG109%", CG[5, 8]);
+            await ReplaceString("%CG110%", CG[5, 9]);
+            await ReplaceString("%CG111%", CG[5, 10]);
+            await ReplaceString("%CG112%", CG[5, 11]);
+            await ReplaceString("%CG113%", CG[5, 12]);
+            await ReplaceString("%CG114%", CG[5, 13]);
 
-            ReplaceString("%CG121%", CG[6, 0]);
-            ReplaceString("%CG122%", CG[6, 1]);
-            ReplaceString("%CG123%", CG[6, 2]);
-            ReplaceString("%CG124%", CG[6, 3]);
-            ReplaceString("%CG125%", CG[6, 4]);
-            ReplaceString("%CG126%", CG[6, 5]);
-            ReplaceString("%CG127%", CG[6, 6]);
-            ReplaceString("%CG128%", CG[6, 7]);
-            ReplaceString("%CG129%", CG[6, 8]);
-            ReplaceString("%CG130%", CG[6, 9]);
-            ReplaceString("%CG131%", CG[6, 10]);
-            ReplaceString("%CG132%", CG[6, 11]);
-            ReplaceString("%CG133%", CG[6, 12]);
-            ReplaceString("%CG134%", CG[6, 13]);
+            await ReplaceString("%CG121%", CG[6, 0]);
+            await ReplaceString("%CG122%", CG[6, 1]);
+            await ReplaceString("%CG123%", CG[6, 2]);
+            await ReplaceString("%CG124%", CG[6, 3]);
+            await ReplaceString("%CG125%", CG[6, 4]);
+            await ReplaceString("%CG126%", CG[6, 5]);
+            await ReplaceString("%CG127%", CG[6, 6]);
+            await ReplaceString("%CG128%", CG[6, 7]);
+            await ReplaceString("%CG129%", CG[6, 8]);
+            await ReplaceString("%CG130%", CG[6, 9]);
+            await ReplaceString("%CG131%", CG[6, 10]);
+            await ReplaceString("%CG132%", CG[6, 11]);
+            await ReplaceString("%CG133%", CG[6, 12]);
+            await ReplaceString("%CG134%", CG[6, 13]);
 
-            ReplaceString("%CG141%", CG[7, 0]);
-            ReplaceString("%CG142%", CG[7, 1]);
-            ReplaceString("%CG143%", CG[7, 2]);
-            ReplaceString("%CG144%", CG[7, 3]);
-            ReplaceString("%CG145%", CG[7, 4]);
-            ReplaceString("%CG146%", CG[7, 5]);
-            ReplaceString("%CG147%", CG[7, 6]);
-            ReplaceString("%CG148%", CG[7, 7]);
-            ReplaceString("%CG149%", CG[7, 8]);
-            ReplaceString("%CG150%", CG[7, 9]);
-            ReplaceString("%CG151%", CG[7, 10]);
-            ReplaceString("%CG152%", CG[7, 11]);
-            ReplaceString("%CG153%", CG[7, 12]);
-            ReplaceString("%CG154%", CG[7, 13]);
+            await ReplaceString("%CG141%", CG[7, 0]);
+            await ReplaceString("%CG142%", CG[7, 1]);
+            await ReplaceString("%CG143%", CG[7, 2]);
+            await ReplaceString("%CG144%", CG[7, 3]);
+            await ReplaceString("%CG145%", CG[7, 4]);
+            await ReplaceString("%CG146%", CG[7, 5]);
+            await ReplaceString("%CG147%", CG[7, 6]);
+            await ReplaceString("%CG148%", CG[7, 7]);
+            await ReplaceString("%CG149%", CG[7, 8]);
+            await ReplaceString("%CG150%", CG[7, 9]);
+            await ReplaceString("%CG151%", CG[7, 10]);
+            await ReplaceString("%CG152%", CG[7, 11]);
+            await ReplaceString("%CG153%", CG[7, 12]);
+            await ReplaceString("%CG154%", CG[7, 13]);
             
-            ReplaceString("%CrTitle1%", CT[0]);
-            ReplaceString("%CrTitle2%", CT[1]);
-            ReplaceString("%CrTitle3%", CT[2]);
-            ReplaceString("%CrTitle4%", CT[3]);
-            ReplaceString("%CrTitle5%", CT[4]);
-            ReplaceString("%CrTitle6%", CT[5]);
-            ReplaceString("%CrTitle7%", CT[6]);
-            ReplaceString("%CrTitle8%", CT[7]);
-            ReplaceString("%CrTitle9%", CT[8]);
-            ReplaceString("%CrTitle10%", CT[9]);
+            await ReplaceString("%CrTitle1%", CT[0]);
+            await ReplaceString("%CrTitle2%", CT[1]);
+            await ReplaceString("%CrTitle3%", CT[2]);
+            await ReplaceString("%CrTitle4%", CT[3]);
+            await ReplaceString("%CrTitle5%", CT[4]);
+            await ReplaceString("%CrTitle6%", CT[5]);
+            await ReplaceString("%CrTitle7%", CT[6]);
+            await ReplaceString("%CrTitle8%", CT[7]);
+            await ReplaceString("%CrTitle9%", CT[8]);
+            await ReplaceString("%CrTitle10%", CT[9]);
 
-            ReplaceString("%CrTitle1%", CT[0]);
-            ReplaceString("%CrTitle2%", CT[1]);
-            ReplaceString("%CrTitle3%", CT[2]);
-            ReplaceString("%CrTitle4%", CT[3]);
-            ReplaceString("%CrTitle5%", CT[4]);
-            ReplaceString("%CrTitle6%", CT[5]);
-            ReplaceString("%CrTitle7%", CT[6]);
-            ReplaceString("%CrTitle8%", CT[7]);
-            ReplaceString("%CrTitle9%", CT[8]);
-            ReplaceString("%CrTitle10%", CT[9]);
+            await ReplaceString("%CrTitle1%", CT[0]);
+            await ReplaceString("%CrTitle2%", CT[1]);
+            await ReplaceString("%CrTitle3%", CT[2]);
+            await ReplaceString("%CrTitle4%", CT[3]);
+            await ReplaceString("%CrTitle5%", CT[4]);
+            await ReplaceString("%CrTitle6%", CT[5]);
+            await ReplaceString("%CrTitle7%", CT[6]);
+            await ReplaceString("%CrTitle8%", CT[7]);
+            await ReplaceString("%CrTitle9%", CT[8]);
+            await ReplaceString("%CrTitle10%", CT[9]);
 
-            ReplaceString("%CrMark1%", CM[0]);
-            ReplaceString("%CrMark2%", CM[1]);
-            ReplaceString("%CrMark3%", CM[2]);
-            ReplaceString("%CrMark4%", CM[3]);
-            ReplaceString("%CrMark5%", CM[4]);
-            ReplaceString("%CrMark6%", CM[5]);
-            ReplaceString("%CrMark7%", CM[6]);
-            ReplaceString("%CrMark8%", CM[7]);
-            ReplaceString("%CrMark7%", CM[8]);
-            ReplaceString("%CrMark8%", CM[9]);
-            ReplaceString("%CrComment1%", comment[0]);
-            ReplaceString("%CrComment2%", comment[1]);
+            await ReplaceString("%CrMark1%", CM[0]);
+            await ReplaceString("%CrMark2%", CM[1]);
+            await ReplaceString("%CrMark3%", CM[2]);
+            await ReplaceString("%CrMark4%", CM[3]);
+            await ReplaceString("%CrMark5%", CM[4]);
+            await ReplaceString("%CrMark6%", CM[5]);
+            await ReplaceString("%CrMark7%", CM[6]);
+            await ReplaceString("%CrMark8%", CM[7]);
+            await ReplaceString("%CrMark7%", CM[8]);
+            await ReplaceString("%CrMark8%", CM[9]);
+            await ReplaceString("%CrComment1%", comment[0]);
+            await ReplaceString("%CrComment2%", comment[1]);
             //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
-            ReplaceString("%CrComment3%", comment[2]);
-            ReplaceString("%CrComment4%", comment[3]);
-            ReplaceString("%CrComment5%", comment[4]);
-            ReplaceString("%CrComment6%", comment[5]);
-            ReplaceString("%CrComment7%", comment[6]);
-            ReplaceString("%CrComment8%", comment[7]);
-            ReplaceString("%CrComment7%", comment[8]);
-            ReplaceString("%CrComment8%", comment[9]);
-            ReplaceString("%overallGrade%", OG);
-            ReplaceString("%overallPercent%", OP);
-            ReplaceString("%overall%", overall);
-            ReplaceString("%marker%", Marker);
-            ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy"));
+            await ReplaceString("%CrComment3%", comment[2]);
+            await ReplaceString("%CrComment4%", comment[3]);
+            await ReplaceString("%CrComment5%", comment[4]);
+            await ReplaceString("%CrComment6%", comment[5]);
+            await ReplaceString("%CrComment7%", comment[6]);
+            await ReplaceString("%CrComment8%", comment[7]);
+            await ReplaceString("%CrComment7%", comment[8]);
+            await ReplaceString("%CrComment8%", comment[9]);
+            await ReplaceString("%overallGrade%", OG);
+            await ReplaceString("%overallPercent%", OP);
+            await ReplaceString("%overall%", overall);
+            await ReplaceString("%marker%", Marker);
+            await ReplaceString("%date%", DateTime.Now.ToString("dd/MM/yy"));
 
             richTextBox1.Update();
             richTextBox1.ReadOnly = true;
