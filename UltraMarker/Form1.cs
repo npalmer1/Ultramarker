@@ -9313,7 +9313,15 @@ namespace UltraMarker
                             i = str.IndexOf("Unit folder: ");
                             k = "Unit folder: ".Length;
                             str = str.Substring(i + k, str.Length - k);
-                            if (!str.Contains(DefaultDir))
+                            string str2 = str;
+                            string defstr = DefaultDir;
+                            if (!Linux)
+                            {
+                                str2 = str.ToUpper();
+                                defstr = DefaultDir.ToUpper();
+                            }
+                            
+                            if (!str2.Contains(defstr))
                             {
                                 MessageBox.Show("Note: unit file path is in different path to default directory");
                             }
@@ -9325,7 +9333,14 @@ namespace UltraMarker
                             i = str.IndexOf("Marks folder: ");
                             k = "Marks folder: ".Length;
                             str = str.Substring(i + k, str.Length - k);
-                            if (!str.Contains(UnitFilePath))
+                            string str3 = str;
+                            string ufpstr = UnitFilePath;
+                            if (!Linux)
+                            {
+                                str3 = str.ToUpper();
+                                ufpstr = UnitFilePath.ToUpper();
+                            }
+                            if (!str3.Contains(ufpstr))
                             {
                                 MessageBox.Show("Note: Marks folder is in different path to unit folder");
                             }
