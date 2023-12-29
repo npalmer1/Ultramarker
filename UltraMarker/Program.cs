@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace UltraMarker
 {
@@ -13,6 +14,12 @@ namespace UltraMarker
         [STAThread]
         static void Main()
         {
+            Process[] pname = Process.GetProcessesByName("Ultramarker");
+            if (pname.Length > 0)
+            {
+                MessageBox.Show("Ultramarker already running");
+                return;
+            }
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

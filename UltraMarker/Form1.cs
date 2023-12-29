@@ -312,7 +312,7 @@ namespace UltraMarker
         Font TVFont = new Font("Microsoft Sans Serif", 9.75f);
 
         public Form1()
-        {
+        {            
             try
             {
                 string[] args = Environment.GetCommandLineArgs();
@@ -330,7 +330,8 @@ namespace UltraMarker
                     }
                 }
             }
-            catch { }
+            catch { }           
+          
             InitializeComponent();
         }
 
@@ -345,7 +346,7 @@ namespace UltraMarker
             aggregatedBox.SelectedIndex = 0;
 
             if (RunningPlatform() == Platform.Windows)
-            {
+            {               
                 Linux = false;
                 slash = "\\";
                 string startPath = Environment.GetEnvironmentVariable("HOMEDRIVE");
