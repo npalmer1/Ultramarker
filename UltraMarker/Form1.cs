@@ -10910,7 +10910,8 @@ namespace UltraMarker
                             if (str.StartsWith("Criteria:")) //select criteria to import to (starts from 1)
                             {
                                 first1 = true; //check message about need for sub-criteria
-                                str3 = str.Substring(0, "Criteria:".Length).Trim();
+                                string v = str.Substring(0, "Criteria:".Length).Trim();
+                                str3 = v;
                                 str2 = str.Substring(str3.Length, str.Length - str3.Length).Trim();
                                 cr = Convert.ToInt32(str2);
                                 cr--; //zeroise it
@@ -11059,7 +11060,8 @@ namespace UltraMarker
 
                                         if (task > criteriaTasks)
                                         {
-                                            criteriaTasks++;
+                                            //criteriaTasks++;
+                                            criteriaTasks = task;
                                         }
 
 

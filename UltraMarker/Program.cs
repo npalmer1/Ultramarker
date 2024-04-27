@@ -15,7 +15,7 @@ namespace UltraMarker
         static void Main()
         {
             Process[] pname = Process.GetProcessesByName("Ultramarker");
-            if (pname.Length > 0)
+            if (pname.Length > 1)
             {
                 MessageBox.Show("Ultramarker already running");
                 return;
