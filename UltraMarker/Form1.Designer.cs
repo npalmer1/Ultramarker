@@ -1173,7 +1173,7 @@
             // unitlabel
             // 
             this.unitlabel.AutoSize = true;
-            this.unitlabel.Location = new System.Drawing.Point(843, 12);
+            this.unitlabel.Location = new System.Drawing.Point(859, 10);
             this.unitlabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.unitlabel.Name = "unitlabel";
             this.unitlabel.Size = new System.Drawing.Size(32, 15);

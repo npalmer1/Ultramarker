@@ -101,6 +101,7 @@ namespace UltraMarker
         bool singleGrades = true;
         bool loading = true;
         bool change1 = false;
+        int currentNodeIndex = 0;
 
 
         struct aliases
@@ -131,7 +132,7 @@ namespace UltraMarker
 
         string Sitting = "Main";
 
-        char ImportRound;
+        char ImportRound = '1';
 
 
         TreeNode SelNode;
@@ -4023,6 +4024,8 @@ namespace UltraMarker
             bool foundcriteria = false;
             bool foundsession = false;
             modSelect.Checked = false; //uncheck moderation checkbox
+            string currentCriteriaTitle = "";
+            //int currentNodeIndex = 0;
            
 
             string gradestr = "  ";
@@ -4280,12 +4283,19 @@ namespace UltraMarker
                         else if (str.StartsWith("Criteria title:"))
                         {
 
-
+                            currentCriteriaTitle = str3;
                             TreeNodeCollection nodes = treeView2.Nodes;
                             foreach (TreeNode ChildNode in nodes)
                             {
-                                FindRecursive(ChildNode, str3);
-                                i = Found;
+                                foreach (TreeNode SubNode in ChildNode.Nodes)
+                                {
+                                    if (SubNode.Text.Trim() == str3.Trim())
+                                    {
+                                        i = SubNode.Index;
+                                      currentNodeIndex = i;
+                                    }
+                                }
+                                                                
                             }
                             j = MaxSub;
 
@@ -4341,14 +4351,14 @@ namespace UltraMarker
                         else if (str.StartsWith("Sub-criteria title:"))
                         {
 
-                            TreeNodeCollection nodes = treeView2.Nodes;
-                            foreach (TreeNode ChildNode in nodes)
+                            TreeNode node = treeView2.Nodes[0].Nodes[currentNodeIndex];
+                            foreach (TreeNode SubNode in node.Nodes)
                             {
-                                foreach (TreeNode SubNode in ChildNode.Nodes)
+                                if (SubNode.Text.Trim() == str3.Trim())
                                 {
-                                    FindRecursive(SubNode, str3);
-                                    j = Found;
+                                    j = SubNode.Index;
                                 }
+                               
                             }
                         }
                         else if (str.StartsWith("General feedback:"))
@@ -4463,7 +4473,7 @@ namespace UltraMarker
 
 
 
-        private void FindRecursive(TreeNode treeNode, string s)
+        private void FindRecursive(TreeNode treeNode, string s) //not used
         {
 
             foreach (TreeNode tn in treeNode.Nodes)
@@ -4477,6 +4487,7 @@ namespace UltraMarker
             }
 
         }
+       
 
 
         private void tabPage2_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace UltraMarker
 {
     public partial class Import : Form
     {
-        public char RoundUpDown = '0';
+        public char RoundUpDown = '1';
         public Import()
         {
             InitializeComponent();
@@ -32,11 +32,7 @@ namespace UltraMarker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked) //don't round up/down
-            {
-                RoundUpDown = '0';
-            }
-            else if (radioButton2.Checked) //round up & down
+           if (radioButton2.Checked) //round up & down
             {
                 RoundUpDown = '1';
             }
