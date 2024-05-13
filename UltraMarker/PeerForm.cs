@@ -172,12 +172,13 @@ namespace UltraMarker
             catch{
                 }           
         }*/
-        private async Task ReplaceString(string str1, string str2)
+        private void ReplaceString(string str1, string str2)
         {
-            await AsyncOp(str1, str2);
-            
+            Op(str1, str2);
+            System.Threading.Tasks.Task.Delay(3);
+            Clipboard.Clear();
         }
-        private async Task AsyncOp(String str1, String str2)
+        private void Op(String str1, String str2)
         {
             int i = 0;
 
@@ -187,7 +188,7 @@ namespace UltraMarker
                 {
                     return;
                 }
-                Clipboard.Clear();
+                
                 //Clipboard clip;
                 if (str2 == null)
                 {
@@ -200,7 +201,7 @@ namespace UltraMarker
                 //i = richTextBox1.Text.IndexOf(str);
 
                 //i = richTextBox1.Rtf.IndexOf(str);
-                i = richTextBox1.Find(str1, 0, RichTextBoxFinds.None);
+                i = richTextBox1.Find(str1, 0);
                 if (i > -1)
                 {
                     richTextBox1.Select(i, str1.Length);
@@ -224,7 +225,7 @@ namespace UltraMarker
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
-            await System.Threading.Tasks.Task.Delay(1);
+            
         }
 
 
@@ -287,181 +288,183 @@ namespace UltraMarker
 
         private async void ModifyPeerForm()
         {
+            Clipboard.Clear();
             string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
             SetSig();
             richTextBox1.AppendText(padstring);
-            await ReplaceString("%Institution%", Institution);
-            await ReplaceString("%UnitTitle%", UnitTitle);
-            await ReplaceString("%UnitCode%", UnitCode);
-            await ReplaceString("%Level%", Level);
-            await ReplaceString("%UnitLeader%", UnitLeader);
-            await ReplaceString("%Peer%", Peer);
-            await ReplaceString("%AssessNo%", AssessNo);
-            await ReplaceString("%AssessTitle%", AssessTitle);
+             ReplaceString("%Institution%", Institution);
+             ReplaceString("%UnitTitle%", UnitTitle);
+             ReplaceString("%UnitCode%", UnitCode);
+             ReplaceString("%Level%", Level);
+             ReplaceString("%UnitLeader%", UnitLeader);
+             ReplaceString("%Peer%", Peer);
+             ReplaceString("%AssessNo%", AssessNo);
+             ReplaceString("%AssessTitle%", AssessTitle);
             try
             {
-                await ReplaceString("%Weight%", Weight.ToString());
+                 ReplaceString("%Weight%", Weight.ToString());
             }
             catch { }
             try
             {
-                await ReplaceString("%PassMark%", PassMark.ToString());
+                 ReplaceString("%PassMark%", PassMark.ToString());
             }
             catch { }
-            await ReplaceString("Must Pass/Aggregated", AggregationStr);            
+             ReplaceString("Must Pass/Aggregated", AggregationStr);            
            
             if (Sheet)
             {
-                await ReplaceString("%Sheet%", "Y");
+                 ReplaceString("%Sheet%", "Y");
             }
             else
             {
-                await ReplaceString("%Sheet%", " ");
+                 ReplaceString("%Sheet%", " ");
             }
             string newComment = "";
             if (Refer)
             {
                 newComment = "Including refer. ";
             }
-            await ReplaceString("%Comment1%", newComment + Comment1);
+             ReplaceString("%Comment1%", newComment + Comment1);
             if (Strategy)
             {
-                await ReplaceString("%Strategy%", "Y");
+                 ReplaceString("%Strategy%", "Y");
             }
             else
             {
-                await ReplaceString("%Strategy%", " ");
+                 ReplaceString("%Strategy%", " ");
             }
             if (Refer)
             {
                 newComment = "\"\" ";
             }
-            await ReplaceString("%Comment2%", newComment + Comment2);
+             ReplaceString("%Comment2%", newComment + Comment2);
             if (Instructions)
             {
-                await ReplaceString("%Instructions%", "Y");
+                 ReplaceString("%Instructions%", "Y");
             }
             else
             {
-                await ReplaceString("%Instructions%", " ");
+                 ReplaceString("%Instructions%", " ");
             }
-            await ReplaceString("%Comment3%", newComment + Comment3);
+             ReplaceString("%Comment3%", newComment + Comment3);
             if (Criteria)
             {
-                await ReplaceString("%Criteria%", "Y");
+                 ReplaceString("%Criteria%", "Y");
             }
             else
             {
-                await ReplaceString("%Criteria%", " ");
+                 ReplaceString("%Criteria%", " ");
             }
-            await ReplaceString("%Comment4%", newComment + Comment4);
+             ReplaceString("%Comment4%", newComment + Comment4);
             if (Task)
             {
-                await ReplaceString("%Task%", "Y");
+                 ReplaceString("%Task%", "Y");
             }
             else
             {
-                await ReplaceString("%Task%", " ");
+                 ReplaceString("%Task%", " ");
             }
-            await ReplaceString("%Comment5%", newComment + Comment5);
+             ReplaceString("%Comment5%", newComment + Comment5);
             if (Special)
             {
-                await ReplaceString("%Special%", "Y");
+                 ReplaceString("%Special%", "Y");
             }
             else
             {
-                await ReplaceString("%Special%", " ");
+                 ReplaceString("%Special%", " ");
             }
-            await ReplaceString("%Comment6%", newComment + Comment6);
+             ReplaceString("%Comment6%", newComment + Comment6);
             
-            await ReplaceString("%Peer%", Peer);
+             ReplaceString("%Peer%", Peer);
             if (PeerSigImg != null)
             {
                 InsertSig(PeerSigImg, "%PeerSig%");
             }
             else
             {
-                await ReplaceString("%PeerSig%", " ");
+                 ReplaceString("%PeerSig%", " ");
             }
-            await ReplaceString("%PeerDate%", PeerDate);
-            await ReplaceString("%Comment7%", Comment7);
-            await ReplaceString("%UnitLeader%", UnitLeader);
+             ReplaceString("%PeerDate%", PeerDate);
+             ReplaceString("%Comment7%", Comment7);
+             ReplaceString("%UnitLeader%", UnitLeader);
             if (ULSigImg != null)
             {
                 InsertSig(ULSigImg, "%ULSig%");
             }
             else
             {
-                await ReplaceString("%ULSig%", " ");
+                 ReplaceString("%ULSig%", " ");
             }
-            await ReplaceString("%ULDate%", ULDate);
+             ReplaceString("%ULDate%", ULDate);
 
         }
 
         private async void ModifyModForm()
         {
-            await ReplaceString("%Institution%", Institution);
-            await ReplaceString("%UnitTitle%", UnitTitle);
-            await ReplaceString("%UnitCode%", UnitCode);
-            await ReplaceString("%Level%", Level);
-            await ReplaceString("%UnitLeader%", UnitLeader);
-            await ReplaceString("%Moderator%", Moderator);
-            await ReplaceString("%AssessNo%", AssessNo);
-            await ReplaceString("%AssessNo%", AssessNo);
-            await ReplaceString("%AssessTitle%", AssessTitle);
+            Clipboard.Clear();
+            ReplaceString("%Institution%", Institution);
+             ReplaceString("%UnitTitle%", UnitTitle);
+             ReplaceString("%UnitCode%", UnitCode);
+             ReplaceString("%Level%", Level);
+             ReplaceString("%UnitLeader%", UnitLeader);
+             ReplaceString("%Moderator%", Moderator);
+             ReplaceString("%AssessNo%", AssessNo);
+             ReplaceString("%AssessNo%", AssessNo);
+             ReplaceString("%AssessTitle%", AssessTitle);
             try
             {
-                await ReplaceString("%Weight%", Weight.ToString());
+                 ReplaceString("%Weight%", Weight.ToString());
             }
             catch { }
             try
             {
-                await ReplaceString("%PassMark%", PassMark.ToString());
+                 ReplaceString("%PassMark%", PassMark.ToString());
             }
             catch { }
-            await ReplaceString("Must Pass/Aggregated", AggregationStr);
-            await ReplaceString("%Year%", acYear);
-            await ReplaceString("%Semester%", Sem);
+             ReplaceString("Must Pass/Aggregated", AggregationStr);
+             ReplaceString("%Year%", acYear);
+             ReplaceString("%Semester%", Sem);
 
-            await ReplaceString("%Comment1%", Comment1);
-            await ReplaceString("%Comment2%", Comment2);
-            await ReplaceString("%Comment3%", Comment3);
+             ReplaceString("%Comment1%", Comment1);
+             ReplaceString("%Comment2%", Comment2);
+             ReplaceString("%Comment3%", Comment3);
             string str = "yes";
             if (!Appropriate)
             {
                 str = " ";
             }
-            await ReplaceString("%Appropriate%", str);
+             ReplaceString("%Appropriate%", str);
                         
             if (Agreed)
             {
-                await ReplaceString("%Agreed%", "yes");
+                 ReplaceString("%Agreed%", "yes");
             }
             else
             {
-                await ReplaceString("%Agreed%", " ");
+                 ReplaceString("%Agreed%", " ");
             }
-            await ReplaceString("%Moderator%", Moderator);
-            await ReplaceString("%UnitLeader%", UnitLeader);
-            await ReplaceString("%ModDate%", ModDate);
-            await ReplaceString("%ULModDate%", ULModDate);
-            await ReplaceString("%ULDate%", ULModDate);
+             ReplaceString("%Moderator%", Moderator);
+             ReplaceString("%UnitLeader%", UnitLeader);
+             ReplaceString("%ModDate%", ModDate);
+             ReplaceString("%ULModDate%", ULModDate);
+             ReplaceString("%ULDate%", ULModDate);
             if (ULSigImg != null)
             {
                 InsertSig(ULSigImg, "%ULSig%");
             }
             else
             {
-                await ReplaceString("%ULSig%", " ");
+                 ReplaceString("%ULSig%", " ");
             }
             
             if (Third)
             {
-                await ReplaceString("%Third%", "Y");
+                 ReplaceString("%Third%", "Y");
             }
             else
             {
-                await ReplaceString("%Third%", "N");
+                 ReplaceString("%Third%", "N");
             }
             //BuildModerationList();
             BuildModerationList_New();
@@ -471,34 +474,35 @@ namespace UltraMarker
                 nstr = totalNum.ToString();
                 
             }
-            await ReplaceString("%TotalNum%", nstr);
+             ReplaceString("%TotalNum%", nstr);
             nstr = "0";
             if (modCount > 0)
             {
                 nstr = modCount.ToString();                
             }
-            await ReplaceString("%ModCount%", nstr);
+             ReplaceString("%ModCount%", nstr);
             
         }
 
 
-        private async void ModifyExtForm()
+        private void ModifyExtForm()
         {
-            await ReplaceString("%Institution%", Institution);
-            await ReplaceString("%UnitTitle%", UnitTitle);
-            await ReplaceString("%UnitCode%", UnitCode);
-            await ReplaceString("%ExternalModerator%", ExternalMod);
-            await ReplaceString("%AssessTitle%", AssessTitle);
-            await ReplaceString("%OK%", okstring);
+            Clipboard.Clear();
+            ReplaceString("%Institution%", Institution);
+             ReplaceString("%UnitTitle%", UnitTitle);
+             ReplaceString("%UnitCode%", UnitCode);
+             ReplaceString("%ExternalModerator%", ExternalMod);
+             ReplaceString("%AssessTitle%", AssessTitle);
+             ReplaceString("%OK%", okstring);
             
-            await ReplaceString("%Comment1%", Comment1);
-            await ReplaceString("%ExternalModerator%", ExternalMod);
-            await ReplaceString("%Date%", ULDate);
+             ReplaceString("%Comment1%", Comment1);
+             ReplaceString("%ExternalModerator%", ExternalMod);
+             ReplaceString("%Date%", ULDate);
            
         }
 
 
-        private async void BuildModerationList_New()
+        private void BuildModerationList_New()
         {
             string str = "";
             string str3 = "";                   
@@ -641,7 +645,7 @@ namespace UltraMarker
                 if (modCount == 0)
                 {
                     MessageBox.Show("No moderated files in this folder");
-                    await ReplaceString("%ModList%"," ");
+                     ReplaceString("%ModList%"," ");
                     return;
                 }
 
