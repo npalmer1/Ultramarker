@@ -8571,75 +8571,88 @@ namespace UltraMarker
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             help helpForm = new help();
-
+            string helpath = DefaultDir;
+            string ProgramPath;
+                        
+            ProgramPath = AppDomain.CurrentDomain.BaseDirectory;
+           
+            if (Directory.Exists(ProgramPath + "helpfiles"))
+            {
+                helpath = ProgramPath;
+            }
+            else
+            {
+                helpath = DefaultDir;
+            }
+            //MessageBox.Show(ProgramPath);
             if (keyData == Keys.F1)
             {
                 int sel = tabControl1.SelectedIndex;
                 switch (sel)
                 {
                     case 0: //Unit tab
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash+ "UnitHelp.rtf";
+                        helpForm.helpfile = helpath + "helpfiles" + slash+ "UnitHelp.rtf";
                         break;
                     case 1: //Grades tab  
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash + "GradesHelp.rtf";
+                        helpForm.helpfile = helpath + "helpfiles" + slash + "GradesHelp.rtf";
                         break;
                     case 2: //LO tab
-                        helpForm.helpfile = DefaultDir + "helpfiles" + slash + "LOHelp.rtf";
+                        helpForm.helpfile = helpath + "helpfiles" + slash + "LOHelp.rtf";
                         break;
                     case 3: //Assess tab  
                         if (!EditStudent)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "AssessHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "AssessHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "MarkingHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "MarkingHelp.rtf";
                         }
                         break;
                     case 4: //Sessiontab
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "PeerHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "PeerHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "SessionHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "SessionHelp.rtf";
                         }
                         break;
                     case 5: //Unit tab
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ModHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "ModHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "PeerHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "PeerHelp.rtf";
                         }
                         break;
                     case 6:
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ExtHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "ExtHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + ".rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + ".rtf";
                         }
                         break;
                     case 7:
                         if (SessionType == 0)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "StudentHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "StudentHelp.rtf";
                         }
                         else
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "ExtHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "ExtHelp.rtf";
                         }
                         break;
                     case 8:
                         if (SessionType == 1)
                         {
-                            helpForm.helpfile = DefaultDir + "helpfiles" + slash + "StudentHelp.rtf";
+                            helpForm.helpfile = helpath + "helpfiles" + slash + "StudentHelp.rtf";
                         }
                         break;
 
