@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -913,7 +913,7 @@
             // 
             // repCancelbutton4
             // 
-            this.repCancelbutton4.Location = new System.Drawing.Point(1088, 158);
+            this.repCancelbutton4.Location = new System.Drawing.Point(1088, 163);
             this.repCancelbutton4.Name = "repCancelbutton4";
             this.repCancelbutton4.Size = new System.Drawing.Size(197, 23);
             this.repCancelbutton4.TabIndex = 105;
@@ -1769,13 +1769,13 @@
             // 
             this.textBox4.BackColor = System.Drawing.Color.Snow;
             this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.textBox4.Location = new System.Drawing.Point(369, 159);
+            this.textBox4.Location = new System.Drawing.Point(369, 161);
             this.textBox4.Margin = new System.Windows.Forms.Padding(1);
             this.textBox4.Multiline = true;
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
             this.textBox4.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox4.Size = new System.Drawing.Size(930, 108);
+            this.textBox4.Size = new System.Drawing.Size(930, 106);
             this.textBox4.TabIndex = 3;
             // 
             // criteriaTitleBox
@@ -1981,7 +1981,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.label7.Location = new System.Drawing.Point(980, 125);
+            this.label7.Location = new System.Drawing.Point(991, 120);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(163, 16);
             this.label7.TabIndex = 7;
@@ -2012,7 +2012,7 @@
             this.comboBox3.Enabled = false;
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(1160, 124);
+            this.comboBox3.Location = new System.Drawing.Point(1160, 118);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(54, 21);
             this.comboBox3.TabIndex = 4;
@@ -2025,10 +2025,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode1.Name = "CriteriaNode";
-            treeNode1.Text = "Criteria";
+            treeNode3.Name = "CriteriaNode";
+            treeNode3.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2316,7 +2316,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 24);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage1.Size = new System.Drawing.Size(1328, 719);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Grades";
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
@@ -2671,11 +2671,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Node0";
-            treeNode2.Text = "Grades";
+            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode4.Name = "Node0";
+            treeNode4.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode4});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -2828,7 +2828,7 @@
             this.tabPage5.Location = new System.Drawing.Point(4, 24);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage5.Size = new System.Drawing.Size(1328, 719);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Unit";
             this.tabPage5.Click += new System.EventHandler(this.tabPage5_Click);
@@ -3355,7 +3355,7 @@
             this.tabPage4.Controls.Add(this.menuStrip4);
             this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage4.Size = new System.Drawing.Size(1328, 719);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Outcomes";
             this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
@@ -3590,7 +3590,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage3.Size = new System.Drawing.Size(1328, 719);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Sessions";
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
@@ -3707,10 +3707,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode3.Name = "Node0";
-            treeNode3.Text = "Sessions";
+            treeNode1.Name = "Node0";
+            treeNode1.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -3819,7 +3819,7 @@
             this.tabPage6.Location = new System.Drawing.Point(4, 24);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage6.Size = new System.Drawing.Size(1328, 719);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Peer Review";
             // 
@@ -4343,7 +4343,7 @@
             this.tabPage7.Location = new System.Drawing.Point(4, 24);
             this.tabPage7.Name = "tabPage7";
             this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage7.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage7.Size = new System.Drawing.Size(1328, 719);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Moderation";
             // 
@@ -4813,7 +4813,7 @@
             this.tabPage8.Location = new System.Drawing.Point(4, 24);
             this.tabPage8.Name = "tabPage8";
             this.tabPage8.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage8.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage8.Size = new System.Drawing.Size(1328, 719);
             this.tabPage8.TabIndex = 9;
             this.tabPage8.Text = "External";
             // 
@@ -4968,7 +4968,7 @@
             this.tabPage9.Location = new System.Drawing.Point(4, 24);
             this.tabPage9.Name = "tabPage9";
             this.tabPage9.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage9.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage9.Size = new System.Drawing.Size(1328, 719);
             this.tabPage9.TabIndex = 10;
             this.tabPage9.Text = "Students";
             // 
@@ -5077,7 +5077,7 @@
             this.tabPage10.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage10.Name = "tabPage10";
             this.tabPage10.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage10.Size = new System.Drawing.Size(1328, 682);
+            this.tabPage10.Size = new System.Drawing.Size(1328, 719);
             this.tabPage10.TabIndex = 11;
             this.tabPage10.Text = "Web connection";
             // 
@@ -5315,7 +5315,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.ClientSize = new System.Drawing.Size(1205, 767);
+            this.ClientSize = new System.Drawing.Size(1205, 749);
             this.Controls.Add(this.tabControl1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";

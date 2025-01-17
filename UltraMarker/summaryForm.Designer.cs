@@ -260,9 +260,9 @@
             this.groupBox2.Controls.Add(this.checkBox2);
             this.groupBox2.Controls.Add(this.checkBox1);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(886, 355);
+            this.groupBox2.Location = new System.Drawing.Point(896, 325);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(200, 100);
+            this.groupBox2.Size = new System.Drawing.Size(231, 130);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Report % and/or grade";
@@ -283,9 +283,9 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(21, 30);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(34, 17);
+            this.checkBox1.Size = new System.Drawing.Size(54, 17);
             this.checkBox1.TabIndex = 0;
-            this.checkBox1.Text = "%";
+            this.checkBox1.Text = "raw %";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
@@ -331,7 +331,7 @@
             // 
             this.modBox.AutoSize = true;
             this.modBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modBox.Location = new System.Drawing.Point(896, 311);
+            this.modBox.Location = new System.Drawing.Point(896, 280);
             this.modBox.Name = "modBox";
             this.modBox.Size = new System.Drawing.Size(116, 17);
             this.modBox.TabIndex = 19;

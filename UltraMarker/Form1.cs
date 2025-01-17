@@ -127,6 +127,8 @@ namespace UltraMarker
         string peerAggregate = "Aggregated";
         string modAggregate = "Aggregated";
 
+        string rawpercent = "";
+
         string slash = "\\";
         int MarkMode = 0;
 
@@ -3959,8 +3961,10 @@ namespace UltraMarker
                             }
                             f = Convert.ToSingle(PC);
                         }
+                       
                         sw.WriteLine();
                         str = Convert.ToString(f);
+                        rawpercent = str;
                         sw.WriteLine("Overall mark: " + str);
                         label22.Text = str;
                         label22.Visible = true;
