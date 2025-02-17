@@ -10,6 +10,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Web.Services.Description;
 
 
 //using Microsoft.Office.Core;
@@ -1220,7 +1221,7 @@ namespace UltraMarker
                                 singleGrades = true;
                             }
                         }
-                        else if (str.StartsWith("grfb: "))
+                        else if (str.StartsWith("grfb:"))
                         {
                             fl = true;
                             while (!str.StartsWith("endfb:"))
@@ -8572,7 +8573,7 @@ namespace UltraMarker
 
 
 
-        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        protected override bool ProcessCmdKey(ref System.Windows.Forms.Message msg, Keys keyData)
         {
             help helpForm = new help();
             string helpath = DefaultDir;
@@ -10086,11 +10087,11 @@ namespace UltraMarker
         }
 
         private void defaultDirToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {                      
             if (editDefaultDir("Default directory: " + DefaultDir))  //set the default directory for ultramarker work, eg. C:\Ultramarker   
             {
                 defaultdirlabel.Text = "Default directory currently set to: " + DefaultDir;
-            }
+            }            
         }
 
         private bool editDefaultDir(string message)
@@ -10098,6 +10099,7 @@ namespace UltraMarker
             string sl = "";
             DialogResult dr;
             DialogResult reply;
+            
             folderBrowserDialog2.SelectedPath = DefaultDir;
             folderBrowserDialog2.Description = message;
             dr = folderBrowserDialog2.ShowDialog();
