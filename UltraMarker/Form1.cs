@@ -10400,20 +10400,20 @@ namespace UltraMarker
         {
             if (sittingButton.Text == "Main")
             {
-                sittingButton.Text = "Ref/Def 1";
+                sittingButton.Text = "RefDef1";
                 Sitting = "RefDef1";
             }
-            else if (sittingButton.Text == "Ref/Def 1")
+            else if (sittingButton.Text == "RefDef1")
             {
-                sittingButton.Text = "Ref/Def 2";
+                sittingButton.Text = "RefDef2";
                 Sitting = "RefDef2";
             }
-            else if (sittingButton.Text == "Ref/Def 2")
-            {
-                sittingButton.Text = "Ref/Def 3";
+            else if (sittingButton.Text == "RefDef2")
+            { 
+                sittingButton.Text = "RefDef3";
                 Sitting = "RefDef3";
             }
-            else if (sittingButton.Text == "Ref/Def 3")
+            else if (sittingButton.Text == "RefDef3")
             {
                 sittingButton.Text = "Main";
                 Sitting = "Main";
