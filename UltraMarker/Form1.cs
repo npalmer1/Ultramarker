@@ -11,7 +11,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web.Services.Description;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 //using Microsoft.Office.Core;
 //using PowerPoint = Microsoft.Office.Interop.PowerPoint;
@@ -10562,6 +10563,8 @@ namespace UltraMarker
         private void generateButton_Click(object sender, EventArgs e)
         {
             //genList();
+            Task.Delay(200);
+            Clipboard.Clear();
             Clipboard.SetText(" ");  //clear the clipboard - includes Win7
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())

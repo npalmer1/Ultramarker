@@ -84,7 +84,9 @@ namespace UltraMarker
         private void GradeGroup_Load(object sender, EventArgs e)
         {
             changesSaved = false;
+           
             richTextBox1.Clear();
+            
             Clipboard.Clear();
             LoadTemplate(TemplateFile);
             this.Text = "Assessment";
@@ -122,9 +124,8 @@ namespace UltraMarker
                       
         private void ReplaceString(string str1, string str2)
         {         //str1 = string to replace, str2 string to replace it with   
-            Op(str1, str2);
-            Task.Delay(3);
-            Clipboard.Clear();
+            Op2(str1, str2);
+          
         }
         private void Op(String str1, String str2)
         {
@@ -154,8 +155,11 @@ namespace UltraMarker
                 if (i > -1)
                 {
                     richTextBox1.Select(i, str1.Length);
-
+                   
+                   
                     Clipboard.Clear();
+                    Task.Delay(5);
+                    
                     if (str2.Length > 0)
                     {
                         Clipboard.SetText(str2);
@@ -164,7 +168,7 @@ namespace UltraMarker
                     {
                         Clipboard.SetText(" ");
                     }
-
+                    Task.Delay(5);
                     richTextBox1.Paste();
                     richTextBox1.Modified = true;
                 }
@@ -175,6 +179,52 @@ namespace UltraMarker
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }            
             
+        }
+        private void Op2(String str1, String str2)
+        {
+            int i = 0;
+
+            try
+            {
+                if (str1 == null || str1.Trim().Length < 1)
+                {
+                    return;
+                }
+
+                //Clipboard clip;
+                if (str2 == null)
+                {
+                    str2 = " ";
+                }
+
+                str2 = str2.PadRight(str1.Length);
+
+            
+                i = richTextBox1.Find(str1, 0);
+                if (i > -1)
+                {
+                   
+
+                    if (str2.Length > 0)
+                    {
+                        richTextBox1.Rtf = richTextBox1.Rtf.Replace(str1, str2);
+                        
+                    }
+                    else
+                    {
+                        richTextBox1.Text = richTextBox1.SelectedText.Replace(str1, " ");
+                      
+                    }
+                 
+                    richTextBox1.Modified = true;
+                }
+            }
+            catch (System.Exception excep)
+            {
+                StackTrace stackTrace = new StackTrace();
+                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
+
         }
         /*
         private void ReplaceString(string str, string str2)
@@ -228,7 +278,8 @@ namespace UltraMarker
         */
         private async void ModifyGeneratedForm()
         {
-            Clipboard.Clear();
+            //Task.Delay(200);
+           
             //MessageBox.Show("Rich Text length = ", Convert.ToString(richTextBox1.Text.Length) + " and TextLength = " + Convert.ToString(richTextBox1.TextLength));
             string padstring = " ".PadRight(100); //pad file to fix bug (diff between text and rich text length)
             richTextBox1.AppendText(padstring);
