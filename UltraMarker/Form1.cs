@@ -11,7 +11,8 @@ using System.Diagnostics;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Web.Services.Description;
-
+using System.Threading;
+using System.Threading.Tasks;
 
 //using Microsoft.Office.Core;
 //using PowerPoint = Microsoft.Office.Interop.PowerPoint;
@@ -5168,6 +5169,10 @@ namespace UltraMarker
                                 {
                                     GForm.comment[i] = "Comments: " + str2 + System.Environment.NewLine; ;
 
+                                }
+                                else
+                                {
+                                    GForm.comment[i] = "";
                                 }
 
 
@@ -10562,7 +10567,8 @@ namespace UltraMarker
         private void generateButton_Click(object sender, EventArgs e)
         {
             //genList();
-            Clipboard.SetText(" ");  //clear the clipboard - includes Win7
+            Task.Delay(200);
+           
             Generate_Grade_Group_RTF();
             if (GenerateFormPopulate())
             {
