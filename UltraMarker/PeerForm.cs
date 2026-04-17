@@ -133,10 +133,11 @@ namespace UltraMarker
                 richTextBox1.LoadFile(filename, RichTextBoxStreamType.RichText);
 
             }
-            catch (System.Exception excep)
+            catch
             {
-                StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                MessageBox.Show("Error - try again");
+                //StackTrace stackTrace = new StackTrace();
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
             
         }
@@ -174,11 +175,60 @@ namespace UltraMarker
         }*/
         private void ReplaceString(string str1, string str2)
         {
-            Op(str1, str2);
-            System.Threading.Tasks.Task.Delay(3);
-            Clipboard.Clear();
+            
+            Op2(str1, str2);
+            //System.Threading.Tasks.Task.Delay(3);
+            // Clipboard.Clear();
         }
-        private void Op(String str1, String str2)
+
+        private void Op2(String str1, String str2)
+        {
+            int i = 0;
+
+            try
+            {
+                if (str1 == null || str1.Trim().Length < 1)
+                {
+                    return;
+                }
+
+                //Clipboard clip;
+                if (str2 == null)
+                {
+                    str2 = " ";
+                }
+
+                str2 = str2.PadRight(str1.Length);
+
+
+                i = richTextBox1.Find(str1, 0);
+                if (i > -1)
+                {
+
+
+                    if (str2.Length > 0)
+                    {
+                        richTextBox1.Rtf = richTextBox1.Rtf.Replace(str1, str2);
+
+                    }
+                    else
+                    {
+                        richTextBox1.Text = richTextBox1.SelectedText.Replace(str1, " ");
+
+                    }
+
+                    richTextBox1.Modified = true;
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error - try again");
+                //StackTrace stackTrace = new StackTrace();
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+            }
+
+        }
+        /*private void Op(String str1, String str2)
         {
             int i = 0;
 
@@ -220,13 +270,13 @@ namespace UltraMarker
                     richTextBox1.Modified = true;
                 }
             }
-            catch (System.Exception excep)
+            catch ()
             {
                 StackTrace stackTrace = new StackTrace();
                 MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
             
-        }
+        }*/
 
 
 
@@ -652,27 +702,29 @@ namespace UltraMarker
                 int i = richTextBox1.Find("%ModList%");
                 if (i > -1)
                 {
-                    richTextBox1.Select(i, "%ModList%".Length);
-
-                    Clipboard.Clear();
                     string str4 = "";
                     foreach (st_struct st in ModList)
                     {
-                        //str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
-                        str4 = str4 + (st.firstname).PadRight(50, ' ') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                        str4 = str4 + st.surname + " " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + @"\line"; //System.Environment.NewLine;
                     }
                     if (str4.Length > 0)
                     {
-                        Clipboard.SetText(str4);
+                        ReplaceString("%ModList%", str4);
+                        //Clipboard.SetText(str4);
                     }
-                    else { Clipboard.SetText(" "); }
-                    richTextBox1.Paste();
+                    else
+                    {
+                        ReplaceString("%ModList%", " ");
+                        //Clipboard.SetText(" ");
+
+                    }
                 }
             }
-            catch (System.Exception excep)
+            catch
             {
-                StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                MessageBox.Show("Error - try again");
+                //StackTrace stackTrace = new StackTrace();
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
         private void Closebutton_Click(object sender, EventArgs e)
@@ -814,30 +866,40 @@ namespace UltraMarker
                     } //for each
                    
                     int i = richTextBox1.Find("%ModList%");
-                    if (i > -1)
+                if (i > -1)
+                {
+
+                    //richTextBox1.Select(i, "%ModLIst%".Length);
+
+                    //Clipboard.Clear();
+                    string str4 = "";
+                    foreach (st_struct st in ModList)
                     {
-                        richTextBox1.Select(i, "%ModLIst%".Length);
-                        
-                        Clipboard.Clear();
-                        string str4 = "";
-                        foreach (st_struct st in ModList)
-                        {
-                            str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine;;
-                        }
-                        if (str4.Length > 0)
-                        {
-                            Clipboard.SetText(str4);
-                        }
-                        else { Clipboard.SetText(" "); }
-                        richTextBox1.Paste();
-                    }                       
+                        str4 = str4 + st.surname + ", " + (st.firstname).PadRight(39, '-') + " \t" + st.percent + " \t" + st.grade + System.Environment.NewLine; ;
+                    }
+                    if (str4.Length > 0)
+                    {
+                        ReplaceString("%ModList%", str4);
+                        //Clipboard.SetText(str4);
+                    }
+                    else
+                    {
+                        ReplaceString("%ModList%", " ");
+                        //Clipboard.SetText(" ");
+
+                    }
+                }
+                        //richTextBox1.Paste();*
             }
-            catch (System.Exception excep)
+            catch 
             {
-                StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                MessageBox.Show("Error - try again");
+                //StackTrace stackTrace = new StackTrace();
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
         }
+
+
 
         private void Savebutton_Click(object sender, EventArgs e)
         {
@@ -880,10 +942,11 @@ namespace UltraMarker
             {
                 richTextBox1.SaveFile(filename);
             }
-            catch (System.Exception excep)
+            catch 
             {
-                StackTrace stackTrace = new StackTrace();
-                MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
+                MessageBox.Show("Error - try again");
+                //StackTrace stackTrace = new StackTrace();
+                //MessageBox.Show("In: " + stackTrace.GetFrame(0).GetMethod().Name + ", " + excep.Message);
             }
             printFilePath = filename;
         }
