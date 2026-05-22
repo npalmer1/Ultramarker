@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Criteria");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Grades");
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Sessions");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Criteria");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grades");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Sessions");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addGradeMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,7 +137,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.button7 = new System.Windows.Forms.Button();
-            this.label22 = new System.Windows.Forms.Label();
+            this.percentlabel = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -505,6 +505,8 @@
             this.GenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.ImportFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.folderBrowserDialog2 = new System.Windows.Forms.FolderBrowserDialog();
+            this.overridepromptlabel = new System.Windows.Forms.Label();
+            this.overridepercentcheckBox = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.contextMenuStrip3.SuspendLayout();
             this.contextMenuStrip2.SuspendLayout();
@@ -768,6 +770,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.tabPage2.Controls.Add(this.overridepercentcheckBox);
+            this.tabPage2.Controls.Add(this.overridepromptlabel);
             this.tabPage2.Controls.Add(this.checkedListBox1);
             this.tabPage2.Controls.Add(this.overLabel);
             this.tabPage2.Controls.Add(this.overallGradelabel);
@@ -835,7 +839,7 @@
             this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.button7);
-            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.percentlabel);
             this.tabPage2.Controls.Add(this.label21);
             this.tabPage2.Controls.Add(this.label20);
             this.tabPage2.Controls.Add(this.textBox10);
@@ -1193,14 +1197,14 @@
             // overridecheckBox
             // 
             this.overridecheckBox.AutoSize = true;
-            this.overridecheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.overridecheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.overridecheckBox.ForeColor = System.Drawing.Color.Red;
-            this.overridecheckBox.Location = new System.Drawing.Point(202, 438);
+            this.overridecheckBox.Location = new System.Drawing.Point(249, 437);
             this.overridecheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.overridecheckBox.Name = "overridecheckBox";
-            this.overridecheckBox.Size = new System.Drawing.Size(183, 21);
+            this.overridecheckBox.Size = new System.Drawing.Size(73, 19);
             this.overridecheckBox.TabIndex = 82;
-            this.overridecheckBox.Text = "Override Overall Grade?";
+            this.overridecheckBox.Text = "Grade?";
             this.overridecheckBox.UseVisualStyleBackColor = true;
             this.overridecheckBox.Visible = false;
             this.overridecheckBox.CheckedChanged += new System.EventHandler(this.overridecheckBox_CheckedChanged);
@@ -1683,16 +1687,16 @@
             this.button7.Visible = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
-            // label22
+            // percentlabel
             // 
-            this.label22.BackColor = System.Drawing.Color.GreenYellow;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label22.Location = new System.Drawing.Point(927, 111);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(41, 21);
-            this.label22.TabIndex = 32;
-            this.label22.Text = "       ";
-            this.label22.Visible = false;
+            this.percentlabel.BackColor = System.Drawing.Color.GreenYellow;
+            this.percentlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.percentlabel.Location = new System.Drawing.Point(927, 111);
+            this.percentlabel.Name = "percentlabel";
+            this.percentlabel.Size = new System.Drawing.Size(41, 21);
+            this.percentlabel.TabIndex = 32;
+            this.percentlabel.Text = "       ";
+            this.percentlabel.Visible = false;
             // 
             // label21
             // 
@@ -2025,10 +2029,10 @@
             this.treeView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView2.Location = new System.Drawing.Point(6, 30);
             this.treeView2.Name = "treeView2";
-            treeNode3.Name = "CriteriaNode";
-            treeNode3.Text = "Criteria";
+            treeNode1.Name = "CriteriaNode";
+            treeNode1.Text = "Criteria";
             this.treeView2.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode3});
+            treeNode1});
             this.treeView2.Size = new System.Drawing.Size(356, 403);
             this.treeView2.TabIndex = 0;
             this.treeView2.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeView2_AfterCheck);
@@ -2671,11 +2675,11 @@
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView1.Location = new System.Drawing.Point(0, 30);
             this.treeView1.Name = "treeView1";
-            treeNode4.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode4.Name = "Node0";
-            treeNode4.Text = "Grades";
+            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode2.Name = "Node0";
+            treeNode2.Text = "Grades";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4});
+            treeNode2});
             this.treeView1.Size = new System.Drawing.Size(309, 523);
             this.treeView1.TabIndex = 0;
             this.treeView1.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView1_BeforeSelect);
@@ -3707,10 +3711,10 @@
             this.treeView3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.treeView3.Location = new System.Drawing.Point(3, 30);
             this.treeView3.Name = "treeView3";
-            treeNode1.Name = "Node0";
-            treeNode1.Text = "Sessions";
+            treeNode3.Name = "Node0";
+            treeNode3.Text = "Sessions";
             this.treeView3.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1});
+            treeNode3});
             this.treeView3.Size = new System.Drawing.Size(421, 467);
             this.treeView3.TabIndex = 0;
             this.treeView3.BeforeSelect += new System.Windows.Forms.TreeViewCancelEventHandler(this.treeView3_BeforeSelect);
@@ -5309,6 +5313,32 @@
             // 
             this.ImportFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.ImportFileDialog_FileOk);
             // 
+            // overridepromptlabel
+            // 
+            this.overridepromptlabel.AutoSize = true;
+            this.overridepromptlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overridepromptlabel.ForeColor = System.Drawing.Color.Red;
+            this.overridepromptlabel.Location = new System.Drawing.Point(97, 438);
+            this.overridepromptlabel.Name = "overridepromptlabel";
+            this.overridepromptlabel.Size = new System.Drawing.Size(147, 15);
+            this.overridepromptlabel.TabIndex = 110;
+            this.overridepromptlabel.Text = "Override overral  with:";
+            this.overridepromptlabel.Visible = false;
+            // 
+            // overridepercentcheckBox
+            // 
+            this.overridepercentcheckBox.AutoSize = true;
+            this.overridepercentcheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.overridepercentcheckBox.ForeColor = System.Drawing.Color.Red;
+            this.overridepercentcheckBox.Location = new System.Drawing.Point(317, 437);
+            this.overridepercentcheckBox.Name = "overridepercentcheckBox";
+            this.overridepercentcheckBox.Size = new System.Drawing.Size(83, 19);
+            this.overridepercentcheckBox.TabIndex = 111;
+            this.overridepercentcheckBox.Text = "Percent?";
+            this.overridepercentcheckBox.UseVisualStyleBackColor = true;
+            this.overridepercentcheckBox.Visible = false;
+            this.overridepercentcheckBox.CheckedChanged += new System.EventHandler(this.overridepercentcheckBox_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5407,7 +5437,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label percentlabel;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox10;
@@ -5853,6 +5883,8 @@
         private System.Windows.Forms.ToolStripMenuItem roundUpdownToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem allowImportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dontAllowToolStripMenuItem;
+        private System.Windows.Forms.CheckBox overridepercentcheckBox;
+        private System.Windows.Forms.Label overridepromptlabel;
     }
 }
 

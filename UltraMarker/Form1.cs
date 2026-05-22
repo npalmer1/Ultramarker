@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 using System.Web.Services.Description;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Diagnostics.Eventing.Reader;
 
 //using Microsoft.Office.Core;
 //using PowerPoint = Microsoft.Office.Interop.PowerPoint;
@@ -3420,7 +3421,7 @@ namespace UltraMarker
             //overallGradelabel.Visible = false;
             //overLabel.Visible = false;
             label21.Visible = b;
-            label22.Visible = b;
+            percentlabel.Visible = b;
            
             if (overridecheckBox.Checked)
             {
@@ -3471,7 +3472,9 @@ namespace UltraMarker
             }
           
                 overridecheckBox.Visible = b; //override overall grade
-                if (b && overridecheckBox.Checked)
+                overridepercentcheckBox.Visible = b;
+                overridepromptlabel.Visible = b;
+                if (b && (overridecheckBox.Checked || overridepercentcheckBox.Checked))
                 {
                     Overriedlabel.Visible = true;
                     OverrideGradelabel.Visible = true;
@@ -3539,7 +3542,10 @@ namespace UltraMarker
         {   //save student mark
             string addstr = "";
 
-
+            if (overridepercentcheckBox.Checked)
+            {
+                MessageBox.Show("In feedback settings ensure that you only show percentages and not grades");
+            }
             //check to see if criteria file differs to stored one
 
             if (addCode)
@@ -3967,15 +3973,28 @@ namespace UltraMarker
                         sw.WriteLine();
                         str = Convert.ToString(f);
                         rawpercent = str;
+                        if (overridepercentcheckBox.Checked)
+                        {
+                            str = overrideBox.Text;
+                        }
                         sw.WriteLine("Overall mark: " + str);
-                        label22.Text = str;
-                        label22.Visible = true;
+                       
+                        percentlabel.Text = str;
+                        percentlabel.Visible = true;
                         label21.Visible = true;
-                        string grstr = Convert_Percent_To_Grade(f);
+                        string grstr;
+                        if (overridepercentcheckBox.Checked)
+                        {
+                            grstr = "";
+                        }
+                        else
+                        {
+                            grstr = Convert_Percent_To_Grade(f);
+                        }                           
                         sw.WriteLine("Equivalent grade: " + grstr);
 
                         string org = OverrideGradelabel.Text.Trim();
-                        if (!overridecheckBox.Checked)
+                        if (!overridecheckBox.Checked )
                         {
                             org = "";
                             overallGradelabel.Visible = true;
@@ -4387,8 +4406,8 @@ namespace UltraMarker
                         }
                         else if (str.StartsWith("Overall mark:"))
                         {
-                            label22.Text = str3;
-                            label22.Visible = true;
+                            percentlabel.Text = str3;
+                            percentlabel.Visible = true;
                             label21.Visible = true;
                         }
                         else if (str.StartsWith("Equivalent grade:"))
@@ -5056,7 +5075,7 @@ namespace UltraMarker
 
                 //sw.Close();
                 label21.Visible = true;
-                label22.Visible = true;
+                percentlabel.Visible = true;
                 //label22.Text = Convert.ToString(f);
 
 
@@ -5908,7 +5927,7 @@ namespace UltraMarker
                 //assess.Code = "";
                 //assess.Weight = "";
 
-                label22.Text = " ";
+                percentlabel.Text = " ";
                 overallGradelabel.Text = "   ";
                 OverrideGradelabel.Text = "   ";
                 //Feedback = "";
@@ -10525,6 +10544,7 @@ namespace UltraMarker
         {
             if (overridecheckBox.Checked && EditStudent)
             {
+                overridepercentcheckBox.Checked = false;
                 if (MessageBox.Show("Normally Ultramarker will calculate the overall mark based on your grade for each criterion. If this doesn't match your overall expectations you are recommended to re-assess the grade that you awarded for each criterion rather than override the overall grade. \nDo you still wish to override the overall grade or mark Y/N?", "Override Overall Grade", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     //treeView2.En = false;
@@ -10532,7 +10552,7 @@ namespace UltraMarker
                     OverrideGradelabel.Visible = true;
                     overLabel.Visible = false;
                     overallGradelabel.Visible = false;
-                    label22.Text = "";
+                    percentlabel.Text = "";
                     MessageBox.Show("Now select the overall grade");
                 }
                 else
@@ -10550,7 +10570,7 @@ namespace UltraMarker
                     //treeView2.Enabled = true;
                     Overriedlabel.Visible = false;
                     OverrideGradelabel.Visible = false;
-                    label22.Text = "  "; //clear overal %
+                    percentlabel.Text = "  "; //clear overal %
                 }
                 else
                 {
@@ -10922,7 +10942,7 @@ namespace UltraMarker
            
             if (File.Exists(filename))
             {
-                label22.Text = "  ";
+                percentlabel.Text = "  ";
                 overallGradelabel.Text = "  ";
                 try
                 {
@@ -11733,6 +11753,50 @@ namespace UltraMarker
             allowImportsToolStripMenuItem.Checked = true;
             dontAllowToolStripMenuItem.Checked = false;
             AllowImpComment = true;
+        }
+
+        private void overridepercentcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (overridepercentcheckBox.Checked && EditStudent)
+            {
+                overridecheckBox.Checked = false;
+                if (MessageBox.Show("Normally Ultramarker will calculate the overall mark based on your grade for each criterion. If this doesn't match your overall expectations you are recommended to re-assess the grade that you awarded for each criterion rather than override the overall grade. \nDo you still wish to override the overall grade or mark Y/N?", "Override Overall %", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    //treeView2.En = false;
+                    Overriedlabel.Visible = true;
+                    OverrideGradelabel.Visible = true;
+                    overLabel.Visible = false;
+                    overallGradelabel.Visible = false;
+                    percentlabel.Text = "";
+                    MessageBox.Show("Now enter the overall % below");
+                }
+                else
+                {
+                    overridepercentcheckBox.CheckedChanged -= overridepercentcheckBox_CheckedChanged;
+                    overridepercentcheckBox.Checked = false;
+                    overridepercentcheckBox.CheckedChanged += overridepercentcheckBox_CheckedChanged;
+                    return;
+                }
+            }
+            else
+            {
+                if (MessageBox.Show("Remove % override Y/N?", "Override", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    //treeView2.Enabled = true;
+                    Overriedlabel.Visible = false;
+                    OverrideGradelabel.Visible = false;
+                    percentlabel.Text = "  "; //clear overal %
+                }
+                else
+                {
+                    overridepercentcheckBox.CheckedChanged -= overridepercentcheckBox_CheckedChanged;
+                    overridepercentcheckBox.Checked = true;
+                    overridepercentcheckBox.CheckedChanged += overridepercentcheckBox_CheckedChanged;
+                    return;
+                }
+            }
+            button4.ForeColor = Color.Red;
+            button4.Font = new Font(this.Font, FontStyle.Bold);
         }
     }
     }
