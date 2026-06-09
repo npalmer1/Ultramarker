@@ -35,7 +35,6 @@ namespace UltraMarker
         string ConfigDir = "";
         String theVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-
         //List<Label> myGradeList = new List<Label>();
         int Xgrades = 0;
         int AGrades = 0;
@@ -105,6 +104,8 @@ namespace UltraMarker
         bool loading = true;
         bool change1 = false;
         int currentNodeIndex = 0;
+
+        bool loadingMark = false;
 
 
         struct aliases
@@ -1675,7 +1676,7 @@ namespace UltraMarker
 
                         if (EditStudent)
                         {
-                            overrideBox.Text = "";
+                            //overrideBox.Text = "";
                             if (crSelected[SCriteria, i, Session] == true) //if this criteria has been selected
                             {
                                 label18.Visible = true;
@@ -1686,7 +1687,7 @@ namespace UltraMarker
                                 {
                                     overrideBox.Text = p1.Substring(0, p1.Length - 1);
                                 }
-                                else
+                                else if (!overridepercentcheckBox.Checked)
                                 {
                                     overrideBox.Text = "";
                                 }
@@ -3726,6 +3727,7 @@ namespace UltraMarker
         private void openFileDialog3_FileOk(object sender, CancelEventArgs e)
         {  //reuse openfiledialog3 for two purposes
             string str = openFileDialog3.DefaultExt;
+            loadingMark = true;
             if (str == "mrk" || str == "mrm" || str == "2nd" || str == "3rd") //if marked files
             {
                 Load_Marked_File(openFileDialog3.FileName);
@@ -3738,6 +3740,7 @@ namespace UltraMarker
             {
                 Load_Sessions(openFileDialog3.FileName);
             }
+            loadingMark = false;
             
         }
 
@@ -3754,7 +3757,7 @@ namespace UltraMarker
                 Save_Sessions(saveFileDialog3.FileName);
             }
             savedStudent = true;
-
+            
         }
 
         private void Save_Marked_File(string filename)
@@ -3823,130 +3826,141 @@ namespace UltraMarker
                         sw.WriteLine("Grade file: " + GradeFile);
                         sw.WriteLine("Session path: " + SessionPath);
                         sw.WriteLine("Session file: " + SessionFile);
-                        for (int s = 0; s < Se; s++)
+                        if (overridepercentcheckBox.Checked)
                         {
-                            if (SessionS > 0 && SessionType > 0)
+                            sw.WriteLine("Override%: " + "true");
+
+                        }
+                        else
+                        {
+                            sw.WriteLine("Override%: " + "false");
+                        }
+                        
+
+                            for (int s = 0; s < Se; s++)
                             {
-                                sw.WriteLine("----------------------------------------");
-                                if (DeselectSession[s])
+                                if (SessionS > 0 && SessionType > 0)
                                 {
-                                    D = " des";
+                                    sw.WriteLine("----------------------------------------");
+                                    if (DeselectSession[s])
+                                    {
+                                        D = " des";
+                                    }
+                                    else
+                                    {
+                                        D = "";
+                                    }
+                                    sw.WriteLine("Session: " + Convert.ToString(s + 1) + D);
+                                    sw.WriteLine("Session title: " + SessionTitle[s]);
+                                    sw.WriteLine("----------------------------------------");
+
+
                                 }
                                 else
                                 {
-                                    D = "";
+                                    sw.WriteLine("Session: 0");
                                 }
-                                sw.WriteLine("Session: " + Convert.ToString(s + 1) + D);
-                                sw.WriteLine("Session title: " + SessionTitle[s]);
-                                sw.WriteLine("----------------------------------------");
-
-
-                            }
-                            else
-                            {
-                                sw.WriteLine("Session: 0");
-                            }
-                            for (int i = 0; i < CritZ + 1; i++)
-                            {
-
-                                int j = MaxSub;
-                                if (crSelected[i, j, s])
+                                for (int i = 0; i < CritZ + 1; i++)
                                 {
-                                    if ((crtitle[i, j] == null || crtitle[i, j].Length < 1))
-                                    {
-                                        nullText = true;
-                                    }
-                                    else { nullText = false; }
-                                    if (!nullText)
-                                    {
-                                        sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
-                                        sw.WriteLine("Criteria title: " + crtitle[i, j]);
 
-                                        bool Has;
-                                        Has = Has_Subcriteria(i);
-                                        if (!Has && Aggregation)
-                                        {
-                                            Has = true;
-                                        }
-                                        if (!Aggregation || (Aggregation && Has))
-                                        {
-                                            sw.WriteLine("Grade: " + Marks[i, j, s]);
-                                            sw.WriteLine("Criteria comment: ");
-                                            sw.WriteLine(crComment[i, j, s]);
-                                            sw.WriteLine("endComment:");
-                                            PC = Find_Percent(Marks[i, j, s]);
-                                            sw.WriteLine("Percentage: " + PC);
-                                        }
-                                        else
-                                        {
-                                            sw.WriteLine("Aggregated:");
-                                        }
-
-                                    }
-                                }//if criteria selected
-                                else
-                                {
-                                    /*try
+                                    int j = MaxSub;
+                                    if (crSelected[i, j, s])
                                     {
-                                        sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
-                                        sw.WriteLine("Criteria title: " + crtitle[i, j]);
-                                        sw.WriteLine("Grade: n/a");
-                                    }
-                                    catch { }*/
-
-                                    /*if (CriteriaSelectionType > 1) //if allow individual criteria deselection
-                                    {
-                                        sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
-                                    }*/
-                                }
-
-                                for (int k = 0; k < MaxSub; k++)
-                                {
-                                    if (crSelected[i, k, s])
-                                    {
-                                        if ((crtitle[i, k] == null || crtitle[i, k].Length < 1))
+                                        if ((crtitle[i, j] == null || crtitle[i, j].Length < 1))
                                         {
                                             nullText = true;
                                         }
                                         else { nullText = false; }
                                         if (!nullText)
                                         {
-                                            sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
-                                            sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
-                                            sw.WriteLine("Grade: " + Marks[i, k, s]);
-                                            sw.WriteLine("Criteria comment: ");
-                                            sw.WriteLine(crComment[i, k, s]);
-                                            sw.WriteLine("endComment:");
-                                            PC = Find_Percent(Marks[i, k, s]);
-                                            sw.WriteLine("Percentage: " + PC);
+                                            sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
+                                            sw.WriteLine("Criteria title: " + crtitle[i, j]);
+
+                                            bool Has;
+                                            Has = Has_Subcriteria(i);
+                                            if (!Has && Aggregation)
+                                            {
+                                                Has = true;
+                                            }
+                                            if (!Aggregation || (Aggregation && Has))
+                                            {
+                                                sw.WriteLine("Grade: " + Marks[i, j, s]);
+                                                sw.WriteLine("Criteria comment: ");
+                                                sw.WriteLine(crComment[i, j, s]);
+                                                sw.WriteLine("endComment:");
+                                                PC = Find_Percent(Marks[i, j, s]);
+                                                sw.WriteLine("Percentage: " + PC);
+                                            }
+                                            else
+                                            {
+                                                sw.WriteLine("Aggregated:");
+                                            }
 
                                         }
-                                    }
+                                    }//if criteria selected
                                     else
                                     {
                                         /*try
                                         {
-                                            sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
-                                            sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
+                                            sw.WriteLine("Criteria: " + Convert.ToString(i + 1));
+                                            sw.WriteLine("Criteria title: " + crtitle[i, j]);
                                             sw.WriteLine("Grade: n/a");
                                         }
                                         catch { }*/
-                                        /* if (CriteriaSelectionType > 1) //if allow individual criteria deselection
-                                         {
-                                             sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
-                                         }*/
+
+                                        /*if (CriteriaSelectionType > 1) //if allow individual criteria deselection
+                                        {
+                                            sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
+                                        }*/
+                                    }
+
+                                    for (int k = 0; k < MaxSub; k++)
+                                    {
+                                        if (crSelected[i, k, s])
+                                        {
+                                            if ((crtitle[i, k] == null || crtitle[i, k].Length < 1))
+                                            {
+                                                nullText = true;
+                                            }
+                                            else { nullText = false; }
+                                            if (!nullText)
+                                            {
+                                                sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
+                                                sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
+                                                sw.WriteLine("Grade: " + Marks[i, k, s]);
+                                                sw.WriteLine("Criteria comment: ");
+                                                sw.WriteLine(crComment[i, k, s]);
+                                                sw.WriteLine("endComment:");
+                                                PC = Find_Percent(Marks[i, k, s]);
+                                                sw.WriteLine("Percentage: " + PC);
+
+                                            }
+                                        }
+                                        else
+                                        {
+                                            /*try
+                                            {
+                                                sw.WriteLine("Sub-Criteria: " + Convert.ToString(k + 1));
+                                                sw.WriteLine("Sub-criteria title: " + crtitle[i, k]);
+                                                sw.WriteLine("Grade: n/a");
+                                            }
+                                            catch { }*/
+                                            /* if (CriteriaSelectionType > 1) //if allow individual criteria deselection
+                                             {
+                                                 sw.WriteLine("Criteria DeSelect: " + Convert.ToString(i + 1));
+                                             }*/
+                                        }
                                     }
                                 }
-                            }
 
-                            fl = Generate_Overall_Mark(s);
+                                fl = Generate_Overall_Mark(s);
 
-                            if ((SessionType > 0) && (!SessionsEqual)) //if multisession and sessions are weighted
-                            {
-                                float w = Convert.ToSingle(SessionWeight[s]);
-                                f = f + (fl * (w / 100));   //apply session weight
-                            }
-                        } //sessions s
+                                if ((SessionType > 0) && (!SessionsEqual)) //if multisession and sessions are weighted
+                                {
+                                    float w = Convert.ToSingle(SessionWeight[s]);
+                                    f = f + (fl * (w / 100));   //apply session weight
+                                }
+                            } //sessions s
 
                         if (SessionType == 0)
                         {
@@ -3973,10 +3987,10 @@ namespace UltraMarker
                         sw.WriteLine();
                         str = Convert.ToString(f);
                         rawpercent = str;
-                        if (overridepercentcheckBox.Checked)
+                       /* if (overridepercentcheckBox.Checked)
                         {
                             str = overrideBox.Text;
-                        }
+                        }*/
                         sw.WriteLine("Overall mark: " + str);
                        
                         percentlabel.Text = str;
@@ -4304,6 +4318,18 @@ namespace UltraMarker
                             }
 
                         }
+                        
+                        else if (str.StartsWith("Override%"))
+                        {
+                            if (str.Contains("true"))
+                            {
+                                overridepercentcheckBox.Checked = true;                                
+                            }
+                            else
+                            {
+                                overridepercentcheckBox.Checked = false;                                
+                            }
+                        }                       
 
                         else if (str.StartsWith("Criteria title:"))
                         {
@@ -4317,10 +4343,10 @@ namespace UltraMarker
                                     if (SubNode.Text.Trim() == str3.Trim())
                                     {
                                         i = SubNode.Index;
-                                      currentNodeIndex = i;
+                                        currentNodeIndex = i;
                                     }
                                 }
-                                                                
+
                             }
                             j = MaxSub;
 
@@ -4383,7 +4409,7 @@ namespace UltraMarker
                                 {
                                     j = SubNode.Index;
                                 }
-                               
+
                             }
                         }
                         else if (str.StartsWith("General feedback:"))
@@ -4409,6 +4435,14 @@ namespace UltraMarker
                             percentlabel.Text = str3;
                             percentlabel.Visible = true;
                             label21.Visible = true;
+                            if (overridepercentcheckBox.Checked)
+                            {
+                                overrideBox.Text = str3;
+                            }
+                            else
+                            {
+                                overrideBox.Text = "";
+                            }
                         }
                         else if (str.StartsWith("Equivalent grade:"))
                         {
@@ -4417,7 +4451,7 @@ namespace UltraMarker
                         else if (str.StartsWith("ORG"))
                         {
                             if (str3 != null && str3.Length > 0)
-                            {                                
+                            {
                                 overridecheckBox.CheckedChanged -= overridecheckBox_CheckedChanged;
                                 overridecheckBox.Checked = true;
                                 overridecheckBox.CheckedChanged += overridecheckBox_CheckedChanged;
@@ -5786,6 +5820,19 @@ namespace UltraMarker
                 }
             }
             d = Math.Round(f);
+            if (overridepercentcheckBox.Checked)
+            {
+                int D;
+                if (Int32.TryParse(overrideBox.Text, out D))
+                {
+                    d = D;
+                }
+                else
+                {
+                    d = 0;
+                }
+                
+            }
             return Convert.ToSingle(d);
         }
 
@@ -8317,7 +8364,7 @@ namespace UltraMarker
         {
             string str;
             //remove the LO node 
-            DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove Ooutcome", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Delete Yes/No?", "Remove Outcome", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
 
@@ -10542,6 +10589,11 @@ namespace UltraMarker
 
         private void overridecheckBox_CheckedChanged(object sender, EventArgs e)
         {
+
+            if (loadingMark)
+            {
+                return;
+            }
             if (overridecheckBox.Checked && EditStudent)
             {
                 overridepercentcheckBox.Checked = false;
@@ -11757,6 +11809,10 @@ namespace UltraMarker
 
         private void overridepercentcheckBox_CheckedChanged(object sender, EventArgs e)
         {
+            if (loadingMark)
+            {
+                return;
+            }
             if (overridepercentcheckBox.Checked && EditStudent)
             {
                 overridecheckBox.Checked = false;
@@ -11778,7 +11834,7 @@ namespace UltraMarker
                     return;
                 }
             }
-            else
+            else if (EditStudent)
             {
                 if (MessageBox.Show("Remove % override Y/N?", "Override", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
